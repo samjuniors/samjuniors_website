@@ -8,79 +8,76 @@
 
 ## 1. Cinematic Web Experiences
 
-### Evidence & Reference Analysis
-- **Apple (Product Reveal Pages)**: Uses sequenced spatial scenes, tight typography-to-media lockups, and viewport-driven reveals to create theatrical pacing. Key insight: Motion is always tied to physical or structural demonstrations of the hardware/software feature.
-- **Linear (Release & Brand Pages)**: Employs subtle depth, monochromatic contrast, keyboard shortcuts, and crisp micro-reveals. Storytelling feels snappy and utilitarian rather than movie-like.
-- **Raycast**: Uses high-contrast typography, interactive keyboard widgets, and crisp screen recordings that let the tool's speed speak for itself.
-- **Overly Cinematic Failure Modes** (e.g., promotional agency showcase sites, WebGL narrative experiments): Cause high drop-off when they take 5+ seconds of preloading, override mouse wheel behavior, hijack scroll momentum, or bury basic pricing and product information behind 10 scroll stages.
+### Observable Evidence
+- **Apple (Hardware & Software Reveal Pages)**: Uses sequenced spatial scenes, tight typography-to-media lockups, and viewport-driven reveals. Observably, motion is linked to physical or structural demonstrations of the feature (e.g., exploded hardware views, active UI workflows).
+- **Linear (Brand & Changelog Releases)**: Uses high-contrast typography, dark neutral backgrounds, and snappy micro-reveals. Motion operates as rapid state transitions rather than extended theatrical animations.
+- **Raycast**: Showcases tool velocity through embedded, high-frame-rate screen captures and interactive keyboard shortcuts rather than decorative metaphor.
+- **Experimental Showcase Failures**: WebGL-heavy agency portfolios and narrative experiment sites exhibit observable usability degradation when they impose multi-second loading screens, hijack scroll wheel speed, or defer core product information behind sequential animations.
 
-### Useful Patterns
-- **Scene-based visual pacing**: Structuring sections so each viewport height communicates exactly one coherent proposition.
-- **Visual anchors**: Keeping a sticky UI frame or interactive component in view while text steps update around it, maintaining visitor orientation.
-- **Subtle depth and layered lighting**: Using controlled, high-contrast typography over dark/neutral surfaces with sharp, vector-level clarity.
+### Design Pattern Interpretation
+- **Why it works**: Scene-based pacing allows readers to absorb one self-contained concept per viewport height. Sticky visual anchors (such as an interactive frame remaining fixed while explanatory copy progresses) preserve spatial orientation.
+- **Why it fails**: Hijacking native scroll mechanics disorients users, degrades trackpad accessibility, and triggers high bounce rates among visitors seeking direct information.
 
 ### Risks & Anti-Patterns to Reject
-- **Scroll-jacking & Scroll Freeze**: Forcing users to complete 10 scroll ticks just to advance one graphic.
-- **Mandatory Loader Splash Screens**: Blocking immediate content rendering behind animated logos or progress bars.
-- **Narrative Obscurity**: Hiding what the company actually makes behind abstract metaphorical animations.
+- **Scroll-jacking & Scroll Traps**: Overriding native browser scrolling velocity or freezing scroll progress to force animation playback.
+- **Mandatory Loader Splash Screens**: Blocking initial content rendering behind animated logos or progress indicators.
+- **Abstract Narrative Obscurity**: Concealing actual product capabilities behind abstract metaphorical graphics.
 
 ### SamJuniors Implication
-SamJuniors should structure its homepage as a sequence of cinematic, distinct scenes (Parent Brand → Lumora Reveal → Ecosystem → Proof → Leadership), but preserve native scroll momentum and instant readable headlines. Cinematic feeling must come from lighting, typography, and crisp pacing—not from taking away user controls.
+SamJuniors should structure its homepage as a sequence of distinct narrative scenes (Parent Brand → Lumora Reveal → Ecosystem → Proof → Leadership), but preserve 100% native scroll control and instant readable headlines. Cinematic feeling must derive from lighting, typography, and crisp visual pacing—never from removing user control.
 
 ---
 
 ## 2. Human & Distinctive Visual Design
 
-### Evidence & Reference Analysis
-- **Current Generic AI Startup Aesthetic**: Saturated purple/cyan gradient blobs, frosted acrylic glass cards with thick glowing borders, generic 3D floating metallic spheres, robot hand illustrations, and copy dominated by *"Supercharge your workflow with AI"*.
-- **Teenage Engineering**: Achieves distinctiveness through industrial design aesthetics, ultra-precise grid alignment, custom monospace and technical typography, tactile diagrams, and zero decorative fluff.
-- **Framework Computer / Linear / Stripe**: Differentiate by emphasizing engineering craft, schematics, actual UI components, and restrained, high-density layouts rather than generic marketing graphics.
+### Observable Evidence
+- **Prevalent AI Startup Visual Tropes**: Broad saturation of purple-cyan gradient ramps, frosted acrylic glassmorphism cards with thick glowing borders, generic 3D floating metallic spheres, and interchangeable tagline formulas (*"Supercharge your workflow with AI"*).
+- **Teenage Engineering**: Establishes distinctive brand character through industrial schematic aesthetics, ultra-precise grid alignment, custom technical typography, tactile line diagrams, and total absence of decorative background glows.
+- **Framework Computer / Linear / Stripe**: Differentiate by foregrounding genuine engineering schematics, actual UI components, code architecture, and high-density layouts over generic marketing illustrations.
 
-### Useful Patterns
-- **Bespoke typography hierarchy**: Pairing an elegant, distinctive display serif or geometric sans with an ultra-clean, legible grotesque/monospace for technical specs.
-- **Schematic & Architectural Visuals**: Showing real architectural diagrams, data flows, and interactive UI components rather than generic concept art.
-- **Editorial spatial discipline**: Generous whitespace, razor-sharp vector borders (1px hairline rules), and deliberate color accents tied to semantic states.
+### Design Pattern Interpretation
+- **Why it works**: Distinctive visual authorship is created by bespoke typography pairings, disciplined spatial rhythm, hairline borders (1px structural rules), and diagrams that explain real mechanics rather than decorating empty space.
+- **Why it fails**: Relying on trending UI templates produces instant visual interchangeability with hundreds of other tech websites.
 
 ### Risks & Anti-Patterns to Reject
 - **Visual Interchangeability**: Adopting template card grids with identical corner radii, glowing borders, and particle backgrounds that look like an off-the-shelf theme.
-- **Artificial Roughness**: Introducing fake retro dithering or glitch artifacts merely to look "human" or edgy.
+- **Artificial Roughness**: Introducing fake retro dithering, artificial scanlines, or glitch artifacts merely to simulate "human" imperfection.
 
 ### SamJuniors Implication
-To satisfy [HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001), SamJuniors must pass the Distinctiveness Test (*"If the logo were removed, could this be mistaken for a generic AI startup?"*). Visual identity should lean into architectural precision, purposeful spatial rhythm, and genuine product schematics rather than decorative glowing gradients.
+To satisfy [HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001), SamJuniors must pass the Distinctiveness Test (*"If the logo were removed, could this design be mistaken for a generic AI startup?"*). Visual identity should lean into architectural precision, purposeful spatial rhythm, and genuine product schematics rather than decorative glowing gradients.
 
 ---
 
 ## 3. Progressive Disclosure & Depth Architecture
 
-### Evidence & Reference Analysis
-- **Stripe (API Documentation & Product Pages)**: Surface a single clear value proposition in the hero, followed by tabbed interactive code samples, and deep links directly into comprehensive API reference manuals.
-- **Figma (Feature Launch Pages)**: Use inline interactive sandboxes where users can click to test a micro-feature without navigating away, backed by "Learn more" drawers for detailed mechanics.
-- **Failure Mode in B2B Tech**: Dumping 40-page whitepaper text directly onto the homepage, or conversely, making pages so sparse that technical evaluators find zero substance.
+### Observable Evidence
+- **Stripe (Product & Developer Docs)**: Surfaces a concise value proposition in the hero, followed immediately by tabbed interactive code snippets, backed by direct links into comprehensive API reference documentation.
+- **Figma (Feature Launch Pages)**: Embeds interactive sandbox widgets directly in the page flow, allowing users to test tools inline while offering expandable sheets for deep technical mechanics.
+- **B2B Technical Pitfalls**: Unstructured content dumps overwhelm non-technical visitors, whereas overly sparse marketing pages fail technical diligence from engineers and investors.
 
-### Useful Patterns
-- **Three-Tier Depth (Instant → Understand → Deep Dive)**: Hero headline delivers the Instant takeaway; expandable diagram/tab delivers the Understand layer; direct links/sheets offer the Deep Dive architecture.
-- **Interactive Inspectability**: Allowing visitors to click or hover over specific subsystem nodes to reveal technical capabilities inline.
+### Design Pattern Interpretation
+- **Why it works**: Layering information into three distinct depths (Instant takeaway → Understand demonstration → Deep Dive specification) satisfies diverse visitor fluencies without fragmenting the site into separate silos.
+- **Why it fails**: Gating technical details behind forced introductory tutorials repels expert users who need immediate technical evaluation.
 
 ### Risks & Anti-Patterns to Reject
-- **Gated Funnels**: Forcing users to read beginner tutorials before unlocking technical documentation.
-- **Hidden Information Traps**: Burying crucial specifications behind multi-level nested accordion menus with zero searchability.
+- **Mandatory Sequential Funnels**: Requiring users to step through introductory stages before unlocking architectural documentation.
+- **Hidden Information Traps**: Burying critical specifications inside nested, non-searchable accordions.
 
 ### SamJuniors Implication
-Directly align layout components with [CONTENT-003](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-content-strategy/content-strategy.md#4-three-information-depths-content-003). The homepage must provide instant clarity for high-level visitors while providing immediate, non-linear jump points into deep technical specs for developers, researchers, and partners.
+Directly align layout components with [CONTENT-003](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-content-strategy/content-strategy.md#4-three-information-depths-content-003). The homepage must provide instant conceptual clarity on initial glance, while providing immediate, non-linear jump points into deep technical specs for developers, researchers, and partners.
 
 ---
 
 ## 4. Multi-Product Parent-Company Architecture
 
-### Evidence & Reference Analysis
-- **Alphabet / Google (DeepMind, Google Research, Workspace)**: Parent umbrella maintains institutional credibility while giving individual products (Gemini, Android) distinct identities.
+### Observable Evidence
+- **Alphabet / Google (DeepMind, Google Research, Android)**: Parent umbrella maintains enduring corporate and institutional credibility, while distinct sub-brands and products operate with dedicated visual identities and scopes.
 - **Block (Square, Cash App, TIDAL, Spiral)**: Block acts as the foundational philosophy and ecosystem layer; each venture operates as a focused product with its own domain.
 - **Vercel (Next.js, v0, Turborepack, AI SDK)**: Vercel maintains the parent platform narrative while showcasing flagship offerings (Next.js, v0) with high prominence, easily adjusting focus as new tools emerge.
 
-### Useful Patterns
-- **Parent as Foundation & Vision Layer**: SamJuniors establishes the enduring company thesis, engineering philosophy, and long-term ecosystem scope.
-- **Curated Spotlight Hero**: Highlighting current flagship product (**Lumora**) prominently within a dedicated showcase scene without making the entire parent website *be* Lumora.
-- **Modular Ecosystem Matrix**: Structuring product discovery in a scalable grid or node architecture that easily accommodates future product additions (Product B, Product C) without redesigning page layout.
+### Design Pattern Interpretation
+- **Why it works**: Positioning the parent brand as the permanent narrative foundation allows the company to feature flagship products prominently without coupling the company's existence to a single product lifecycle.
+- **Why it fails**: When a parent company fuses its entire visual identity with its first product, launching subsequent products requires an expensive and disorienting rebrand.
 
 ### Risks & Anti-Patterns to Reject
 - **Identity Fusion**: Allowing one flagship product to completely consume the parent brand identity, forcing a disruptive rebrand when subsequent products launch.
@@ -93,57 +90,57 @@ Follow [CONTENT-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-conte
 
 ## 5. Motion, Interaction & Performance
 
-### Evidence & Reference Analysis
-- **Linear / Vercel**: Animations average 150ms–250ms with custom cubic-bezier easings (`ease-out` on entry). Zero lag; transitions assist cognitive spatial continuity.
-- **Accessibility Benchmarks (WCAG 2.3.3 / 2.2.2)**: Any motion lasting longer than 5 seconds must have a pause control; interfaces must honor `prefers-reduced-motion: reduce` by replacing spatial transitions with instant opacity fades or static positioning.
-- **Performance Impact**: Heavy WebGL canvases and un-throttled scroll listeners frequently cause 60fps frame drops, battery drain on laptops, and mobile throttling.
+### Observable Evidence
+- **Perceptual Response Times (Nielsen Norman Group / Miller)**: UI feedback within 100ms feels instantaneous; transitions between 100ms–300ms provide smooth spatial continuity without delaying user action.
+- **Web Content Accessibility Guidelines (WCAG 2.1/2.2)**:
+  - **SC 2.2.2 (Pause, Stop, Hide - Level A)**: Any moving or scrolling content lasting >5 seconds must have a pause/hide control.
+  - **SC 2.3.3 (Animation from Interactions - Level AAA)**: Motion triggered by user interaction can be disabled unless essential to functionality.
+  - **`prefers-reduced-motion` Media Query**: Industry standard for respecting user vestibular preferences by substituting spatial movement with static layout or subtle opacity cross-fades.
+- **Rendering Performance (W3C / Browser Compositor Pipelines)**: Animating CSS `transform` and `opacity` properties executes on the GPU compositor thread without triggering costly browser layout reflows or repaints.
 
-### Useful Patterns
-- **Purpose-Driven Micro-Interactions**: Hover states and active selections that provide immediate physical feedback (e.g., button press translation, subtle border illumination).
-- **Spatial Wayfinding Motion**: Elements entering from the direction of scroll to reinforce vertical progression.
-- **CSS-First & GPU-Accelerated Transforms**: Restricting animated properties strictly to `transform` and `opacity` to prevent costly browser reflows/repaints.
+### Design Pattern Interpretation
+- **Why it works**: Micro-interactions that reinforce physical spatial models (e.g., subtle elevation on hover, downward press on click) enhance tactile confidence.
+- **Why it fails**: Continuous un-throttled canvas animations degrade battery life, trigger thermal throttling on mobile devices, and cause frame drops below 60fps.
 
 ### Risks & Anti-Patterns to Reject
-- **Decorative Lag**: Continuous floating particle animations that chew CPU cycles while adding zero comprehension value.
-- **Hover-Dependent Critical Data**: Placing essential information in hover tooltips that fail on touch devices.
+- **Decorative CPU Waste**: Unconstrained floating particle scripts running in continuous render loops.
+- **Hover-Dependent Critical Data**: Placing essential specifications or actions exclusively inside hover tooltips that are inaccessible on touch screens.
 
 ### SamJuniors Implication
-Enforce the *Animation Purpose Test* from [UX-012](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-012-hybrid-scroll--progression-model) (*"If removing an animation harms comprehension, keep it; if it only alters decoration, delete it"*). Provide full, flawless static fallbacks when `prefers-reduced-motion` is active.
+Enforce the *Animation Purpose Test* from [UX-012](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-012-hybrid-scroll--progression-model) (*"If removing an animation harms comprehension, keep it; if it only alters decoration, delete it"*). Restrict animated styles strictly to hardware-accelerated properties (`transform`, `opacity`) and provide full static fallbacks when `prefers-reduced-motion` is active.
 
 ---
 
 ## 6. Mobile Cinematic Experiences
 
-### Evidence & Reference Analysis
-- **Arc Browser (Mobile Landing Page)**: Re-composes desktop widescreen demonstrations into vertical card decks and full-width interactive video loops optimized for one-thumb scrolling.
-- **Stripe Mobile**: Replaces multi-column side-by-side interactive code blocks with horizontally swipeable tabs and stacked interactive snippets.
-- **Mobile Failure Modes**: Shrinking desktop 3-column layouts into tiny, unreadable 3-column rows or leaving massive desktop whitespace margins that push text off mobile screens.
+### Observable Evidence
+- **Apple / Arc Browser (Mobile Web)**: Re-composes desktop widescreen demonstrations into native vertical card decks and full-width interactive video loops optimized for one-thumb scrolling.
+- **Touch Target Specifications (Apple HIG / WCAG)**: Apple Human Interface Guidelines and WCAG 2.1 AAA (SC 2.5.5) recommend a minimum 44×44 CSS pixel target size for interactive controls; WCAG 2.2 AA (SC 2.5.8) mandates a minimum 24×24 CSS pixel target size.
+- **Mobile Failure Modes**: Mechanically scaling desktop 3-column layouts down to mobile viewports results in illegible typography, compromised tap targets, and accidental mis-clicks.
 
-### Useful Patterns
-- **Independent Touch Composition**: Restructuring complex horizontal layouts into native vertical narrative flows with generous tap targets (minimum 44x44px).
-- **Sticky Progress & Bottom Sheets**: Anchoring navigation or contextual drawers to the bottom of the viewport for comfortable thumb reach.
-- **Lightweight Media Optimization**: Serving responsive WebP/AVIF video snippets sized precisely for mobile viewports rather than streaming desktop assets.
+### Design Pattern Interpretation
+- **Why it works**: Re-composing desktop content into native vertical stacks respects mobile thumb-reach ergonomics and allows uninterrupted one-handed browsing.
+- **Why it fails**: Horizontal carousels that hijack vertical scroll gestures create friction and cause users to get stuck mid-scroll.
 
 ### Risks & Anti-Patterns to Reject
-- **Direct Viewport Shrinking**: Scaling desktop layouts mechanically, creating illegible 10px fonts and cramped tap targets.
-- **Gesture Hijacking**: Intercepting vertical swipes for horizontal carousels without explicit visual pagination indicators.
+- **Direct Viewport Shrinking**: Scaling desktop layouts mechanically, creating illegible fonts and cramped tap targets.
+- **Gesture Conflict**: Intercepting vertical swipes for horizontal carousels without explicit visual pagination affordances.
 
 ### SamJuniors Implication
-Adhere strictly to [UX-017](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-017-mobile-is-first-class): Mobile is an independently composed, first-class experience that preserves the entire narrative arc while utilizing touch-native interactions.
+Adhere strictly to [UX-017](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-017-mobile-is-first-class): Mobile is an independently composed, first-class experience that preserves the entire narrative arc while utilizing touch-native interactions with minimum 44×44px tap targets.
 
 ---
 
 ## 7. Trust, Evidence & Credibility
 
-### Evidence & Reference Analysis
-- **Substack / Basecamp**: Integrate founder perspective directly through thoughtful, long-form editorial essays and authentic signed notes rather than glossy PR blurbs.
-- **PostHog / Linear**: Build trust by showing exact product capabilities, transparent roadmaps, customer case studies with specific metrics, and genuine engineer-written release logs.
+### Observable Evidence
+- **Basecamp / Substack**: Establish founder trust through direct, signed editorial perspectives that explain *why* the technology is built rather than issuing third-person corporate press releases.
+- **PostHog / Linear**: Demonstrate credibility by publishing verifiable technical architecture, live benchmarks, transparent roadmaps, and detailed customer case studies.
 - **Failure Mode in Corporate Tech**: The generic "Logo Soup Wall" (featuring 50 unrecognizable grayscale logos) and vague quotes (*"This changed our world! — John D., CEO"*).
 
-### Useful Patterns
-- **Contextual Proof Placement**: Embedding verifiable product demonstrations and benchmarks directly alongside the features they substantiate, rather than grouping them into an isolated testimonials page.
-- **Authentic Founder Presence**: Presenting leadership vision as deliberate, principled human commitments rather than corporate hype.
-- **Verifiable Proof Artifacts**: Showing real architectural benchmarks, interactive sandbox evaluations, and transparent roadmap statuses (Live, Beta, Research).
+### Design Pattern Interpretation
+- **Why it works**: Placing concrete evidence (benchmarks, screenshots, architecture schematics) directly beside product claims provides immediate validation at the exact moment of evaluation.
+- **Why it fails**: Isolating all proof onto a separate "Testimonials" page leads to low discovery, as most visitors never navigate there.
 
 ### Risks & Anti-Patterns to Reject
 - **Fabricated Social Proof**: Displaying unverified metrics, placeholder testimonials, or synthetic partner logos.
@@ -156,14 +153,14 @@ Follow [CONTENT-006](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-conte
 
 ## 8. Cognitive Load, Ergonomics & Visual Rest
 
-### Evidence & Reference Analysis
-- **Apple / Linear**: Use generous section padding (120px–180px on desktop), strict typography hierarchies (max 3 font sizes per scene), and high contrast to ensure effortless scanning.
-- **Cognitive Load Theory (Sweller / Nielsen)**: Working memory is bounded (4±1 chunks). When visual noise (blinking badges, competing colors, floating banners) exceeds capacity, reading comprehension plummets.
+### Observable Evidence
+- **Cognitive Psychology & Ergonomics (Sweller / Cowan)**: Working memory is constrained (holding approximately 4±1 active information chunks in visual-spatial processing).
+- **Web Reading Ergonomics (Nielsen Norman Group / Bringhurst)**: Reading fatigue increases rapidly when line lengths exceed 75–80 characters or drop below 45 characters. Optimal scanning occurs with generous paragraph spacing and distinct visual hierarchies.
+- **Visual Rest in Editorial Design**: High-impact editorial layouts (e.g., Apple, Stripe Press) intersperse information-dense technical sections with clean typographical pause moments.
 
-### Useful Patterns
-- **Visual Rest Stops**: Intersperse dense technical or feature scenes with clean, high-impact typographic pauses that allow the visitor to absorb what they just learned.
-- **Optimal Line Lengths**: Restricting paragraph line lengths strictly to 50–75 characters for effortless reading flow.
-- **Single Dominant Focal Point**: Ensuring every viewport has exactly one primary element demanding attention.
+### Design Pattern Interpretation
+- **Why it works**: Limiting each viewport to one dominant cognitive purpose prevents reader choice paralysis (Hick-Hyman Law) and ensures effortless scanning.
+- **Why it fails**: Simultaneous visual stimuli (animated banners, multiple primary buttons, auto-playing video) trigger sensory fatigue and high bounce rates.
 
 ### Risks & Anti-Patterns to Reject
 - **Visual Cacophony**: Displaying animated badges, competing gradient cards, auto-playing videos, and floating chat widgets simultaneously.
@@ -178,11 +175,11 @@ Implement [UX-008](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-prin
 
 The following are the **8 core implications** derived from this research to govern Wireframing (Phase 6), Design System (Phase 7), and UI Design (Phase 8):
 
-1. **Theatrical Pacing with Native Controls**: Deliver cinematic drama through lighting, high-contrast typography, and spatial composition while preserving 100% native scroll control and instant wayfinding.
+1. **Theatrical Pacing with Native Controls**: Deliver cinematic drama through lighting, high-contrast typography, and spatial composition while preserving 100% native scroll control and instant wayfinding (no scroll-jacking or mandatory loader screens).
 2. **Distinctive Architectural Aesthetic ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: Reject generic AI visual cliches (saturated purple gradients, glowing orbs, monotonous cards); anchor visual identity in razor-sharp schematics, deliberate typography, and high-craft layout rhythm.
-3. **Three-Layer Progressive Depth**: Structure all pages to deliver instant conceptual clarity within 5 seconds, progressive visual understanding on scroll, and deep technical specs on intent.
+3. **Three-Layer Progressive Depth**: Structure all pages to deliver instant conceptual clarity on initial glance (passing the 5-second comprehension heuristic), progressive visual understanding on scroll, and deep technical specs on intent.
 4. **Permanent Parent Umbrella with Spotlight Products**: Position SamJuniors as the enduring foundation and narrative anchor, with Lumora given flagship prominence within a scalable multi-product container.
-5. **Comprehension-First Motion Budget**: Enforce the Animation Purpose Test across all transitions; restrict motion strictly to hardware-accelerated transforms; provide comprehensive static fallbacks for `prefers-reduced-motion`.
-6. **Native Touch Re-Composition**: Design mobile layouts as an independent, thumb-friendly vertical narrative with minimum 44px touch targets and zero hover-dependencies.
+5. **Comprehension-First Motion Budget**: Enforce the Animation Purpose Test across all transitions; restrict motion strictly to hardware-accelerated transforms (`transform`, `opacity`); provide comprehensive static fallbacks for `prefers-reduced-motion`.
+6. **Native Touch Re-Composition**: Design mobile layouts as an independent, thumb-friendly vertical narrative with minimum 44×44px touch targets (Apple HIG / WCAG AAA) and zero hover-dependencies.
 7. **Contextually Embedded Verifiable Proof**: Weave concrete product demonstrations, benchmarks, and authentic founder commitments directly beside relevant claims rather than using disconnected proof walls.
 8. **Cognitive Rest & Spatial Discipline**: Protect reader energy using 50–75 character line lengths, generous section breathing room, and one dominant focal point per scene.
