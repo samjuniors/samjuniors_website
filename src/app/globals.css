@@ -40,6 +40,19 @@ button {
   font-family: inherit;
 }
 
+/* Accessible Focus States */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
 .container {
   width: 100%;
   max-width: var(--container-max);
