@@ -26,6 +26,7 @@ out/
 .turbo/
 .parcel-cache/
 coverage/
+*.tsbuildinfo
 
 # Environment and Secret Files
 .env
