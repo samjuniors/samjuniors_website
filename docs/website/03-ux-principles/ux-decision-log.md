@@ -1,6 +1,7 @@
 # UX Architecture Decision Log
 
-This document tracks all formal decisions made during the **UX Architecture & User Principles** phase (UX-001 through UX-012).
+This document tracks all formal decisions made during the **UX Architecture & User Principles** phase (`UX-001` through `UX-019` and `USER-FLOW-001` through `USER-FLOW-005`).
+
 All records adhere to the mandatory governance framework: **Decision, Reason, Alternatives Considered, Why Alternatives Were Rejected, Benefits, Risks, Future Review Criteria**.
 
 ---
@@ -21,6 +22,18 @@ All records adhere to the mandatory governance framework: **Decision, Reason, Al
 | [UX-010](#ux-010-user-mental-model-first) | User Mental Model First | Information Taxonomy | **APPROVED** | 2026-08-31 |
 | [UX-011](#ux-011-hybrid-navigation) | Hybrid Navigation | Navigation Topology | **APPROVED** | 2026-08-31 |
 | [UX-012](#ux-012-hybrid-scroll--progression-model) | Hybrid Scroll & Progression Model | Scroll & Motion Dynamics | **APPROVED** | 2026-08-31 |
+| [UX-013](#ux-013-understanding-must-accompany-curiosity) | Understanding Must Accompany Curiosity | Cognitive Ergonomics | **APPROVED** | 2026-08-31 |
+| [UX-014](#ux-014-interaction-must-earn-its-friction) | Interaction Must Earn Its Friction | Interaction Budget | **APPROVED** | 2026-08-31 |
+| [UX-015](#ux-015-visitor-control) | Visitor Control | User Agency | **APPROVED** | 2026-08-31 |
+| [UX-016](#ux-016-progressive-disclosure) | Progressive Disclosure | Depth Architecture | **APPROVED** | 2026-08-31 |
+| [UX-017](#ux-017-mobile-is-first-class) | Mobile Is First-Class | Responsive Architecture | **APPROVED** | 2026-08-31 |
+| [UX-018](#ux-018-predictable-restrained-navigation) | Predictable Restrained Navigation | Wayfinding | **APPROVED** | 2026-08-31 |
+| [UX-019](#ux-019-recovery--continuity) | Recovery & Continuity | Fault Tolerance | **APPROVED** | 2026-08-31 |
+| [USER-FLOW-001](#user-flow-001-first-time-visitor-journey) | First-Time Visitor Journey | Narrative Topology | **APPROVED** | 2026-08-31 |
+| [USER-FLOW-002](#user-flow-002-multiple-valid-entry-points) | Multiple Valid Entry Points | Entry Topology | **APPROVED** | 2026-08-31 |
+| [USER-FLOW-003](#user-flow-003-natural-next-move) | Natural Next Move | Interaction Progression | **APPROVED** | 2026-08-31 |
+| [USER-FLOW-004](#user-flow-004-contextual-cta-hierarchy) | Contextual CTA Hierarchy | Conversion Architecture | **APPROVED** | 2026-08-31 |
+| [USER-FLOW-005](#user-flow-005-returning-visitor-flow) | Returning Visitor Flow | Continuity & Retention | **APPROVED** | 2026-08-31 |
 
 ---
 
@@ -155,3 +168,137 @@ All records adhere to the mandatory governance framework: **Decision, Reason, Al
 - **Benefits**: Fluid, natural interaction with captivating motion design.
 - **Risks**: Scroll listeners must be passive and decoupled from rendering threads.
 - **Future Review Criteria**: 60fps frame rate benchmarks during performance QA.
+
+---
+
+### UX-013: Understanding Must Accompany Curiosity
+- **Decision**: Enforce that visual surprises, motion, and cinematic reveals must never compromise visitor comprehension. Visitors must continuously maintain a 4-part mental model (*Where am I? What am I seeing? Why does it matter? What can I do next?*).
+- **Reason**: Prevents experiential disorientation where aesthetic visual spectacle obscures basic product communication.
+- **Alternatives Considered**: Pure mystery-driven storytelling where answers are deferred until the final scene.
+- **Why Alternatives Were Rejected**: Mystery-driven sites experience severe bounce rates from users who cannot quickly determine product relevance.
+- **Benefits**: High engagement paired with crystal-clear value perception (*"I want to see what's next"*, not *"What am I looking at?"*).
+- **Risks**: Requires tight coordination between copywriters and visual designers.
+- **Future Review Criteria**: Comprehension evaluations in Phase 11 QA usability testing.
+
+---
+
+### UX-014: Interaction Must Earn Its Friction
+- **Decision**: Require every interaction, animation, modal, gesture, or transition to deliver a positive value-to-friction ratio (providing meaningful info, discovery, comprehension, or progression). Prohibit novelty anti-patterns (custom cursor effects, scroll-jacking, forced horizontal scroll, hover-only info).
+- **Reason**: Protects user energy and focus, ensuring high-value engagement across all devices.
+- **Alternatives Considered**: Adding visual micro-interactions purely for portfolio flair.
+- **Why Alternatives Were Rejected**: Novelty interactions generate immediate user annoyance and impair accessibility.
+- **Benefits**: Lightweight, responsive, and respectful user experience.
+- **Risks**: Interaction designers must balance restraint with polish.
+- **Future Review Criteria**: Friction audit during Design System and Vertical Slice reviews.
+
+---
+
+### UX-015: Visitor Control
+- **Decision**: Ensure the web experience guides attention without seizing control from the user. Visitors retain absolute control over scrolling, navigation, pacing, skipping, and exploration depth.
+- **Reason**: Respects human agency and hardware ergonomics, fostering an empowering sense of discovery.
+- **Alternatives Considered**: Linear guided slideshow tour with automated pacing.
+- **Why Alternatives Were Rejected**: Automated tours feel imposed, frustrating users who read faster or want specific answers.
+- **Benefits**: Natural, self-directed exploration with high user satisfaction.
+- **Risks**: Layout must gracefully accommodate fast scrollers as well as careful readers.
+- **Future Review Criteria**: Usability session recordings during Phase 9 Vertical Slice.
+
+---
+
+### UX-016: Progressive Disclosure (Depth Alignment)
+- **Decision**: Expose complexity progressively in response to visitor interest (aligned with [CONTENT-003](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-content-strategy/content-strategy.md#4-three-information-depths-content-003): Instant, Understand, Deep Dive) without forcing a rigid sequential funnel.
+- **Reason**: Caters directly to varying visitor fluencies and intents.
+- **Alternatives Considered**: Gated disclosure where deep documentation is locked behind introductory chapters.
+- **Why Alternatives Were Rejected**: Artificial gates repel expert and technical visitors who require immediate deep specifications.
+- **Benefits**: Universal accessibility for casual scanners and immediate depth for engineers.
+- **Risks**: Deep content pathways must remain discoverable from top-level views.
+- **Future Review Criteria**: Navigation success rates to technical documentation.
+
+---
+
+### UX-017: Mobile Is First-Class
+- **Decision**: Treat mobile and desktop as independently composed, equally first-class experiences that preserve core narrative and meaning without mechanically scaling down desktop layouts. Prohibit hover-dependent critical content.
+- **Reason**: Over 60% of modern web traffic originates on mobile devices with touch constraints.
+- **Alternatives Considered**: Desktop-first layout with automatic CSS media-query shrinking.
+- **Why Alternatives Were Rejected**: Direct shrinking produces illegible typography, compromised tap targets, and broken touch gestures.
+- **Benefits**: Flawless, native-feeling mobile experience and WCAG touch target compliance.
+- **Risks**: Requires parallel composition reviews for both form factors in Phase 8 UI Design.
+- **Future Review Criteria**: Mobile Lighthouse performance and touch usability audits.
+
+---
+
+### UX-018: Predictable Restrained Navigation
+- **Decision**: Maintain predictable, accessible, and dependable global navigation that supports wayfinding without competing with cinematic content. Prohibit hiding navigation purely for visual drama.
+- **Reason**: Ensures visitors never feel lost or trapped in an unconventional layout.
+- **Alternatives Considered**: Full-screen immersive mode with navigation hidden until mouse-shake or edge-hover.
+- **Why Alternatives Were Rejected**: Hidden navigation destroys discoverability and violates accessibility guidelines.
+- **Benefits**: Frictionless wayfinding across the entire ecosystem.
+- **Risks**: Header styling must integrate seamlessly with diverse background themes.
+- **Future Review Criteria**: Keyboard navigation and screen-reader accessibility benchmarks.
+
+---
+
+### UX-019: Recovery & Continuity
+- **Decision**: Require every experience state to have an immediate, non-destructive recovery path (allowing continuing, skipping, revisiting, or reorienting). Explicitly support reduced-motion preferences, deep linking, and mid-story entry.
+- **Reason**: Ensures resilience across varying network conditions, user abilities, and non-linear browsing habits.
+- **Alternatives Considered**: Single-state monolithic apps where refreshing restarts the experience from the beginning.
+- **Why Alternatives Were Rejected**: Fragile single-state flows generate high abandonment upon page refresh or network blips.
+- **Benefits**: Robust, resilient, and fault-tolerant user experience.
+- **Risks**: Frontend state management must cleanly support deep-linking and state restoration.
+- **Future Review Criteria**: Deep-link entry tests and reduced-motion audit in Phase 11 QA.
+
+---
+
+### USER-FLOW-001: First-Time Visitor Journey
+- **Decision**: Define the ideal first-time narrative progression: *Entry → SamJuniors Signal → Understanding → What We're Building → Lumora / Product Reveal → Why It Matters → Proof → Founder / Leadership → Future → Visitor Choice*. Explicitly clarify this as ideal topology, not a mandatory sequential funnel.
+- **Reason**: Establishes an engaging, logical psychological journey that builds understanding and trust before requesting action.
+- **Alternatives Considered**: Pure landing page with immediate sign-up form above the fold.
+- **Why Alternatives Were Rejected**: Demanding sign-ups before communicating vision or value produces high bounce rates.
+- **Benefits**: Compelling storytelling arc with natural conversion endpoints.
+- **Risks**: Narrative pacing must remain tight to prevent mid-scroll drop-off.
+- **Future Review Criteria**: Scroll-depth analytics and stage completion rates.
+
+---
+
+### USER-FLOW-002: Multiple Valid Entry Points
+- **Decision**: Explicitly support non-homepage entry points (organic search, shared links, deep product URLs, docs) such that every destination page makes sense independently while connecting naturally to parent SamJuniors context.
+- **Reason**: In modern web architectures, a significant portion of traffic bypasses the homepage entirely.
+- **Alternatives Considered**: Forcing deep-linked visitors through an initial splash or introductory homepage redirect.
+- **Why Alternatives Were Rejected**: Interstitial redirects create severe friction and damage SEO indexing.
+- **Benefits**: Excellent SEO landing resilience and direct utility for referral traffic.
+- **Risks**: Internal pages must include contextual parent-level breadcrumbs/signals.
+- **Future Review Criteria**: Organic search bounce rate and referral page dwell times.
+
+---
+
+### USER-FLOW-003: Natural Next Move
+- **Decision**: Ensure every major experience state provides an understandable, low-friction next step without visual forcing. Scale CTA prominence with demonstrated intent.
+- **Reason**: Keeps visitor exploration continuous without inducing sales fatigue.
+- **Alternatives Considered**: In-your-face floating modal CTAs appearing repeatedly on every scroll.
+- **Why Alternatives Were Rejected**: Aggressive modals destroy reading immersion and brand credibility.
+- **Benefits**: Respectful, persuasive, and organic conversion flow.
+- **Risks**: CTAs must remain sufficiently visible and distinct in layout hierarchy.
+- **Future Review Criteria**: Conversion micro-funnel analytics.
+
+---
+
+### USER-FLOW-004: Contextual CTA Hierarchy
+- **Decision**: Enforce at most one dominant primary action per state, with secondary actions subordinate. Align action priority with current cognitive context (e.g. *Learn More* during discovery, *Try Demo* during product reveal).
+- **Reason**: Eliminates choice conflict and guides visitor focus cleanly toward the next step.
+- **Alternatives Considered**: Presenting 3–4 equal primary buttons on every section.
+- **Why Alternatives Were Rejected**: Competing primary actions trigger decision paralysis (Hick's Law).
+- **Benefits**: Maximum conversion clarity and visual elegance.
+- **Risks**: Primary action definitions must be kept aligned with content strategy.
+- **Future Review Criteria**: A/B testing of contextual CTA labels during Phase 11 QA.
+
+---
+
+### USER-FLOW-005: Returning Visitor Flow
+- **Decision**: Enable returning visitors to bypass introductory storytelling and immediately reorient to current priorities, new product updates, and explorations through curated continuity. Prohibit noisy social-media chronological feeds.
+- **Reason**: Respects returning visitors' existing context and maximizes their access to new utility.
+- **Alternatives Considered**: 
+  - Forcing returning visitors to re-experience full introductory scroll animations.
+  - Adding a chaotic real-time social timeline feed to the homepage.
+- **Why Alternatives Were Rejected**: Forcing intros frustrates repeat users; social timelines introduce visual clutter and dilute brand focus.
+- **Benefits**: High utility for repeat users and long-term community retention.
+- **Risks**: Curated update signals must be actively maintained.
+- **Future Review Criteria**: Repeat visitor retention and navigation velocity.
