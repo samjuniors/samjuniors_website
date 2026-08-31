@@ -19,5 +19,6 @@ Document high-fidelity visual layouts, interactive states, and presentation spec
 ## Guidelines
 
 - UI designs must strictly consume tokens and patterns from [docs/website/06-design-system/](file:///d:/Projects/SamjuniorsWebsite/docs/website/06-design-system).
+- **Design Governance ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: High-fidelity visual mockups must pass the Distinctiveness Test (*"Could this be mistaken for a generic AI startup website?"*) and Human-Authorship Test before submission for review.
 - Designs must be formally approved before Vertical Slice Validation (Phase 9).
 - Full Frontend Development (Phase 10) may not begin until Phase 9 sign-off is granted.

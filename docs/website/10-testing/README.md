@@ -21,3 +21,4 @@ Document quality assurance test plans, verification matrices, and audit logs:
 
 - All quality gates defined here must pass with formal sign-off before entering Phase 12 (Launch).
 - Accessibility standards must comply with WCAG 2.1 AA as a minimum; AAA where achievable, per [AGENTS.md](file:///d:/Projects/SamjuniorsWebsite/AGENTS.md).
+- **Design & Quality Governance ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: Audits must include human-authorship and distinctiveness validation, verifying that the final build avoids generic AI visual clichés and exhibits deliberate engineering craftsmanship.

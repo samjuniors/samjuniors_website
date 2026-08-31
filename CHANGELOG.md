@@ -8,6 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Cross-Phase Design Governance (docs/human-design-governance)
+
+- **HUMAN-001: Human-Made Design & Implementation**:
+  - Established cross-phase quality and design governance constraint ensuring the website does not exhibit recognizable generic AI-generated visual or implementation patterns.
+  - Defined explicit prohibitions against generic AI tropes (purple/cyan gradient blobs, excessive glassmorphism, monotonous card grids, template section blocks, meaningless decorative particles, generic copy buzzwords) when used without meaningful justification.
+  - Enforced the **Distinctiveness Test** (*"If the SamJuniors identity were removed, could this design be mistaken for a generic AI startup website?"*) and **Human-Authorship Test** across Phases 5 through 11.
+  - Mandated deliberate engineering restraint (avoiding unnecessary abstractions, unvetted dependencies, and performance regressions for visual novelty).
+  - Cross-referenced across `design-principles.md`, `ux-principles.md`, `ux-decision-log.md`, `ux-index.md`, `AGENTS.md`, `PROJECT.md`, and all downstream phase READMEs (`04-design-research` through `10-testing`).
+
 ### Added — Phase 4 UX Principles & User Flow Foundation (docs/ux-principles-foundation)
 
 - **Phase 4 UX Principles & Initial User Flow Foundation — UX-013 through UX-019 and USER-FLOW-001 through USER-FLOW-005 synchronized**:

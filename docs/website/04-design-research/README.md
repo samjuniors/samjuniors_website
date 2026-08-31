@@ -70,4 +70,5 @@ This phase is complete and locked when:
 
 - All research must remain grounded in approved UX goals from [docs/website/03-ux-principles/](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles).
 - Do not introduce visual or interaction direction that contradicts brand identity in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company).
+- **Design Governance ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: Research must actively identify and catalogue generic AI visual clichés to avoid, enforcing the Distinctiveness Test (*"If the brand identity were removed, could this be mistaken for a generic AI startup?"*).
 - Research findings require review sign-off before wireframing begins.
