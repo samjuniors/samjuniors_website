@@ -1,4 +1,4 @@
-# UX-003: User Journey Mapping & Progressive Branching
+﻿# UX-003: User Journey Mapping & Progressive Branching
 
 | Metadata | Details |
 | :--- | :--- |
@@ -8,7 +8,7 @@
 | **Principle Established** | UX-004 (Progressive Branching) |
 | **Constitutional Baseline** | [Architecture Manifesto](file:///d:/Projects/SamjuniorsWebsite/docs/website/architecture-manifesto.md) |
 | **Canonical Foundation** | [Brand Foundation](file:///d:/Projects/SamjuniorsWebsite/docs/website/brand-foundation.md) |
-| **Persona Definitions** | [UX-002: User Goals](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-002-user-goals.md) |
+| **Persona Definitions** | [UX-002: User Goals](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-002-user-goals.md) |
 
 ---
 

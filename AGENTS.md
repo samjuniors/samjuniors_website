@@ -108,7 +108,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 ## 8. Coding Standards (Placeholder)
 
 > [!NOTE]
-> Detailed coding standards, style guides, formatting configurations, and linting rules will be established during **Phase 7 (Frontend Development)** based on approved technical specifications.
+> Detailed coding standards, style guides, formatting configurations, and linting rules will be established during **Phase 10 (Frontend Development)** based on approved technical specifications.
 
 - Preliminary rules:
   - Strict typing where supported.
@@ -120,7 +120,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 ## 9. Design Standards (Placeholder)
 
 > [!NOTE]
-> Visual design tokens, typography, color palettes, spacing grids, and component libraries will be defined during **Phase 5 (Design System)** and **Phase 6 (UI Design)**.
+> Visual design tokens, typography, color palettes, spacing grids, and component libraries will be defined during **Phase 7 (Design System)** and **Phase 8 (UI Design)**.
 
 - Preliminary rules:
   - Accessible contrast ratios (WCAG 2.1 AA/AAA compliance).

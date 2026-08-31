@@ -1,4 +1,4 @@
-# SamJuniors Core UX Principles (UX-004 to UX-012)
+﻿# SamJuniors Core UX Principles (UX-004 to UX-012)
 
 | Metadata | Details |
 | :--- | :--- |
@@ -6,7 +6,7 @@
 | **Status** | **APPROVED** |
 | **Decisions Implemented** | UX-004 through UX-012 |
 | **Constitutional Baseline** | [Architecture Manifesto](file:///d:/Projects/SamjuniorsWebsite/docs/website/architecture-manifesto.md) |
-| **Cognitive Foundation** | [Cognitive UX Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/cognitive-ux-principles.md) |
+| **Cognitive Foundation** | [Cognitive UX Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/cognitive-ux-principles.md) |
 
 ---
 

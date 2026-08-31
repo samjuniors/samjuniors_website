@@ -8,6 +8,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Changed — Roadmap Reconciliation (chore/reconcile-production-roadmap)
+
+- **12-Phase Lifecycle Established**: Expanded `ROADMAP.md` from 9 phases to the authoritative 12-phase production lifecycle.
+  - Phase 1: Discovery & Website Strategy
+  - Phase 2: Information Architecture
+  - Phase 3: Content Strategy
+  - Phase 4: UX Principles & User Flows *(formalized from prior parallel track)*
+  - Phase 5: Design Research *(new phase)*
+  - Phase 6: Wireframes *(renumbered from Phase 4)*
+  - Phase 7: Design System *(renumbered from Phase 5)*
+  - Phase 8: UI Design *(renumbered from Phase 6)*
+  - Phase 9: Vertical Slice Validation *(new mandatory quality gate)*
+  - Phase 10: Frontend Development *(renumbered from Phase 7)*
+  - Phase 11: QA *(renumbered from Phase 8)*
+  - Phase 12: Launch *(renumbered from Phase 9)*
+
+- **Phase Sequencing Rule**: Added formal rule to `ROADMAP.md` — Phase 9 (Vertical Slice Validation) is a mandatory blocking gate between UI Design and Frontend Development.
+
+- **Directory Numbering Collision Resolved**: `docs/website/02-ux-principles/` and `docs/website/02-content-strategy/` shared the same numeric prefix. The duplicate has been resolved by migrating all phase directories to a consistent 0-indexed numbering scheme aligned with the 12-phase lifecycle. All migrations performed via `git mv` to preserve Git history.
+
+- **Directory Migrations** (via `git mv`):
+  - `02-ux-principles/` → `03-ux-principles/`
+  - `03-wireframes/` → `05-wireframes/`
+  - `04-design-system/` → `06-design-system/`
+  - `05-ui/` → `07-ui/`
+  - `06-implementation/` → `09-implementation/`
+  - `07-testing/` → `10-testing/`
+  - `08-launch/` → `11-launch/`
+
+- **New Placeholder Directories Created**:
+  - `docs/website/04-design-research/README.md` — Phase 5: Design Research. Defines 10 research domains, entry/exit criteria, and output requirements. Status: Placeholder, pending Phase 4 sign-off.
+  - `docs/website/08-vertical-slice/README.md` — Phase 9: Vertical Slice Validation. Defines proposed validation slice (Homepage → Lumora reveal → Trust → CTA), 10 validation dimensions, entry/exit criteria, and deliverables. Status: PROPOSED, pending Phase 8 approval.
+
+- **Cross-Reference Audit**: Updated stale `02-ux-principles` path references in `cognitive-ux-principles.md`, `ux-index.md`, `ux-principles.md`, `ux-003-user-journeys.md`, and `brand-foundation.md`.
+  - Note: Historical `CHANGELOG.md` entries referencing `02-ux-principles` are intentionally preserved as immutable historical record.
+
+- **Governance Files Updated**:
+  - `AGENTS.md` — Phase number references in Sections 8 and 9 updated to Phase 10 (Frontend Development), Phase 7 (Design System), and Phase 8 (UI Design). All governance rules, authority hierarchy, and Discover→Merge workflow preserved.
+  - `PROJECT.md` — Project Phases list expanded to 12 phases; Open TODOs updated to reflect reconciled status.
+
+---
+
+## [Historical — Pre-Reconciliation]
+
 ### Added
 - **Phase 4 UX Milestone 1 Synchronized (UX-001 through UX-012)**:
   - Created `UX-001: Primary User Personas` (`docs/website/02-ux-principles/ux-001-personas.md`).
@@ -44,3 +88,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Contribution guidelines in `CONTRIBUTING.md`.
 - Documentation structure under `docs/company/` and `docs/website/`.
 - Repository `.gitignore` and `README.md`.
+

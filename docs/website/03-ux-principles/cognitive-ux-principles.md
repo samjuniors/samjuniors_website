@@ -1,4 +1,4 @@
-# Cognitive UX Principles & Psychological Foundations
+﻿# Cognitive UX Principles & Psychological Foundations
 
 | Metadata | Details |
 | :--- | :--- |
@@ -6,7 +6,7 @@
 | **Document ID** | Cognitive UX Foundation |
 | **Status** | **APPROVED** |
 | **Constitutional Baseline** | [Architecture Manifesto](file:///d:/Projects/SamjuniorsWebsite/docs/website/architecture-manifesto.md) |
-| **Related Documents** | [UX Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-principles.md), [Design Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md) |
+| **Related Documents** | [UX Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md), [Design Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md) |
 
 ---
 
@@ -63,15 +63,15 @@ The table below maps established cognitive foundations directly to SamJuniors ar
 
 | Cognitive Foundation | SamJuniors Architectural Decision | Implementation Rule |
 | :--- | :--- | :--- |
-| **Progressive Disclosure** | [UX-005: Progressive Discovery](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-principles.md#ux-005-progressive-discovery) | One idea per scene; layered technical deep-dives on demand. |
-| **Extraneous Load Elimination** | [UX-009: Cognitive Load First](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-principles.md#ux-009-cognitive-load-first) | Evaluate every interaction: if it adds unnecessary friction, remove it. |
-| **Decision Fatigue Reduction** | [UX-011: Hybrid Navigation](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-principles.md#ux-011-hybrid-navigation) | Single primary CTA in header view; predictable, standard navigation layout. |
-| **Mental Model Alignment** | [UX-010: User Mental Model First](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-principles.md#ux-010-user-mental-model-first) | Group offerings by user problem and technological purpose, not internal corporate structure. |
+| **Progressive Disclosure** | [UX-005: Progressive Discovery](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-005-progressive-discovery) | One idea per scene; layered technical deep-dives on demand. |
+| **Extraneous Load Elimination** | [UX-009: Cognitive Load First](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-009-cognitive-load-first) | Evaluate every interaction: if it adds unnecessary friction, remove it. |
+| **Decision Fatigue Reduction** | [UX-011: Hybrid Navigation](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-011-hybrid-navigation) | Single primary CTA in header view; predictable, standard navigation layout. |
+| **Mental Model Alignment** | [UX-010: User Mental Model First](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-010-user-mental-model-first) | Group offerings by user problem and technological purpose, not internal corporate structure. |
 | **Curiosity Loops** | [WD-025: Curiosity Loop Principle](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#curiosity-loop-principle-wd-025) | Connect section endings into forward-looking teasers for future chapters. |
 | **Trust Heuristics** | [IA-007: Distributed Trust Architecture](file:///d:/Projects/SamjuniorsWebsite/docs/website/01-information-architecture/ia-decision-log.md#ia-007-distributed-trust-architecture) | Contextually embed testimonials, benchmarks, and roadmap status throughout the narrative. |
-| **Frictionless Control** | [UX-012: Hybrid Scroll Model](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-principles.md#ux-012-hybrid-scroll--progression-model) | Zero scroll-jacking; the visitor retains complete control of scroll momentum. |
-| **Information Pacing** | [UX-007: Scene-Based Storytelling](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-principles.md#ux-007-scene-based-storytelling) | Structured emotional arc: *Curiosity → Excitement → Understanding → Trust → Action*. |
-| **Fatigue Prevention** | [UX-008: Zero Fatigue Principle](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-ux-principles/ux-principles.md#ux-008-zero-fatigue-principle) | Generous whitespace, scannable line lengths (50–75 characters), and clear visual rest stops. |
+| **Frictionless Control** | [UX-012: Hybrid Scroll Model](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-012-hybrid-scroll--progression-model) | Zero scroll-jacking; the visitor retains complete control of scroll momentum. |
+| **Information Pacing** | [UX-007: Scene-Based Storytelling](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-007-scene-based-storytelling) | Structured emotional arc: *Curiosity → Excitement → Understanding → Trust → Action*. |
+| **Fatigue Prevention** | [UX-008: Zero Fatigue Principle](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-principles.md#ux-008-zero-fatigue-principle) | Generous whitespace, scannable line lengths (50–75 characters), and clear visual rest stops. |
 
 ---
 
