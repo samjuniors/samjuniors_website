@@ -1,4 +1,4 @@
-﻿# Phase 4 / Phase 2: UX Architecture & User Principles Index
+# Phase 4: UX Architecture & User Principles Index
 
 This master index tracks the deliverables, decision records, and cognitive frameworks governing **UX Architecture (UX-001 through UX-012)**.
 
@@ -6,7 +6,7 @@ This master index tracks the deliverables, decision records, and cognitive frame
 
 ## Overview
 
-- **Phase**: UX Architecture & User Principles (Milestone 1)
+- **Phase**: Phase 4 — UX Principles & User Flows (Milestone 1)
 - **Current Status**: **MILESTONE 1 SYNCHRONIZED & APPROVED** ✅
 - **Constitutional Baseline**: [Architecture Manifesto](file:///d:/Projects/SamjuniorsWebsite/docs/website/architecture-manifesto.md)
 - **Cognitive Foundation**: [Cognitive UX Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/cognitive-ux-principles.md)

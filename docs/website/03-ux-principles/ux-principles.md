@@ -1,8 +1,8 @@
-﻿# SamJuniors Core UX Principles (UX-004 to UX-012)
+# SamJuniors Core UX Principles (UX-004 to UX-012)
 
 | Metadata | Details |
 | :--- | :--- |
-| **Phase** | Phase 2 / Phase 4 — UX Architecture |
+| **Phase** | Phase 4 — UX Principles & User Flows |
 | **Status** | **APPROVED** |
 | **Decisions Implemented** | UX-004 through UX-012 |
 | **Constitutional Baseline** | [Architecture Manifesto](file:///d:/Projects/SamjuniorsWebsite/docs/website/architecture-manifesto.md) |

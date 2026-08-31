@@ -95,5 +95,5 @@ Before any page or component advances to implementation, it must pass these 8 ma
 > **Stage 3 Information Architecture is Certified and Formally Frozen.**
 >
 > - The Information Architecture baseline (IA-001 through IA-009, WD-015 through WD-027) is locked.
-> - Downstream phases (Phase 4: Wireframes, Phase 5: Design System, Phase 6: UI, Phase 7: Development) must strictly build upon this frozen specification.
+> - Downstream phases (Phase 4: UX Principles & User Flows, Phase 5: Design Research, Phase 6: Wireframes, Phase 7: Design System, Phase 8: UI Design, Phase 9: Vertical Slice Validation, Phase 10: Frontend Development) must strictly build upon this frozen specification.
 > - Any structural, navigational, or taxonomic modifications require a formal Architecture Decision Record (ADR) reviewed and approved by the founder.

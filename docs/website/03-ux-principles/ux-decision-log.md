@@ -33,7 +33,7 @@ All records adhere to the mandatory governance framework: **Decision, Reason, Al
 - **Why Alternatives Were Rejected**: Generic personas fail to provide actionable UX constraints; enterprise-only personas ignore the core student and creator base.
 - **Benefits**: Precise targeting of copy tone, technical depth, and conversion touchpoints.
 - **Risks**: Must avoid fragmenting the site into disconnected silos.
-- **Future Review Criteria**: Audience traffic analysis in Phase 9 post-launch telemetry.
+- **Future Review Criteria**: Audience traffic analysis in Phase 12 post-launch telemetry.
 
 ---
 
@@ -44,7 +44,7 @@ All records adhere to the mandatory governance framework: **Decision, Reason, Al
 - **Why Alternatives Were Rejected**: Vague criteria lead to subjective design arguments without accountability.
 - **Benefits**: Unambiguous quality gates for design validation.
 - **Risks**: Metrics must be instrumented accurately in QA and analytics setup.
-- **Future Review Criteria**: User testing completion rates during Phase 8 QA.
+- **Future Review Criteria**: User testing completion rates during Phase 11 QA.
 
 ---
 

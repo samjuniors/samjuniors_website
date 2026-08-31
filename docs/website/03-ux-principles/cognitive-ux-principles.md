@@ -1,8 +1,8 @@
-﻿# Cognitive UX Principles & Psychological Foundations
+# Cognitive UX Principles & Psychological Foundations
 
 | Metadata | Details |
 | :--- | :--- |
-| **Phase** | Phase 2 / Phase 4 — UX Architecture |
+| **Phase** | Phase 4 — UX Principles & User Flows |
 | **Document ID** | Cognitive UX Foundation |
 | **Status** | **APPROVED** |
 | **Constitutional Baseline** | [Architecture Manifesto](file:///d:/Projects/SamjuniorsWebsite/docs/website/architecture-manifesto.md) |
@@ -77,7 +77,7 @@ The table below maps established cognitive foundations directly to SamJuniors ar
 
 ## 4. Quality & Audit Checkpoints
 
-When reviewing wireframes (Phase 4) and visual designs (Phase 5/6), evaluate against these cognitive checkpoints:
+When reviewing wireframes (Phase 6) and visual designs (Phase 7/8), evaluate against these cognitive checkpoints:
 
 1. **Working Memory Check**: Does any single screen view demand simultaneous retention of more than 3 unfamiliar concepts?
 2. **Animation Purpose Check**: Does motion clarify spatial relationships and status transitions, or does it merely decorate?

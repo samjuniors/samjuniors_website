@@ -2,7 +2,7 @@
 
 | Metadata | Details |
 | :--- | :--- |
-| **Phase** | Phase 2 / Phase 4 — UX Architecture |
+| **Phase** | Phase 4 — UX Principles & User Flows |
 | **Document ID** | UX-001 |
 | **Status** | **APPROVED** |
 | **Constitutional Baseline** | [Architecture Manifesto](file:///d:/Projects/SamjuniorsWebsite/docs/website/architecture-manifesto.md) |

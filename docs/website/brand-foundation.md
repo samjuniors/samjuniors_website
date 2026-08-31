@@ -1,4 +1,4 @@
-﻿# SamJuniors Brand Foundation
+# SamJuniors Brand Foundation
 
 > **Canonical Source of Truth** for Brand Story, Narrative, Positioning, Voice, and Visual Identity across all design, content, and engineering phases.
 
@@ -160,4 +160,4 @@ This document is derived directly from approved discovery, architecture, and UX 
 - **UX Architecture & Cognitive Base**: [UX Principles Index](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/ux-index.md) and [Cognitive UX Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/cognitive-ux-principles.md)
 - **Certification Record**: [Stage 3 IA Certification](file:///d:/Projects/SamjuniorsWebsite/docs/website/01-information-architecture/stage-3-certification.md)
 
-All downstream phases—including Phase 4 Wireframing, Phase 5 Design System, Phase 6 UI Design, and Phase 7 Frontend Development—must strictly align with these certified baselines.
+All downstream phases—including Phase 5 Design Research, Phase 6 Wireframes, Phase 7 Design System, Phase 8 UI Design, Phase 9 Vertical Slice Validation, and Phase 10 Frontend Development—must strictly align with these certified baselines.

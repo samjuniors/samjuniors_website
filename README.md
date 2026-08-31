@@ -41,12 +41,15 @@ docs/
     ├── 00-discovery/            # Requirements, user research, and stakeholder alignment
     ├── 01-information-architecture/ # Sitemap, navigation hierarchy, routing
     ├── 02-content-strategy/     # Content hierarchy, copywriting outlines, voice
-    ├── 03-wireframes/           # Structural blueprints and layout specifications
-    ├── 04-design-system/        # Design tokens, typography, component specs
-    ├── 05-ui/                   # High-fidelity visual layouts and states
-    ├── 06-implementation/       # Technical architecture and development specs
-    ├── 07-testing/              # QA test plans, accessibility, performance audits
-    ├── 08-launch/               # Launch checklist, DNS, deployment procedures
+    ├── 03-ux-principles/        # Experiential principles, personas, user journeys
+    ├── 04-design-research/      # Evidence-driven design research & implications
+    ├── 05-wireframes/           # Structural blueprints and layout specifications
+    ├── 06-design-system/        # Design tokens, typography, component specs
+    ├── 07-ui/                   # High-fidelity visual layouts and states
+    ├── 08-vertical-slice/       # End-to-end representative experience validation
+    ├── 09-implementation/       # Technical architecture and development specs
+    ├── 10-testing/              # QA test plans, accessibility, performance audits
+    ├── 11-launch/               # Launch checklist, DNS, deployment procedures
     └── reviews/                 # Phase review logs, sign-offs, and decisions
 ```
 
@@ -56,4 +59,4 @@ docs/
 
 1. Read [AGENTS.md](file:///d:/Projects/SamjuniorsWebsite/AGENTS.md) and [PROJECT.md](file:///d:/Projects/SamjuniorsWebsite/PROJECT.md).
 2. Review company context in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company).
-3. Begin with [Phase 1: Website Discovery](file:///d:/Projects/SamjuniorsWebsite/docs/website/00-discovery).
+3. Begin with [Phase 1: Discovery & Website Strategy](file:///d:/Projects/SamjuniorsWebsite/docs/website/00-discovery).

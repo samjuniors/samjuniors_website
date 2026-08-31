@@ -1,8 +1,8 @@
-﻿# UX-003: User Journey Mapping & Progressive Branching
+# UX-003: User Journey Mapping & Progressive Branching
 
 | Metadata | Details |
 | :--- | :--- |
-| **Phase** | Phase 2 — UX & Information Architecture |
+| **Phase** | Phase 4 — UX Principles & User Flows |
 | **Document ID** | UX-003 |
 | **Status** | **APPROVED** |
 | **Principle Established** | UX-004 (Progressive Branching) |
