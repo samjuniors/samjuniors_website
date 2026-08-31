@@ -8,6 +8,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Phase 4 UX Principles & User Flow Foundation (docs/ux-principles-foundation)
+
+- **Phase 4 UX Principles & Initial User Flow Foundation — UX-013 through UX-019 and USER-FLOW-001 through USER-FLOW-005 synchronized**:
+  - **UX-013**: Understanding Must Accompany Curiosity (Cinematic reveals and surprises must preserve continuous comprehension across 4-part mental model).
+  - **UX-014**: Interaction Must Earn Its Friction (Every interaction must deliver positive value-to-friction ratio; prohibited novelty anti-patterns).
+  - **UX-015**: Visitor Control (Sovereign control over scroll, navigation, pacing, and skipping; zero forced waits or scroll-jacking).
+  - **UX-016**: Progressive Disclosure (Aligned with 3 non-linear information depths from CONTENT-003).
+  - **UX-017**: Mobile Is First-Class (Independently composed responsive experience; zero hover-dependencies).
+  - **UX-018**: Predictable Restrained Navigation (Wayfinding clarity preserved; no navigation hidden for aesthetic drama).
+  - **UX-019**: Recovery & Continuity (Immediate, non-destructive recovery path for every state; explicit support for reduced motion and deep links).
+  - **USER-FLOW-001**: First-Time Visitor Journey (Ideal narrative progression topology; non-mandatory funnel).
+  - **USER-FLOW-002**: Multiple Valid Entry Points (Direct links, organic search, deep product URLs supported autonomously).
+  - **USER-FLOW-003**: Natural Next Move (Understandable next steps; CTA intensity scales with intent).
+  - **USER-FLOW-004**: Contextual CTA Hierarchy (Single dominant primary action per state; intent-aligned).
+  - **USER-FLOW-005**: Returning Visitor Flow (Curated continuity without forced intro reruns or noisy feeds).
+- **User Flow Foundation Specification (`docs/website/03-ux-principles/user-flow-foundation.md`)**: Documented Core Flow Model (First Visit, Returning Visit, Deep Link Entry), entry point topologies, and contextual CTA mechanics.
+- **UX Decision Log (`docs/website/03-ux-principles/ux-decision-log.md`)**: Structured decision records for `UX-013` through `UX-019` and `USER-FLOW-001` through `USER-FLOW-005`.
+
 ### Added — Phase 3 Content Strategy Milestone (docs/content-strategy-milestone)
 
 - **Phase 3 Content Strategy Milestone — CONTENT-001 through CONTENT-010 synchronized**:

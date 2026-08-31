@@ -1,18 +1,19 @@
-# SamJuniors Core UX Principles (UX-004 to UX-012)
+# SamJuniors Core UX Principles (UX-004 to UX-019)
 
 | Metadata | Details |
 | :--- | :--- |
 | **Phase** | Phase 4 — UX Principles & User Flows |
 | **Status** | **APPROVED** |
-| **Decisions Implemented** | UX-004 through UX-012 |
+| **Decisions Implemented** | `UX-004` through `UX-019` |
 | **Constitutional Baseline** | [Architecture Manifesto](file:///d:/Projects/SamjuniorsWebsite/docs/website/architecture-manifesto.md) |
 | **Cognitive Foundation** | [Cognitive UX Principles](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles/cognitive-ux-principles.md) |
+| **Content Strategy Base** | [Content Strategy & Messaging](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-content-strategy/content-strategy.md) |
 
 ---
 
 ## 1. Executive Summary
 
-This document establishes the binding user experience (UX) principles governing layout structure, information pacing, interaction models, navigation dynamics, and scroll behaviors for the SamJuniors web platform.
+This specification establishes the binding User Experience (UX) principles governing narrative pacing, interaction friction, cognitive ergonomics, responsive adaptation, navigation predictability, and recovery models for the SamJuniors web platform.
 
 ---
 
@@ -20,7 +21,7 @@ This document establishes the binding user experience (UX) principles governing 
 
 ### UX-004: Progressive Branching
 > **"All visitors begin with a unified narrative before branching into persona-specific journeys."**
-- **Execution**: The initial homepage journey (Vision → Founder → SamJuniors) provides universal context before offering dedicated pathways for Students, Institutions, Businesses, Developers, and Investors at the Product Ecosystem step.
+- **Execution**: The initial homepage journey provides universal brand context (Vision → Founder → SamJuniors) before offering dedicated pathways for Students, Institutions, Businesses, Developers, and Investors at the Product Ecosystem step.
 
 ### UX-005: Progressive Discovery
 > **"Reveal information progressively: one clear idea at a time."**
@@ -36,11 +37,28 @@ This document establishes the binding user experience (UX) principles governing 
   ```
   Curiosity  ──>  Excitement  ──>  Understanding  ──>  Trust  ──>  Action
   ```
-- **Execution**: Each of the 10 homepage narrative steps is framed as a cinematic, self-contained scene that transitions seamlessly into the next.
+- **Execution**: Narrative steps are framed as cinematic, self-contained scenes that transition seamlessly into the next.
+
+### UX-013: Understanding Must Accompany Curiosity
+> **"Cinematic reveals, motion, and visual surprises are encouraged, but curiosity must never compromise visitor comprehension."**
+- **Core Mental Model**: Visitors must continuously understand:
+  1. *Where am I?*
+  2. *What am I seeing?*
+  3. *Why does it matter?*
+  4. *What can I do next?*
+- **The Experience Standard**:
+  - **Intended Visitor Reaction**: *"I want to see what's next."*
+  - **Prohibited Visitor Reaction**: *"What am I looking at?"*
+- **Rule**: Cinematic presentation is never an excuse for ambiguity or confusing layouts.
+
+### UX-016: Progressive Disclosure (Depth Alignment)
+> **"Reveal complexity progressively in response to visitor interest; essential understanding must remain immediately accessible while deeper information remains optional and discoverable."**
+- **Depth Integration**: Aligns with [CONTENT-003](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-content-strategy/content-strategy.md#4-three-information-depths-content-003) (Instant, Understand, Deep Dive).
+- **Non-Funnel Rule**: These depths are layered access tiers, **not** a mandatory sequential funnel. Visitors may enter directly at any depth level.
 
 ---
 
-## 3. Cognitive & Load Management Principles
+## 3. Cognitive & Friction Management Principles
 
 ### UX-008: Zero Fatigue Principle
 > **"The website should feel effortless regardless of content depth."**
@@ -54,31 +72,51 @@ This document establishes the binding user experience (UX) principles governing 
 > **"Structure experiences around how visitors think and what they want to accomplish—not around the company's internal organization."**
 - **Execution**: Group products and capabilities by user outcome and technological purpose rather than internal corporate hierarchy.
 
+### UX-014: Interaction Must Earn Its Friction
+> **"Every interaction must deliver a positive value-to-friction ratio."**
+- **Evaluation Criteria**: Any scroll, click, hover, animation, transition, modal, or gesture must justify its complexity by contributing to at least one of:
+  1. **Meaningful information**
+  2. **Meaningful discovery**
+  3. **Improved comprehension**
+  4. **Useful progression**
+- **Prohibited Friction Anti-Patterns**: Unnecessary cursor trails/effects, scroll-jacking, decorative loading screens, forced horizontal scrolling, hidden navigation menus, and hover-dependent critical information.
+- **Mobile Rule**: Mobile viewports enforce an even higher friction threshold.
+
 ---
 
-## 4. Navigation & Interaction Models
+## 4. Control, Navigation & Responsive Architecture
+
+### UX-015: Visitor Control
+> **"The experience guides attention without taking control away from the visitor."**
+- **Sovereign Controls**: Visitors retain absolute, predictable control over scrolling momentum, navigation, reading pace, skipping, revisiting, and depth of exploration.
+- **Prohibitions**: Zero mandatory animation waits, zero locked scrolling, zero disappearing controls. The website feels discovered, never imposed.
+
+### UX-017: Mobile Is First-Class
+> **"Mobile and desktop are independently composed, equally first-class experiences."**
+- **Responsive Parity**: Preserves core narrative, meaning, and information hierarchy across devices.
+- **Independent Composition**: Interaction models, typographic scale, spatial density, and motion choreography are composed natively for touch devices rather than mechanically scaled down from desktop.
+- **Touch Rule**: Critical content, tooltips, and actions must never depend on hover states.
+
+### UX-018: Predictable Restrained Navigation
+> **"Navigation remains predictable, accessible, and dependable while visually restrained."**
+- **Wayfinding Rule**: Cinematic visual storytelling must never sacrifice navigation clarity.
+- **Prohibitions**: Never hide global navigation purely for aesthetic drama; never force visitors to guess how to move across pages. Navigation quietly supports wayfinding rather than competing for visual dominance.
+
+### UX-019: Recovery & Continuity
+> **"Every experience state must have an immediate, intuitive, and non-destructive recovery path."**
+- **Continuity Capabilities**: Visitors can continue, skip, revisit, or reorient without restarting their session or losing context.
+- **Resilience Factors**: Architectural specifications must explicitly account for:
+  - Animation failures and `prefers-reduced-motion` settings
+  - Slow or degraded network connections
+  - In-place page refreshes and browser history navigation
+  - Deep-linked entry into mid-story sections
+  - Returning visitors bypassing introductory sequences
+- **Golden Rule**: *The more unconventional an interaction, the stronger its recovery mechanism must be.*
 
 ### UX-011: Hybrid Navigation
 > **"Use familiar global navigation combined with an innovative content experience."**
-- **Rules**:
-  1. **Stable Global Navigation**: Header remains consistent, predictable, and frictionless.
-  2. **Contextual Navigation**: Subtle contextual indicators provided where they assist in-page orientation.
-  3. **No Confusing Tricks**: Zero hidden menus, mystery meat navigation, or non-standard hamburger replacements on desktop.
-  4. **Subtle Scroll Transformation**: Navigation may subtly minimize during scrolling only when it directly improves reading real estate.
-  5. **Single Clear Primary CTA**: Exactly one dominant conversion point in header view.
-  6. **Accessibility**: 100% keyboard navigable, ARIA landmark compliant, and screen-reader accessible.
-  7. **Cross-Device Parity**: Same core Information Architecture across desktop, tablet, and mobile.
+- Stable global header, contextual in-page indicators, single primary CTA, 100% keyboard and screen-reader accessible.
 
 ### UX-012: Hybrid Scroll & Progression Model
-> **"Normal scrolling remains the user's default control. Immersive interactions are used selectively."**
-- **Rules**:
-  1. **Zero Scroll-Jacking**: Forced scroll-jacking and scroll traps are strictly prohibited.
-  2. **Natural Scroll Retention**: The user always controls page scrolling speed and position.
-  3. **Scroll-Linked Motion**: Important scenes may utilize subtle scroll-driven parallax or reveal effects without freezing scroll momentum.
-  4. **Purpose-Driven Immersion**: Immersive moments must educate or clarify, never merely decorate.
-  5. **Skippable Experiences**: Users can bypass interactive moments and access raw documentation directly.
-  6. **Zero Endless Scrolling**: Section boundaries are crisp; content is structured in distinct scenes rather than infinite sprawling text.
-  7. **Mobile Adaptation**: Mobile viewports receive an equivalent story adapted to touch gestures without dense interactive requirements.
-- **The Quality Test**:
-  > *If removing an animation harms user comprehension, it has a legitimate purpose.*
-  > *If removing it only alters decorative aesthetics, remove it.*
+> **"Normal scrolling remains the default control. Immersive interactions are used selectively."**
+- Zero scroll-jacking; natural momentum preserved; scroll-linked motion passes the *Animation Purpose Test* (*"If removing it harms comprehension, keep it; if removing it only alters decoration, delete it"*).
