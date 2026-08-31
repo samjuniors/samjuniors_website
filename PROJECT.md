@@ -82,4 +82,5 @@ No implementation begins before relevant documentation is reviewed and approved.
 - [ ] Phase 10 — Frontend Development (Gated on Phase 9 sign-off).
 - [ ] Phase 11 — QA (Gated on Phase 10 completion).
 - [ ] Phase 12 — Launch (Gated on Phase 11 sign-off).
-- [ ] Ingest and verify additional founder documentation in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company) as provided.
+- [x] Ingest and verify founder documentation in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company) (COMPANY-001 through COMPANY-003 recorded).
+- [ ] Ingest further founder documentation in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company) as provided.
