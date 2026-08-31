@@ -1,0 +1,52 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Node / Package Manager Dependencies & Artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build Outputs & Caches
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+.turbo/
+.parcel-cache/
+coverage/
+
+# Environment and Secret Files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+
+# Editor & IDE Configs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary & Archive Directories
+tmp/
+temp/
+archive/
