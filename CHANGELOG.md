@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Production Application Architecture (docs/application-foundation)
+
+- **Application Architecture Specification (`docs/website/application-architecture.md`)**:
+  - Established Next.js (App Router), TypeScript, Vanilla CSS / CSS Modules, and typed static data architecture (`src/content/`).
+  - Defined multi-product routing topology (`/`, `/products`, `/products/[slug]`, `/about`, `/contact`) supporting dynamic product prominence and autonomous deep-entry resilience.
+  - Decoupled content schemas from UI presentation to enable future CMS and database migration without component refactoring.
+  - Enforced `HUMAN-001` engineering restraint, server-first execution, and Core Web Vitals budgets.
+
 ### Added — Phase 5 Design Research (docs/04-design-research)
 
 - **Evidence-Driven Design Research (`docs/website/04-design-research/design-research.md`)**:
