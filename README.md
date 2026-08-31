@@ -12,6 +12,7 @@ This repository uses a strict **documentation-first** engineering methodology de
 
 ## Core Governance & Workflow
 
+- **[INDEX.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/INDEX.md)**: Master phase map, authority hierarchy, and document index.
 - **[AGENTS.md](file:///d:/Projects/SamjuniorsWebsite/AGENTS.md)**: Operating guidelines and rules for AI agents and contributors.
 - **[PROJECT.md](file:///d:/Projects/SamjuniorsWebsite/PROJECT.md)**: Project goals, scope, non-goals, and open TODOs.
 - **[ROADMAP.md](file:///d:/Projects/SamjuniorsWebsite/ROADMAP.md)**: Sequential phase milestones.
@@ -57,6 +58,6 @@ docs/
 
 ## Getting Started
 
-1. Read [AGENTS.md](file:///d:/Projects/SamjuniorsWebsite/AGENTS.md) and [PROJECT.md](file:///d:/Projects/SamjuniorsWebsite/PROJECT.md).
-2. Review company context in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company).
-3. Begin with [Phase 1: Discovery & Website Strategy](file:///d:/Projects/SamjuniorsWebsite/docs/website/00-discovery).
+1. Review [INDEX.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/INDEX.md) and [company-foundation.md](file:///d:/Projects/SamjuniorsWebsite/docs/company/company-foundation.md).
+2. Review governance rules in [AGENTS.md](file:///d:/Projects/SamjuniorsWebsite/AGENTS.md) and milestones in [PROJECT.md](file:///d:/Projects/SamjuniorsWebsite/PROJECT.md).
+3. Follow the active phase specifications in [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website).

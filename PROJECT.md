@@ -30,7 +30,7 @@ Establish a modern, high-performance, accessible, and brand-aligned web presence
 ---
 
 ## Deliverables
-- Full project documentation suite in [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website) and [application-architecture.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/application-architecture.md).
+- Full project documentation suite indexed in [INDEX.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/INDEX.md) and [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website).
 - Reviewed and approved wireframes, design system, and UI specifications.
 - Production-grade, tested, and optimized website codebase.
 - Deployment, testing, and launch verification records.
@@ -76,7 +76,7 @@ No implementation begins before relevant documentation is reviewed and approved.
 - [x] Phase 3 — Content Strategy (Messaging framework, content model, CONTENT-001 to CONTENT-010 complete).
 - [x] Phase 4 — UX Principles & User Flows (UX-001 to UX-019 and USER-FLOW-001 to USER-FLOW-005 complete).
 - [x] Phase 5 — Design Research (Evidence-driven research and implications documented in design-research.md).
-- [ ] Phase 6 — Wireframes (Pending Phase 5 completion).
+- [ ] Phase 6 — Wireframes & Experience Prototyping (Active; strategic direction in design-direction.md, app scaffold in src/).
 - [ ] Phase 7 — Design System (Pending Phase 6 sign-off).
 - [ ] Phase 8 — UI Design (Pending Phase 7 sign-off).
 - [ ] Phase 9 — Vertical Slice Validation (Pending Phase 8 initial approval).
