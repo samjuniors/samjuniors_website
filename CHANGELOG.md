@@ -8,6 +8,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Phase 3 Content Strategy Milestone (docs/content-strategy-milestone)
+
+- **Phase 3 Content Strategy Milestone — CONTENT-001 through CONTENT-010 synchronized**:
+  - **CONTENT-001**: Parent-Company-First Architecture (SamJuniors as permanent narrative/brand center, products as expressions, scalable multi-product architecture, strategically curated prominence).
+  - **CONTENT-002**: Hybrid Product Discovery (Cinematic, curated, progressive product discovery on homepage; structured, comprehensive exploration in dedicated products area).
+  - **CONTENT-003**: Three Information Depths (Instant, Understand, Deep Dive as non-linear information layers rather than a forced sequential funnel).
+  - **CONTENT-004**: Core SamJuniors Positioning Direction (*"SamJuniors looks toward what could be next and turns ambitious ideas into real, useful technology"*).
+  - **CONTENT-005**: Primary Messaging Hierarchy (5-step narrative: SamJuniors → What we're building → Why it matters → Proof → Explore/Participate).
+  - **CONTENT-006**: Contextual Proof System (4 evidence types: People, Product, Builder, Evidence; strict zero-fabrication rule for testimonials, metrics, and logos).
+  - **CONTENT-007**: One Dominant Cognitive Purpose (Cognitive focus per scene, visual hierarchy determining information density over mechanical minimalism).
+  - **CONTENT-008**: SamJuniors → Lumora Transition (Lumora introduced as first major proof of system capability rather than generic SaaS ad).
+  - **CONTENT-009**: Founder Presence Architecture (Surface depth for contextual leadership/credibility; Deep depth for dedicated founder essay; strict *SamJuniors ≠ Founder* boundary).
+  - **CONTENT-010**: Future Layer Classification (Strict delineation between Company Vision, Committed Roadmap, Active Exploration, and Speculation; zero sci-fi hype).
+- **Architectural Content Model (`docs/website/02-content-strategy/content-model.md`)**: Established domain entity architecture, attributes, depth mapping, and scalable multi-product schema (clarified as architectural data model, not finalized navigation).
+- **Content Decision Log (`docs/website/02-content-strategy/content-decision-log.md`)**: Structured decision records for `CONTENT-001` through `CONTENT-010`.
+
 ### Added — Company Foundation Intake (docs/company-foundation)
 
 - **Canonical Company Foundation Established (`docs/company/company-foundation.md`)**:
