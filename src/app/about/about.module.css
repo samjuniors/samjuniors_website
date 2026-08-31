@@ -1,0 +1,114 @@
+/* About page — CSS Modules + design tokens (debt D4/D5 conversion).
+   Styles migrated 1:1 from inline style objects; broken token names
+   (--container-narrow-width, --color-accent-flagship) mapped to the
+   certified Phase 7 tokens per qa-checklist.md §2.3. */
+
+.page {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.pageHeader {
+  max-width: var(--container-narrow);
+  margin-bottom: var(--space-8);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-accent-blue);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.title {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4);
+}
+
+.lead {
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.section {
+  max-width: var(--container-narrow);
+  margin-bottom: var(--space-8);
+}
+
+.section:last-of-type {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--space-5);
+}
+
+.filterList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.filterCard {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: var(--space-4);
+}
+
+.filterNumber {
+  font-family: var(--font-mono);
+  color: var(--color-accent-blue);
+  font-weight: 600;
+}
+
+.filterTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.filterDescription {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+}
+
+.cycleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.cycleCard {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.cycleStage {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.cycleTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.cycleDescription {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+}

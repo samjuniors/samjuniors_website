@@ -34,13 +34,13 @@ src/
 ├── app/                          # Routes (App Router)
 │   ├── layout.tsx                # Root shell: Header + main#main-content + Footer, metadata, themeColor #0c0d10
 │   ├── page.tsx                  # / (Home) — composes the 5 narrative components
-│   ├── about/page.tsx            # /about — ❌ inline-styled (debt D4)
-│   ├── contact/page.tsx          # /contact — ❌ inline-styled (debt D4)
-│   ├── products/page.tsx         # /products — ❌ inline-styled (debt D4)
-│   ├── products/[slug]/page.tsx  # /products/{slug} — ❌ inline-styled (debt D4) + placeholder leak (D1)
-│   ├── not-found.tsx             # 404 — ❌ inline-styled (debt D4)
+│   ├── about/page.tsx + about.module.css            # /about — ✅ converted 2026-08-31 (D4/D5)
+│   ├── contact/page.tsx + contact.module.css        # /contact — ✅ converted 2026-08-31 (D2/D4/D5)
+│   ├── products/page.tsx + products.module.css      # /products — ✅ converted 2026-08-31 (D4/D5/D6)
+│   ├── products/[slug]/page.tsx + product-detail.module.css  # /products/{slug} — ✅ converted 2026-08-31 (D1/D4/D5/D6/D7)
+│   ├── not-found.tsx + not-found.module.css         # 404 — ✅ converted 2026-08-31 (D4/D5/D9)
 │   ├── routes.test.tsx           # Route render tests (RTL)
-│   └── globals.css               # Reset, global utilities, focus states, font @import (debt D10)
+│   └── globals.css               # Reset, global utilities, focus states (fonts self-hosted via next/font since 2026-08-31 — D10)
 ├── components/
 │   ├── layout/       Header, Footer
 │   ├── narrative/    HeroSection, ThesisSection, FounderLetter, HorizonSection
@@ -114,13 +114,13 @@ src/
 - **Props** (`ButtonProps`): `children: ReactNode` · `href?: string` (internal `Link`, external `<a>` with `target="_blank" rel="noopener noreferrer"` when `http*`/`mailto:`) · `variant?: 'primary' | 'secondary' | 'link'` (default `primary`) · `icon?: ReactNode` (rendered `aria-hidden`) · `className?` · `onClick?` · `type?: 'button' | 'submit' | 'reset'` · `aria-label?`.
 - **Variants**: `primary` (inverted solid: text-primary bg on base — white-on-obsidian), `secondary` (elevated surface + hairline border), `link` (editorial text link).
 - **Accessibility**: min 44px touch target; focus-visible via global rule.
-- **Status**: ✅ pattern-compliant. ❗Underused — pages re-implement buttons inline (debt D9). Adopt this primitive in new work.
+- **Status**: ✅ pattern-compliant. Adopted by `not-found.tsx` on 2026-08-31 (debt D9, Button half). Adopt this primitive for every new primary/secondary/link action.
 
 ### 4.9 `src/components/ui/SectionHeader.tsx` (+ `SectionHeader.module.css`) — *reusable primitive*
 - **Type**: Server component.
 - **Props** (`SectionHeaderProps`): `indexNumber: string` (e.g. `02`) · `kicker: string` (eyebrow label) · `title: ReactNode` (H2) · `lead?: ReactNode` · `id?: string` (heading id for `aria-labelledby`) · `className?` · `align?: 'left' | 'center'`.
 - **Renders**: eyebrow row (`{indexNumber} / {kicker}`), `h2`, optional lead. This is the canonical section-opener pattern that narrative sections implement manually.
-- **Status**: ✅ pattern-compliant. ❗Underused (debt D9).
+- **Status**: ✅ pattern-compliant. Still unadopted by sub-pages: adopting it requires new `indexNumber`/`kicker` strings, which are founder copy (debt D9's SectionHeader half stays open pending [copy.md](copy.md) sign-off).
 
 ---
 
@@ -174,7 +174,7 @@ Legacy aliases (`--bg-base`, `--text-main`, `--accent-copper`, …) exist in `to
 | `navigation.ts` | `siteNavigation` | `NavigationStructure` — primaryLinks[3], footerLinks[3], primaryCta |
 | `types.ts` | interfaces | `CompanyIdentity`, `Product`, `NavigationItem`, `NavigationStructure`, `VerifiedProofItem` |
 
-**Rules**: UI reads via these exports only; copy edits flow founder → [copy.md](copy.md) → these modules (string parity enforced by [qa-checklist §2.8](qa-checklist.md#28-content--copy-correctness)); `reputationPillars` and `verifiableEvidence` currently have no rendering destination (gaps, not features).
+**Rules**: UI reads via these exports only; copy edits flow founder → [copy.md](copy.md) → these modules (string parity enforced by [qa-checklist §2.8](qa-checklist.md#28-content--copy-correctness)); `reputationPillars` still has no rendering destination (gap, not a feature); `verifiableEvidence` now renders on `/products/[slug]` — fixed 2026-08-31, debt D7).
 
 ---
 
@@ -184,29 +184,29 @@ Legacy aliases (`--bg-base`, `--text-main`, `--accent-copper`, …) exist in `to
 | :--- | :--- | :--- |
 | `/` (Home) | `HeroSection` → `ThesisSection` → `LumoraStage` → `FounderLetter` → `HorizonSection` inside `.container` | ✅ Fully pattern-compliant (all 5 are module-styled, content-layer-fed) |
 | All routes | `Header` + `main#main-content` + `Footer` via root `layout.tsx` | ✅ Compliant |
-| `/products` | Inline-styled page (cards grid, chips, links) | ❌ Debt D4/D5/D6/D9 |
-| `/products/[slug]` | Inline-styled page (breadcrumbs, badges, capability cards) + `generateStaticParams` + `generateMetadata` + `notFound()` | ❌ Debt D1/D4/D5/D6/D9; `verifiableEvidence` unused (D7) |
-| `/about` | Inline-styled page (filters grid, cycle grid) fed by `companyContent` | ❌ Debt D4/D5/D9 |
-| `/contact` | Inline-styled page (gateway card) | ❌ Debt D2/D4/D5/D9 |
-| 404 (`not-found.tsx`) | Inline-styled terminal page | ❌ Debt D4/D5 |
+| `/products` | Module-styled page (cards grid, chips, links) via `products.module.css` | ✅ Converted 2026-08-31 (D4/D5/D6) |
+| `/products/[slug]` | Module-styled page (breadcrumbs, badges, capability cards, `verifiableEvidence` card) via `product-detail.module.css` + `generateStaticParams` + `generateMetadata` + `notFound()` | ✅ Converted 2026-08-31 (D1/D4/D5/D6/D7) |
+| `/about` | Module-styled page (filters grid, cycle grid) fed by `companyContent` via `about.module.css` | ✅ Converted 2026-08-31 (D4/D5) |
+| `/contact` | Module-styled page (gateway card) via `contact.module.css` | ✅ Converted 2026-08-31 (D2/D4/D5) |
+| 404 (`not-found.tsx`) | Terminal page styled via `not-found.module.css`; CTA uses the `Button` primitive | ✅ Converted 2026-08-31 (D4/D5/D9) |
 
-**Home is the reference implementation.** When converting the debt pages, mirror the Home components' structure: page file imports narrative-style components, each with its own module.css, all copy from the content layer, matching [copy.md](copy.md) strings.
+**Home remains the reference implementation.** All five former debt pages were converted on 2026-08-31 to the same pattern (co-located module.css, tokens only, content-layer copy, [copy.md](copy.md) string parity). New pages follow that structure.
 
 ---
 
-## 9. Drift Register (known violations)
+## 9. Drift Register (violations + resolution state)
 
-Mirrors [qa-checklist.md §5](qa-checklist.md#5-known-debt-register-current-failures-carried-with-tracking) (single source for QA state; this register exists so builders encounter the violations at design time). Tracked as [decisions.md](decisions.md) TODO 4 — scheduled second pass.
+Mirrors [qa-checklist.md §5](qa-checklist.md#5-known-debt-register-history--current-state) (single source for QA state; this register exists so builders encounter the violations at design time). Formerly tracked as [decisions.md](decisions.md) TODO 4 — **resolved in the 2026-08-31 second pass except where noted**.
 
-| Violation | Where | Contract rule broken |
-| :--- | :--- | :--- |
-| Inline `style={{...}}` everywhere | about / products / products[slug] / contact / not-found pages | §2.1 CSS Modules + tokens |
-| Undefined CSS vars (`--container-narrow-width`, `--color-accent-flagship`, `--color-bg-canvas`) | same pages | §2.2 tokens only (real names exist) |
-| Hardcoded stale color `rgba(112, 184, 255, 0.1)` | products pages | §2.2 tokens only (`--color-accent-blue-muted`) |
-| `[STRUCTURAL CAPABILITY CONTAINER]` label in render path | products/[slug] | Content rule — internal label must never render |
-| `(Server Action backend integration boundary prepared).` in visitor copy | contact page | Copy rule — no process language ([copy.md §9](copy.md#9-known-leaks--strings-that-must-not-ship)) |
-| `Button` / `SectionHeader` primitives bypassed | debt pages | §1 closed-set rule |
-| `proofItems` + `verifiableEvidence` defined but unrendered | proof.ts / products.ts | Content↔UI contract (dead content) |
+| Violation (state before 2026-08-31) | Where | Contract rule broken | State |
+| : | : | : | : |
+| Inline `style={{...}}` everywhere | about / products / products[slug] / contact / not-found pages | §2.1 CSS Modules + tokens | **RESOLVED** — co-located module.css on all five pages |
+| Undefined CSS vars (`--container-narrow-width`, `--color-accent-flagship`, `--color-bg-canvas`) | same pages | §2.2 tokens only (real names exist) | **RESOLVED** — mapped to `--container-narrow` / `--color-accent-blue` / `--color-bg-base` |
+| Hardcoded stale color `rgba(112, 184, 255, 0.1)` | products pages | §2.2 tokens only (`--color-accent-blue-muted`) | **RESOLVED** — token applied |
+| `[STRUCTURAL CAPABILITY CONTAINER]` label in render path | products/[slug] | Content rule — internal label must never render | **RESOLVED** — label removed; placeholder capabilities gated out |
+| `(Server Action backend integration boundary prepared).` in visitor copy | contact page | Copy rule — no process language ([copy.md §9](copy.md#9-known-leaks--strings-that-must-not-ship)) | **RESOLVED** — sentence removed (no invented replacement; richer copy PENDING FOUNDER COPY) |
+| `Button` / `SectionHeader` primitives bypassed | debt pages | §1 closed-set rule | **RESOLVED (Button)** — `not-found.tsx` uses it; SectionHeader adoption awaits founder kicker copy |
+| `proofItems` + `verifiableEvidence` defined but unrendered | proof.ts / products.ts | Content↔UI contract (dead content) | **PARTIAL** — `verifiableEvidence` renders on the product detail page (D7); `proofItems` remains data-only (D8, founder-dependent) |
 
 ---
 

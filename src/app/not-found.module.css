@@ -1,0 +1,29 @@
+/* 404 page — CSS Modules + design tokens (debt D4/D5 conversion).
+   Primary CTA now uses the Button primitive (D9); broken token name
+   --color-bg-canvas eliminated (Button consumes --color-bg-base). */
+
+.page {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-10);
+  text-align: center;
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-accent-blue);
+  margin-bottom: var(--space-2);
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  max-width: 480px;
+  margin: 0 auto var(--space-6) auto;
+}

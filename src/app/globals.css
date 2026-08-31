@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Fonts are self-hosted via next/font/google in layout.tsx (debt D10) —
+   the variables --font-inter / --font-jetbrains-mono are consumed by the
+   --font-sans / --font-mono tokens in src/styles/tokens.css. */
 
 *, *::before, *::after {
   box-sizing: border-box;

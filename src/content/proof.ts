@@ -2,7 +2,12 @@ import { VerifiedProofItem } from './types';
 
 /**
  * Contextual Evidence Matrix (Zero Fabrication Standard)
- * Source: docs/website/02-content-strategy/content-strategy.md (CONTENT-006)
+ * Source: content-strategy decision record (see docs/website/decisions.md).
+ *
+ * Placeholder-flagged items (proof-product, proof-evidence) were removed per
+ * qa-checklist.md debt D3: founder-supplied verified copy had not arrived, and
+ * placeholder content may not ship (render gate §2.2). The missing-copy gaps
+ * remain tracked in docs/website/copy.md §10 pending founder sign-off.
  */
 export const proofItems: VerifiedProofItem[] = [
   {
@@ -10,19 +15,5 @@ export const proofItems: VerifiedProofItem[] = [
     category: 'builder',
     title: 'Architectural Rigour',
     description: 'Systematic multi-phase governance and transparent technical specifications.',
-  },
-  {
-    id: 'proof-product',
-    category: 'product',
-    title: 'Functional Proof Demonstration',
-    description: 'Live interactive sandbox and verifiable execution pipelines.',
-    isPlaceholder: true,
-  },
-  {
-    id: 'proof-evidence',
-    category: 'evidence',
-    title: 'Empirical Verification',
-    description: 'Documented performance benchmarks verified upon product intake.',
-    isPlaceholder: true,
   },
 ];

@@ -1,0 +1,64 @@
+/* Contact page — CSS Modules + design tokens (debt D2/D4/D5 conversion).
+   Internal process sentence removed from card body per qa-checklist.md D2;
+   replacement routing copy remains PENDING FOUNDER COPY (copy.md §8). */
+
+.page {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.pageHeader {
+  max-width: var(--container-narrow);
+  margin-bottom: var(--space-8);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-accent-blue);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.title {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4);
+}
+
+.lead {
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.gatewaySection {
+  max-width: var(--container-narrow);
+}
+
+.gatewayCard {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.cardBody {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+  line-height: 1.5;
+}
+
+.email {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-accent-blue);
+}

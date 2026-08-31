@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getProductBySlug, products } from '@/content/products';
 import { companyContent } from '@/content/company';
+import styles from './product-detail.module.css';
 
 interface ProductPageProps {
   params: Promise<{
@@ -40,79 +41,90 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  // Render gate (qa-checklist §2.2): placeholder content never ships to production output.
+  const capabilities = product.capabilities.filter((cap) => !cap.isPlaceholder);
+  const evidence = (product.verifiableEvidence ?? []).filter((item) => !item.isPlaceholder);
+
   return (
-    <div className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-8)' }}>
+    <div className={`container ${styles.page}`}>
       {/* Breadcrumb Navigation for Direct Deep-Link Entry */}
-      <nav aria-label="Breadcrumbs" style={{ marginBottom: 'var(--space-5)', fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
-        <Link href="/" style={{ color: 'var(--color-text-secondary)' }}>
+      <nav aria-label="Breadcrumbs" className={styles.breadcrumbs}>
+        <Link href="/" className={styles.breadcrumbLink}>
           {companyContent.name}
         </Link>
         {' / '}
-        <Link href="/products" style={{ color: 'var(--color-text-secondary)' }}>
+        <Link href="/products" className={styles.breadcrumbLink}>
           Products
         </Link>
         {' / '}
-        <span style={{ color: 'var(--color-text-primary)' }}>{product.name}</span>
+        <span className={styles.breadcrumbCurrent}>{product.name}</span>
       </nav>
 
-      <header style={{ maxWidth: 'var(--container-narrow-width)', marginBottom: 'var(--space-8)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-3)' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-accent-flagship)', background: 'rgba(112, 184, 255, 0.1)', padding: '2px 8px', borderRadius: '12px' }}>
+      <header className={styles.pageHeader}>
+        <div className={styles.badgeRow}>
+          <span className={styles.flagshipChip}>
             {product.isFlagship ? 'FLAGSHIP PLATFORM' : 'ECOSYSTEM VENTURE'}
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-text-muted)', textTransform: 'uppercase' }}>
+          <span className={styles.statusLabel}>
             STATUS: {product.status}
           </span>
         </div>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.6rem)', fontWeight: 700, letterSpacing: '-0.025em', marginBottom: 'var(--space-3)' }}>
+        <h1 className={styles.title}>
           {product.name}
         </h1>
-        <p style={{ fontSize: '1.25rem', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
+        <p className={styles.tagline}>
           {product.tagline}
         </p>
       </header>
 
       {/* Capabilities Section */}
-      <section style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: 'var(--space-5)' }}>
-          Capability Architecture
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-5)' }}>
-          {product.capabilities.map((cap, idx) => (
-            <div
-              key={idx}
-              style={{
-                background: 'var(--color-bg-surface)',
-                border: '1px solid var(--color-border-subtle)',
-                borderRadius: 'var(--radius-md)',
-                padding: 'var(--space-5)',
-              }}
-            >
-              {cap.isPlaceholder && (
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--color-text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--space-2)' }}>
-                  [STRUCTURAL CAPABILITY CONTAINER]
-                </span>
-              )}
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 'var(--space-2)' }}>
-                {cap.title}
-              </h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
-                {cap.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {capabilities.length > 0 && (
+        <section className={styles.capabilitiesSection}>
+          <h2 className={styles.sectionTitle}>
+            Capability Architecture
+          </h2>
+          <div className={styles.capabilityGrid}>
+            {capabilities.map((cap, idx) => (
+              <div key={idx} className={styles.capabilityCard}>
+                <h3 className={styles.capabilityTitle}>
+                  {cap.title}
+                </h3>
+                <p className={styles.capabilityDescription}>
+                  {cap.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Verifiable Evidence Section (spec §4.5 Product evidence class) */}
+      {evidence.length > 0 && (
+        <section className={styles.evidenceSection}>
+          <div className={styles.evidenceGrid}>
+            {evidence.map((item, idx) => (
+              <article key={idx} className={styles.evidenceCard}>
+                <h3 className={styles.evidenceTitle}>
+                  {item.title}
+                </h3>
+                <p className={styles.evidenceDescription}>
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Parent Company Signal & Cross-Link */}
-      <footer style={{ borderTop: '1px solid var(--color-border-subtle)', paddingTop: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
+      <footer className={styles.pageFooter}>
         <div>
-          <span style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>An expression of </span>
-          <Link href="/" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-primary)' }}>
+          <span className={styles.footerContext}>An expression of </span>
+          <Link href="/" className={styles.footerLink}>
             {companyContent.name} Ecosystem
           </Link>
         </div>
-        <Link href="/products" style={{ color: 'var(--color-accent-flagship)', fontSize: '0.9rem', fontWeight: 500 }}>
+        <Link href="/products" className={styles.viewAllLink}>
           ← View All Products
         </Link>
       </footer>

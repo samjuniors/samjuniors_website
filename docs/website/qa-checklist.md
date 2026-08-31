@@ -48,17 +48,17 @@ rg -n "COMPANY-0|WD-0|IA-0|CONTENT-0|UX-0[0-9]|USER-FLOW-0|HUMAN-001" src/
 rg -n "placeholder|Placeholder|phase gate|Phase [0-9]|TODO|FIXME" src/ --glob '!*.test.*'
 ```
 
-- [ ] Probe 1 returns zero hits in `src/` (current known violations are registered in §5 debt items D1–D3).
+- [ ] Probe 1 returns zero hits in `src/` (former violations D1–D3 were fixed in the 2026-08-31 second pass; see §5).
 - [ ] Probe 2 returns zero hits in `src/` (decision IDs live only in `docs/website/decisions.md`).
 - [ ] Probe 3: every hit is either a code comment or the typed content-layer flag `isPlaceholder` — never rendered text.
-- [ ] **Render gate for `isPlaceholder`**: no content item with `isPlaceholder: true` may ship to production output. Current flagged items: `proof-product`, `proof-evidence` in `src/content/proof.ts`. Either the founder supplies verified copy (→ update [copy.md](copy.md) status) or the item must not render. Test: for each flagged item, assert it does not appear in rendered HTML.
+- [ ] **Render gate for `isPlaceholder`**: no content item with `isPlaceholder: true` may ship to production output. Former flagged items (`proof-product`, `proof-evidence`) were removed from `src/content/proof.ts` in the 2026-08-31 second pass (founder copy still pending — see [copy.md §10](copy.md#10-placeholder--missing-copy-registry-pending-founder-copy)); the page render path additionally filters `isPlaceholder` items. Test: for each flagged item, assert it does not appear in rendered HTML.
 
 ### 2.3 Token & Pattern Integrity (design-system compliance)
 
-- [ ] **No inline `style={{...}}` props** in `src/app/**/page.tsx` or `src/components/**` — all styling via CSS Modules consuming tokens (pattern contract: [component-inventory.md §2](component-inventory.md)). Current violations: debt items D4–D6.
+- [ ] **No inline `style={{...}}` props** in `src/app/**/page.tsx` or `src/components/**` — all styling via CSS Modules consuming tokens (pattern contract: [component-inventory.md §2](component-inventory.md)). Former violations D4–D6 were fixed in the 2026-08-31 second pass (all five pages now use co-located CSS Modules).
   Probe: `rg -n "style=\{\{" src/app src/components`
 - [ ] **Every CSS custom property referenced in code is defined** in `src/styles/tokens.css` or `src/app/globals.css`. Known-broken names that must be eliminated: `--container-narrow-width` (correct: `--container-narrow`), `--color-accent-flagship` (correct: `--color-accent-blue`), `--color-bg-canvas` (correct: `--color-bg-base`). Probe: `rg -o "var\(--[a-z-]+\)" src/ | sort -u` then check each name.
-- [ ] **No hardcoded color literals in TSX** (e.g. `rgba(112, 184, 255, 0.1)` — the stale pre-Phase-7 blue currently in `products/page.tsx` and `products/[slug]/page.tsx`; correct token: `--color-accent-blue-muted`). Probe: `rg -n "#[0-9a-fA-F]{3,8}|rgba?\(" src/app src/components --glob '*.tsx'`
+- [ ] **No hardcoded color literals in TSX** (e.g. `rgba(112, 184, 255, 0.1)` — the stale pre-Phase-7 blue, eliminated from the products pages in the 2026-08-31 second pass in favor of `--color-accent-blue-muted`; the remaining `themeColor: '#0c0d10'` in `layout.tsx` is a metadata value, not a styled element). Probe: `rg -n "#[0-9a-fA-F]{3,8}|rgba?\(" src/app src/components --glob '*.tsx'`
 - [ ] Any new token values come from the certified Phase 7 set ([design-system.md §6.2](design-system.md#62-semantic-color-system)) — the superseded direction palette (`#08090c`, `#d4a373`, `#70b8ff`, `#f0f3f6`) must not be reintroduced.
 
 ### 2.4 Links & Navigation
@@ -103,7 +103,7 @@ rg -n "placeholder|Placeholder|phase gate|Phase [0-9]|TODO|FIXME" src/ --glob '!
 - [ ] **CLS = 0.00** target (hard fail above 0.1) — explicit dimensions for media, no late-loading layout-shifting elements.
 - [ ] **INP < 50ms** target (hard fail above 200ms).
 - [ ] **Lighthouse floors** (default gates, adjust only via a logged decision): Performance **≥ 90**, Accessibility **≥ 95**, Best Practices **≥ 90**, SEO **≥ 90** — on both desktop and mobile presets.
-- [ ] Fonts: Google Fonts `@import` in `globals.css` is render-blocking — verify font loading strategy does not regress LCP/Lighthouse; prefer self-hosted/subset or `next/font` (flag as an optimization TODO if it remains).
+- [x] Fonts: self-hosted via `next/font/google` in `layout.tsx` (variables `--font-inter` / `--font-jetbrains-mono` consumed by the `--font-sans` / `--font-mono` tokens) — the render-blocking `@import` was removed in the 2026-08-31 second pass (debt D10). The two font variables are defined by next/font's generated CSS at build time (not in `tokens.css`) — expected, not a violation.
 - [ ] Motion budget: micro-interactions 150–250ms; spatial transitions ≤ 350ms ([design-system.md §4.8](design-system.md) pacing budget).
 
 ### 2.8 Content & Copy Correctness
@@ -127,10 +127,10 @@ rg -n "placeholder|Placeholder|phase gate|Phase [0-9]|TODO|FIXME" src/ --glob '!
 | :--- | :--- |
 | **`/` Home** | All 5 sections render in order (Hero → Thesis → Lumora Stage → Founder Letter → Horizon); hero CTA scrolls to `#lumora` anchor; philosophy link scrolls to `#thesis`; workbench tabs switch all 4 steps via click AND prev/next cycle buttons; step indicator shows `n / 4` and wraps; `Experience {flagship}` resolves the flagship name from content; no console errors. |
 | **`/products`** | Portfolio header renders; product cards show status chip, FLAGSHIP chip (flagship only), name, description, `Explore {Name} →` link; link navigates to `/products/lumora`. |
-| **`/products/lumora`** | Breadcrumbs render + link; badges `FLAGSHIP PLATFORM` + `STATUS: BETA`; H1 + tagline; all 3 capability cards render with full descriptions; `[STRUCTURAL CAPABILITY CONTAINER]` string ABSENT from output (until D1 fixed in code, assert the current product data keeps `isPlaceholder: false`); footer cross-links work. |
+| **`/products/lumora`** | Breadcrumbs render + link; badges `FLAGSHIP PLATFORM` + `STATUS: BETA`; H1 + tagline; all 3 capability cards render with full descriptions; the `verifiableEvidence` card (`Academic Intelligence Demonstration`) renders below the capability grid (D7); placeholder strings and labels are gated out of output (D1); footer cross-links work. |
 | **`/products/{unknown}`** | 404 route renders with `Product Not Found` metadata + not-found page; HTTP status is 404. |
 | **`/about`** | Header renders; 4 filter cards with numbered `01–04`; 6 cycle cards `STAGE 01–06`; purpose lead matches `companyContent.purpose` exactly. |
-| **`/contact`** | Gateway card renders; email `contact@samjuniors.com` present; NO `(Server Action backend integration boundary prepared)` in output once fixed (debt D2 — until then this check fails honestly). |
+| **`/contact`** | Gateway card renders; email `contact@samjuniors.com` present; NO `(Server Action backend integration boundary prepared)` in output — removed in the 2026-08-31 second pass (debt D2); card body is the single registered sentence. |
 | **404 page** | Renders for unknown routes; `Return to Home` works. |
 | **Global chrome** | Header on every route; footer sticky to viewport bottom on short pages, pushed down naturally on long pages (no overlap, no floating gap); dynamic year in copyright. |
 
@@ -146,22 +146,22 @@ rg -n "placeholder|Placeholder|phase gate|Phase [0-9]|TODO|FIXME" src/ --glob '!
 
 ---
 
-## 5. Known-Debt Register (current failures carried with tracking)
+## 5. Known-Debt Register (history + current state)
 
-These are real, reproducible violations of this checklist that exist in `main` today. They are registered here so QA remains honest — a checklist that ignores its own failures is decoration. Each must be fixed in the scheduled second pass or a dedicated fix branch (see [decisions.md](decisions.md) TODO 4).
+These were real, reproducible violations of this checklist found in `main` before the **2026-08-31 second-pass fix** (recorded as [decisions.md](decisions.md) TODO 4, now resolved). They are kept here — resolved state and all — so the history stays honest and re-introductions are detectable.
 
-| ID | Gate violated | Finding | Location | Fix direction |
-| :--- | :--- | :--- | :--- | :--- |
-| D1 | §2.2 | `[STRUCTURAL CAPABILITY CONTAINER]` placeholder string in render path (shows when any capability is `isPlaceholder`) | `src/app/products/[slug]/page.tsx` | Remove label + gate placeholder content out of production output |
-| D2 | §2.2 | Internal process note `(Server Action backend integration boundary prepared).` ships to visitors | `src/app/contact/page.tsx` | Replace with founder-approved visitor copy ([copy.md §8](copy.md#8-contact-page-contact)) |
-| D3 | §2.2 | Two content items flagged `isPlaceholder: true` (not rendered, but non-compliant in data layer) | `src/content/proof.ts` | Founder supplies verified proof copy or items are removed |
-| D4 | §2.3 | Inline `style={{...}}` objects throughout page components instead of CSS Modules + tokens | `about/page.tsx`, `products/page.tsx`, `products/[slug]/page.tsx`, `contact/page.tsx`, `not-found.tsx` | Convert to module.css classes consuming tokens (pattern contract) |
-| D5 | §2.3 | Broken CSS variable references — tokens that don't exist: `--container-narrow-width`, `--color-accent-flagship`, `--color-bg-canvas` | same pages as D4 | Map to real tokens: `--container-narrow`, `--color-accent-blue`, `--color-bg-base` |
-| D6 | §2.3 | Hardcoded stale-palette color `rgba(112, 184, 255, 0.1)` (pre-Phase-7 blue) | `products/page.tsx`, `products/[slug]/page.tsx` | Replace with `var(--color-accent-blue-muted)` |
-| D7 | §2.4 | `verifiableEvidence` content defined but never rendered (dead content) | `src/content/products.ts` + product detail page | Render it (spec requires proof) or remove until founder supplies evidence |
-| D8 | §2.4 | `proofItems` (Contextual Proof content) defined but never consumed by any view | `src/content/proof.ts` | Wire into a proof surface once founder supplies verified copy |
-| D9 | §2.3 | Reusable primitives `Button` and `SectionHeader` exist but pages re-implement their patterns inline | pages listed in D4 | Adopt the primitives during the D4 conversion |
-| D10 | §2.7 | Render-blocking external Google Fonts `@import` in `globals.css` | `src/app/globals.css` | Move to self-hosted/`next/font` strategy |
+| ID | Gate violated | Finding (state before the 2026-08-31 pass) | Location | Fix direction | Status |
+| : | : | : | : | : | : |
+| D1 | §2.2 | `[STRUCTURAL CAPABILITY CONTAINER]` placeholder string in render path (shows when any capability is `isPlaceholder`) | `src/app/products/[slug]/page.tsx` | Remove label + gate placeholder content out of production output | **FIXED 2026-08-31** — label removed; `isPlaceholder` items filtered from render |
+| D2 | §2.2 | Internal process note `(Server Action backend integration boundary prepared).` ships to visitors | `src/app/contact/page.tsx` | Replace with founder-approved visitor copy ([copy.md §8](copy.md#8-contact-page-contact)) | **FIXED 2026-08-31** — internal sentence removed; card body is the registered sentence; routing copy still PENDING FOUNDER COPY |
+| D3 | §2.2 | Two content items flagged `isPlaceholder: true` (not rendered, but non-compliant in data layer) | `src/content/proof.ts` | Founder supplies verified proof copy or items are removed | **FIXED 2026-08-31** — both items removed (founder copy still pending, tracked in [copy.md §10](copy.md#10-placeholder--missing-copy-registry-pending-founder-copy)) |
+| D4 | §2.3 | Inline `style={{...}}` objects throughout page components instead of CSS Modules + tokens | `about/page.tsx`, `products/page.tsx`, `products/[slug]/page.tsx`, `contact/page.tsx`, `not-found.tsx` | Convert to module.css classes consuming tokens (pattern contract) | **FIXED 2026-08-31** — all five pages converted to co-located module.css (1:1 style parity) |
+| D5 | §2.3 | Broken CSS variable references — tokens that don't exist: `--container-narrow-width`, `--color-accent-flagship`, `--color-bg-canvas` | same pages as D4 | Map to real tokens: `--container-narrow`, `--color-accent-blue`, `--color-bg-base` | **FIXED 2026-08-31** — mapped; note this intentionally activates the 840px narrow column and steel-blue accents that the broken vars silently disabled |
+| D6 | §2.3 | Hardcoded stale-palette color `rgba(112, 184, 255, 0.1)` (pre-Phase-7 blue) | `products/page.tsx`, `products/[slug]/page.tsx` | Replace with `var(--color-accent-blue-muted)` | **FIXED 2026-08-31** — replaced on both pages |
+| D7 | §2.4 | `verifiableEvidence` content defined but never rendered (dead content) | `src/content/products.ts` + product detail page | Render it (spec requires proof) or remove until founder supplies evidence | **FIXED 2026-08-31** — rendered on `/products/[slug]` below the capability grid, using only registered copy.md strings (no new copy) |
+| D8 | §2.4 | `proofItems` (Contextual Proof content) defined but never consumed by any view | `src/content/proof.ts` | Wire into a proof surface once founder supplies verified copy | **OPEN (founder)** — awaiting verified People/Product/Evidence copy; only the real `builder` item remains in the data layer |
+| D9 | §2.3 | Reusable primitives `Button` and `SectionHeader` exist but pages re-implement their patterns inline | pages listed in D4 | Adopt the primitives during the D4 conversion | **FIXED 2026-08-31 (Button)** — `not-found.tsx` CTA now uses the `Button` primitive. `SectionHeader` remains unused by the sub-pages: adopting it would require new kicker/index strings, which is founder copy (not invented in a fix pass) |
+| D10 | §2.7 | Render-blocking external Google Fonts `@import` in `globals.css` | `src/app/globals.css` | Move to self-hosted/`next/font` strategy | **FIXED 2026-08-31** — `next/font/google` self-hosting via `layout.tsx` |
 
 ---
 

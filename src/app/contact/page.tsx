@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { companyContent } from '@/content/company';
+import styles from './contact.module.css';
 
 export const metadata: Metadata = {
   title: 'Contact & Dialogue',
@@ -8,35 +9,28 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-8)' }}>
-      <header style={{ maxWidth: 'var(--container-narrow-width)', marginBottom: 'var(--space-8)' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--color-accent-flagship)', textTransform: 'uppercase', marginBottom: 'var(--space-2)' }}>
+    <div className={`container ${styles.page}`}>
+      <header className={styles.pageHeader}>
+        <div className={styles.eyebrow}>
           Intent-Aligned Dialogue
         </div>
-        <h1 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.4rem)', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 'var(--space-4)' }}>
+        <h1 className={styles.title}>
           Connect with {companyContent.name}
         </h1>
-        <p style={{ fontSize: '1.2rem', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
+        <p className={styles.lead}>
           For inquiries regarding institutional partnership, technical research, or ecosystem collaboration.
         </p>
       </header>
 
-      <section style={{ maxWidth: 'var(--container-narrow-width)' }}>
-        <div
-          style={{
-            background: 'var(--color-bg-surface)',
-            border: '1px solid var(--color-border-subtle)',
-            borderRadius: 'var(--radius-md)',
-            padding: 'var(--space-6)',
-          }}
-        >
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: 'var(--space-3)' }}>
+      <section className={styles.gatewaySection}>
+        <div className={styles.gatewayCard}>
+          <h2 className={styles.cardTitle}>
             Ecosystem Communications Gateway
           </h2>
-          <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)', lineHeight: 1.5 }}>
-            Direct communication channels are established based on visitor intent. (Server Action backend integration boundary prepared).
+          <p className={styles.cardBody}>
+            Direct communication channels are established based on visitor intent.
           </p>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--color-accent-flagship)' }}>
+          <div className={styles.email}>
             contact@samjuniors.com
           </div>
         </div>

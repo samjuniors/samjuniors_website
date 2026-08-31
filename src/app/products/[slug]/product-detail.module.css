@@ -1,0 +1,162 @@
+/* Product detail page — CSS Modules + design tokens (debt D1/D4/D5/D6/D7 conversion).
+   The placeholder capability label was removed and placeholder-flagged content is
+   gated out of render (D1); broken token names mapped to the certified token set (D5);
+   stale blue rgba replaced with var(--color-accent-blue-muted) (D6);
+   verifiableEvidence surface added using only registered copy.md strings (D7). */
+
+.page {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.breadcrumbs {
+  margin-bottom: var(--space-5);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.breadcrumbLink {
+  color: var(--color-text-secondary);
+}
+
+.breadcrumbCurrent {
+  color: var(--color-text-primary);
+}
+
+.pageHeader {
+  max-width: var(--container-narrow);
+  margin-bottom: var(--space-8);
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.flagshipChip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent-blue);
+  background: var(--color-accent-blue-muted);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.statusLabel {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-3);
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.capabilitiesSection {
+  margin-bottom: var(--space-8);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--space-5);
+}
+
+.capabilityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.capabilityCard {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.capabilityTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.capabilityDescription {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* D7: contextual product-evidence surface (spec §4.5, Product class).
+   Accent tokens already used on this page for product-flagship signaling. */
+.evidenceSection {
+  margin-bottom: var(--space-8);
+}
+
+.evidenceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.evidenceCard {
+  background: var(--color-accent-blue-muted);
+  border: 1px solid var(--color-accent-blue-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.evidenceTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.evidenceDescription {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.pageFooter {
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.footerContext {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.footerLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.viewAllLink {
+  color: var(--color-accent-blue);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.viewAllLink:hover {
+  color: var(--color-accent-blue-hover);
+}

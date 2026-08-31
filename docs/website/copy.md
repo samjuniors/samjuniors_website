@@ -275,7 +275,7 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 | `Intelligent Decision Guidance` | `Provides grounded academic advice, scheduling optimization, and degree trajectory planning.` |
 | `Focused Action Workspace` | `Turns synthesized guidance directly into structured study sprints and research execution.` |
 
-**Defined but not currently rendered** (exists in `products.ts` `verifiableEvidence`, no UI consumes it yet):
+**Rendered on the product detail page since the 2026-08-31 second pass** (debt D7 — the surface sits below the capability grid; the card carries only these registered strings, no section label was invented):
 
 | Evidence item | Literal text |
 | :--- | :--- |
@@ -320,7 +320,7 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 | H1 | `Connect with SamJuniors` |
 | Lead | `For inquiries regarding institutional partnership, technical research, or ecosystem collaboration.` |
 | Card H2 | `Ecosystem Communications Gateway` |
-| Card body | `Direct communication channels are established based on visitor intent. (Server Action backend integration boundary prepared).` **← second sentence is an internal leak, must be replaced — see §9** |
+| Card body | `Direct communication channels are established based on visitor intent.` (the internal process sentence `(Server Action backend integration boundary prepared).` was removed from code in the 2026-08-31 second pass — debt D2; any richer routing copy remains PENDING FOUNDER COPY, see §9/§10) |
 | Email (mono) | `contact@samjuniors.com` |
 
 **PENDING FOUNDER COPY — contact experience**: the current page is a static gateway card. The spec's intent-aligned dialogue model ([product-spec.md §6.2](product-spec.md#62-persona-goals-key-questions--success-criteria)) expects intent-routed pathways (institutional partnership / technical research / ecosystem collaboration). The founder must decide and supply: the real contact channel(s), any inquiry routing labels, and whether an inquiry form (already architected as an API boundary in [architecture.md §7](architecture.md#7-future-full-stack--backend-boundaries)) should ship. No agent-drafted form copy ships without founder sign-off.
@@ -333,8 +333,8 @@ These strings currently exist in shipped code and violate the Internal Knowledge
 
 | # | String | Location | Violation | Replacement |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | `[STRUCTURAL CAPABILITY CONTAINER]` | `src/app/products/[slug]/page.tsx` (renders when `cap.isPlaceholder === true`) | Internal structural label shipped to visitors | None needed for Lumora (all capabilities are real copy). Long-term: `isPlaceholder` items must never render — gate them out or block page shipping (tracked in [decisions.md](decisions.md) TODO 4). |
-| 2 | `(Server Action backend integration boundary prepared).` | `src/app/contact/page.tsx` card body | Internal engineering note in visitor copy | **PENDING FOUNDER COPY** — see §8 |
+| 1 | `[STRUCTURAL CAPABILITY CONTAINER]` | `src/app/products/[slug]/page.tsx` (renders when `cap.isPlaceholder === true`) | Internal structural label shipped to visitors | **REMOVED from code 2026-08-31** (debt D1) — label deleted and placeholder-flagged capabilities gated out of render; no replacement string needed. |
+| 2 | `(Server Action backend integration boundary prepared).` | `src/app/contact/page.tsx` card body | Internal engineering note in visitor copy | **REMOVED from code 2026-08-31** (debt D2) — no invented replacement; the shipped card body is the registered first sentence alone. Richer routing copy remains PENDING FOUNDER COPY — see §8 |
 | 3 | `STATUS: {status}` badge, `FLAGSHIP PLATFORM` / `ECOSYSTEM VENTURE` chips, `404 // ROUTE_NOT_FOUND` | product detail, 404 page | *Borderline* — system-flavored labels, currently accepted as the terminal/technical voice; founder may keep or humanize | Founder decision at sign-off |
 
 ## 10. Placeholder & Missing-Copy Registry (PENDING FOUNDER COPY)
@@ -345,7 +345,7 @@ Everything the site needs but no founder-approved words exist for yet. **Agents 
 | :--- | :--- | :--- | :--- |
 | 1 | **Founder identity** — name, role, one-line bio | `Founder & Leadership` + `Est. 2026` (no name anywhere) | Founder letter signature (§5.1); spec's dedicated Founder page & journey ([product-spec.md §1.2](product-spec.md#12-additional-requirements)) |
 | 2 | **Testimonials / People proof** | Nothing (correctly absent per Zero Fabrication) | Social Proof step 8 of the certified homepage narrative ([product-spec.md §3.4](product-spec.md#34-homepage-narrative-architecture-10-steps)) |
-| 3 | **Product proof items** | `proof.ts` ships two items flagged `isPlaceholder: true`: `Functional Proof Demonstration` — `Live interactive sandbox and verifiable execution pipelines.` and `Empirical Verification` — `Documented performance benchmarks verified upon product intake.` (also: not rendered by any view) | Contextual Proof System ([product-spec.md §4.5](product-spec.md#45-contextual-proof-system)) — replace with verified evidence or remove |
+| 3 | **Product proof items** | The two placeholder-flagged items (`Functional Proof Demonstration`, `Empirical Verification`) were **removed from `proof.ts` on 2026-08-31** (debt D3 — founder copy never arrived, placeholders may not ship). Only the real `builder` item remains in the data layer, still unrendered (debt D8). | Contextual Proof System ([product-spec.md §4.5](product-spec.md#45-contextual-proof-system)) — founder supplies verified evidence, then it is wired to a proof surface |
 | 4 | **Future roadmap copy** | Nothing (Honest Roadmap step 9 not yet implemented) | Homepage steps 7–10 ([product-spec.md §3.4](product-spec.md#34-homepage-narrative-architecture-10-steps)) |
 | 5 | **Persona-specific CTAs** | Shipped: `Experience Lumora`, `Explore Ecosystem`, `Explore Portfolio Architecture →`, `Connect With Leadership →`, `Our Building Philosophy →`. Not written: `Partner with SamJuniors`, `Explore Solutions`, `View Technical Architecture`, `Review Founder Journey`, `Join Student Community`, `Download Academic Overview`, `Explore Developer Hub`, `Contact Enterprise Team` (spec CTA labels from [product-spec.md §6.2](product-spec.md#62-persona-goals-key-questions--success-criteria)) | Intent-based conversion & Join-the-Journey step 10 |
 | 6 | **Contact experience copy** | Static gateway card + email (§8) | Intent-aligned dialogue ([§8](#8-contact-page-contact)) |
