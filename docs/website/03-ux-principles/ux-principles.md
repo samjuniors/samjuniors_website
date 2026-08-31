@@ -88,7 +88,7 @@ This specification establishes the binding User Experience (UX) principles gover
 
 ### UX-015: Visitor Control
 > **"The experience guides attention without taking control away from the visitor."**
-- **Sovereign Controls**: Visitors retain absolute, predictable control over scrolling momentum, navigation, reading pace, skipping, revisiting, and depth of exploration.
+- **Sovereign Controls**: Visitors retain predictable and meaningful control over scrolling, navigation, pacing, skipping, revisiting, and depth of exploration.
 - **Prohibitions**: Zero mandatory animation waits, zero locked scrolling, zero disappearing controls. The website feels discovered, never imposed.
 
 ### UX-017: Mobile Is First-Class
@@ -127,7 +127,7 @@ This specification establishes the binding User Experience (UX) principles gover
 
 ### HUMAN-001: Human-Made Design & Implementation
 > **"The website must not exhibit recognizable generic AI-generated visual or implementation patterns. The final product must demonstrate deliberate human-level design judgment, authorship, restraint, and product thinking."**
-- **Quality Constraint**: AI tools may assist throughout discovery, research, and coding, but the resulting work must pass the Distinctiveness and Human-Authorship tests.
+- **Cross-Phase Quality/Governance Constraint**: This is a quality and governance constraint, not a prescriptive visual or implementation specification. AI tools may assist throughout discovery, research, and coding, but the resulting work must pass the Distinctiveness and Human-Authorship tests.
 - **Distinctiveness Test**: *"If the SamJuniors identity were removed, could this design be mistaken for a generic AI startup website?"* (If yes, redesign distinctive elements).
 - **Human-Authorship Test**: *"Does this element exist because it communicates something intentionally, or because it is a common AI-generated template pattern?"* (If the latter, reconsider or eliminate).
 - **Avoid Generic AI Clichés**: Generic purple/cyan gradients, excessive glassmorphism, floating decorative glowing orbs, monotonous rounded card grids, template section structures, meaningless particles, and generic copy buzzwords.

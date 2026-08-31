@@ -108,7 +108,7 @@
 ### Human-Made Design & Implementation (HUMAN-001)
 > **"The website must never exhibit recognizable, generic AI-generated visual or implementation patterns. The final product must demonstrate deliberate human-level design judgment, authorship, restraint, and product thinking."**
 
-- **Scope & Applicability**: Mandatory quality and governance constraint active across Phases 5 through 11 (Design Research, Wireframes, Design System, UI Design, Vertical Slice, Implementation, and QA).
+- **Cross-Phase Quality/Governance Constraint**: This is a mandatory quality and governance constraint, not a prescriptive visual or implementation specification. Active across Phases 5 through 11 (Design Research, Wireframes, Design System, UI Design, Vertical Slice, Implementation, and QA).
 - **Prohibited Generic AI Visual Patterns** (when used without specific, meaningful justification):
   - Generic AI startup gradient ramps (e.g., purple-cyan saturated glows)
   - Excessive glassmorphism and frosted acrylic overlays

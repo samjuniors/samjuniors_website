@@ -195,7 +195,7 @@ All records adhere to the mandatory governance framework: **Decision, Reason, Al
 ---
 
 ### UX-015: Visitor Control
-- **Decision**: Ensure the web experience guides attention without seizing control from the user. Visitors retain absolute control over scrolling, navigation, pacing, skipping, and exploration depth.
+- **Decision**: Ensure the web experience guides attention without seizing control from the user. Visitors retain predictable and meaningful control over scrolling, navigation, pacing, skipping, revisiting, and depth of exploration.
 - **Reason**: Respects human agency and hardware ergonomics, fostering an empowering sense of discovery.
 - **Alternatives Considered**: Linear guided slideshow tour with automated pacing.
 - **Why Alternatives Were Rejected**: Automated tours feel imposed, frustrating users who read faster or want specific answers.
