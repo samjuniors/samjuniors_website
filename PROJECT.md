@@ -30,7 +30,7 @@ Establish a modern, high-performance, accessible, and brand-aligned web presence
 ---
 
 ## Deliverables
-- Full project documentation suite in [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website).
+- Full project documentation suite in [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website) and [application-architecture.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/application-architecture.md).
 - Reviewed and approved wireframes, design system, and UI specifications.
 - Production-grade, tested, and optimized website codebase.
 - Deployment, testing, and launch verification records.
