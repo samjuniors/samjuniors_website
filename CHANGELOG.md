@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Documentation Consolidation: 44 files → 8 files (docs/consolidation)
+
+- **Consolidated Documentation Suite**:
+  - Merged the 12 phase-numbered folders under `docs/website/` plus `docs/company/` (44 files total) into a clean 8-file structure with zero content loss: `docs/company/foundation.md` (company-foundation.md + company README), `docs/website/product-spec.md` (discovery + information architecture + content strategy + UX principles), `docs/website/design-system.md` (design research + wireframes/design direction + design system + UI + brand foundation + design principles), `docs/website/architecture.md` (application architecture + architecture manifesto), `docs/website/delivery.md` (vertical slice + implementation + testing + launch + reviews protocol), `docs/website/decisions.md` (all four per-phase decision logs merged, newest-first, each entry tagged with its destination document).
+  - `docs/company/decision-log.md` kept byte-for-byte unchanged (founder-owned).
+  - `docs/website/INDEX.md` rewritten to reference only the new 8-file structure; `PROJECT.md`, `ROADMAP.md`, `AGENTS.md`, `README.md`, and `CONTRIBUTING.md` updated to remove all references to the old phase-numbered folders.
+  - Added the reading-scope rule to `AGENTS.md`: for single page/component tasks, read only the relevant section of product-spec.md and design-system.md; do not read decisions.md or company/foundation.md unless the task concerns brand identity or historical rationale.
+  - Decision ID codes (WD-xxx, IA-xxx, CONTENT-xxx, UX-xxx, USER-FLOW-xxx) now live exclusively inside decisions.md; merged product/design documents read as clean direction, not governance paperwork. HUMAN-001 remains a named governance constraint in design-system.md per its cross-phase role.
+  - Open conflicts and gaps flagged as TODOs in decisions.md instead of silently resolved: Phase 7 phase-gate violation (implemented before recorded sign-off), design-direction palette vs certified Phase 7 token palette, four missing screenshot files referenced by the visual review sheet, and the second-pass code fixes for `about/page.tsx` / `products/[slug]/page.tsx` (inline styles + `[STRUCTURAL CAPABILITY CONTAINER]` placeholder string shipping to visitors).
+
+### Added — Branch Reconciliation (chore/merge-visual-evidence)
+
+- Merged `feat/phase-6-visual-evidence` into `main` (Phase 6 visual evidence + Phase 7 design system implementation: `src/styles/tokens.css`, `LumoraStage`, `ThesisSection`, `FounderLetter`, `HorizonSection`, `Button`/`SectionHeader` primitives, visual QA pass, screenshot evidence). PR #1 closed as merged; feature branch deleted from remote. All checks green on merge: `tsc --noEmit`, ESLint, and Vitest (10/10).
+
 ### Added — In-App Experience Prototype (feat/phase-6-experience-prototype)
 
 - **Production Next.js Experience Prototype (`src/app/page.tsx`, `src/components/`)**:

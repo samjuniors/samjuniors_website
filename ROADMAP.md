@@ -5,6 +5,8 @@ This roadmap defines the authoritative execution sequence for the SamJuniors web
 > [!IMPORTANT]
 > **Phase Sequencing Rule**: Phase 9 (Vertical Slice Validation) is a mandatory quality gate. It must occur **after** Phases 4–8 are fully approved, and **before** Phase 10 (Frontend Development) begins. Failure of the vertical slice blocks all subsequent phases until findings are resolved and re-validated.
 
+**Documentation map**: each phase's governing specification lives in the consolidated 8-file documentation suite (see [INDEX.md](docs/website/INDEX.md)) — product direction in [product-spec.md](docs/website/product-spec.md), visual rules in [design-system.md](docs/website/design-system.md), technical structure in [architecture.md](docs/website/architecture.md), build/QA/launch gates in [delivery.md](docs/website/delivery.md), and all formal decisions in [decisions.md](docs/website/decisions.md).
+
 ---
 
 ## Phase 1: Discovery & Website Strategy
@@ -17,7 +19,9 @@ Establish the strategic foundation for the website project, grounded in approved
 - Milestone 1.4: Discovery Phase Review & Sign-Off
 
 > [!NOTE]
-> This phase governs **website-level strategy only**. Company-level strategy, mission, values, and brand truth remain under the exclusive authority of [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company).
+> This phase governs **website-level strategy only**. Company-level strategy, mission, values, and brand truth remain under the exclusive authority of [docs/company/](docs/company).
+
+**Governing document**: [product-spec.md §1–2](docs/website/product-spec.md)
 
 ---
 
@@ -30,6 +34,8 @@ Define the site's structural skeleton: content hierarchy, URL taxonomy, navigati
 - Milestone 2.3: URL Routing & Taxonomy Structure
 - Milestone 2.4: Information Architecture Review & Sign-Off
 
+**Governing document**: [product-spec.md §3](docs/website/product-spec.md#3-information-architecture-certified--frozen) (certified & frozen)
+
 ---
 
 ## Phase 3: Content Strategy
@@ -40,6 +46,8 @@ Define the messaging framework, editorial standards, and content model for every
 - Milestone 3.2: Copywriting Guidelines & Voice Alignment
 - Milestone 3.3: Asset & Media Requirements Specification
 - Milestone 3.4: Content Strategy Review & Sign-Off
+
+**Governing document**: [product-spec.md §4–5](docs/website/product-spec.md#4-content-strategy--messaging-framework)
 
 ---
 
@@ -52,6 +60,8 @@ Establish the experiential principles, user personas, visitor goals, journey map
 - Milestone 4.3: User Journey Mapping & Decision-Point Analysis
 - Milestone 4.4: Core UX Principles & Cognitive Frameworks
 - Milestone 4.5: UX Phase Review & Sign-Off
+
+**Governing document**: [product-spec.md §6](docs/website/product-spec.md#6-ux-principles-personas--user-flows)
 
 ---
 
@@ -66,6 +76,8 @@ Conduct evidence-driven research across competitive, visual, interaction, access
 - Milestone 5.5: Research Conclusions & Design Implication Synthesis
 - Milestone 5.6: Design Research Review & Sign-Off
 
+**Governing document**: [design-system.md §3](docs/website/design-system.md#3-design-research)
+
 ---
 
 ## Phase 6: Wireframes
@@ -76,6 +88,8 @@ Produce structural layout blueprints for all core pages and viewports, grounded 
 - Milestone 6.2: Responsive Viewport Layout Specifications
 - Milestone 6.3: Interaction Flow Diagrams
 - Milestone 6.4: Wireframe Review & Sign-Off
+
+**Governing document**: [design-system.md §4](docs/website/design-system.md#4-strategic-design-direction)
 
 ---
 
@@ -88,6 +102,8 @@ Define the visual language and component specifications that govern all UI desig
 - Milestone 7.3: Accessibility & Contrast Guidelines
 - Milestone 7.4: Design System Review & Sign-Off
 
+**Governing document**: [design-system.md §6](docs/website/design-system.md#6-design-system-specification) — implemented in `src/styles/tokens.css`; formal sign-off pending (see TODO in [decisions.md](docs/website/decisions.md))
+
 ---
 
 ## Phase 8: UI Design
@@ -98,6 +114,8 @@ Produce high-fidelity visual designs, interactive states, and motion specificati
 - Milestone 8.2: Interactive States & Motion Guidelines
 - Milestone 8.3: Asset Production & Export
 - Milestone 8.4: UI Design Review & Sign-Off
+
+**Governing document**: [design-system.md §7](docs/website/design-system.md#7-ui-design-phase-protocol-phase-8)
 
 ---
 
@@ -114,7 +132,7 @@ Validate one representative, end-to-end user experience in production-grade impl
 - Milestone 9.5: Vertical Slice Sign-Off & Phase 10 Clearance
 
 > [!NOTE]
-> The **proposed validation slice** is: Homepage → SamJuniors Story → Lumora Reveal → Lumora Exploration → Trust/Proof → Primary CTA. This selection is **PROPOSED** and requires formal approval during Phase 8. See [docs/website/08-vertical-slice/README.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/08-vertical-slice/README.md) for full scope, validation dimensions, and entry/exit criteria.
+> The **proposed validation slice** is: Homepage → SamJuniors Story → Lumora Reveal → Lumora Exploration → Trust/Proof → Primary CTA. This selection is **PROPOSED** and requires formal approval during Phase 8. See [delivery.md §2](docs/website/delivery.md#2-vertical-slice-validation-mandatory-quality-gate) for full scope, validation dimensions, and entry/exit criteria.
 
 ---
 
@@ -127,6 +145,8 @@ Implement the full website codebase using the production-grade architecture vali
 - Milestone 10.3: Page Assembly & Routing Implementation
 - Milestone 10.4: Frontend Implementation Review & Sign-Off
 
+**Governing documents**: [architecture.md](docs/website/architecture.md), [delivery.md §3](docs/website/delivery.md#3-frontend-development-gated-on-vertical-slice-sign-off)
+
 ---
 
 ## Phase 11: QA
@@ -138,6 +158,8 @@ Verify correctness, accessibility, performance, and security across all pages an
 - Milestone 11.3: Performance, SEO, & Security Benchmarks
 - Milestone 11.4: QA Sign-Off
 
+**Governing document**: [delivery.md §4](docs/website/delivery.md#4-qa--testing-gated-on-frontend-development-completion)
+
 ---
 
 ## Phase 12: Launch
@@ -148,3 +170,5 @@ Execute production deployment and establish post-launch monitoring.
 - Milestone 12.2: Production Deployment & DNS Setup
 - Milestone 12.3: Post-Launch Monitoring & Verification
 - Milestone 12.4: Project Completion & Handover
+
+**Governing document**: [delivery.md §5](docs/website/delivery.md#5-launch-gated-on-qa-sign-off)

@@ -12,12 +12,12 @@ This repository uses a strict **documentation-first** engineering methodology de
 
 ## Core Governance & Workflow
 
-- **[INDEX.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/INDEX.md)**: Master phase map, authority hierarchy, and document index.
-- **[AGENTS.md](file:///d:/Projects/SamjuniorsWebsite/AGENTS.md)**: Operating guidelines and rules for AI agents and contributors.
-- **[PROJECT.md](file:///d:/Projects/SamjuniorsWebsite/PROJECT.md)**: Project goals, scope, non-goals, and open TODOs.
-- **[ROADMAP.md](file:///d:/Projects/SamjuniorsWebsite/ROADMAP.md)**: Sequential phase milestones.
-- **[CONTRIBUTING.md](file:///d:/Projects/SamjuniorsWebsite/CONTRIBUTING.md)**: Development, branching, and review processes.
-- **[CHANGELOG.md](file:///d:/Projects/SamjuniorsWebsite/CHANGELOG.md)**: Project version history.
+- **[INDEX.md](docs/website/INDEX.md)**: Master document map, authority hierarchy, and phase status.
+- **[AGENTS.md](AGENTS.md)**: Operating guidelines and rules for AI agents and contributors.
+- **[PROJECT.md](PROJECT.md)**: Project goals, scope, non-goals, and open TODOs.
+- **[ROADMAP.md](ROADMAP.md)**: Sequential phase milestones.
+- **[CONTRIBUTING.md](CONTRIBUTING.md)**: Development, branching, and review processes.
+- **[CHANGELOG.md](CHANGELOG.md)**: Project version history.
 
 ---
 
@@ -27,8 +27,8 @@ This repository uses a strict **documentation-first** engineering methodology de
 Discover ──> Decide ──> Document ──> Review ──> Approve ──> Implement ──> Verify ──> Merge
 ```
 
-1. **Source of Truth**: All foundational company identity is preserved in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company).
-2. **Phase Specifications**: Each phase has a dedicated directory within [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website).
+1. **Source of Truth**: All foundational company identity is preserved in [docs/company/](docs/company).
+2. **Consolidated Specifications**: Website strategy, design, architecture, and delivery are governed by the 8-file documentation suite in [docs/website/](docs/website).
 3. **No Implementation Before Approval**: Code is never written before relevant documentation is reviewed and signed off.
 
 ---
@@ -37,27 +37,23 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 
 ```
 docs/
-├── company/                     # Permanent source of truth (Founder documentation)
-└── website/                     # Website lifecycle documentation
-    ├── 00-discovery/            # Requirements, user research, and stakeholder alignment
-    ├── 01-information-architecture/ # Sitemap, navigation hierarchy, routing
-    ├── 02-content-strategy/     # Content hierarchy, copywriting outlines, voice
-    ├── 03-ux-principles/        # Experiential principles, personas, user journeys
-    ├── 04-design-research/      # Evidence-driven design research & implications
-    ├── 05-wireframes/           # Structural blueprints and layout specifications
-    ├── 06-design-system/        # Design tokens, typography, component specs
-    ├── 07-ui/                   # High-fidelity visual layouts and states
-    ├── 08-vertical-slice/       # End-to-end representative experience validation
-    ├── 09-implementation/       # Technical architecture and development specs
-    ├── 10-testing/              # QA test plans, accessibility, performance audits
-    ├── 11-launch/               # Launch checklist, DNS, deployment procedures
-    └── reviews/                 # Phase review logs, sign-offs, and decisions
+├── company/                     # Permanent source of truth (Founder documentation — never agent-edited)
+│   ├── foundation.md            # Company identity, purpose, differentiator, building cycle, product architecture
+│   └── decision-log.md          # Company decision records (COMPANY-001…003)
+└── website/                     # Website lifecycle documentation (consolidated)
+    ├── product-spec.md          # Pages, messaging, IA (certified & frozen), content strategy, personas, journeys
+    ├── design-system.md         # Tokens, layout, visual rules, design research, direction, HUMAN-001 tests
+    ├── architecture.md          # Technical structure, routing, data flow, component boundaries
+    ├── delivery.md              # Build order, vertical slice gate, QA gates, launch checklist, review protocol
+    ├── decisions.md             # Single running decision log (newest entries on top)
+    └── INDEX.md                 # Master index, authority hierarchy, phase status map
 ```
 
 ---
 
 ## Getting Started
 
-1. Review [INDEX.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/INDEX.md) and [company-foundation.md](file:///d:/Projects/SamjuniorsWebsite/docs/company/company-foundation.md).
-2. Review governance rules in [AGENTS.md](file:///d:/Projects/SamjuniorsWebsite/AGENTS.md) and milestones in [PROJECT.md](file:///d:/Projects/SamjuniorsWebsite/PROJECT.md).
-3. Follow the active phase specifications in [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website).
+1. Review [INDEX.md](docs/website/INDEX.md) and [company/foundation.md](docs/company/foundation.md).
+2. Review governance rules in [AGENTS.md](AGENTS.md) and milestones in [PROJECT.md](PROJECT.md).
+3. For page or component work, read only the relevant sections of [product-spec.md](docs/website/product-spec.md) and [design-system.md](docs/website/design-system.md).
+4. Check open TODOs in [decisions.md](docs/website/decisions.md) and [PROJECT.md](PROJECT.md) before starting work.

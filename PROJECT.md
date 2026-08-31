@@ -25,12 +25,18 @@ Establish a modern, high-performance, accessible, and brand-aligned web presence
 - Premature technology selection or coding prior to phase approval.
 - Placeholder copywriting or unverified speculative branding.
 - Developing unapproved features, pages, or backend systems not defined in phase specifications.
-- Generic, interchangeable AI-generated visual templates, saturated gradient blobs, or bloated implementation patterns ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001)).
+- Generic, interchangeable AI-generated visual templates, saturated gradient blobs, or bloated implementation patterns ([HUMAN-001](docs/website/design-system.md#25-human-made-design--implementation-human-001)).
 
 ---
 
 ## Deliverables
-- Full project documentation suite indexed in [INDEX.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/INDEX.md) and [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website).
+- Consolidated documentation suite (8 files) indexed in [INDEX.md](docs/website/INDEX.md):
+  - [docs/company/foundation.md](docs/company/foundation.md) & [docs/company/decision-log.md](docs/company/decision-log.md) — founder-owned truth.
+  - [docs/website/product-spec.md](docs/website/product-spec.md) — product direction, IA, content strategy, personas & journeys.
+  - [docs/website/design-system.md](docs/website/design-system.md) — tokens, layout, visual rules, HUMAN-001 tests.
+  - [docs/website/architecture.md](docs/website/architecture.md) — technical structure & routing.
+  - [docs/website/delivery.md](docs/website/delivery.md) — build order, QA gates, launch checklist.
+  - [docs/website/decisions.md](docs/website/decisions.md) — single running decision log.
 - Reviewed and approved wireframes, design system, and UI specifications.
 - Production-grade, tested, and optimized website codebase.
 - Deployment, testing, and launch verification records.
@@ -49,39 +55,41 @@ No implementation begins before relevant documentation is reviewed and approved.
 ---
 
 ## Project Phases
-1. **Phase 1 — Discovery & Website Strategy**: Stakeholder alignment, target audience identification, functional/non-functional requirements gathering.
-2. **Phase 2 — Information Architecture**: Sitemap, page hierarchy, URL structure, data flows.
-3. **Phase 3 — Content Strategy**: Messaging hierarchy, content outlines, voice guidelines.
-4. **Phase 4 — UX Principles & User Flows**: User personas, visitor goals, journey maps, cognitive frameworks, and experiential principles.
-5. **Phase 5 — Design Research**: Evidence-driven competitive, interaction, visual, accessibility, and motion research producing actionable design implications.
-6. **Phase 6 — Wireframes**: Structural layout blueprints and user journey flows.
-7. **Phase 7 — Design System**: Visual tokens, typography, color palettes, component specifications.
-8. **Phase 8 — UI Design**: High-fidelity visual layouts and interaction design.
-9. **Phase 9 — Vertical Slice Validation**: End-to-end validation of one representative journey before full frontend implementation. Mandatory quality gate.
-10. **Phase 10 — Frontend Development**: Component implementation, state management, build integration.
-11. **Phase 11 — QA**: Cross-browser testing, accessibility audit, performance benchmarking, security checks.
-12. **Phase 12 — Launch**: Production deployment, domain configuration, analytics, post-launch monitoring.
+1. **Phase 1 — Discovery & Website Strategy**: Stakeholder alignment, target audience identification, functional/non-functional requirements gathering. *(→ [product-spec.md §1–2](docs/website/product-spec.md))*
+2. **Phase 2 — Information Architecture**: Sitemap, page hierarchy, URL structure, data flows. *(→ [product-spec.md §3](docs/website/product-spec.md#3-information-architecture-certified--frozen))*
+3. **Phase 3 — Content Strategy**: Messaging hierarchy, content outlines, voice guidelines. *(→ [product-spec.md §4–5](docs/website/product-spec.md#4-content-strategy--messaging-framework))*
+4. **Phase 4 — UX Principles & User Flows**: User personas, visitor goals, journey maps, cognitive frameworks, and experiential principles. *(→ [product-spec.md §6](docs/website/product-spec.md#6-ux-principles-personas--user-flows))*
+5. **Phase 5 — Design Research**: Evidence-driven competitive, interaction, visual, accessibility, and motion research producing actionable design implications. *(→ [design-system.md §3](docs/website/design-system.md#3-design-research))*
+6. **Phase 6 — Wireframes**: Structural layout blueprints and user journey flows. *(→ [design-system.md §4](docs/website/design-system.md#4-strategic-design-direction))*
+7. **Phase 7 — Design System**: Visual tokens, typography, color palettes, component specifications. *(→ [design-system.md §6](docs/website/design-system.md#6-design-system-specification))*
+8. **Phase 8 — UI Design**: High-fidelity visual layouts and interaction design. *(→ [design-system.md §7](docs/website/design-system.md#7-ui-design-phase-protocol-phase-8))*
+9. **Phase 9 — Vertical Slice Validation**: End-to-end validation of one representative journey before full frontend implementation. Mandatory quality gate. *(→ [delivery.md §2](docs/website/delivery.md#2-vertical-slice-validation-mandatory-quality-gate))*
+10. **Phase 10 — Frontend Development**: Component implementation, state management, build integration. *(→ [architecture.md](docs/website/architecture.md), [delivery.md §3](docs/website/delivery.md#3-frontend-development-gated-on-vertical-slice-sign-off))*
+11. **Phase 11 — QA**: Cross-browser testing, accessibility audit, performance benchmarking, security checks. *(→ [delivery.md §4](docs/website/delivery.md#4-qa--testing-gated-on-frontend-development-completion))*
+12. **Phase 12 — Launch**: Production deployment, domain configuration, analytics, post-launch monitoring. *(→ [delivery.md §5](docs/website/delivery.md#5-launch-gated-on-qa-sign-off))*
 
 ---
 
 ## Dependencies
-- Founder-approved company documentation in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company).
+- Founder-approved company documentation in [docs/company/](docs/company).
 - Formal phase review sign-offs before transitioning to subsequent phases.
 
 ---
 
 ## Open TODOs
-- [x] Phase 1 — Discovery & Website Strategy (Stages 1 & 2 complete; WD-001 to WD-014).
-- [x] Phase 2 — Information Architecture (Certified & Frozen; IA-001 to IA-009, WD-015 to WD-027).
-- [x] Phase 3 — Content Strategy (Messaging framework, content model, CONTENT-001 to CONTENT-010 complete).
-- [x] Phase 4 — UX Principles & User Flows (UX-001 to UX-019 and USER-FLOW-001 to USER-FLOW-005 complete).
-- [x] Phase 5 — Design Research (Evidence-driven research and implications documented in design-research.md).
-- [x] Phase 6 — Wireframes & Experience Prototyping (In-app experience prototype implemented in src/app/ and src/components/).
-- [ ] Phase 7 — Design System (Pending Phase 6 sign-off).
+- [x] Phase 1 — Discovery & Website Strategy (Stages 1 & 2 complete; all discovery decisions recorded in [decisions.md](docs/website/decisions.md)).
+- [x] Phase 2 — Information Architecture (Certified & Frozen; all IA decisions recorded in [decisions.md](docs/website/decisions.md)).
+- [x] Phase 3 — Content Strategy (Messaging framework, content model, all content decisions recorded in [decisions.md](docs/website/decisions.md)).
+- [x] Phase 4 — UX Principles & User Flows (all UX and user-flow decisions recorded in [decisions.md](docs/website/decisions.md)).
+- [x] Phase 5 — Design Research (Evidence-driven research and implications documented in [design-system.md §3](docs/website/design-system.md#3-design-research)).
+- [x] Phase 6 — Wireframes & Experience Prototyping (In-app experience prototype implemented in `src/app/` and `src/components/`; visual evidence recorded in [design-system.md §5](docs/website/design-system.md#5-phase-6-experience-prototype--visual-evidence--review-sheet)).
+- [~] Phase 7 — Design System (Implemented in `src/styles/tokens.css`, `src/app/globals.css`, and `src/components/ui/` — **formal sign-off pending**: the implementation occurred before a recorded Phase 6 sign-off; founder review requested, see TODO in [decisions.md](docs/website/decisions.md)).
 - [ ] Phase 8 — UI Design (Pending Phase 7 sign-off).
 - [ ] Phase 9 — Vertical Slice Validation (Pending Phase 8 initial approval).
 - [ ] Phase 10 — Frontend Development (Gated on Phase 9 sign-off).
 - [ ] Phase 11 — QA (Gated on Phase 10 completion).
 - [ ] Phase 12 — Launch (Gated on Phase 11 sign-off).
-- [x] Ingest and verify founder documentation in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company) (COMPANY-001 through COMPANY-003 recorded).
-- [ ] Ingest further founder documentation in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company) as provided.
+- [x] Ingest and verify founder documentation in [docs/company/](docs/company) (COMPANY-001 through COMPANY-003 recorded).
+- [ ] Ingest further founder documentation in [docs/company/](docs/company) as provided.
+- [ ] Founder review of open TODOs in [docs/website/decisions.md](docs/website/decisions.md) (Phase 7 retroactive certification, palette supersession, missing screenshots).
+- [ ] Second-pass code fix: `src/app/about/page.tsx` and `src/app/products/[slug]/page.tsx` still use inline styles instead of the design token system, and `products/[slug]/page.tsx` ships a literal `[STRUCTURAL CAPABILITY CONTAINER]` placeholder string to visitors (tracked in [decisions.md](docs/website/decisions.md)).

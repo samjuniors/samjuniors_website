@@ -2,11 +2,24 @@
 
 > **Permanent Source of Truth** for SamJuniors company identity, core purpose, differentiator, building philosophy, and product ecosystem architecture.
 >
-> All website strategy, information architecture, UX decisions, content models, and design systems in [docs/website/](file:///d:/Projects/SamjuniorsWebsite/docs/website) must derive strictly from this baseline.
+> All website strategy, information architecture, UX decisions, content models, and design systems in [docs/website/](../website/) must derive strictly from this baseline.
 
 ---
 
-## 1. COMPANY-001 — Parent Company Identity & Purpose
+## Governance (Founder-Only Document)
+
+> [!IMPORTANT]
+> **Source of Truth Rule**:
+> - This directory represents the highest authority in the project governance hierarchy.
+> - This file is **founder-owned and never agent-edited**. AI agents and contributors must **never** modify files in this directory unless explicitly instructed via approved founder documentation updates.
+> - AI agents must **never** invent or hallucinate company philosophy or strategy.
+> - Missing context must be flagged as open TODO items.
+
+The formal decision records for the three company decisions documented here (identity & purpose, differentiator & building cycle, cross-product thesis) are maintained in [decision-log.md](decision-log.md), which is likewise founder-owned and never agent-edited.
+
+---
+
+## 1. Parent Company Identity & Purpose
 
 ### Parent Company Identity
 - **AI-First Parent Company**: SamJuniors is an AI-first parent company and technology ecosystem.
@@ -49,7 +62,7 @@ SamJuniors evaluates all opportunities and initiatives using four core criteria:
 
 ---
 
-## 2. COMPANY-002 — Differentiator & Building Cycle
+## 2. Differentiator & Building Cycle
 
 ### Core Differentiator
 Founder-approved working direction:
@@ -84,7 +97,7 @@ Evolve
 
 ---
 
-## 3. COMPANY-003 — Cross-Product Company Thesis & Product Architecture
+## 3. Cross-Product Company Thesis & Product Architecture
 
 ### Cross-Product Company Thesis
 The unifying thread connecting all current and future SamJuniors products across different domains consists of two permanent pillars:
