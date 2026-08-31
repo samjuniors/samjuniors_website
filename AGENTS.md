@@ -10,10 +10,18 @@ This document establishes the binding operational rules, governance, and workflo
    - AI agents must **never** invent, assume, or improvise company philosophy, mission, values, voice, branding, or business strategy.
    - All foundational company identity must strictly reference [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company).
    - If information is missing, ambiguous, or unconfirmed, mark it explicitly as a **TODO** item for founder review. Never use placeholders pretending to be final decisions.
+   - Never invent product capabilities, metrics, testimonials, evidence, or fictional future products.
 
 2. **Strict Phase Boundaries**:
    - Do not write code, UI components, stylesheets, or frameworks before the documentation, design system, and architecture for that phase are reviewed and approved.
-   - Respect phase order defined in [ROADMAP.md](file:///d:/Projects/SamjuniorsWebsite/ROADMAP.md).
+   - Respect phase order defined in [ROADMAP.md](file:///d:/Projects/SamjuniorsWebsite/ROADMAP.md) and [INDEX.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/INDEX.md).
+
+3. **Internal Knowledge ≠ Website Content (Build from Understanding, Not Transcription)**:
+   - All documentation under `docs/company/` and `docs/website/` is **internal source material** for the design and engineering team.
+   - Agents must **read, understand, synthesize, and apply** the underlying intent rather than transcribe documentation into UI.
+   - Never mechanically copy documentation into website sections or assume documentation structure is website information architecture.
+   - Never expose internal decision IDs (e.g., `COMPANY-001`, `UX-013`, `CONTENT-003`), phase numbers, research citations, or governance terminology on visitor-facing interfaces.
+   - The visitor-facing website must communicate strategy through professional content, visual hierarchy, living product storytelling, and natural narrative pacing.
 
 ---
 
@@ -61,8 +69,9 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 
 ## 4. Decision Recording Process
 
-1. Architectural and structural decisions must be formally documented as Architecture Decision Records (ADRs) or phase-specific specification files within `docs/website/`.
-2. Decision records must detail:
+1. Architectural and structural decisions must be formally documented within phase-specific specification files in `docs/website/`.
+2. Keep documentation concise and high-signal. Avoid creating sprawling decision-log ecosystems or redundant files for small iterative steps.
+3. Decision records must detail:
    - **Context**: Problem statement and constraints.
    - **Decision**: Chosen solution and rationale.
    - **Consequences**: Trade-offs, risks, and subsequent obligations.
@@ -101,7 +110,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 | `docs/company/*` | **Founder/Leadership Only**. AI agents must NEVER modify unless explicitly commanded with approved founder input. |
 | `docs/website/*` | AI agents may draft specifications, subject to human approval before implementation. |
 | `AGENTS.md`, `PROJECT.md`, `ROADMAP.md` | Core governance files. Changes require explicit project lead approval. |
-| `src/*` (future) | Implementation files. Modifiable only when corresponding docs are approved. |
+| `src/*` | Production implementation files. Modifiable only when corresponding docs and architecture are approved. |
 
 ---
 
