@@ -1,30 +1,26 @@
 import { HeroSection } from '@/components/narrative/HeroSection';
-import { PhilosophySection } from '@/components/narrative/PhilosophySection';
-import { ShowcaseSection } from '@/components/narrative/ShowcaseSection';
-import { EcosystemSection } from '@/components/narrative/EcosystemSection';
-import { FounderSection } from '@/components/narrative/FounderSection';
-import { GatewaySection } from '@/components/narrative/GatewaySection';
+import { ThesisSection } from '@/components/narrative/ThesisSection';
+import { LumoraStage } from '@/components/interactive/LumoraStage';
+import { FounderLetter } from '@/components/narrative/FounderLetter';
+import { HorizonSection } from '@/components/narrative/HorizonSection';
 
 export default function HomePage() {
   return (
     <div className="container">
-      {/* 1. Parent Opening & Orientation */}
+      {/* 1. Parent Opening & Core Identity */}
       <HeroSection />
 
-      {/* 2. Editorial Building Thesis & 4 Filters */}
-      <PhilosophySection />
+      {/* 2. Editorial Building Thesis */}
+      <ThesisSection />
 
-      {/* 3. Flagship Spotlight & Living Demonstration */}
-      <ShowcaseSection />
+      {/* 3. Authentic Restrained Flagship Stage */}
+      <LumoraStage />
 
-      {/* 4. Multi-Product Scalable Horizon */}
-      <EcosystemSection />
+      {/* 4. Human Founder Conviction */}
+      <FounderLetter />
 
-      {/* 5. Leadership Perspective */}
-      <FounderSection />
-
-      {/* 6. Contextual Gateways */}
-      <GatewaySection />
+      {/* 5. Expanding Horizon & Dialogue */}
+      <HorizonSection />
     </div>
   );
 }

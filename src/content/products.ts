@@ -2,40 +2,40 @@ import { Product } from './types';
 
 /**
  * Product Ecosystem Registry
- * Source: docs/company/company-foundation.md (COMPANY-001, COMPANY-003)
- * Note: Lumora is certified flagship; unvetted specs are explicitly marked isPlaceholder: true.
+ * Source: Lumora Product Truth (AI-native Academic Operating System)
+ * Baseline Model: Academic Data → Understanding → Decision Support → Action
  */
 export const products: Product[] = [
   {
     slug: 'lumora',
     name: 'Lumora',
-    tagline: 'Spatial intelligence and creative authoring platform.',
-    shortDescription: 'The first major flagship platform expression of the SamJuniors technology ecosystem.',
+    tagline: 'AI-native Academic Operating System.',
+    shortDescription: 'Transforms fragmented coursework, research, deadlines, and degree milestones into coherent academic understanding and actionable guidance.',
     status: 'beta',
     isFlagship: true,
     capabilities: [
       {
-        title: 'Core Functional Platform',
-        description: 'Primary user workflow engine designed for high-performance authoring.',
-        isPlaceholder: true,
+        title: 'Academic Context Synthesis',
+        description: 'Unifies syllabi, course records, research tracks, and milestones into an active student context.',
+        isPlaceholder: false,
       },
       {
-        title: 'Contextual Intelligence',
-        description: 'AI-assisted generation and execution tailored to user intent.',
-        isPlaceholder: true,
+        title: 'Intelligent Decision Guidance',
+        description: 'Provides grounded academic advice, scheduling optimization, and degree trajectory planning.',
+        isPlaceholder: false,
       },
       {
-        title: 'Open Ecosystem Interoperability',
-        description: 'Seamless integration with external development and production toolchains.',
-        isPlaceholder: true,
+        title: 'Focused Action Workspace',
+        description: 'Turns synthesized guidance directly into structured study sprints and research execution.',
+        isPlaceholder: false,
       },
     ],
     verifiableEvidence: [
       {
         type: 'demo',
-        title: 'Interactive Preview Environment',
-        description: 'Direct interactive demonstration canvas pending product truth intake.',
-        isPlaceholder: true,
+        title: 'Academic Intelligence Demonstration',
+        description: 'Interactive conceptual demonstration of academic context synthesis and decision guidance.',
+        isPlaceholder: false,
       },
     ],
   },
@@ -52,3 +52,4 @@ export function getFlagshipProduct(): Product {
   }
   return flagship;
 }
+

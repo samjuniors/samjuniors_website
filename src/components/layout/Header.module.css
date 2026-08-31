@@ -2,32 +2,39 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(9, 10, 13, 0.85);
+  background: rgba(11, 12, 15, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--border-hairline);
 }
 
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 72px;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.brand:hover {
+  opacity: 0.85;
 }
 
 .brandMark {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--color-text-primary);
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid var(--accent-copper);
   display: inline-block;
 }
 
@@ -39,29 +46,31 @@
 }
 
 .navLink {
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
-  transition: color var(--duration-fast) var(--ease-standard);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 400;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .navLink:hover {
-  color: var(--color-text-primary);
+  color: var(--text-main);
 }
 
 .cta {
   display: inline-flex;
   align-items: center;
-  padding: var(--space-2) var(--space-4);
-  background: var(--color-text-primary);
-  color: var(--color-bg-canvas);
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: opacity var(--duration-fast) var(--ease-standard);
+  padding: 8px 18px;
+  background: var(--text-main);
+  color: var(--bg-base);
+  border-radius: 4px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: all var(--duration-fast) var(--ease-out);
 }
 
 .cta:hover {
-  opacity: 0.9;
+  background: #ffffff;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
@@ -69,3 +78,4 @@
     display: none;
   }
 }
+

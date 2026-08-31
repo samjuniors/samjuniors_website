@@ -1,0 +1,59 @@
+.header {
+  max-width: 980px;
+  margin-bottom: var(--space-8);
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eyebrowRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.indexNumber {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--color-accent-copper);
+}
+
+.divider {
+  color: var(--color-text-muted);
+  font-size: 0.74rem;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-copper);
+}
+
+.title {
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.title em {
+  font-style: normal;
+  color: var(--color-accent-copper);
+}
+
+.lead {
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 780px;
+}

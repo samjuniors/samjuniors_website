@@ -1,0 +1,86 @@
+.section {
+  padding: var(--section-spacing) 0 clamp(56px, 10vh, 96px) 0;
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.labelRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.indexNumber {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--accent-copper);
+}
+
+.divider {
+  color: var(--text-dim);
+  font-size: 0.74rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-copper);
+}
+
+.col h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+  margin-bottom: var(--space-2);
+}
+
+.col p {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-weight: 300;
+  margin-bottom: var(--space-5);
+}
+
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-main);
+  font-size: 0.92rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--accent-copper);
+  padding-bottom: 3px;
+  align-self: flex-start;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.actionLink:hover {
+  color: var(--accent-copper-hover);
+  border-bottom-color: var(--text-main);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+

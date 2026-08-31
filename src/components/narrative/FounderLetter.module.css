@@ -1,0 +1,101 @@
+.letterSection {
+  padding: var(--section-spacing) 0;
+  border-bottom: 1px solid var(--border-hairline);
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  position: relative;
+}
+
+.labelRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.indexNumber {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--accent-copper);
+}
+
+.divider {
+  color: var(--text-dim);
+  font-size: 0.74rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-copper);
+}
+
+.quoteWrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.letterBody {
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text-main);
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.015em;
+}
+
+.letterBody em {
+  font-style: normal;
+  color: var(--accent-copper);
+  font-weight: 400;
+}
+
+.signatureBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.signerDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.signerName {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.signerTitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.dateStamp {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--accent-copper);
+  background: rgba(200, 150, 102, 0.08);
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(200, 150, 102, 0.2);
+}
+
+@media (max-width: 640px) {
+  .signatureBlock {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+}
+

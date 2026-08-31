@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { AmbientCanvas } from '@/components/interactive/AmbientCanvas';
 import { companyContent } from '@/content/company';
+import '@/styles/tokens.css';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: `${companyContent.name} — AI-First Technology Ecosystem`,
+    default: `${companyContent.name} — Technology Ecosystem`,
     template: `%s | ${companyContent.name}`,
   },
   description: companyContent.purpose,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#08090c',
+  themeColor: '#0c0d10',
 };
 
 export default function RootLayout({
@@ -31,7 +31,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AmbientCanvas />
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
