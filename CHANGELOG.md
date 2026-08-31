@@ -8,6 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Company Foundation Intake (docs/company-foundation)
+
+- **Canonical Company Foundation Established (`docs/company/company-foundation.md`)**:
+  - **COMPANY-001**: Parent Company Identity (AI-first ecosystem, enduring brand layer, Lumora as product not whole company, future-proof architecture), Company Purpose (founder-approved working direction), Desired Company Reputation (AI innovation, engineering execution, enduring ecosystem), Founder Role (visionary leader/builder/architect, human connection without *SamJuniors = Founder*), and 4-point Building Filter (Innovation, User Value, Impact, Long-term Vision).
+  - **COMPANY-002**: Differentiator (turn ambitious ideas into real products, build toward what people need next) and 6-stage non-speculative Building Cycle (*See what could be next → Identify meaningful opportunity → Build seriously → Make useful → Learn from real people → Evolve*).
+  - **COMPANY-003**: Cross-Product Thesis (Why we build + How we build) and Product Architecture Principle (permanent parent narrative, strategically curated prominence, multi-product scalability).
+- **Company Decision Log (`docs/company/decision-log.md`)**: Formalized structured decision records for `COMPANY-001`, `COMPANY-002`, and `COMPANY-003`.
+- **Docs Separation**: Reaffirmed strict hierarchy separating `docs/company/` (highest authority truth) from `docs/website/` (derived specifications).
+
 ### Changed — Roadmap Reconciliation (chore/reconcile-production-roadmap)
 
 - **12-Phase Lifecycle Established**: Expanded `ROADMAP.md` from 9 phases to the authoritative 12-phase production lifecycle.
