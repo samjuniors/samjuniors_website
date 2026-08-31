@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { AmbientCanvas } from '@/components/interactive/AmbientCanvas';
 import { companyContent } from '@/content/company';
 import './globals.css';
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#090a0d',
+  themeColor: '#08090c',
 };
 
 export default function RootLayout({
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <AmbientCanvas />
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
