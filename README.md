@@ -28,7 +28,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 ```
 
 1. **Source of Truth**: All foundational company identity is preserved in [docs/company/](docs/company).
-2. **Consolidated Specifications**: Website strategy, design, architecture, and delivery are governed by the 8-file documentation suite in [docs/website/](docs/website).
+2. **Consolidated Specifications**: Website strategy, design, architecture, and delivery are governed by the 11-file documentation suite in [docs/website/](docs/website).
 3. **No Implementation Before Approval**: Code is never written before relevant documentation is reviewed and signed off.
 
 ---
@@ -46,6 +46,9 @@ docs/
     ├── architecture.md          # Technical structure, routing, data flow, component boundaries
     ├── delivery.md              # Build order, vertical slice gate, QA gates, launch checklist, review protocol
     ├── decisions.md             # Single running decision log (newest entries on top)
+    ├── copy.md                  # Approved literal website text: headlines, descriptions, CTAs + placeholder registry (founder sign-off model)
+    ├── qa-checklist.md          # Concrete acceptance criteria: global gates, per-page matrix, floors, debt register
+    ├── component-inventory.md   # Closed component set, props/variants, mandatory CSS-Modules + tokens pattern contract
     └── INDEX.md                 # Master index, authority hierarchy, phase status map
 ```
 
@@ -55,5 +58,5 @@ docs/
 
 1. Review [INDEX.md](docs/website/INDEX.md) and [company/foundation.md](docs/company/foundation.md).
 2. Review governance rules in [AGENTS.md](AGENTS.md) and milestones in [PROJECT.md](PROJECT.md).
-3. For page or component work, read only the relevant sections of [product-spec.md](docs/website/product-spec.md) and [design-system.md](docs/website/design-system.md).
+3. For page or component work, read only the relevant sections of [product-spec.md](docs/website/product-spec.md), [copy.md](docs/website/copy.md), [design-system.md](docs/website/design-system.md), and [component-inventory.md](docs/website/component-inventory.md).
 4. Check open TODOs in [decisions.md](docs/website/decisions.md) and [PROJECT.md](PROJECT.md) before starting work.

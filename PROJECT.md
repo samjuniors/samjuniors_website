@@ -30,13 +30,16 @@ Establish a modern, high-performance, accessible, and brand-aligned web presence
 ---
 
 ## Deliverables
-- Consolidated documentation suite (8 files) indexed in [INDEX.md](docs/website/INDEX.md):
+- Consolidated documentation suite (11 files) indexed in [INDEX.md](docs/website/INDEX.md):
   - [docs/company/foundation.md](docs/company/foundation.md) & [docs/company/decision-log.md](docs/company/decision-log.md) — founder-owned truth.
   - [docs/website/product-spec.md](docs/website/product-spec.md) — product direction, IA, content strategy, personas & journeys.
   - [docs/website/design-system.md](docs/website/design-system.md) — tokens, layout, visual rules, HUMAN-001 tests.
   - [docs/website/architecture.md](docs/website/architecture.md) — technical structure & routing.
   - [docs/website/delivery.md](docs/website/delivery.md) — build order, QA gates, launch checklist.
   - [docs/website/decisions.md](docs/website/decisions.md) — single running decision log.
+  - [docs/website/copy.md](docs/website/copy.md) — approved literal website text (SPEC vs COPY split) with placeholder/missing-copy registry.
+  - [docs/website/qa-checklist.md](docs/website/qa-checklist.md) — concrete acceptance criteria: global gates, per-page matrix, performance floors, debt register.
+  - [docs/website/component-inventory.md](docs/website/component-inventory.md) — closed component set, props/variants, mandatory CSS-Modules + tokens pattern contract.
 - Reviewed and approved wireframes, design system, and UI specifications.
 - Production-grade, tested, and optimized website codebase.
 - Deployment, testing, and launch verification records.
@@ -92,4 +95,5 @@ No implementation begins before relevant documentation is reviewed and approved.
 - [x] Ingest and verify founder documentation in [docs/company/](docs/company) (COMPANY-001 through COMPANY-003 recorded).
 - [ ] Ingest further founder documentation in [docs/company/](docs/company) as provided.
 - [ ] Founder review of open TODOs in [docs/website/decisions.md](docs/website/decisions.md) (Phase 7 retroactive certification, palette supersession, missing screenshots).
+- [ ] Founder copy sign-off in [docs/website/copy.md](docs/website/copy.md) — all strings are currently `PROPOSED` or `PENDING FOUNDER COPY`; wet-sign per the copy.md §0.2 record, and supply the missing founder copy (founder name, testimonials, proof items, persona CTAs, contact experience).
 - [ ] Second-pass code fix: `src/app/about/page.tsx` and `src/app/products/[slug]/page.tsx` still use inline styles instead of the design token system, and `products/[slug]/page.tsx` ships a literal `[STRUCTURAL CAPABILITY CONTAINER]` placeholder string to visitors (tracked in [decisions.md](docs/website/decisions.md)).

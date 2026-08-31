@@ -2,11 +2,11 @@
 
 > **Master navigation map & governance index** establishing the authoritative document structure, authority hierarchy, status, and gating rules for the SamJuniors web platform.
 >
-> The documentation suite was consolidated into **8 files**. The former 12 phase-numbered folders were merged without content loss; the consolidation record and open TODOs live in [decisions.md](decisions.md).
+> The documentation suite was consolidated into **8 core files**, then extended with three operational companions — [copy.md](copy.md) (approved literal website text), [qa-checklist.md](qa-checklist.md) (concrete acceptance criteria), and [component-inventory.md](component-inventory.md) (closed component set + pattern contract) — **11 files total**. The former 12 phase-numbered folders were merged without content loss; the consolidation record and open TODOs live in [decisions.md](decisions.md).
 
 ---
 
-## 1. Documentation Structure (8 Files)
+## 1. Documentation Structure (11 Files)
 
 ```
 docs/
@@ -19,6 +19,9 @@ docs/
     ├── architecture.md        # Technical structure: stack, directory boundaries, routing, data flow, component boundaries, quality gates, freeze policy
     ├── delivery.md            # Build order, QA gates, launch checklist: vertical slice validation, frontend development, QA, launch, review sign-off protocol
     ├── decisions.md           # Single running decision log (newest on top): every formal website decision with IDs, tagged by destination doc
+    ├── copy.md                # THE literal visitor-facing words: approved headlines, descriptions, CTAs, metadata + placeholder/missing-copy registry (founder sign-off model)
+    ├── qa-checklist.md        # Concrete definition of "done": global gates, per-page acceptance matrix, performance floors, placeholder/leak probes, debt register
+    ├── component-inventory.md # Closed set of components with props/variants + the mandatory CSS-Modules + tokens pattern contract
     └── INDEX.md               # This file
 ```
 
@@ -95,8 +98,8 @@ The 12-phase project lifecycle (see [ROADMAP.md](../../ROADMAP.md)) maps onto th
 | **Phase 7** | **Design System** | **Implemented — sign-off pending (TODO)** | Formal visual design tokens (color, typography, spatial grid, elevation, motion). | [design-system.md §6](design-system.md#6-design-system-specification) |
 | **Phase 8** | **UI Design** | **Pending Phase 7 sign-off** | High-fidelity component layouts, interactive states, responsive visual compositions. | [design-system.md §7](design-system.md#7-ui-design-phase-protocol-phase-8) |
 | **Phase 9** | **Vertical Slice Validation** | **Pending Phase 8** | Interactive end-to-end slice testing core user journeys, performance, and accessibility. | [delivery.md §2](delivery.md#2-vertical-slice-validation-mandatory-quality-gate) |
-| **Phase 10** | **Frontend Development** | **Scaffold ready — gated on Phase 9** | Production Next.js App Router codebase with typed content repository, CSS Modules, accessible components. | [architecture.md](architecture.md), [delivery.md §3](delivery.md#3-frontend-development-gated-on-vertical-slice-sign-off), [src/](../../src) |
-| **Phase 11** | **QA & Testing** | **Pending Phase 10** | Vitest unit suites, Playwright E2E validation, Core Web Vitals profiling, WCAG 2.1 AA audit. | [delivery.md §4](delivery.md#4-qa--testing-gated-on-frontend-development-completion), [e2e/](../../e2e) |
+| **Phase 10** | **Frontend Development** | **Scaffold ready — gated on Phase 9** | Production Next.js App Router codebase with typed content repository, CSS Modules, accessible components. | [architecture.md](architecture.md), [component-inventory.md](component-inventory.md), [copy.md](copy.md), [delivery.md §3](delivery.md#3-frontend-development-gated-on-vertical-slice-sign-off), [src/](../../src) |
+| **Phase 11** | **QA & Testing** | **Pending Phase 10** | Vitest unit suites, Playwright E2E validation, Core Web Vitals profiling, WCAG 2.1 AA audit. | [delivery.md §4](delivery.md#4-qa--testing-gated-on-frontend-development-completion), [qa-checklist.md](qa-checklist.md), [e2e/](../../e2e) |
 | **Phase 12** | **Launch & Deployment** | **Pending Phase 11** | Production deployment, edge CDN configuration, domain routing, post-launch verification. | [delivery.md §5](delivery.md#5-launch-gated-on-qa-sign-off) |
 
 **Decision history** for every phase is recorded in [decisions.md](decisions.md) (single running log, newest entries on top).
@@ -112,9 +115,11 @@ For contributors, reviewers, and AI agents onboarding to the project:
 3. [architecture.md](architecture.md) — *Production Stack & Application Architecture*
 4. [product-spec.md](product-spec.md) — *Product Direction, IA, Messaging, Personas & Journeys*
 5. [design-system.md](design-system.md) — *Visual Direction, Research, Tokens & HUMAN-001 Tests*
-6. [decisions.md](decisions.md) — *Decision History (reference only, when historical rationale is needed)*
+6. [copy.md](copy.md) & [component-inventory.md](component-inventory.md) — *Literal Words & Component Contracts (daily implementation companions)*
+7. [qa-checklist.md](qa-checklist.md) — *Definition of Done (required when verifying any page/component)*
+8. [decisions.md](decisions.md) — *Decision History (reference only, when historical rationale is needed)*
 
-> **Reading-scope rule (binding for AI agents)**: For any single page or component task, read only the relevant section of [product-spec.md](product-spec.md) and [design-system.md](design-system.md). Do not read [decisions.md](decisions.md) or [company/foundation.md](../company/foundation.md) unless the task specifically concerns brand identity or historical rationale.
+> **Reading-scope rule (binding for AI agents)**: For any single page or component task, read only the relevant section of [product-spec.md](product-spec.md) (what the page must communicate), [copy.md](copy.md) (the literal words), [design-system.md](design-system.md) (visual rules), and [component-inventory.md](component-inventory.md) (components & pattern contract); verify against [qa-checklist.md](qa-checklist.md) when done. Do not read [decisions.md](decisions.md) or [company/foundation.md](../company/foundation.md) unless the task specifically concerns brand identity or historical rationale.
 
 ---
 
@@ -122,7 +127,7 @@ For contributors, reviewers, and AI agents onboarding to the project:
 
 - **Current Phase**: **UI Design (Phase 8) preparation** — the Phase 6 experience prototype and Phase 7 design system are implemented in `src/` (see [design-system.md §5](design-system.md#5-phase-6-experience-prototype--visual-evidence--review-sheet)).
 - **Production Scaffold State**: Initialized in Next.js App Router (`src/app/`, `src/content/`, `src/styles/tokens.css`, Vitest, Playwright).
-- **Explicit Next Action**: Founder review of the open TODOs in [decisions.md](decisions.md) (Phase 7 retroactive certification, palette supersession confirmation, missing screenshots), followed by formal Phase 7 sign-off and Phase 8 UI design activation.
+- **Explicit Next Action**: Founder review of the open TODOs in [decisions.md](decisions.md) (Phase 7 retroactive certification, palette supersession confirmation, missing screenshots, founder copy sign-off), followed by formal Phase 7 sign-off and Phase 8 UI design activation.
 
 ---
 

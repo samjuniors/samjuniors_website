@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Operational Companion Documents: copy, QA checklist, component inventory (docs/copy-qa-components)
+
+- **`docs/website/copy.md` — approved literal website text (SPEC vs COPY split)**: every visitor-facing string compiled from the shipped codebase and content layer, organized page-by-page with a three-level status model (`APPROVED` founder-wet-signed / `PROPOSED` / `PENDING FOUNDER COPY`), a sign-off record, a known-leaks register (`[STRUCTURAL CAPABILITY CONTAINER]`, the contact-page process note), and a placeholder/missing-copy registry (founder name, testimonials, proof items, persona CTAs, contact experience, Privacy/Legal/Support scope). Product-spec keeps *intent*; copy.md owns *the words*. Agents may only draft `PROPOSED` strings; only the founder promotes to `APPROVED`.
+- **`docs/website/qa-checklist.md` — concrete acceptance criteria**: turns the QA phase protocol into an executable definition of done — tooling baseline, global gates (build health; grep probe suite for placeholder/internal/decision-ID strings; token-integrity probes incl. the broken `--container-narrow-width` / `--color-accent-flagship` / `--color-bg-canvas` references; links; WCAG contrast table with computed token-pair ratios; responsive breakpoints; performance floors — LCP < 1.2s, CLS 0.00, INP < 50ms, Lighthouse ≥ 90/95/90/90; copy parity against copy.md; HUMAN-001 spot checks), per-page acceptance matrix, a 10-item known-debt register (D1–D10) honestly recording current violations, and a sign-off record format.
+- **`docs/website/component-inventory.md` — closed component set & pattern contract**: full catalog of every component in `src/components/` (Header, Footer, HeroSection, ThesisSection, FounderLetter, HorizonSection, LumoraStage, Button, SectionHeader) with type, props, variants, content dependencies, and CSS-module class inventories; global utility classes; token quick reference; content-layer API; route composition map; a drift register documenting why `about/page.tsx` drifted into inline styles (no closed set existed); and a 6-step extension protocol. Binding pattern: CSS Modules + `tokens.css`, no inline styles, content from `src/content/` only.
+- Cross-updated INDEX.md, product-spec.md, design-system.md, delivery.md, decisions.md (new TODO 8 founder copy sign-off + note 9), AGENTS.md (reading-scope rule now includes copy.md + component-inventory.md + qa-checklist.md; ownership table), PROJECT.md, README.md, CONTRIBUTING.md. Documentation suite: 8 → 11 files.
+
 ### Added — Documentation Consolidation: 44 files → 8 files (docs/consolidation)
 
 - **Consolidated Documentation Suite**:

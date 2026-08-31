@@ -4,7 +4,9 @@
 >
 > **Authority**: Derived strictly from founder company truth in [docs/company/foundation.md](../company/foundation.md). Formal decision records (with decision IDs, alternatives, risks, and review criteria) live exclusively in [decisions.md](decisions.md). Visual rules, tokens, layout, and the human-craft governance tests live exclusively in [design-system.md](design-system.md).
 >
-> **How to use**: For any single page or component task, read only the relevant section of this document and of [design-system.md](design-system.md). Do not read [decisions.md](decisions.md) or [docs/company/foundation.md](../company/foundation.md) unless the task specifically concerns brand identity or historical rationale.
+> **How to use**: For any single page or component task, read only the relevant section of this document (what the page must communicate), the matching section of [copy.md](copy.md) (the literal approved words), and of [design-system.md](design-system.md). Do not read [decisions.md](decisions.md) or [docs/company/foundation.md](../company/foundation.md) unless the task specifically concerns brand identity or historical rationale.
+>
+> **SPEC vs COPY split**: this document governs *intent* — what each page and section must communicate, to whom, at what depth. The exact visitor-facing words are governed exclusively in [copy.md](copy.md). If a string is not in copy.md, it does not ship.
 
 ---
 
@@ -328,7 +330,7 @@ The homepage architecture is bound to these certified principles (full design di
 
 ## 4. Content Strategy & Messaging Framework
 
-*The messaging hierarchy, information depths, proof system, founder presence model, and future layer for every page and section. All content decisions derive strictly from canonical company truth in [docs/company/foundation.md](../company/foundation.md).*
+*The messaging hierarchy, information depths, proof system, founder presence model, and future layer for every page and section. All content decisions derive strictly from canonical company truth in [docs/company/foundation.md](../company/foundation.md). This section defines what content must communicate; the literal strings themselves are approved in [copy.md](copy.md).*
 
 ### 4.1 Core Content Strategy Principles
 Content across the SamJuniors web platform is governed by 10 fundamental principles:
@@ -433,7 +435,7 @@ Credibility is built into the reading flow using four distinct evidence classes:
 | **4. Evidence** | Empirical results and institutional milestones | Research papers, verified metrics, partnership announcements |
 
 > [!CAUTION]
-> **Absolute Prohibition on Fabricated Proof**: Never fabricate testimonials, metrics, user counts, partner logos, or awards. If verified data is not yet available, use structural placeholders marked `[PENDING VERIFIED DATA]` during drafting.
+> **Absolute Prohibition on Fabricated Proof**: Never fabricate testimonials, metrics, user counts, partner logos, or awards. If verified data is not yet available, use structural placeholders marked `[PENDING VERIFIED DATA]` during drafting. Every currently-known placeholder and missing-copy gap is registered in [copy.md §10](copy.md#10-placeholder--missing-copy-registry-pending-founder-copy) — only the founder can close those gaps.
 
 ### 4.6 Cognitive Pacing & Focus
 - **One Dominant Cognitive Purpose**: Every section, slide, or view must accomplish exactly one primary cognitive task (e.g., *Understand the Vision*, *Witness Lumora*, *Evaluate Credibility*).

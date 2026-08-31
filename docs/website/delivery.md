@@ -2,7 +2,7 @@
 
 > **Build order, QA gates, and launch checklist**: the vertical slice validation gate, frontend development protocol, QA & testing standards, launch & deployment procedures, and the phase review & sign-off record protocol.
 >
-> **Authority**: Sequencing governed by [ROADMAP.md](../../ROADMAP.md) and [INDEX.md](INDEX.md). Design rules and HUMAN-001 tests are governed in [design-system.md](design-system.md). Formal decision records live in [decisions.md](decisions.md).
+> **Authority**: Sequencing governed by [ROADMAP.md](../../ROADMAP.md) and [INDEX.md](INDEX.md). Design rules and HUMAN-001 tests are governed in [design-system.md](design-system.md). The concrete acceptance criteria that define "done" for every page and component are governed in [qa-checklist.md](qa-checklist.md). Formal decision records live in [decisions.md](decisions.md).
 
 ---
 
@@ -145,6 +145,8 @@ This phase is complete and frontend development may begin only when:
 ---
 
 ## 4. QA & Testing (Gated on Frontend Development Completion)
+
+> The **executable** acceptance checklist — global gates (build health, placeholder/leak probes, token integrity, links, WCAG contrast table, responsive, performance floors, copy parity, HUMAN-001 spot checks), the per-page acceptance matrix, the known-debt register, and the sign-off record format — lives in [qa-checklist.md](qa-checklist.md). This section defines the phase protocol; that file defines *done*.
 
 **Purpose**: Document quality assurance test plans, verification matrices, and audit logs:
 - Functional test matrices and acceptance criteria validation

@@ -4,7 +4,7 @@
 >
 > **Authority**: Derived strictly from founder company truth in [docs/company/foundation.md](../company/foundation.md) and aligned with the product direction in [product-spec.md](product-spec.md). Formal decision records live exclusively in [decisions.md](decisions.md).
 >
-> **How to use**: For any single page or component task, read only the relevant section of this document and of [product-spec.md](product-spec.md). Do not read [decisions.md](decisions.md) or [docs/company/foundation.md](../company/foundation.md) unless the task specifically concerns brand identity or historical rationale. All components in `src/components/` must strictly consume design tokens from `src/styles/tokens.css`.
+> **How to use**: For any single page or component task, read only the relevant section of this document, of [product-spec.md](product-spec.md), and of [component-inventory.md](component-inventory.md) (the closed component set and mandatory CSS-Modules + tokens pattern contract). The literal words for anything you build are in [copy.md](copy.md). Do not read [decisions.md](decisions.md) or [docs/company/foundation.md](../company/foundation.md) unless the task specifically concerns brand identity or historical rationale. All components in `src/components/` must strictly consume design tokens from `src/styles/tokens.css`.
 
 ---
 
@@ -646,6 +646,8 @@ Standardized interactive elements satisfying accessibility and 44px+ minimum tou
 - `secondary`: Elevated surface with hairline border (`--color-bg-surface-elevated`).
 - `link`: Clean inline/editorial text link with arrow indicators.
 
+> Full component contracts — every component's file, type, props, variants, CSS-module class inventory, content dependencies, the closed-set rule, and the binding CSS-Modules + tokens pattern contract — are governed in [component-inventory.md](component-inventory.md).
+
 ### 6.6 Surfaces & Anti-Card-Grid Policy
 Surfaces are used only where structural containment enhances cognitive clarity:
 - **Product Workbench**: Highlighting live simulation and demonstration.
@@ -679,7 +681,7 @@ Presentation primitives for the flagship demonstration (isolated from internal p
 - **Semantic Structure**: Strictly enforced single `h1`, sequential `h2`/`h3` hierarchy, `<main>`, `<section>`, `<aside>`, and `<nav>` landmarks.
 
 ### 6.11 Token Consumption Rule
-All website components in `src/components/` must strictly consume design tokens from `src/styles/tokens.css`. Design governance (HUMAN-001) applies: reject generic AI startup gradients, excessive glassmorphism, or floating glowing orbs; preserve bespoke color hierarchy, typography, and human-crafted layout rhythms.
+All website components in `src/components/` must strictly consume design tokens from `src/styles/tokens.css` — **no inline styles, no hardcoded color literals, no undefined variable names**. The closed set of sanctioned components and the full pattern contract are enumerated in [component-inventory.md](component-inventory.md). Design governance (HUMAN-001) applies: reject generic AI startup gradients, excessive glassmorphism, or floating glowing orbs; preserve bespoke color hierarchy, typography, and human-crafted layout rhythms.
 
 ---
 
