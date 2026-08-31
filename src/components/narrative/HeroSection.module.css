@@ -1,0 +1,88 @@
+.hero {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-9) 0 var(--space-7) 0;
+  position: relative;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-warm);
+  margin-bottom: var(--space-4);
+}
+
+.eyebrowLine {
+  width: 20px;
+  height: 1px;
+  background: var(--accent-warm);
+}
+
+.headline {
+  font-size: clamp(2.4rem, 5.8vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  max-width: 960px;
+  margin-bottom: var(--space-5);
+}
+
+.headlineMuted {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.subtext {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--text-muted);
+  max-width: 660px;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-bottom: var(--space-7);
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--text-main);
+  color: var(--bg-base);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform var(--duration-fast) var(--ease-standard), background var(--duration-fast) var(--ease-standard);
+}
+
+.primaryBtn:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: var(--space-3) var(--space-4);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.secondaryBtn:hover {
+  color: var(--text-main);
+}

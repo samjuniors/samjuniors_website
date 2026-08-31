@@ -8,6 +8,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — In-App Experience Prototype (feat/phase-6-experience-prototype)
+
+- **Production Next.js Experience Prototype (`src/app/page.tsx`, `src/components/`)**:
+  - Implemented the living in-application experience prototype synthesized from upstream strategy, UX principles, and `HUMAN-001`.
+  - Built `AmbientCanvas` spatial depth background with lightweight particle mesh.
+  - Implemented `HeroSection` establishing immediate parent company clarity without marketing clichés.
+  - Implemented `PhilosophySection` rendering the 4-point building filter in an editorial two-column layout.
+  - Implemented `ShowcaseSection` & `LumoraWorkbench` providing an interactive living demonstration of Lumora (Spatial Graph, Intelligence, Universal Export) with zero scroll-jacking.
+  - Implemented `EcosystemSection` (scalable multi-product container), `FounderSection` (signed conviction), and `GatewaySection` (contextual doorways).
+  - Enforced `INTERNAL KNOWLEDGE != WEBSITE CONTENT`: zero decision IDs, zero process jargon, and zero fabricated claims.
+
 ### Added — Master Project Index & Design Direction Relocation (docs/website-navigation-map)
 
 - **Master Project & Documentation Index (`docs/website/INDEX.md`)**:

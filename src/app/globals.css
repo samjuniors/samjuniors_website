@@ -1,4 +1,5 @@
 @import '../styles/tokens.css';
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -7,11 +8,12 @@
 }
 
 html {
-  background-color: var(--color-bg-canvas);
-  color: var(--color-text-primary);
-  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  font-family: 'Inter', var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -20,10 +22,13 @@ body {
   flex-direction: column;
   line-height: 1.6;
   overflow-x: hidden;
+  background-color: var(--bg-base);
 }
 
 main {
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 a {
@@ -31,10 +36,9 @@ a {
   text-decoration: none;
 }
 
-/* Base Utility Classes */
 .container {
   width: 100%;
-  max-width: var(--container-max-width);
+  max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--container-padding);
