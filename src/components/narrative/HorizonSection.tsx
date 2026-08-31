@@ -11,7 +11,7 @@ export function HorizonSection() {
             SamJuniors is structured to develop multiple computing platforms and spatial tools over decades, all sharing our local-first, high-performance architecture.
           </p>
           <Link href="/products" className={styles.actionLink}>
-            View Portfolio Architecture →
+            Explore Portfolio Architecture →
           </Link>
         </div>
 
@@ -21,7 +21,7 @@ export function HorizonSection() {
             We welcome conversations with institutional partners, researchers, and builders who share our conviction in enduring computing craft.
           </p>
           <Link href="/contact" className={styles.actionLink}>
-            Get in Touch →
+            Connect With Leadership →
           </Link>
         </div>
       </div>

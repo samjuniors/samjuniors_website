@@ -1,5 +1,5 @@
 .hero {
-  padding: clamp(70px, 12vh, 120px) 0 var(--space-8) 0;
+  padding: clamp(48px, 8vh, 80px) 0 var(--space-7) 0;
   border-bottom: 1px solid var(--border-hairline);
 }
 
@@ -12,7 +12,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-copper);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .mark {
@@ -23,12 +23,12 @@
 }
 
 .headline {
-  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-size: clamp(2.3rem, 5.2vw, 3.8rem);
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.035em;
-  max-width: 980px;
-  margin-bottom: var(--space-5);
+  max-width: 960px;
+  margin-bottom: var(--space-4);
   color: var(--text-main);
 }
 
@@ -39,12 +39,12 @@
 }
 
 .lead {
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
   color: var(--text-muted);
-  max-width: 660px;
+  max-width: 680px;
   line-height: 1.6;
   font-weight: 300;
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-6);
 }
 
 .actionRow {
@@ -52,7 +52,7 @@
   align-items: center;
   gap: var(--space-5);
   flex-wrap: wrap;
-  margin-bottom: var(--space-9);
+  margin-bottom: var(--space-7);
 }
 
 .primaryBtn {
@@ -61,9 +61,9 @@
   gap: var(--space-2);
   background: var(--text-main);
   color: var(--bg-base);
-  padding: 12px 24px;
+  padding: 10px 22px;
   border-radius: 4px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
   transition: background var(--duration-fast) var(--ease-out);
 }
@@ -74,7 +74,7 @@
 
 .textLink {
   color: var(--text-muted);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   transition: color var(--duration-fast) var(--ease-out);
 }
 
@@ -86,17 +86,17 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
-  padding-top: var(--space-6);
+  padding-top: var(--space-5);
   border-top: 1px solid var(--border-subtle);
 }
 
 .ledgerItem {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-dim);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .ledgerTitle {

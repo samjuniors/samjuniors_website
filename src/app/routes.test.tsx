@@ -10,7 +10,7 @@ describe('Application Route Rendering', () => {
   it('renders HomePage with company hero and flagship stage', () => {
     render(<HomePage />);
     expect(screen.getByRole('heading', { level: 1 })).toBeDefined();
-    expect(screen.getByText(/Explore Lumora/i)).toBeDefined();
+    expect(screen.getByText(/Discover Lumora/i)).toBeDefined();
     expect(screen.getByRole('heading', { level: 2, name: /Lumora — Spatial Logic & Authoring/i })).toBeDefined();
   });
 

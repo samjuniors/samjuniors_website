@@ -5,15 +5,15 @@
 
 :root {
   /* Surface Foundations */
-  --bg-base: #0c0d10;
-  --bg-surface: #13161d;
-  --bg-surface-elevated: #191d26;
-  --bg-surface-subtle: #0f1116;
+  --bg-base: #0b0c0f;
+  --bg-surface: #12141a;
+  --bg-surface-elevated: #181b23;
+  --bg-surface-subtle: #0e1015;
 
   /* Typographic Tones */
-  --text-main: #f3f5f8;
-  --text-muted: #8e97a4;
-  --text-dim: #505763;
+  --text-main: #f4f6fa;
+  --text-muted: #919aa7;
+  --text-dim: #525a66;
   --text-accent: #c89666;
 
   /* Structural Dividers */
@@ -33,24 +33,23 @@
   --space-4: 16px;
   --space-5: 24px;
   --space-6: 32px;
-  --space-7: 48px;
-  --space-8: 64px;
-  --space-9: 96px;
-  --space-10: 140px;
+  --space-7: 44px;
+  --space-8: 56px;
+  --space-9: 80px;
 
   /* Layout Boundaries */
-  --container-max: 1200px;
-  --container-narrow: 820px;
-  --container-padding: clamp(20px, 5vw, 40px);
-  --section-spacing: clamp(96px, 14vh, 160px);
+  --container-max: 1160px;
+  --container-narrow: 800px;
+  --container-padding: clamp(20px, 4vw, 36px);
+  --section-spacing: clamp(60px, 8vh, 96px);
 
   /* Fonts */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 
   /* Transitions */
-  --duration-fast: 160ms;
-  --duration-normal: 260ms;
+  --duration-fast: 140ms;
+  --duration-normal: 220ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 

@@ -4,7 +4,7 @@
 }
 
 .intro {
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-6);
 }
 
 .eyebrow {
@@ -13,11 +13,11 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent-copper);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .headline {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
   font-weight: 500;
   letter-spacing: -0.03em;
   color: var(--text-main);
@@ -25,32 +25,32 @@
 }
 
 .lead {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
-  max-width: 680px;
+  max-width: 700px;
   line-height: 1.6;
   font-weight: 300;
 }
 
 /* Authentic Restrained Product Workbench */
 .workbench {
-  background: #101217;
+  background: #0e1015;
   border: 1px solid var(--border-hairline);
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-  margin-bottom: var(--space-8);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  margin-bottom: var(--space-7);
 }
 
 .topbar {
   background: var(--bg-surface);
   border-bottom: 1px solid var(--border-hairline);
-  padding: 12px 20px;
+  padding: 10px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
 }
 
@@ -77,7 +77,7 @@
   border: 1px solid transparent;
   color: var(--text-muted);
   font-family: inherit;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   padding: 4px 10px;
   border-radius: 3px;
   cursor: pointer;
@@ -96,17 +96,17 @@
 
 .workbenchBody {
   display: grid;
-  grid-template-columns: 240px 1fr 220px;
-  min-height: 360px;
+  grid-template-columns: 220px 1fr 220px;
+  min-height: 340px;
 }
 
 .treePanel {
-  background: rgba(12, 13, 16, 0.5);
+  background: rgba(11, 12, 15, 0.6);
   border-right: 1px solid var(--border-hairline);
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 2px;
 }
 
 .panelTitle {
@@ -126,7 +126,7 @@
   padding: 6px 8px;
   border-radius: 3px;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-out);
 }
@@ -143,7 +143,7 @@
 }
 
 .canvasStage {
-  background: #090a0d;
+  background: #08090c;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -158,50 +158,51 @@
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-size: 20px 20px;
 }
 
 .schematicBox {
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 380px;
+  max-width: 360px;
 }
 
 .schematicIcon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto var(--space-4) auto;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto var(--space-3) auto;
   border: 1px solid var(--border-active);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--accent-copper);
+  background: rgba(18, 20, 26, 0.6);
 }
 
 .schematicTitle {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 500;
   margin-bottom: var(--space-2);
   color: var(--text-main);
 }
 
 .schematicDesc {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   line-height: 1.5;
 }
 
 .inspectorPanel {
-  background: rgba(12, 13, 16, 0.5);
+  background: rgba(11, 12, 15, 0.6);
   border-left: 1px solid var(--border-hairline);
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 .propRow {
@@ -224,18 +225,18 @@
 .featureLedger {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-7);
+  gap: var(--space-6);
 }
 
 .featureItem h3 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--text-main);
   margin-bottom: var(--space-2);
 }
 
 .featureItem p {
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.6;
 }
@@ -250,6 +251,6 @@
   }
   .featureLedger {
     grid-template-columns: 1fr;
-    gap: var(--space-5);
+    gap: var(--space-4);
   }
 }

@@ -11,21 +11,21 @@ const modeDetails = {
     desc: 'Direct node graph for anchoring 3D spatial models, camera trajectories, and interactive geometry.',
     icon: '3D',
     target: 'WebGL / WebGPU',
-    latency: '<16ms',
+    latency: 'Sub-16ms Frame Budget',
   },
   inference: {
     title: 'Local Context Engine',
     desc: 'On-device reasoning pipeline assisting layout generation without telemetry or private data egress.',
     icon: 'AI',
-    target: 'Local Engine',
-    latency: '0ms Network',
+    target: 'On-Device Engine',
+    latency: 'Zero Network Egress',
   },
   export: {
     title: 'Deterministic Target Export',
     desc: 'Compiles spatial logic directly into clean native, web, and XR runtimes without proprietary lock-in.',
     icon: '</>',
-    target: 'Multi-Runtime',
-    latency: 'Native Speed',
+    target: 'WebAssembly & Native',
+    latency: 'Direct Binary Execution',
   },
 };
 
@@ -102,7 +102,7 @@ export function LumoraStage() {
               className={`${styles.treeNode} ${activeMode === 'export' ? styles.activeNode : ''}`}
               onClick={() => setActiveMode('export')}
             >
-              └─ TargetRuntime.export
+              └─ TargetRuntime.wasm
             </button>
           </div>
 
@@ -124,12 +124,12 @@ export function LumoraStage() {
               <span className={styles.propValue}>{details.target}</span>
             </div>
             <div className={styles.propRow}>
-              <span className={styles.propLabel}>Execution Latency</span>
+              <span className={styles.propLabel}>Performance Profile</span>
               <span className={styles.propValue}>{details.latency}</span>
             </div>
             <div className={styles.propRow}>
-              <span className={styles.propLabel}>Data Telemetry</span>
-              <span className={styles.propValue}>Zero Egress</span>
+              <span className={styles.propLabel}>Telemetry Policy</span>
+              <span className={styles.propValue}>Zero Data Egress</span>
             </div>
           </div>
         </div>
@@ -138,21 +138,21 @@ export function LumoraStage() {
       {/* Feature Ledger */}
       <div className={styles.featureLedger}>
         <div className={styles.featureItem}>
-          <h3>Tactile Authoring</h3>
+          <h3>Tactile Spatial Authoring</h3>
           <p>
-            Designed for engineers, designers, and spatial architects who require deterministic responsiveness and sub-millimeter precision.
+            Engineered for builders who require deterministic responsiveness, direct node coordination, and pixel-exact precision.
           </p>
         </div>
         <div className={styles.featureItem}>
-          <h3>Local-First Reasoning</h3>
+          <h3>On-Device Reasoning</h3>
           <p>
-            Runs machine intelligence models directly on client hardware. Zero private code, geometry, or telemetry leaves your local environment.
+            Machine intelligence models execute directly on client hardware. Zero private code, geometry, or telemetry leaves your local environment.
           </p>
         </div>
         <div className={styles.featureItem}>
           <h3>Clean Universal Output</h3>
           <p>
-            Outputs clean, standards-compliant formats ready for immediate deployment to web, mobile, and native XR execution layers.
+            Outputs clean, standards-compliant WebAssembly and WebGPU targets ready for deployment without proprietary lock-in.
           </p>
         </div>
       </div>

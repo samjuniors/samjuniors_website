@@ -18,16 +18,16 @@ export function HeroSection() {
       </h1>
 
       <p className={styles.lead}>
-        {companyContent.name} creates purposeful computing systems, spatial tools, and human interfaces designed for long-term utility rather than short-lived novelty.
+        {companyContent.name} bridges visionary computing concepts and production-grade tools. We engineer enduring software, spatial systems, and human interfaces designed for sovereign control and long-term utility.
       </p>
 
       <div className={styles.actionRow}>
         <Link href="#lumora" className={styles.primaryBtn}>
-          <span>Explore {flagship.name}</span>
+          <span>Discover {flagship.name}</span>
           <span aria-hidden="true">↓</span>
         </Link>
         <Link href="#thesis" className={styles.textLink}>
-          Why We Build →
+          Our Engineering Ethos →
         </Link>
       </div>
 
@@ -37,12 +37,12 @@ export function HeroSection() {
           <span>Zero disposable software</span>
         </div>
         <div className={styles.ledgerItem}>
-          <span className={styles.ledgerTitle}>Local-First Reasoning</span>
-          <span>Zero cloud dependency for private workflows</span>
+          <span className={styles.ledgerTitle}>Local-First Architecture</span>
+          <span>Zero telemetry or cloud lock-in for private workflows</span>
         </div>
         <div className={styles.ledgerItem}>
           <span className={styles.ledgerTitle}>Open Tooling</span>
-          <span>Zero proprietary vendor lock-in</span>
+          <span>Clean compilation to universal standards</span>
         </div>
       </div>
     </section>

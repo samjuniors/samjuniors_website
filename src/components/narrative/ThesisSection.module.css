@@ -12,7 +12,7 @@
 
 .statementCol {
   position: sticky;
-  top: 100px;
+  top: 90px;
 }
 
 .label {
@@ -20,14 +20,14 @@
   font-size: 0.76rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: var(--space-4);
+  color: var(--accent-copper);
+  margin-bottom: var(--space-3);
 }
 
 .statement {
-  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-size: clamp(1.85rem, 3.4vw, 2.7rem);
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.18;
   letter-spacing: -0.025em;
   color: var(--text-main);
 }
@@ -40,11 +40,11 @@
 .proseCol {
   display: flex;
   flex-direction: column;
-  gap: var(--space-7);
+  gap: var(--space-6);
 }
 
 .paragraphGroup {
-  padding-bottom: var(--space-6);
+  padding-bottom: var(--space-5);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -54,7 +54,7 @@
 }
 
 .groupTitle {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 500;
   color: var(--text-main);
   margin-bottom: var(--space-2);
@@ -62,7 +62,7 @@
 }
 
 .groupBody {
-  font-size: 1.02rem;
+  font-size: 0.98rem;
   color: var(--text-muted);
   line-height: 1.65;
   font-weight: 300;
@@ -71,7 +71,7 @@
 @media (max-width: 860px) {
   .layout {
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
   .statementCol {
     position: static;
