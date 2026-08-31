@@ -1,8 +1,8 @@
-# 05 — Wireframes
+# 05 — Wireframes & Design Direction
 
-This directory is dedicated to **Phase 6: Wireframes**.
+This directory is dedicated to **Phase 6: Wireframes, Design Direction & Experience Prototyping**.
 
-**Status:** Placeholder — awaiting Phase 5 (Design Research) sign-off before activation.
+**Status:** Active — [design-direction.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/05-wireframes/design-direction.md) establishes the strategic visual and experiential direction for in-app experience prototyping.
 
 ---
 

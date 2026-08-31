@@ -8,6 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Master Project Index & Design Direction Relocation (docs/website-navigation-map)
+
+- **Master Project & Documentation Index (`docs/website/INDEX.md`)**:
+  - Created concise master project map detailing all 12 phases, authority hierarchy, status, primary documents, authoritative reading order, and phase-gating rules without content duplication.
+- **Relocated Strategic Design Direction (`docs/website/05-wireframes/design-direction.md`)**:
+  - Moved design direction from `07-ui` to `05-wireframes` to serve as the bridge between research and in-app experience prototyping, preserving Phase 8 (`07-ui`) exclusively for high-fidelity UI design.
+  - Synthesized psychological experience intent (Feel, Understand, Become Curious) and authoritative brand character.
+  - Formulated visual synthesis (materials, typography dialogue, color philosophy) adhering strictly to `HUMAN-001`.
+  - Removed fictional future product entities (`venture-b`) from visitor-facing application while retaining full multi-product architectural support.
+
 ### Added — Production Application Architecture (docs/application-foundation)
 
 - **Application Architecture Specification (`docs/website/application-architecture.md`)**:

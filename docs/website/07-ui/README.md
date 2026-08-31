@@ -2,7 +2,7 @@
 
 This directory is dedicated to **Phase 8: UI Design**.
 
-**Status:** Placeholder — awaiting Phase 7 (Design System) sign-off before activation.
+**Status:** Placeholder — awaiting Phase 6 ([design-direction.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/05-wireframes/design-direction.md)) and Phase 7 (Design System) completion before activation.
 
 ---
 
