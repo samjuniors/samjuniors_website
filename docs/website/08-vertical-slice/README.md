@@ -120,6 +120,7 @@ This phase is complete and Frontend Development may begin only when:
 ## Guidelines
 
 - The vertical slice is implemented using production-grade code and tooling — it is not a prototype.
+- **Design & Implementation Governance ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: The slice must evaluate whether visual elements and frontend implementation demonstrate deliberate human-level craft and pass the Distinctiveness Test without generic AI tropes.
 - Do not scope-creep the vertical slice to cover additional pages or journeys beyond the approved scope.
 - If a Fail finding requires changes to approved UX, wireframes, design system, or UI design, those upstream documents must be formally updated and re-approved before the vertical slice proceeds.
 - Analytics instrumentation is required only where analytics requirements have been formally defined in an upstream phase.

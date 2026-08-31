@@ -88,7 +88,7 @@ This specification establishes the binding User Experience (UX) principles gover
 
 ### UX-015: Visitor Control
 > **"The experience guides attention without taking control away from the visitor."**
-- **Sovereign Controls**: Visitors retain absolute, predictable control over scrolling momentum, navigation, reading pace, skipping, revisiting, and depth of exploration.
+- **Sovereign Controls**: Visitors retain predictable and meaningful control over scrolling, navigation, pacing, skipping, revisiting, and depth of exploration.
 - **Prohibitions**: Zero mandatory animation waits, zero locked scrolling, zero disappearing controls. The website feels discovered, never imposed.
 
 ### UX-017: Mobile Is First-Class
@@ -120,3 +120,17 @@ This specification establishes the binding User Experience (UX) principles gover
 ### UX-012: Hybrid Scroll & Progression Model
 > **"Normal scrolling remains the default control. Immersive interactions are used selectively."**
 - Zero scroll-jacking; natural momentum preserved; scroll-linked motion passes the *Animation Purpose Test* (*"If removing it harms comprehension, keep it; if removing it only alters decoration, delete it"*).
+
+---
+
+## 5. Design Governance & Human Craft
+
+### HUMAN-001: Human-Made Design & Implementation
+> **"The website must not exhibit recognizable generic AI-generated visual or implementation patterns. The final product must demonstrate deliberate human-level design judgment, authorship, restraint, and product thinking."**
+- **Cross-Phase Quality/Governance Constraint**: This is a quality and governance constraint, not a prescriptive visual or implementation specification. AI tools may assist throughout discovery, research, and coding, but the resulting work must pass the Distinctiveness and Human-Authorship tests.
+- **Distinctiveness Test**: *"If the SamJuniors identity were removed, could this design be mistaken for a generic AI startup website?"* (If yes, redesign distinctive elements).
+- **Human-Authorship Test**: *"Does this element exist because it communicates something intentionally, or because it is a common AI-generated template pattern?"* (If the latter, reconsider or eliminate).
+- **Avoid Generic AI Clichés**: Generic purple/cyan gradients, excessive glassmorphism, floating decorative glowing orbs, monotonous rounded card grids, template section structures, meaningless particles, and generic copy buzzwords.
+- **Precision Target**: Human craft means **precise, premium, innovative, technically excellent, accessible, performant, restrained, and distinctive**—never artificially flawed or unpolished.
+- **Implementation Restraint**: Zero unnecessary abstractions, unvetted dependencies, or visual-only performance regressions in frontend engineering.
+- **Applicable Phases**: Phase 5 (Design Research) through Phase 11 (QA).

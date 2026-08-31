@@ -23,4 +23,5 @@ Document technical architecture, implementation plans, coding guidelines, and te
 
 - Code implementation must not begin until technical specifications in this folder are reviewed and approved.
 - Technical architecture must satisfy requirements from all preceding phases.
+- **Engineering Governance ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: Frontend implementation must demonstrate deliberate engineering judgment—avoiding unnecessary abstractions, unvetted dependencies, duplicated generated patterns, arbitrary animations, and performance/accessibility regressions for novelty.
 - All implementation must comply with coding standards established during this phase per [AGENTS.md](file:///d:/Projects/SamjuniorsWebsite/AGENTS.md).

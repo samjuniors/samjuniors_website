@@ -114,6 +114,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
   - Strict typing where supported.
   - Zero tolerance for dead code and unreferenced assets.
   - Consistent naming conventions aligned with domain terms in [docs/company/](file:///d:/Projects/SamjuniorsWebsite/docs/company).
+  - **Engineering Craft ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: Deliberate engineering judgment; avoid unnecessary abstractions, unvetted dependencies, and performance regressions for novelty.
 
 ---
 
@@ -126,6 +127,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
   - Accessible contrast ratios (WCAG 2.1 AA/AAA compliance).
   - Responsive layouts supporting mobile, tablet, and desktop breakpoints.
   - Semantic HTML element structure.
+  - **Human-Made Design ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: Prohibit generic AI visual clichés (saturated gradient blobs, excessive glassmorphism, monotonous card grids); enforce Distinctiveness and Human-Authorship tests.
 
 ---
 

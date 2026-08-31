@@ -20,4 +20,5 @@ Document low-fidelity layout blueprints, spatial arrangements, and structural sp
 
 - Focus exclusively on layout structure and content hierarchy, not visual styling or finalized graphics.
 - Wireframe specifications must align with approved UX decisions from [docs/website/03-ux-principles/](file:///d:/Projects/SamjuniorsWebsite/docs/website/03-ux-principles) and content structure from [docs/website/02-content-strategy/](file:///d:/Projects/SamjuniorsWebsite/docs/website/02-content-strategy).
+- **Design Governance ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001))**: Avoid repetitive card grids, cookie-cutter section blocks, and template-like layouts; enforce intentional spatial hierarchy and purposeful human authorship.
 - Wireframe specifications must be reviewed and signed off prior to Design System finalization.

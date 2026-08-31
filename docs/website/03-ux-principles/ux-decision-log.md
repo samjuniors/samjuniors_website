@@ -34,6 +34,7 @@ All records adhere to the mandatory governance framework: **Decision, Reason, Al
 | [USER-FLOW-003](#user-flow-003-natural-next-move) | Natural Next Move | Interaction Progression | **APPROVED** | 2026-08-31 |
 | [USER-FLOW-004](#user-flow-004-contextual-cta-hierarchy) | Contextual CTA Hierarchy | Conversion Architecture | **APPROVED** | 2026-08-31 |
 | [USER-FLOW-005](#user-flow-005-returning-visitor-flow) | Returning Visitor Flow | Continuity & Retention | **APPROVED** | 2026-08-31 |
+| [HUMAN-001](#human-001-human-made-design--implementation) | Human-Made Design & Implementation | Cross-Phase Governance | **APPROVED** | 2026-08-31 |
 
 ---
 
@@ -194,7 +195,7 @@ All records adhere to the mandatory governance framework: **Decision, Reason, Al
 ---
 
 ### UX-015: Visitor Control
-- **Decision**: Ensure the web experience guides attention without seizing control from the user. Visitors retain absolute control over scrolling, navigation, pacing, skipping, and exploration depth.
+- **Decision**: Ensure the web experience guides attention without seizing control from the user. Visitors retain predictable and meaningful control over scrolling, navigation, pacing, skipping, revisiting, and depth of exploration.
 - **Reason**: Respects human agency and hardware ergonomics, fostering an empowering sense of discovery.
 - **Alternatives Considered**: Linear guided slideshow tour with automated pacing.
 - **Why Alternatives Were Rejected**: Automated tours feel imposed, frustrating users who read faster or want specific answers.
@@ -302,3 +303,16 @@ All records adhere to the mandatory governance framework: **Decision, Reason, Al
 - **Benefits**: High utility for repeat users and long-term community retention.
 - **Risks**: Curated update signals must be actively maintained.
 - **Future Review Criteria**: Repeat visitor retention and navigation velocity.
+
+---
+
+### HUMAN-001: Human-Made Design & Implementation
+- **Decision**: Enforce a mandatory cross-phase quality and design governance constraint ensuring the website does not exhibit recognizable generic AI-generated visual or implementation patterns. Mandate that every major visual, interaction, and technical decision demonstrate deliberate human-level design judgment, authorship, restraint, and distinctiveness. Enforce the Distinctiveness Test and Human-Authorship Test across Phases 5 through 11.
+- **Reason**: Protects SamJuniors from falling into interchangeable "AI startup" aesthetic tropes (purple/cyan gradients, glowing blobs, excessive glassmorphism, repetitive card grids, generic copy) and ensures enduring, world-class brand credibility.
+- **Alternatives Considered**: 
+  - Complete prohibition on AI tooling during design and development.
+  - No governance constraint (allowing unvetted AI-generated design patterns).
+- **Why Alternatives Were Rejected**: Tooling prohibition slows development unnecessarily; lack of governance leads to generic, low-craft visual and technical output.
+- **Benefits**: Enduring, premium, highly distinctive brand presence with thoughtful, purposeful engineering.
+- **Risks**: Reviewers must evaluate designs critically against generic AI tropes during quality gates.
+- **Future Review Criteria**: Evaluated at every design quality gate from Phase 5 Design Research through Phase 11 QA.

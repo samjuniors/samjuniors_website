@@ -100,3 +100,34 @@
 ### Architecture Freeze Principle (WD-027)
 > **"Lock certified architectures to establish a rock-solid foundation for design and development."**
 - **Mandate**: Once a phase architecture is certified, changes are frozen. Any subsequent revisions require a formal Architecture Decision Record (ADR) approved by the founder.
+
+---
+
+## 5. Cross-Phase Design Governance
+
+### Human-Made Design & Implementation (HUMAN-001)
+> **"The website must never exhibit recognizable, generic AI-generated visual or implementation patterns. The final product must demonstrate deliberate human-level design judgment, authorship, restraint, and product thinking."**
+
+- **Cross-Phase Quality/Governance Constraint**: This is a mandatory quality and governance constraint, not a prescriptive visual or implementation specification. Active across Phases 5 through 11 (Design Research, Wireframes, Design System, UI Design, Vertical Slice, Implementation, and QA).
+- **Prohibited Generic AI Visual Patterns** (when used without specific, meaningful justification):
+  - Generic AI startup gradient ramps (e.g., purple-cyan saturated glows)
+  - Excessive glassmorphism and frosted acrylic overlays
+  - Floating glowing blobs, nebulas, or orbs used merely as background decoration
+  - Generic futuristic/cybernetic stock illustrations
+  - Excessive, uniform rounded cards with heavy drop shadows
+  - Repetitive, monotonous card grids
+  - Template-like, interchangeable section structures
+  - Meaningless decorative particle or continuous motion
+  - Generic stock-like imagery and visual cliches
+  - Visually interchangeable "AI company" aesthetics
+  - Generic AI-generated marketing copy and buzzword fluff
+- **Design Intent Requirement**: Every visual and structural decision must serve a defined purpose related to SamJuniors identity, comprehension, storytelling, emotional tone, interaction, hierarchy, or usability. Novelty alone is never sufficient.
+- **The Distinctiveness Test**:
+  > *"If the SamJuniors identity were removed, could this design be mistaken for a generic AI startup website?"*
+  > *If yes, the design must be reconsidered and distinctive elements re-engineered.*
+- **The Human-Authorship Test**:
+  > *"Does this element exist because it communicates something intentionally, or because it is a common AI-generated design pattern?"*
+  > *If the latter, redesign or eliminate it.*
+- **Human-Quality vs. Artificial Roughness**: Human-level quality means **precise, premium, innovative, technically excellent, accessible, performant, restrained, and distinctive**. Do not introduce artificial roughness or flaws merely to appear "human."
+- **Implementation Quality Constraints**: Frontend engineering must avoid unnecessary abstractions, unvetted dependencies, duplicated generated patterns, arbitrary animations, and performance/accessibility compromises made for visual novelty.
+- **AI Tooling Boundary**: AI assistance is permitted for ideation, research, implementation, and iteration; the constraint governs the **quality, character, and deliberate excellence of the final product**.

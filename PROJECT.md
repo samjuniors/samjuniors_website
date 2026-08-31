@@ -25,6 +25,7 @@ Establish a modern, high-performance, accessible, and brand-aligned web presence
 - Premature technology selection or coding prior to phase approval.
 - Placeholder copywriting or unverified speculative branding.
 - Developing unapproved features, pages, or backend systems not defined in phase specifications.
+- Generic, interchangeable AI-generated visual templates, saturated gradient blobs, or bloated implementation patterns ([HUMAN-001](file:///d:/Projects/SamjuniorsWebsite/docs/website/design-principles.md#human-made-design--implementation-human-001)).
 
 ---
 
