@@ -1,8 +1,8 @@
-# 07 — UI Design
+# 07 — UI Design & Direction
 
-This directory is dedicated to **Phase 8: UI Design**.
+This directory contains the strategic design direction and future high-fidelity UI specifications.
 
-**Status:** Placeholder — awaiting Phase 7 (Design System) sign-off before activation.
+**Status:** Design Direction Complete — [design.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/07-ui/design.md). Detailed UI component specs pending Phase 7 Design System.
 
 ---
 

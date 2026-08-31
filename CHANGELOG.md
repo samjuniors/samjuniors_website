@@ -8,6 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Strategic Design Direction (docs/design-direction)
+
+- **Design Direction Specification (`docs/website/07-ui/design.md`)**:
+  - Synthesized psychological experience intent (Feel, Understand, Become Curious) and authoritative brand character.
+  - Defined parent-to-product relationship, dynamic flagship staging, and autonomous deep-entry architecture.
+  - Established cinematic language strictly decoupled from scroll-jacking, respecting 100% visitor-controlled pacing and accessibility.
+  - Formulated visual synthesis (materials, typography dialogue, color philosophy) avoiding both AI startup clichés and reactionary anti-AI clichés (`HUMAN-001`).
+  - Removed fictional future product entities (`venture-b`) from visitor-facing application while retaining full multi-product architectural support.
+
 ### Added — Production Application Architecture (docs/application-foundation)
 
 - **Application Architecture Specification (`docs/website/application-architecture.md`)**:

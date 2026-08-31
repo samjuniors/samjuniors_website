@@ -39,21 +39,6 @@ export const products: Product[] = [
       },
     ],
   },
-  {
-    slug: 'venture-b',
-    name: 'Ecosystem Venture B',
-    tagline: 'Autonomous systems architecture.',
-    shortDescription: 'Exploratory initiative expanding the SamJuniors computing ecosystem.',
-    status: 'research',
-    isFlagship: false,
-    capabilities: [
-      {
-        title: 'Modular Architecture Slot',
-        description: 'Container for future venture expressions satisfying the 4-point building filter.',
-        isPlaceholder: true,
-      },
-    ],
-  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
