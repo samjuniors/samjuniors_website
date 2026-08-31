@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Phase 5 Design Research (docs/04-design-research)
+
+- **Evidence-Driven Design Research (`docs/website/04-design-research/design-research.md`)**:
+  - Synthesized empirical research and actionable implications across 8 key domains: Cinematic web experiences, Human/distinctive visual design, Progressive disclosure, Multi-product parent-company architecture, Motion/interaction ergonomics, Mobile touch adaptation, Contextual trust/evidence, and Cognitive load management.
+  - Established 8 core research conclusions to govern Wireframing (Phase 6), Design System (Phase 7), and UI Design (Phase 8).
+  - Enforced strict alignment with `HUMAN-001`, `CONTENT-001` through `CONTENT-010`, `UX-001` through `UX-019`, and `USER-FLOW-001` through `USER-FLOW-005`.
+
 ### Added — Cross-Phase Design Governance (docs/human-design-governance)
 
 - **HUMAN-001: Human-Made Design & Implementation**:

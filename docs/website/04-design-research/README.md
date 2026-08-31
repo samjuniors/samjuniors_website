@@ -1,8 +1,9 @@
 # 04 — Design Research
 
-This directory is dedicated to **Phase 5: Design Research**.
+This directory contains evidence-driven design research and implications governing visual hierarchy, interaction models, motion choreography, and brand distinctiveness.
 
-**Status:** Placeholder — awaiting Phase 4 (UX Principles & User Flows) sign-off before activation.
+**Phase:** Phase 5 — Design Research
+**Status:** Complete — [design-research.md](file:///d:/Projects/SamjuniorsWebsite/docs/website/04-design-research/design-research.md) recorded.
 
 ---
 
