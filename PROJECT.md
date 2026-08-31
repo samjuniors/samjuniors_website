@@ -72,7 +72,7 @@ No implementation begins before relevant documentation is reviewed and approved.
 ## Open TODOs
 - [x] Phase 1 — Discovery & Website Strategy (Stages 1 & 2 complete; WD-001 to WD-014).
 - [x] Phase 2 — Information Architecture (Certified & Frozen; IA-001 to IA-009, WD-015 to WD-027).
-- [/] Phase 3 — Content Strategy (Messaging model & copywriting outlines — in progress).
+- [x] Phase 3 — Content Strategy (Messaging framework, content model, CONTENT-001 to CONTENT-010 complete).
 - [x] Phase 4 — UX Principles & User Flows (UX-001 to UX-012 complete and synchronized).
 - [ ] Phase 5 — Design Research (Pending Phase 4 sign-off).
 - [ ] Phase 6 — Wireframes (Pending Phase 5 completion).
