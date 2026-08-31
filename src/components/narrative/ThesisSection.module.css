@@ -1,18 +1,31 @@
 .thesis {
   padding: var(--section-spacing) 0;
   border-bottom: 1px solid var(--border-hairline);
+  position: relative;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: var(--space-8);
-  align-items: start;
+.headerArea {
+  max-width: 980px;
+  margin-bottom: var(--space-8);
 }
 
-.statementCol {
-  position: sticky;
-  top: 90px;
+.labelRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.indexNumber {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--accent-copper);
+}
+
+.divider {
+  color: var(--text-dim);
+  font-size: 0.74rem;
 }
 
 .label {
@@ -21,15 +34,15 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent-copper);
-  margin-bottom: var(--space-3);
 }
 
 .statement {
-  font-size: clamp(1.85rem, 3.4vw, 2.7rem);
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
   font-weight: 500;
-  line-height: 1.18;
-  letter-spacing: -0.025em;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
   color: var(--text-main);
+  margin-bottom: var(--space-4);
 }
 
 .statement em {
@@ -37,43 +50,143 @@
   color: var(--accent-copper);
 }
 
-.proseCol {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+.statementLead {
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 780px;
 }
 
-.paragraphGroup {
-  padding-bottom: var(--space-5);
+/* Asymmetric Dual Flow */
+.editorialGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: var(--space-9);
+  align-items: start;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.columnLabel {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-2);
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.paragraphGroup:last-child {
-  border-bottom: none;
+/* Left Spine: Building Cycle */
+.cycleColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.cycleList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cycleStep {
+  display: flex;
+  gap: var(--space-4);
+  position: relative;
+  padding-bottom: var(--space-5);
+}
+
+.cycleStep:last-child {
   padding-bottom: 0;
 }
 
-.groupTitle {
-  font-size: 1.15rem;
+.stepMarker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.stepNum {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--accent-copper);
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(200, 150, 102, 0.25);
+  border-radius: 3px;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.stepLine {
+  flex: 1;
+  width: 1px;
+  background: var(--border-subtle);
+  margin-top: var(--space-1);
+}
+
+.cycleStep:last-child .stepLine {
+  display: none;
+}
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 1px;
+}
+
+.stepTitle {
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-main);
-  margin-bottom: var(--space-2);
+  letter-spacing: -0.01em;
+}
+
+.stepDesc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* Right Flow: Convictions */
+.convictionColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.proseBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.proseHeading {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-main);
   letter-spacing: -0.015em;
 }
 
-.groupBody {
-  font-size: 0.98rem;
+.proseText {
+  font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.65;
   font-weight: 300;
 }
 
-@media (max-width: 860px) {
-  .layout {
+@media (max-width: 880px) {
+  .editorialGrid {
     grid-template-columns: 1fr;
-    gap: var(--space-5);
-  }
-  .statementCol {
-    position: static;
+    gap: var(--space-7);
   }
 }
+
+

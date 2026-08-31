@@ -1,59 +1,132 @@
 /**
- * Design Tokens — SamJuniors Design Language
- * Authored visual hierarchy, materiality, and typographic rhythm.
+ * SamJuniors Design System Tokens — Phase 7
+ * Authoritative semantic tokens for color, typography, rhythm, elevation, and motion.
  */
 
 :root {
-  /* Surface Foundations */
-  --bg-base: #0b0c0f;
-  --bg-surface: #12141a;
-  --bg-surface-elevated: #181b23;
-  --bg-surface-subtle: #0e1015;
+  /* =========================================================================
+     1. Semantic Color Roles
+     ========================================================================= */
+  
+  /* Canvas & Surface Foundations (Deep Obsidian) */
+  --color-bg-base: #0b0c0f;
+  --color-bg-surface: #12141a;
+  --color-bg-surface-elevated: #171a22;
+  --color-bg-surface-subtle: #0e1015;
+  --color-bg-overlay: rgba(255, 255, 255, 0.03);
+  --color-bg-glass: rgba(18, 20, 26, 0.85);
 
-  /* Typographic Tones */
-  --text-main: #f4f6fa;
-  --text-muted: #919aa7;
-  --text-dim: #525a66;
-  --text-accent: #c89666;
+  /* Typographic Contrast Tones */
+  --color-text-primary: #f4f6fa;
+  --color-text-secondary: #959fae;
+  --color-text-muted: #5a6372;
+  --color-text-dim: #404652;
 
-  /* Structural Dividers */
-  --border-hairline: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(255, 255, 255, 0.20);
-  --border-subtle: rgba(255, 255, 255, 0.04);
+  /* Structural Hairlines & Borders */
+  --color-border-hairline: rgba(255, 255, 255, 0.08);
+  --color-border-subtle: rgba(255, 255, 255, 0.04);
+  --color-border-active: rgba(200, 150, 102, 0.35);
+  --color-border-solid: #212530;
 
-  /* Accents */
-  --accent-copper: #c89666;
-  --accent-copper-muted: rgba(200, 150, 102, 0.12);
-  --accent-steel: #628cb3;
+  /* Brand Accent: SamJuniors Institutional Copper */
+  --color-accent-copper: #c89666;
+  --color-accent-copper-hover: #d8a676;
+  --color-accent-copper-muted: rgba(200, 150, 102, 0.12);
+  --color-accent-copper-border: rgba(200, 150, 102, 0.25);
+  --color-accent-copper-glow: rgba(200, 150, 102, 0.4);
 
-  /* Spacing System */
+  /* Product Accent: Lumora / Intelligence Steel Blue */
+  --color-accent-blue: #628cb3;
+  --color-accent-blue-hover: #7ba3ca;
+  --color-accent-blue-muted: rgba(98, 140, 179, 0.12);
+  --color-accent-blue-border: rgba(98, 140, 179, 0.25);
+
+  /* Diagnostic States */
+  --color-status-warning: #ff9e66;
+  --color-status-warning-bg: rgba(255, 158, 102, 0.1);
+  --color-status-warning-border: rgba(255, 158, 102, 0.3);
+  --color-status-success: #4ea881;
+  --color-status-success-bg: rgba(78, 168, 129, 0.1);
+
+  /* Backward-Compatibility Aliases */
+  --bg-base: var(--color-bg-base);
+  --bg-surface: var(--color-bg-surface);
+  --bg-surface-elevated: var(--color-bg-surface-elevated);
+  --bg-surface-subtle: var(--color-bg-surface-subtle);
+  --surface-overlay: var(--color-bg-overlay);
+  --text-main: var(--color-text-primary);
+  --text-muted: var(--color-text-secondary);
+  --text-dim: var(--color-text-muted);
+  --border-hairline: var(--color-border-hairline);
+  --border-subtle: var(--color-border-subtle);
+  --border-active: var(--color-border-active);
+  --border-solid: var(--color-border-solid);
+  --accent-copper: var(--color-accent-copper);
+  --accent-copper-hover: var(--color-accent-copper-hover);
+  --accent-blue: var(--color-accent-blue);
+  --accent-steel: var(--color-accent-blue);
+  --accent-emerald: var(--color-status-success);
+
+  /* =========================================================================
+     2. Typography Scales
+     ========================================================================= */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+
+  /* Line Heights */
+  --leading-tight: 1.08;
+  --leading-snug: 1.15;
+  --leading-heading: 1.25;
+  --leading-body: 1.62;
+  --leading-relaxed: 1.7;
+
+  /* =========================================================================
+     3. Spatial System & Rhythm
+     ========================================================================= */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 24px;
   --space-6: 32px;
-  --space-7: 44px;
-  --space-8: 56px;
-  --space-9: 80px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 120px;
 
   /* Layout Boundaries */
-  --container-max: 1160px;
-  --container-narrow: 800px;
-  --container-padding: clamp(20px, 4vw, 36px);
-  --section-spacing: clamp(60px, 8vh, 96px);
+  --container-max: 1240px;
+  --container-narrow: 840px;
+  --container-editorial: 760px;
+  --container-padding: clamp(20px, 4vw, 40px);
+  --section-spacing: clamp(64px, 9vh, 104px);
 
-  /* Fonts */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  /* =========================================================================
+     4. Elevation & Radii
+     ========================================================================= */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
 
-  /* Transitions */
-  --duration-fast: 140ms;
-  --duration-normal: 220ms;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 12px 32px -8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 64px -12px rgba(0, 0, 0, 0.6);
+
+  /* =========================================================================
+     5. Motion Tokens
+     ========================================================================= */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Interactive Targets */
+  --min-touch-target: 44px;
 }
 
-/* Reduced Motion Override */
+/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

@@ -1,4 +1,3 @@
-@import '../styles/tokens.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 *, *::before, *::after {
@@ -44,15 +43,18 @@ button {
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--accent-copper);
+  outline: 2px solid var(--color-accent-copper);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
 }
 
 h1, h2, h3 {
   text-wrap: balance;
 }
 
+/* =========================================================================
+   Layout Containers
+   ========================================================================= */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -60,6 +62,94 @@ h1, h2, h3 {
   margin-right: auto;
   padding-left: var(--container-padding);
   padding-right: var(--container-padding);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-editorial {
+  width: 100%;
+  max-width: var(--container-editorial);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================================================
+   Button & Interactive Link Primitives
+   ========================================================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--min-touch-target);
+  background: var(--color-text-primary);
+  color: var(--color-bg-base);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.btn-primary:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--min-touch-target);
+  background: var(--color-bg-surface-elevated);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-hairline);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.btn-secondary:hover {
+  background: var(--color-bg-overlay);
+  border-color: var(--color-border-active);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--min-touch-target);
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  font-weight: 400;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.text-link:hover {
+  color: var(--color-text-primary);
+}
+
+/* =========================================================================
+   Structural Utilities
+   ========================================================================= */
+.hairline-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border-hairline);
+  border: none;
+  margin: 0;
 }
 
 .sr-only {

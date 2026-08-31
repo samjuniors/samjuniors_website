@@ -40,17 +40,32 @@ export const companyContent: CompanyIdentity = {
     {
       stage: 1,
       title: 'See What Could Be Next',
-      description: 'Identify a meaningful technological opportunity.',
+      description: 'Anticipate future technological shifts and human requirements.',
     },
     {
       stage: 2,
-      title: 'Build It Seriously',
-      description: 'Make it genuinely useful through rigorous engineering.',
+      title: 'Identify Meaningful Opportunity',
+      description: 'Filter through our core criteria to find fundamental, structural problems.',
     },
     {
       stage: 3,
-      title: 'Learn & Evolve',
-      description: 'Learn from real people in practice and evolve continuously.',
+      title: 'Build It Seriously',
+      description: 'Engineer robust, production-grade systems with zero superficial wrappers.',
+    },
+    {
+      stage: 4,
+      title: 'Make It Genuinely Useful',
+      description: 'Eliminate deep workflow friction to deliver measurable daily utility.',
+    },
+    {
+      stage: 5,
+      title: 'Learn From Real People',
+      description: 'Validate through authentic usage, understanding human needs in practice.',
+    },
+    {
+      stage: 6,
+      title: 'Evolve Continuously',
+      description: 'Refine and compound platform value over decades of sustained craft.',
     },
   ],
 };

@@ -8,7 +8,7 @@ describe('Canonical Content Layer', () => {
     expect(companyContent.name).toBe('SamJuniors');
     expect(companyContent.purpose).toContain('AI-first technology ecosystem');
     expect(companyContent.buildingFilters.length).toBe(4);
-    expect(companyContent.buildingCycle.length).toBe(3);
+    expect(companyContent.buildingCycle.length).toBe(6);
   });
 
   it('supports multi-product architecture with Lumora as flagship (COMPANY-003)', () => {

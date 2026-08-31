@@ -2,9 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(12, 13, 16, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(11, 12, 15, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-hairline);
 }
 
@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 72px;
 }
 
 .brand {
@@ -24,11 +24,16 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-main);
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.brand:hover {
+  opacity: 0.85;
 }
 
 .brandMark {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   border: 1.5px solid var(--accent-copper);
   display: inline-block;
 }
@@ -54,17 +59,18 @@
 .cta {
   display: inline-flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: 8px 18px;
   background: var(--text-main);
   color: var(--bg-base);
   border-radius: 4px;
   font-size: 0.84rem;
   font-weight: 500;
-  transition: background var(--duration-fast) var(--ease-out);
+  transition: all var(--duration-fast) var(--ease-out);
 }
 
 .cta:hover {
   background: #ffffff;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
@@ -72,3 +78,4 @@
     display: none;
   }
 }
+

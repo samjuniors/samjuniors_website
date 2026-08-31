@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { companyContent } from '@/content/company';
+import '@/styles/tokens.css';
 import './globals.css';
 
 export const metadata: Metadata = {
