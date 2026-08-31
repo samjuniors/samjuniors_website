@@ -95,7 +95,9 @@ rg -n "placeholder|Placeholder|phase gate|Phase [0-9]|TODO|FIXME" src/ --glob '!
 ### 2.6 Responsive Integrity
 - [ ] Breakpoints verified at **390px** (mobile), **768px**, **1024px**, **1440px** (desktop).
 - [ ] Zero horizontal overflow (`document.documentElement.scrollWidth <= window.innerWidth`) at every breakpoint.
-- [ ] Workbench: side panels collapse per design at ≤ 980px; hero tenets stack at ≤ 880px; horizon columns stack at ≤ 860px; header collapses at ≤ 768px; footer/letter stack at ≤ 640px.
+- [ ] Workbench: side panels collapse per design at ≤ 980px *(current state — a mobile content-parity violation registered as debt D11; the ADR-001 target replaces it with the vertical stepper per [design-system §6.8.7](design-system.md#68-motion--micro-interactions))*; hero tenets stack at ≤ 880px; horizon columns stack at ≤ 860px; header collapses at ≤ 768px; footer/letter stack at ≤ 640px.
+- [ ] **Mobile content parity (ADR-001)**: no scene may lose content-bearing elements at mobile breakpoints — `display: none` may remove only decorative/ambient elements, never sources, diagnostics, or narrative copy (probe: `rg -n "display:\s*none" src/components --glob '*.css'` — every hit must be justified as decorative in review).
+- [ ] **Touch targets (enforced)**: every interactive element measures ≥ 44×44px (`--min-touch-target`) at mobile widths — measure with `getBoundingClientRect()` on tabs, controls, links, buttons (known current violation: workbench tabs/step controls — debt D11).
 - [ ] No horizontal scroll traps; no content clipped or overlapping at 320px (extreme small viewport — graceful reflow).
 
 ### 2.7 Performance Floors
@@ -119,13 +121,26 @@ rg -n "placeholder|Placeholder|phase gate|Phase [0-9]|TODO|FIXME" src/ --glob '!
 - [ ] **Comprehension Test**: first-time visitor understands what SamJuniors is within 30 seconds (30-Second Rule).
 - [ ] **Multi-Product Test**: layout still works if a second product replaces/flags alongside Lumora.
 
+### 2.10 Motion & Interaction Safety (ADR-001 implementation gates)
+
+*Added 2026-08-31 for the 5-scene cinematic experience ([ADR-001](adr/ADR-001-homepage-experience-reconciliation.md); spec: [design-system.md §6.8](design-system.md#68-motion--micro-interactions)). Every gate is BLOCKING for any change that introduces motion, reveals, sticky staging, or scroll-linked state — until then they apply as standing contracts to the current static build (2.10.1 no-JS baseline, 2.10.4 pre-existing).*
+
+- [ ] **2.10.1 No-JS safety**: with JavaScript disabled, every page renders 100% of its content, navigation, and copy in server HTML — `curl -s <url> | rg "<string>"` for key content strings; the Lumora exhibit renders its first phase with controls in the DOM. Motion is additive enhancement only, never a content gate.
+- [ ] **2.10.2 Reduced-motion fallback**: emulate `prefers-reduced-motion: reduce` — load choreography skipped, reveals render instantly at final state, the sticky stage collapses to normal flow (tap-only phase switching), zero running animations (`document.getAnimations().length === 0` after settle). Output must be functionally identical to the static baseline.
+- [ ] **2.10.3 CLS / reveal safety**: first-entry reveals use `transform`/`opacity` only — element bounding boxes are identical before/after reveal (assert via `getBoundingClientRect()` pre- and post-reveal); no layout-shifting animations anywhere; CLS stays at the §2.7 floor (0.00 target).
+- [ ] **2.10.4 Touch targets ≥ 44px** (standing): all interactive elements ≥ 44×44px at mobile widths (extends §2.5/§2.6; known violation D11).
+- [ ] **2.10.5 Sticky-scene continuity**: while scrolling through the Lumora scene — phase indicator changes monotonically 1→4 (scroll) with no flicker/back-jumps; tap controls remain enabled at all times and set the phase directly; viewport scroll never locks, snaps, or accelerates (`window.scrollY` responds to native wheel/touch input during the scene — test by scrolling backward through the scene); after a tap override, state and viewport agree (the matching sentinel is in view).
+- [ ] **2.10.6 Mobile content parity** (standing, extends §2.6): no content-bearing element hidden at mobile breakpoints; the Lumora mobile composition renders sources + diagnostics content inline (vertical stepper per [design-system §6.8.7](design-system.md#68-motion--micro-interactions)).
+- [ ] **2.10.7 Motion budgets**: every animation completes within its class budget (micro 100–200ms, scene transitions 250–350ms, load choreography ≤ 500ms total); all motion on `transform`/`opacity` only — probe: `rg -n "transition:|animation:" src/ --glob '*.css'` and confirm property lists.
+- [ ] **2.10.8 Honest framing of the exhibit**: the Lumora scene keeps its conceptual-demonstration signals (`STATUS: BETA`, registered evidence copy, no simulated liveness at rest — no ticking timers/counters unless user-initiated). No mode may imply unimplemented product functionality is live (ADR-001 H4 boundary).
+
 ---
 
 ## 3. Per-Page Acceptance Matrix
 
 | Route | Functional checks (all must pass) |
 | :--- | :--- |
-| **`/` Home** | All 5 sections render in order (Hero → Thesis → Lumora Stage → Founder Letter → Horizon); hero CTA scrolls to `#lumora` anchor; philosophy link scrolls to `#thesis`; workbench tabs switch all 4 steps via click AND prev/next cycle buttons; step indicator shows `n / 4` and wraps; `Experience {flagship}` resolves the flagship name from content; no console errors. |
+| **`/` Home** | All 5 sections render in order (Hero → Thesis → Lumora Stage → Founder Letter → Horizon); hero CTA scrolls to `#lumora` anchor; philosophy link scrolls to `#thesis`; workbench tabs switch all 4 steps via click AND prev/next cycle buttons; step indicator shows `n / 4` and wraps; `Experience {flagship}` resolves the flagship name from content; no console errors. *(ADR-001 cinematic pass will add: load choreography once-only, reveals, sticky phase progression with tap override, SceneProgress wayfinding, §2.10 gates — not yet applicable.)* |
 | **`/products`** | Portfolio header renders; product cards show status chip, FLAGSHIP chip (flagship only), name, description, `Explore {Name} →` link; link navigates to `/products/lumora`. |
 | **`/products/lumora`** | Breadcrumbs render + link; badges `FLAGSHIP PLATFORM` + `STATUS: BETA`; H1 + tagline; all 3 capability cards render with full descriptions; the `verifiableEvidence` card (`Academic Intelligence Demonstration`) renders below the capability grid (D7); placeholder strings and labels are gated out of output (D1); footer cross-links work. |
 | **`/products/{unknown}`** | 404 route renders with `Product Not Found` metadata + not-found page; HTTP status is 404. |
@@ -162,6 +177,7 @@ These were real, reproducible violations of this checklist found in `main` befor
 | D8 | §2.4 | `proofItems` (Contextual Proof content) defined but never consumed by any view | `src/content/proof.ts` | Wire into a proof surface once founder supplies verified copy | **OPEN (founder)** — awaiting verified People/Product/Evidence copy; only the real `builder` item remains in the data layer |
 | D9 | §2.3 | Reusable primitives `Button` and `SectionHeader` exist but pages re-implement their patterns inline | pages listed in D4 | Adopt the primitives during the D4 conversion | **FIXED 2026-08-31 (Button)** — `not-found.tsx` CTA now uses the `Button` primitive. `SectionHeader` remains unused by the sub-pages: adopting it would require new kicker/index strings, which is founder copy (not invented in a fix pass) |
 | D10 | §2.7 | Render-blocking external Google Fonts `@import` in `globals.css` | `src/app/globals.css` | Move to self-hosted/`next/font` strategy | **FIXED 2026-08-31** — `next/font/google` self-hosting via `layout.tsx` |
+| D11 | §2.6 / §2.10.4 | (Found by the 2026-08-31 experience audit) Lumora workbench: side panels hidden via `display: none` ≤ 980px — mobile content-parity loss; tab/step controls ≈ 28px — below the 44px touch-target floor | `LumoraStage.tsx` / `LumoraStage.module.css` | ADR-001 mobile vertical-stepper recomposition ([design-system §6.8.7](design-system.md#68-motion--micro-interactions)) + ≥ 44px controls | **OPEN** — resolved by the pending ADR-001 cinematic implementation pass (not fixable without the scene re-composition; registered so re-introduction stays detectable) |
 
 ---
 

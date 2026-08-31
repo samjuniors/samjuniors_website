@@ -1,6 +1,6 @@
 # SamJuniors Website — Component Inventory & Pattern Contract
 
-> **The closed set of components that exist, their props/variants, and the one mandatory styling pattern.** This is the map an agent reads before building anything, so work *reuses* the system instead of drifting into one-off inline styles — the exact failure mode that produced the current inline-styled pages (see [§9 drift register](#9-drift-register-known-violations)).
+> **The closed set of components that exist, their props/variants, and the one mandatory styling pattern.** This is the map an agent reads before building anything, so work *reuses* the system instead of drifting into one-off inline styles — the exact failure mode that produced the current inline-styled pages (see [§9 drift register](#9-drift-register-violations--resolution-state)).
 >
 > **Authority**: Tokens are governed by [design-system.md §6](design-system.md#6-design-system-specification) (the only token spec) and implemented in `src/styles/tokens.css`. Content contracts are governed by [architecture.md §5](architecture.md#5-content--data-boundary-architecture). Literal copy for every string lives in [copy.md](copy.md). QA for anything built here: [qa-checklist.md](qa-checklist.md).
 >
@@ -46,10 +46,13 @@ src/
 │   ├── narrative/    HeroSection, ThesisSection, FounderLetter, HorizonSection
 │   ├── interactive/  LumoraStage (client island)
 │   └── ui/           Button, SectionHeader (reusable primitives)
-├── content/          company.ts, products.ts, proof.ts, navigation.ts, types.ts (+ content.test.ts)
+├── content/          company.ts, products.ts, proof.ts, navigation.ts, lumora-demo.ts, types.ts (+ content.test.ts)
 └── styles/
     └── tokens.css    Certified Phase 7 token set (single token authority)
 ```
+
+> [!NOTE]
+> **ADR-001 (2026-08-31)**: three experience primitives are **SPECIFIED but not yet implemented** — `Reveal` (§4.10), `SceneProgress` (§4.11), `StickyStage` (§4.12). They enter `src/components/` only in the approved cinematic-implementation pass ([ADR-001 §8](adr/ADR-001-homepage-experience-reconciliation.md)). The decision record lives in [docs/website/adr/](adr/).
 
 ---
 
@@ -101,8 +104,8 @@ src/
 
 ### 4.7 `src/components/interactive/LumoraStage.tsx` (+ `LumoraStage.module.css`) — *the interactive island*
 - **Type**: **Client component** (`'use client'`) — the only one in the codebase.
-- **Props**: none. **State**: `activeStep: 'context' | 'understanding' | 'advisory' | 'action'`.
-- **Data**: `ACADEMIC_STEPS` constant (all 4 steps' literal demo strings — full text in [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora)). No content-layer import (deliberate: exhibit fiction, not product data).
+- **Props**: none. **State**: `activeStep: LumoraDemoStepId` (`'context' | 'understanding' | 'advisory' | 'action'`).
+- **Data**: `LUMORA_DEMO_STEPS` / `LUMORA_DEMO_STEP_ORDER` from `src/content/lumora-demo.ts` (all 4 steps' literal demo strings — full text in [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora); strings extracted verbatim from this component on 2026-08-31 per [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md) — the former in-component constant was an unregistered §2.3 violation, resolved in the spec pass; the file header preserves the exhibit-fiction boundary: demonstration data, not product claims). The component aliases them locally (`ACADEMIC_STEPS` / `STEP_KEYS`) — rendering is byte-identical to the pre-extraction state.
 - **Renders**: section header (`03` / `Flagship Expression`, H2, lead); workbench frame with window chrome (`lumora_os // academic_intelligence_loop`); 4 `role="tab"` step tabs; 3-column body — sources panel (left), center canvas stage with per-step visuals (timeline card / forecast card / advisory card / workspace card) + explanation caption, diagnostics panel (right); status bar with prev/next cycle controls and `n / 4` indicator; philosophy bridge + 3-row ledger below.
 - **Interaction contract**: tabs switch steps directly; prev/next wrap around; step indicator updates; `aria-selected` tracks state; icon-only buttons carry `aria-label` (`Previous Step` / `Next Step`).
 - **CSS classes**: `stage`, `intro`, `eyebrowRow`, `indexNumber`, `eyebrowDivider`, `eyebrow`, `headline`, `lead`, `workbench`, `windowChrome`, `windowBrand`, `windowDots`, `dot`, `windowTitle`, `titleIcon`, `stepTabs`, `tabBtn`, `tabBtnActive`, `tabNum`, `workbenchBody`, `sourcesPanel`, `panelHeader`, `panelBadge`, `sourcesList`, `sourceItem`, `sourceItemActive`, `sourceDetails`, `sourceTitle`, `sourceSubtitle`, `sourceTag`, `canvasArea`, `canvasHud`, `hudBadge`, `hudInfo`, `canvasCenter`, `canvasGrid`, `visualCard`, `cardHeaderRow`, `cardTitle`, `cardTag`, `cardWarningTag`, `timelineRows`, `timelineRow`, `weekLabel`, `barItem`, `barWarning`, `warningIcon`, `advisoryContainer`, `advisoryTop`, `advisoryPill`, `advisoryImpact`, `advisoryHeadline`, `advisoryBody`, `advisoryBottom`, `verifiedTag`, `explainableTag`, `workspaceContainer`, `workspaceHeader`, `timerBadge`, `pulseDot`, `trackLabel`, `workspaceObjective`, `objectiveLabel`, `objectiveText`, `workspaceTags`, `tagItem`, `explanationArea`, `explanationBadge`, `explanationTitle`, `explanationText`, `canvasFooter`, `statusInfo`, `engineTag`, `privacyTag`, `stepControls`, `controlBtn`, `controlBtnPrimary`, `stepIndicator`, `diagnosticsPanel`, `diagnosticsList`, `diagItem`, `diagLabel`, `diagValue`, `philosophyBridge`, `bridgeContent`, `bridgeEyebrow`, `bridgeQuote`, `bridgeLedger`, `ledgerRow`, `ledgerKey`, `ledgerVal`.
@@ -121,6 +124,33 @@ src/
 - **Props** (`SectionHeaderProps`): `indexNumber: string` (e.g. `02`) · `kicker: string` (eyebrow label) · `title: ReactNode` (H2) · `lead?: ReactNode` · `id?: string` (heading id for `aria-labelledby`) · `className?` · `align?: 'left' | 'center'`.
 - **Renders**: eyebrow row (`{indexNumber} / {kicker}`), `h2`, optional lead. This is the canonical section-opener pattern that narrative sections implement manually.
 - **Status**: ✅ pattern-compliant. Still unadopted by sub-pages: adopting it requires new `indexNumber`/`kicker` strings, which are founder copy (debt D9's SectionHeader half stays open pending [copy.md](copy.md) sign-off).
+
+### 4.10 `Reveal` (SPECIFIED, ADR-001)
+- **Files (at implementation)**: `src/components/interactive/Reveal.tsx` + `Reveal.module.css` — not yet implemented (ADR-001 §8 gating).
+- **Type**: Client component (`'use client'` — required: owns an IntersectionObserver).
+- **Purpose**: first-entry viewport reveal per [design-system §6.8.4](design-system.md#68-motion--micro-interactions): fade + ≤20px rise, 250–350ms `--ease-out`, once-only, stagger ≤ 3 siblings.
+- **Props** (`RevealProps`): `children: ReactNode` · `delay?: number` (stagger ms, ≤ 2 siblings × 90ms) · `as?: keyof JSX.IntrinsicElements` (default `div`) · `className?`.
+- **Binding contracts**: no-JS safety — content visible in server HTML; the pre-reveal class is applied only by the script itself, never server-side; CLS safety — `transform` only, flow position/dimensions identical pre/post; reduced-motion — renders final state instantly (query + global token override); unobserves after firing.
+- **A11y**: purely presentational; no aria attributes; never wraps focusable content in a way that delays availability (content is in the DOM and visible from first paint).
+- **Status**: 🔒 SPECIFIED — implement only in the approved ADR-001 cinematic pass; verify against [qa-checklist §2.10](qa-checklist.md#210-motion--interaction-safety-adr-001-implementation-gates).
+
+### 4.11 `SceneProgress` (SPECIFIED, ADR-001)
+- **Files (at implementation)**: `src/components/interactive/SceneProgress.tsx` + `SceneProgress.module.css` — not yet implemented (ADR-001 §8 gating).
+- **Type**: Client component (`'use client'` — observes scene positions).
+- **Purpose**: persistent homepage wayfinding per [design-system §6.8.6](design-system.md#686-scene-composition-rules-the-scene-grammar): mono-indexed `01–05` progress rail; unifies the current duplicated numbering (hero tenets `01–03` vs. section indices `02–06`) into one system.
+- **Props** (`SceneProgressProps`): `scenes: Array<{ id: string; index: string }>` (target section ids + display numbers; homepage: `overture`-equivalent existing section ids — final ids fixed at implementation).
+- **Rendering**: fixed left rail ≥ 1200px; compact top indicator below; `aria-current="true"` on the active scene; each entry is an anchor link to its scene (keyboard operable, focus-visible via global rule).
+- **Binding contracts**: reduced-motion — visible but without animated indicator transitions; no-JS — degrades to a plain in-page anchor list (server-rendered, default state active-agnostic); never hides or overlaps content (`pointer-events` limited to the entries; z-index below modals).
+- **Status**: 🔒 SPECIFIED — same gating as `Reveal`.
+
+### 4.12 `StickyStage` (SPECIFIED, ADR-001)
+- **Files (at implementation)**: `src/components/interactive/StickyStage.tsx` + `StickyStage.module.css` — not yet implemented (ADR-001 §8 gating).
+- **Type**: Client component (`'use client'` — owns the phase state machine).
+- **Purpose**: the Lumora signature-scene wrapper per [design-system §6.8.5](design-system.md#685-signature-scene--lumora-sticky-reveal-scene-03-adr-001-h4h5): sticky frame + scroll-linked 4-phase progression (homepage mode) or tap-only exploration (`/products/lumora` mode) — two modes over the shared `src/content/lumora-demo.ts` state model.
+- **Props** (`StickyStageProps`): `mode: 'scroll' | 'explore'` · `children` (the workbench frame — the existing `LumoraStage` body re-composed) · phase content injected from `LUMORA_DEMO_STEPS`.
+- **Interaction contract (ADR-001 H5, binding)**: scroll-linked mode observes phase sentinels via IntersectionObserver; native scroll 100% authoritative (no jacking/snap/momentum interference); tap controls always visible and always override (and re-sync the viewport to the matching sentinel); `prefers-reduced-motion: reduce` collapses sticky to normal flow with tap-only switching.
+- **A11y**: phase tabs keep `role="tablist"`/`role="tab"`/`aria-selected`; the stage region keeps its `aria-label`; the phase state is announced via the existing step indicator; controls ≥ 44×44px.
+- **Status**: 🔒 SPECIFIED — highest-risk primitive; must pass all §2.10 gates plus §3 home-row checks before merge.
 
 ---
 
@@ -172,7 +202,9 @@ Legacy aliases (`--bg-base`, `--text-main`, `--accent-copper`, …) exist in `to
 | `products.ts` | `getFlagshipProduct()` | `Product` (isFlagship, falls back to first) |
 | `proof.ts` | `proofItems` | `VerifiedProofItem[]` — 3 items, 2 flagged `isPlaceholder: true` — **⚠ currently consumed by no view (debt D8)** |
 | `navigation.ts` | `siteNavigation` | `NavigationStructure` — primaryLinks[3], footerLinks[3], primaryCta |
-| `types.ts` | interfaces | `CompanyIdentity`, `Product`, `NavigationItem`, `NavigationStructure`, `VerifiedProofItem` |
+| `lumora-demo.ts` | `LUMORA_DEMO_STEPS` | `Record<LumoraDemoStepId, LumoraDemoStep>` — the 4-phase demonstration contract (exhibit fiction; [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora) parity; extracted from `LumoraStage.tsx` 2026-08-31 per [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md)) |
+| `lumora-demo.ts` | `LUMORA_DEMO_STEP_ORDER` | `LumoraDemoStepId[]` — `['context', 'understanding', 'advisory', 'action']` |
+| `types.ts` | interfaces | `CompanyIdentity`, `Product`, `NavigationItem`, `NavigationStructure`, `VerifiedProofItem` (domain schemas only — the Lumora demo types live in `lumora-demo.ts`, not here, to keep canonical company schemas separate from exhibit fiction) |
 
 **Rules**: UI reads via these exports only; copy edits flow founder → [copy.md](copy.md) → these modules (string parity enforced by [qa-checklist §2.8](qa-checklist.md#28-content--copy-correctness)); `reputationPillars` still has no rendering destination (gap, not a feature); `verifiableEvidence` now renders on `/products/[slug]` — fixed 2026-08-31, debt D7).
 
@@ -207,6 +239,8 @@ Mirrors [qa-checklist.md §5](qa-checklist.md#5-known-debt-register-history--cur
 | `(Server Action backend integration boundary prepared).` in visitor copy | contact page | Copy rule — no process language ([copy.md §9](copy.md#9-known-leaks--strings-that-must-not-ship)) | **RESOLVED** — sentence removed (no invented replacement; richer copy PENDING FOUNDER COPY) |
 | `Button` / `SectionHeader` primitives bypassed | debt pages | §1 closed-set rule | **RESOLVED (Button)** — `not-found.tsx` uses it; SectionHeader adoption awaits founder kicker copy |
 | `proofItems` + `verifiableEvidence` defined but unrendered | proof.ts / products.ts | Content↔UI contract (dead content) | **PARTIAL** — `verifiableEvidence` renders on the product detail page (D7); `proofItems` remains data-only (D8, founder-dependent) |
+| Lumora demo narrative (4 phases × ~20 strings) hardcoded inside the client component | `LumoraStage.tsx` | §2.3 content-layer rule (found by the 2026-08-31 experience audit; formerly documented as "deliberate") | **RESOLVED 2026-08-31 (spec pass)** — extracted verbatim to `src/content/lumora-demo.ts` per [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md); rendering byte-identical (tsc/lint/tests/build + browser parity verified) |
+| Lumora workbench mobile: side panels `display: none` ≤ 980px (content loss); tab/step controls below 44px touch target | `LumoraStage.module.css` | §2.5 a11y contract (44px) + Mobile Is First-Class parity ([product-spec §6.6](product-spec.md#66-core-ux-principles)) | **OPEN — registered as debt D11**; resolved by the ADR-001 mobile vertical-stepper recomposition ([design-system §6.8.7](design-system.md#687-mobile-scene-recomposition-mobile-is-first-class-410)) in the pending cinematic pass |
 
 ---
 

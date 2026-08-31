@@ -2,11 +2,11 @@
 
 > **Master navigation map & governance index** establishing the authoritative document structure, authority hierarchy, status, and gating rules for the SamJuniors web platform.
 >
-> The documentation suite was consolidated into **8 core files**, then extended with three operational companions — [copy.md](copy.md) (approved literal website text), [qa-checklist.md](qa-checklist.md) (concrete acceptance criteria), and [component-inventory.md](component-inventory.md) (closed component set + pattern contract) — **11 files total**. The former 12 phase-numbered folders were merged without content loss; the consolidation record and open TODOs live in [decisions.md](decisions.md).
+> The documentation suite was consolidated into **8 core files**, then extended with three operational companions — [copy.md](copy.md) (approved literal website text), [qa-checklist.md](qa-checklist.md) (concrete acceptance criteria), and [component-inventory.md](component-inventory.md) (closed component set + pattern contract) — and the ADR series ([adr/](adr/), inaugurated 2026-08-31 by [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md): homepage experience reconciliation) — **12 files total**. The former 12 phase-numbered folders were merged without content loss; the consolidation record and open TODOs live in [decisions.md](decisions.md).
 
 ---
 
-## 1. Documentation Structure (11 Files)
+## 1. Documentation Structure (12 Files)
 
 ```
 docs/
@@ -22,6 +22,8 @@ docs/
     ├── copy.md                # THE literal visitor-facing words: approved headlines, descriptions, CTAs, metadata + placeholder/missing-copy registry (founder sign-off model)
     ├── qa-checklist.md        # Concrete definition of "done": global gates, per-page acceptance matrix, performance floors, placeholder/leak probes, debt register
     ├── component-inventory.md # Closed set of components with props/variants + the mandatory CSS-Modules + tokens pattern contract
+    ├── adr/                   # Architecture Decision Records (freeze amendments; ADR-001: homepage experience reconciliation)
+    │   └── ADR-001-homepage-experience-reconciliation.md
     └── INDEX.md               # This file
 ```
 
@@ -125,9 +127,9 @@ For contributors, reviewers, and AI agents onboarding to the project:
 
 ## 6. Current Phase & Explicit Next Action
 
-- **Current Phase**: **UI Design (Phase 8) preparation** — the Phase 6 experience prototype and Phase 7 design system are implemented in `src/` (see [design-system.md §5](design-system.md#5-phase-6-experience-prototype--visual-evidence--review-sheet)).
-- **Production Scaffold State**: Initialized in Next.js App Router (`src/app/`, `src/content/`, `src/styles/tokens.css`, Vitest, Playwright).
-- **Explicit Next Action**: Founder review of the open TODOs in [decisions.md](decisions.md) (Phase 7 retroactive certification, palette supersession confirmation, missing screenshots, founder copy sign-off), followed by formal Phase 7 sign-off and Phase 8 UI design activation.
+- **Current Phase**: **Cinematic experience specification complete — implementation gated.** The 5-scene executable experience is founder-ratified and fully specified by [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md) (2026-08-31): scene/motion contract in [design-system.md §6.8](design-system.md#68-motion--micro-interactions), primitives `Reveal`/`SceneProgress`/`StickyStage` specified in [component-inventory.md §4.10–§4.12](component-inventory.md), QA gates in [qa-checklist.md §2.10](qa-checklist.md#210-motion--interaction-safety-adr-001-implementation-gates). The Phase 6 prototype and Phase 7 tokens are implemented in `src/`; the Lumora demo content now lives in the content layer (`src/content/lumora-demo.ts`).
+- **Production Scaffold State**: Next.js App Router (`src/app/`, `src/content/` incl. `lumora-demo.ts`, `src/styles/tokens.css`, Vitest, Playwright) — clean at tsc/lint/tests/build.
+- **Explicit Next Action**: Founder approval to begin the ADR-001 cinematic implementation (vertical-slice-first per [delivery.md §2](delivery.md#2-vertical-slice-validation-mandatory-quality-gate)); still open alongside it: Phase 7 retroactive certification (TODO 1), missing screenshots (TODO 3), founder copy sign-off (TODO 8) in [decisions.md](decisions.md). Palette supersession is CLOSED (TODO 2, ADR-001 H2).
 
 ---
 

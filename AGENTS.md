@@ -25,7 +25,7 @@ This document establishes the binding operational rules, governance, and workflo
    - The visitor-facing website must communicate strategy through professional content, visual hierarchy, living product storytelling, and natural narrative pacing.
 
 4. **Reading Scope (Documentation Efficiency Rule)**:
-   - For any single page or component task, read only the relevant section of [docs/website/product-spec.md](docs/website/product-spec.md) (what it must communicate), [docs/website/copy.md](docs/website/copy.md) (the literal words), [docs/website/design-system.md](docs/website/design-system.md) (visual rules), and [docs/website/component-inventory.md](docs/website/component-inventory.md) (components & pattern contract).
+   - For any single page or component task, read only the relevant section of [docs/website/product-spec.md](docs/website/product-spec.md) (what it must communicate), [docs/website/copy.md](docs/website/copy.md) (the literal words), [docs/website/design-system.md](docs/website/design-system.md) (visual rules), and [docs/website/component-inventory.md](docs/website/component-inventory.md) (components & pattern contract). For homepage/experience-architecture tasks, also read the governing ADR in [docs/website/adr/](docs/website/adr/) (currently [ADR-001](docs/website/adr/ADR-001-homepage-experience-reconciliation.md)).
    - When verifying completed work, run the applicable gates in [docs/website/qa-checklist.md](docs/website/qa-checklist.md).
    - Do not read [docs/website/decisions.md](docs/website/decisions.md) or [docs/company/foundation.md](docs/company/foundation.md) unless the task specifically concerns brand identity or historical rationale.
    - **Copy rule**: agents never invent visitor-facing copy. New strings are drafted into copy.md as `PROPOSED` with the spec requirement they fulfill; only the founder promotes them to `APPROVED`.
@@ -118,6 +118,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 | :--- | :--- |
 | `docs/company/*` | **Founder/Leadership Only**. AI agents must NEVER modify unless explicitly commanded with approved founder input. |
 | `docs/website/product-spec.md`, `design-system.md`, `architecture.md`, `delivery.md`, `component-inventory.md`, `qa-checklist.md`, `INDEX.md` | AI agents may draft specification updates, subject to human approval before implementation. |
+| `docs/website/adr/*` | Architecture Decision Records (freeze amendments). New ADRs and amendments require founder approval; agents may draft them only from explicit founder directives. |
 | `docs/website/decisions.md` | Running decision log. Agents append new entries and TODOs; existing approved records are immutable history. |
 | `docs/website/copy.md` | Literal visitor-facing text. Agents may draft `PROPOSED` strings citing the spec requirement; **only the founder** promotes to `APPROVED` or edits approved strings. |
 | `AGENTS.md`, `PROJECT.md`, `ROADMAP.md` | Core governance files. Changes require explicit project lead approval. |

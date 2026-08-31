@@ -5,7 +5,7 @@ This roadmap defines the authoritative execution sequence for the SamJuniors web
 > [!IMPORTANT]
 > **Phase Sequencing Rule**: Phase 9 (Vertical Slice Validation) is a mandatory quality gate. It must occur **after** Phases 4–8 are fully approved, and **before** Phase 10 (Frontend Development) begins. Failure of the vertical slice blocks all subsequent phases until findings are resolved and re-validated.
 
-**Documentation map**: each phase's governing specification lives in the consolidated 11-file documentation suite (see [INDEX.md](docs/website/INDEX.md)) — product direction in [product-spec.md](docs/website/product-spec.md), literal visitor copy in [copy.md](docs/website/copy.md), visual rules in [design-system.md](docs/website/design-system.md), component contracts in [component-inventory.md](docs/website/component-inventory.md), technical structure in [architecture.md](docs/website/architecture.md), build/QA gates in [delivery.md](docs/website/delivery.md) with executable acceptance criteria in [qa-checklist.md](docs/website/qa-checklist.md), and all formal decisions in [decisions.md](docs/website/decisions.md).
+**Documentation map**: each phase's governing specification lives in the consolidated 12-file documentation suite (see [INDEX.md](docs/website/INDEX.md)) — including the ADR series in [docs/website/adr/](docs/website/adr) — product direction in [product-spec.md](docs/website/product-spec.md), literal visitor copy in [copy.md](docs/website/copy.md), visual rules in [design-system.md](docs/website/design-system.md), component contracts in [component-inventory.md](docs/website/component-inventory.md), technical structure in [architecture.md](docs/website/architecture.md), build/QA gates in [delivery.md](docs/website/delivery.md) with executable acceptance criteria in [qa-checklist.md](docs/website/qa-checklist.md), and all formal decisions in [decisions.md](docs/website/decisions.md).
 
 ---
 
@@ -133,6 +133,8 @@ Validate one representative, end-to-end user experience in production-grade impl
 
 > [!NOTE]
 > The **proposed validation slice** is: Homepage → SamJuniors Story → Lumora Reveal → Lumora Exploration → Trust/Proof → Primary CTA. This selection is **PROPOSED** and requires formal approval during Phase 8. See [delivery.md §2](docs/website/delivery.md#2-vertical-slice-validation-mandatory-quality-gate) for full scope, validation dimensions, and entry/exit criteria.
+>
+> **ADR-001 note (2026-08-31)**: with the Trust/Proof beat truthfully deferred (no verified proof content yet), the first implementable slice under [ADR-001](docs/website/adr/ADR-001-homepage-experience-reconciliation.md) is the **Lumora signature scene** (Scene 03: sticky reveal, scroll-linked with tap override, mobile vertical stepper) — the highest-risk/highest-value element, to be validated alone before the full scene grammar. The slice's acceptance criteria are the new [qa-checklist.md §2.10](docs/website/qa-checklist.md#210-motion--interaction-safety-adr-001-implementation-gates) gates.
 
 ---
 

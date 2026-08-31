@@ -28,7 +28,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 ```
 
 1. **Source of Truth**: All foundational company identity is preserved in [docs/company/](docs/company).
-2. **Consolidated Specifications**: Website strategy, design, architecture, and delivery are governed by the 11-file documentation suite in [docs/website/](docs/website).
+2. **Consolidated Specifications**: Website strategy, design, architecture, and delivery are governed by the 12-file documentation suite in [docs/website/](docs/website) (including the ADR series).
 3. **No Implementation Before Approval**: Code is never written before relevant documentation is reviewed and signed off.
 
 ---
@@ -49,6 +49,7 @@ docs/
     ├── copy.md                  # Approved literal website text: headlines, descriptions, CTAs + placeholder registry (founder sign-off model)
     ├── qa-checklist.md          # Concrete acceptance criteria: global gates, per-page matrix, floors, debt register
     ├── component-inventory.md   # Closed component set, props/variants, mandatory CSS-Modules + tokens pattern contract
+    ├── adr/                     # Architecture Decision Records (freeze amendments — ADR-001: homepage experience reconciliation)
     └── INDEX.md                 # Master index, authority hierarchy, phase status map
 ```
 

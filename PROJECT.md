@@ -30,7 +30,7 @@ Establish a modern, high-performance, accessible, and brand-aligned web presence
 ---
 
 ## Deliverables
-- Consolidated documentation suite (11 files) indexed in [INDEX.md](docs/website/INDEX.md):
+- Consolidated documentation suite (12 files) indexed in [INDEX.md](docs/website/INDEX.md):
   - [docs/company/foundation.md](docs/company/foundation.md) & [docs/company/decision-log.md](docs/company/decision-log.md) — founder-owned truth.
   - [docs/website/product-spec.md](docs/website/product-spec.md) — product direction, IA, content strategy, personas & journeys.
   - [docs/website/design-system.md](docs/website/design-system.md) — tokens, layout, visual rules, HUMAN-001 tests.
@@ -40,6 +40,7 @@ Establish a modern, high-performance, accessible, and brand-aligned web presence
   - [docs/website/copy.md](docs/website/copy.md) — approved literal website text (SPEC vs COPY split) with placeholder/missing-copy registry.
   - [docs/website/qa-checklist.md](docs/website/qa-checklist.md) — concrete acceptance criteria: global gates, per-page matrix, performance floors, debt register.
   - [docs/website/component-inventory.md](docs/website/component-inventory.md) — closed component set, props/variants, mandatory CSS-Modules + tokens pattern contract.
+  - [docs/website/adr/ADR-001-homepage-experience-reconciliation.md](docs/website/adr/ADR-001-homepage-experience-reconciliation.md) — Architecture Decision Record: 10-step strategic model vs. 5-scene executable homepage experience (ratifies founder decisions H1–H5; scene/motion spec in design-system §6.8; primitives specified in component-inventory §4.10–§4.12; QA gates in qa-checklist §2.10).
 - Reviewed and approved wireframes, design system, and UI specifications.
 - Production-grade, tested, and optimized website codebase.
 - Deployment, testing, and launch verification records.
@@ -94,6 +95,8 @@ No implementation begins before relevant documentation is reviewed and approved.
 - [ ] Phase 12 — Launch (Gated on Phase 11 sign-off).
 - [x] Ingest and verify founder documentation in [docs/company/](docs/company) (COMPANY-001 through COMPANY-003 recorded).
 - [ ] Ingest further founder documentation in [docs/company/](docs/company) as provided.
-- [ ] Founder review of open TODOs in [docs/website/decisions.md](docs/website/decisions.md) (Phase 7 retroactive certification, palette supersession, missing screenshots).
+- [x] Experience/architecture audit + ADR-001 spec pass (executed 2026-08-31): founder ratified H1–H5 (5-scene executable experience with deferred unverified beats; Phase 7 palette canonical — TODO 2 closed; founder copy non-blocking; Lumora dual-mode presentation; scroll-linked progression with tap override). Documentation suite 11 → 12 files; the Lumora demo content extracted to `src/content/lumora-demo.ts` (the pass's only code change — rendering byte-identical, string parity verified). Full record in [decisions.md](docs/website/decisions.md) QA Run Records.
+- [ ] Cinematic experience implementation (gated): production UI implementation of the 5-scene experience awaits explicit founder approval ([ADR-001 §8](docs/website/adr/ADR-001-homepage-experience-reconciliation.md)), then proceeds vertical-slice-first; resolves debt D11 (workbench mobile parity + touch targets) inside the pass.
+- [ ] Founder review of remaining open TODOs in [docs/website/decisions.md](docs/website/decisions.md) (Phase 7 retroactive certification, missing screenshots — palette supersession is closed).
 - [ ] Founder copy sign-off in [docs/website/copy.md](docs/website/copy.md) — all strings are currently `PROPOSED` or `PENDING FOUNDER COPY`; wet-sign per the copy.md §0.2 record, and supply the missing founder copy (founder name, testimonials, proof items, persona CTAs, contact experience).
 - [x] Second-pass code fix (executed 2026-08-31): all five debt pages converted to CSS Modules + tokens, broken token names and stale colors fixed, the `[STRUCTURAL CAPABILITY CONTAINER]` placeholder leak removed, placeholder proof items removed, `verifiableEvidence` rendered, fonts self-hosted via `next/font` (qa-checklist debt D1–D7, D9-Button, D10 resolved; D8 + SectionHeader adoption await founder copy) — full record in [decisions.md](docs/website/decisions.md) QA Run Records.

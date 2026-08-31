@@ -139,6 +139,9 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 
 ## 4. Home — Lumora Stage (`LumoraStage`, anchor `#lumora`)
 
+> [!NOTE]
+> **Source-of-truth note (2026-08-31, [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md))**: these strings now live in `src/content/lumora-demo.ts` (the demonstration content contract), imported by `LumoraStage.tsx` — they were extracted verbatim from the component (string-set parity verified). No literal text changed in the extraction; this table remains the copy authority per §0.2/§11.
+
 | Element | Literal text |
 | :--- | :--- |
 | Section label row | `03` / `Flagship Expression` |

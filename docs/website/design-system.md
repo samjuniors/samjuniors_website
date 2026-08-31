@@ -389,7 +389,7 @@ The visual language establishes high-end engineering craft through deliberate ma
 - **Product Visualization**: High-fidelity, functional interface canvases and structural schematics rather than generic 3D illustrations or abstract device frames.
 
 > [!NOTE]
-> **Palette reconciliation**: The values above are the *earlier strategic direction* palette. The certified Phase 7 token system (implemented in `src/styles/tokens.css` and specified in [§6](#6-design-system-specification)) refined this direction — e.g., institutional warm copper `#c89666` (parent), steel blue `#628cb3` (product interaction), obsidian `#0b0c0f` (base canvas), text `#f4f6fa`. The certified tokens govern implementation; the direction values remain as historical context. An open TODO confirming this supersession is tracked in [decisions.md](decisions.md).
+> **Palette reconciliation — RESOLVED by [ADR-001 H2](adr/ADR-001-homepage-experience-reconciliation.md) (founder-approved 2026-08-31)**: the values above are the *superseded* strategic-direction palette, retained as historical context only. The certified Phase 7 token system (implemented in `src/styles/tokens.css` and specified in [§6](#6-design-system-specification)) is **canonical**: institutional warm copper `#c89666` (parent), steel blue `#628cb3` (product interaction), obsidian `#0b0c0f` (base canvas), text `#f4f6fa`. No competing palette definitions are maintained; the supersession TODO in [decisions.md](decisions.md) is closed.
 
 ### 4.6 Human-Authored Design (HUMAN-001)
 True distinctiveness requires rejecting both generic AI startup clichés and reactionary "anti-AI" clichés:
@@ -665,15 +665,74 @@ Presentation primitives for the flagship demonstration (isolated from internal p
 - **Step Controls**: Backward/forward cycle buttons (`← [ 1 / 4 ] Next Step →`).
 
 ### 6.8 Motion & Micro-Interactions
+
+> **Status**: extended 2026-08-31 by [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md) (founder-approved) from the prior micro-feedback-only spec into the implementable scene/motion contract for the 5-scene executable homepage ([product-spec.md §3.4.1](product-spec.md#341-current-executable-experience-5-scenes)). The original micro-feedback rules are retained unchanged as §6.8.1. This section is the implementation contract for the cinematic experience pass — until that pass is approved and built, the current static presentation remains compliant (everything below is progressive enhancement over a fully static, server-rendered baseline).
+
+**Motion exists to serve comprehension, not decoration** ([§4.8](#48-motion-principles--performance-boundaries) governs intent; this section specifies implementation). Every motion element below must pass the Animation Purpose Test and is restricted to GPU-composite properties (`transform`, `opacity`) only.
+
+#### 6.8.1 Micro Feedback (unchanged, baseline)
 - **Micro Feedback**: `150ms` `--duration-fast` with cubic-bezier `(0.16, 1, 0.3, 1)` for button hovers and tab selections.
 - **Spatial Transitions**: `250ms` `--duration-normal` for modal reveals and panel changes.
 - **Reduced Motion**: Complete override via `@media (prefers-reduced-motion: reduce)` ensuring instantaneous state transitions.
 - **Strict Prohibitions**: Zero scroll-jacking, zero forced scroll snapping, zero ambient floating particles, zero infinite animated gradients.
 
+#### 6.8.2 Motion Classes & Budgets (total inventory)
+| Class | Trigger | Budget | Properties |
+| :--- | :--- | :--- | :--- |
+| Micro feedback | hover / focus / active | 100–200ms | color, border, `translateY(≤2px)` |
+| Scene transitions | sticky-phase state change, panel swap | 250–350ms `--duration-normal` | `transform`, `opacity` |
+| Load choreography | once, on first page load | ≤ 500ms total sequence, 60–90ms stagger | `transform`, `opacity` |
+| First-entry reveal | element first enters viewport | 250–350ms, stagger ≤ 3 siblings | `transform` (`translateY ≤ 20px`), `opacity` |
+| Scroll-linked phase progression | scroll-position thresholds (Lumora scene only, ADR-001 H5) | state-driven (no time budget) | state classes; per-element transitions ≤ 350ms |
+
+Nothing else animates. No looping, ambient, parallax, particle, or scroll-velocity-linked motion anywhere.
+
+#### 6.8.3 Load Choreography — Scene 01 Overture
+- Runs **once** per page load, homepage only; sequence: topline → headline lines → lead → action row → tenets baseline.
+- Each element: `opacity 0 → 1` + `translateY(≤12px) → 0`, 250ms ease-out, 60–90ms stagger; total ≤ 500ms.
+- **No-JS safety (binding)**: the default server-rendered state is fully visible; the entrance animation is *added* by JS (class application) only — with JavaScript disabled, the scene renders complete with zero visual difference.
+- **Reduced motion**: skipped entirely.
+
+#### 6.8.4 First-Entry Reveal (Reveal primitive)
+- Applies to content blocks in Scenes 01–05 (excluding Scene 04's quote — see §6.8.7).
+- `IntersectionObserver`, threshold ≥ 0.2, fire **once**, unobserve after.
+- `opacity 0 → 1` + `translateY(20px) → 0`, 250–350ms `--ease-out`; maximum 3 staggered siblings per group.
+- **No-JS safety (binding)**: content is visible by default; JS adds the pre-reveal class immediately before animating (must never leave content hidden if JS fails mid-flight). Implementation pattern: the pre-reveal state is applied by the same script that drives the reveal, never by the server HTML.
+- **CLS rule (binding)**: reveal may not shift layout — translation only; the element's flow position and dimensions are identical pre/post reveal. Verified by qa-checklist §2.10.
+- **Reduced motion**: elements render at final state instantly.
+
+#### 6.8.5 Signature Scene — Lumora Sticky Reveal (Scene 03, ADR-001 H4/H5)
+- **Staging**: the workbench frame is wrapped in a sticky stage (`position: sticky; top: <offset>`; container height = phases × ~100vh) so the frame remains fixed while the visitor's own scrolling advances the four phases.
+- **Phase progression (scroll-linked mode, homepage only)**: phase sentinels inside the tall container drive an IntersectionObserver threshold state machine; each phase sets the full workbench state (sources panel, center visual, diagnostics) from `src/content/lumora-demo.ts`. Phase indicator `n / 4` and tab `aria-selected` track state.
+- **Native scroll authority (binding)**: zero scroll-jacking, zero snap, zero momentum interference — the page scrolls normally at all times; the scene *observes* scroll, never *captures* it.
+- **Tap override (binding)**: step tabs and prev/next controls are always visible, always enabled, and always set the phase directly (also updating scroll position to the matching sentinel so state and viewport never disagree).
+- **State continuity**: phase changes transition workbench content via 250–350ms `transform`/`opacity` cross-fades; no content reflow jumps; the frame itself never resizes between phases (fixed frame, changing state — the anti-"fake liveness" rule: state changes must be visible and meaningful, not cosmetic).
+- **Honest framing**: the stage carries the registered conceptual-demonstration signals (`STATUS: BETA` status, evidence copy, exhibit-fiction data per [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora)); the demonstration never simulates liveness it does not have (no ticking timers, no streaming counters at rest).
+- **Exploration mode (`/products/lumora`)**: the same content/state model, tap-driven only — no sticky, no scroll linkage, phases switch via the controls.
+- **Reduced motion**: sticky stage collapses to normal document flow with tap-only phase switching (Scene 03 becomes a self-contained interactive exhibit in sequence).
+
+#### 6.8.6 Scene Composition Rules (the scene grammar)
+- **Width rhythm** (breaks the uniform 1240px conveyor): Scene 01 `--container-max` (1240px) → Scene 02 editorial column (≤ 980px reading measure) → Scene 03 **breakout wider than the container** (the flagship occupies more visual width than any other scene) → Scene 04 `--container-narrow` (840px quiet column) → Scene 05 `--container-max`.
+- **Lighting rhythm**: `--color-bg-base` (01, 02) → elevated surface zone for the signature scene (03) → `--color-bg-base` (04) → `--color-bg-surface-subtle` closure tone (05) + footer end-credits treatment (mono, coordinate-style).
+- **Scale rhythm**: hero display may extend above the current `clamp(2.6rem, 5.8vw, 4.4rem)` at large viewports while Scene 04 drops to the quietest scale on the page — restoring dynamic range at both ends; H1/H2 clamps must remain clearly separated (audit finding: near-identical ranges compress hierarchy).
+- **Stillness rule**: Scene 04 (Founder Letter) permits **no motion beyond the first-entry reveal** — its emptiness and quiet are the pacing device after the signature scene.
+- **Wayfinding (SceneProgress primitive)**: persistent mono-indexed `01–05` progress indicator (fixed left rail ≥ 1200px viewports; compact top indicator on smaller viewports); `aria-current` tracks the active scene; unifies the current duplicated numbering (hero tenets `01–03` vs section indices `02–06`) into one system.
+
+#### 6.8.7 Mobile Scene Recomposition (Mobile Is First-Class, §4.10)
+- Scene 03 becomes a **vertical stepper**: the same four phases render as sequential full-width segments with the same state evolution; sources and diagnostics content becomes inline per-phase summaries — **never `display: none` content loss** (qa-checklist §2.10 mobile parity gate).
+- All phase controls (tabs/segmented controls, prev/next) meet `--min-touch-target` 44×44px.
+- Load choreography shortened (≤ 300ms, fewer staggers); first-entry reveals retain the same budgets.
+- All other scenes keep their composed vertical rhythm per current §6.9 breakpoints.
+
+#### 6.8.8 Motion Safety Contracts (binding, enforced by qa-checklist §2.10)
+- **Reduced motion**: with `prefers-reduced-motion: reduce`, load choreography is skipped, reveals render instantly, the sticky stage collapses to flow, and the scene becomes tap-only — output must be functionally identical to today's static site.
+- **No-JS**: server HTML contains 100% of content and is fully styled; every motion behavior is additive enhancement; no content, navigation, or meaning may depend on JavaScript executing (with the sole exception of interactive state inside the Lumora exhibit, which degrades to its first phase with controls operable by native tab focus).
+- **Performance**: all motion on composite properties only; no layout thrash; scroll observation via IntersectionObserver (no scroll-event state updates without rAF batching).
+
 ### 6.9 Responsive Adaptation
 - **Desktop (`1440px+`)**: Confident `1240px` content container, 3-column workbench, asymmetric dual-flow building cycle spine.
 - **Tablet (`880px–1024px`)**: Dual-column collapses to single column with preserved vertical breathing room.
-- **Mobile (`390px–640px`)**: Single-column vertical rhythm, workbench hides collateral sidebars to prioritize the central active stage, 44px minimum touch targets, zero horizontal scrolling or gesture traps.
+- **Mobile (`390px–640px`)**: Single-column vertical rhythm, 44px minimum touch targets, zero horizontal scrolling or gesture traps. *(Current state: workbench hides collateral sidebars via `display: none` — a mobile content-parity violation registered as debt D11; the ADR-001 target composition is the vertical stepper specified in [§6.8.7](#687-mobile-scene-recomposition-mobile-is-first-class-410).)*
 
 ### 6.10 Accessibility Standards
 - **Color Contrast**: All text pairings meet or exceed WCAG 2.1 AA standards (minimum 4.5:1 for body text, 3:1 for large display text).

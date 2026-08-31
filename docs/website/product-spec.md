@@ -217,6 +217,10 @@ Vision ──> Founder ──> SamJuniors ──> Products ──> Why We're Dif
 - **Role Alignment**: Products and founder support the vision rather than replacing it. The hero establishes the transformative horizon before diving into specific tools.
 
 ### 3.4 Homepage Narrative Architecture (10 Steps)
+
+> [!NOTE]
+> **Two-tier status since [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md) (founder-approved 2026-08-31):** the 10 steps below remain the **strategic model** — the target journey the homepage must deliver once verified proof, roadmap, testimonial, and persona-conversion content exists. The **current executable production experience** is the truthful 5-scene arc defined in [§3.4.1](#341-current-executable-experience-5-scenes); unverified beats are explicitly deferred there and are never fabricated to preserve this 10-step form.
+
 The homepage is organized into 10 cohesive narrative steps:
 
 ```
@@ -243,7 +247,7 @@ The homepage is organized into 10 cohesive narrative steps:
 
 **Narrative Section Specifications**
 1. **Vision Hero**: Opens with overarching purpose and vision hook.
-2. **Interactive Vision Statement [Signature Moment #1]**: An engaging, interactive articulation of SamJuniors' philosophy.
+2. **Interactive Vision Statement [Signature Moment #1]** *(strategic-model concept; superseded for the executable experience by the Lumora Reveal as Signature Moment #1 — see [ADR-001 §2.1](adr/ADR-001-homepage-experience-reconciliation.md))*: An engaging, interactive articulation of SamJuniors' philosophy.
 3. **Meet the Founder**: Introduces founder vision, journey, and principles.
 4. **What is SamJuniors?**: Explains the company mission, scope, and values.
 5. **Product Ecosystem**:
@@ -269,6 +273,33 @@ The homepage is organized into 10 cohesive narrative steps:
     - **Intent-Based Conversion**: Persona-aligned entry points for Students, Partners, Developers, and Job Seekers.
     - **Narrative Links**: Expressive, story-driven CTAs guiding visitors into dedicated chapters.
     - **No Dead Ends**: Guaranteed continuous pathways into deep-dive ecosystem layers.
+
+### 3.4.1 Current Executable Experience (5 Scenes)
+
+*The homepage as it exists and shall be implemented today: the truthful subset of the strategic model above, ratified by [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md) (founder-approved 2026-08-31, decision H1). Unverified strategic steps (7–9, and step 10's persona CTAs) are **explicitly deferred** until verified founder content exists — per the deferred-beats register in the ADR — and are never fabricated to restore the 10-step form.*
+
+**The five scenes, in order:**
+
+| Scene | Component today | Beat | Strategic steps covered | Signature status |
+| :--- | :--- | :--- | :--- | :--- |
+| **01 — Overture** | `HeroSection` | Vision (parent identity, building tenets) | 1, (2 folded into tenets), (4 in lead) | — |
+| **02 — Thesis** | `ThesisSection` (anchor `#thesis`) | Company scope + differentiation | 4, 6 (folded into Core Convictions) | — |
+| **03 — Lumora Reveal** | `LumoraStage` (anchor `#lumora`) | Flagship product proof | 5 | **Signature Moment #1** — scroll-linked progressive reveal; tap controls always override; honest conceptual-demonstration framing with `STATUS: BETA` |
+| **04 — Founder Letter** | `FounderLetter` | Human credibility | 3 | — (structurally ready for verified founder content — [copy.md §10](copy.md#10-placeholder--missing-copy-registry-pending-founder-copy) row 1; placeholder signature ships until supplied) |
+| **05 — Horizon** | `HorizonSection` | Ecosystem + dialogue pathways | 10 (generic two-path ending; persona CTAs deferred) | — |
+
+**Deferred beats** (activation requires founder-supplied verified content, never invention): step 7 Journey/Timeline (**Signature Moment #2 — deferred**), step 8 Social Proof, step 9 Future Roadmap, step 10 persona-specific CTAs. Full register with activation conditions: [ADR-001 §2.1](adr/ADR-001-homepage-experience-reconciliation.md).
+
+**Lumora dual-mode presentation (ADR-001 H4)**: the flagship demonstration is presented through two interaction modes over one shared content/state model (`src/content/lumora-demo.ts`):
+
+| Mode | Location | Interaction | Depth tier |
+| :--- | :--- | :--- | :--- |
+| Scroll-driven progressive reveal | Homepage Scene 03 | Phase progression linked to native scroll through a sticky stage; explicit tap controls always override | Understand |
+| Free/tap exploration | `/products/lumora` | Phase switching via tab/step controls only; no sticky, no scroll linkage | Deep Dive |
+
+**Boundary (binding)**: Lumora remains a conceptual/product demonstration in both modes; neither mode may imply unimplemented product functionality is live (honest `beta` status; registered evidence copy; exhibit-fiction note in [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora)). SamJuniors (company) demonstrates/explains Lumora (product); it never pretends to operate it.
+
+**Interaction rule (ADR-001 H5)**: homepage Lumora phase progression is scroll-linked with native browser scrolling remaining authoritative (zero scroll-jacking — UX-015, Hybrid Scroll model in [§6.6](#66-core-ux-principles)); explicit tap controls are always present and always override; `prefers-reduced-motion: reduce` collapses the scene to tap-only progression. Implementable motion/scene specification: [design-system.md §6.8](design-system.md#68-motion--micro-interactions).
 
 ### 3.5 Supporting IA & Experiential Principles
 The homepage architecture is bound to these certified principles (full design direction and governance text in [design-system.md](design-system.md)):
@@ -320,11 +351,12 @@ The homepage architecture is bound to these certified principles (full design di
 **Official Certification & Freeze Sign-Off**
 
 > [!IMPORTANT]
-> **Stage 3 Information Architecture is officially CERTIFIED and FROZEN.**
+> **Stage 3 Information Architecture is officially CERTIFIED and FROZEN — as amended by [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md) (founder-approved 2026-08-31).**
 >
 > 1. All IA deliverables (homepage architecture), principles (design & UX principles), and governance manifests (architecture manifesto) are locked as authoritative baselines.
 > 2. No further architectural or navigational changes may be introduced without a formal, founder-approved Architecture Decision Record (ADR).
 > 3. The project is officially cleared to advance to wireframing (low-fidelity structural blueprints) and downstream phases.
+> 4. **ADR-001 amendment**: the 10-step homepage narrative remains the certified strategic model; the current executable production experience is the truthful 5-scene arc ([§3.4.1](#341-current-executable-experience-5-scenes)) with unverified beats explicitly deferred. This amendment was processed through exactly the ADR mechanism required by clause 2 — no other aspect of the frozen IA is altered.
 
 ---
 
@@ -464,6 +496,7 @@ Founder presence is structured across two depths to provide authentic leadership
 > - Never equate *SamJuniors = Founder*.
 > - The homepage must not become a founder autobiography.
 > - Founder context must not be hidden or buried inside an obscure page.
+> - **ADR-001 H3 (2026-08-31)**: founder copy is **not a blocker** for presentation architecture — no founder identity, biography, or claims may be invented; the homepage Founder Letter scene is *structurally ready* for verified founder content (Scene 04, [§3.4.1](#341-current-executable-experience-5-scenes)) and ships its honest placeholder signature until the founder supplies it ([copy.md §10](copy.md#10-placeholder--missing-copy-registry-pending-founder-copy) row 1).
 
 ### 4.8 The Future Layer
 The Future layer transparently communicates direction without speculative hype, strictly enforcing four classification tiers:
@@ -961,6 +994,7 @@ Shared Entry ──> Founder Deep Dive ──> Ecosystem Trajectory ──> Hone
 **Hybrid Scroll & Progression Model**
 > **"Normal scrolling remains the default control. Immersive interactions are used selectively."**
 - Zero scroll-jacking; natural momentum preserved; scroll-linked motion passes the *Animation Purpose Test* (*"If removing it harms comprehension, keep it; if removing it only alters decoration, delete it"*).
+- **ADR-001 H5 execution (2026-08-31)**: the single sanctioned scroll-linked interaction is the Lumora scene's phase progression (homepage only) — driven by scroll-position thresholds, with native scrolling 100% authoritative and explicit tap controls always present and always overriding the scroll-derived state; `prefers-reduced-motion: reduce` collapses it to tap-only progression. Implementation contract: [design-system.md §6.8](design-system.md#68-motion--micro-interactions).
 
 #### Design Governance
 The human-craft governance constraint (**Human-Made Design & Implementation, HUMAN-001**) — including the Distinctiveness Test and the Human-Authorship Test — applies across all UX work and is governed in full in [design-system.md](design-system.md).
