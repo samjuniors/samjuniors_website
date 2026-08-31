@@ -43,7 +43,35 @@ When resolving design, architectural, or content questions, adhere strictly to t
 
 ---
 
-## 2. Phase Master Map & Document Index
+## 2. Core Implementation Rule: Internal Knowledge ≠ Website Content
+
+> [!CAUTION]
+> **BUILD FROM UNDERSTANDING, NOT TRANSCRIPTION.**
+> 
+> All documentation under `docs/company/` and `docs/website/` is **internal source material** for the design and engineering team. Contributors and AI agents must **READ, UNDERSTAND, SYNTHESIZE, and APPLY** the underlying intent.
+
+### Explicit Prohibitions (Never Render to Visitors)
+- Do NOT mechanically copy documentation into website sections.
+- Do NOT expose internal decision IDs (e.g., `COMPANY-001`, `UX-013`, `CONTENT-003`).
+- Do NOT expose UX principle names, research citations, or category labels on visitor-facing interfaces.
+- Do NOT expose internal roadmap, phase numbers, or process terminology.
+- Do NOT turn documentation headings or bullet points directly into website cards or sections.
+- Do NOT create "documentation presented as a website."
+
+### The Visitor Experience Standard
+The visitor-facing website must communicate the underlying strategy through:
+- Professional, high-craft editorial content
+- Intentional visual hierarchy and spatial rhythm
+- Authentic product storytelling and living interactive demonstration stages
+- Intuitive composition, low-friction navigation, and natural narrative pacing
+
+The final website should feel like a real, professionally designed technology company website.
+
+*This binding rule applies across all implementation phases: Wireframes, Design System, UI Design, Vertical Slice, Frontend Development, and QA.*
+
+---
+
+## 3. Phase Master Map & Document Index
 
 | Phase # | Phase Name | Status | Primary Purpose | Primary Artifacts |
 | :--- | :--- | :--- | :--- | :--- |
@@ -63,7 +91,7 @@ When resolving design, architectural, or content questions, adhere strictly to t
 
 ---
 
-## 3. Authoritative Reading Order
+## 4. Authoritative Reading Order
 
 For contributors, reviewers, and AI agents onboarding to the project, review documentation in this sequential order:
 
@@ -77,7 +105,7 @@ For contributors, reviewers, and AI agents onboarding to the project, review doc
 
 ---
 
-## 4. Current Phase & Explicit Next Action
+## 5. Current Phase & Explicit Next Action
 
 - **Current Phase**: **Phase 6 — Wireframes & In-App Experience Prototyping**
 - **Production Scaffold State**: Initialized in Next.js 15 App Router (`src/app/`, `src/content/`, `src/styles/tokens.css`, Vitest, Playwright).
@@ -85,7 +113,7 @@ For contributors, reviewers, and AI agents onboarding to the project, review doc
 
 ---
 
-## 5. Phase-Gating Rule
+## 6. Phase-Gating Rule
 
 > [!IMPORTANT]
 > **Strict Phase Boundary Policy**:
