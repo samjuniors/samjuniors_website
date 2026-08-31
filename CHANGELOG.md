@@ -9,8 +9,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ## [Unreleased]
 
 ### Added
-- Added `UX-003: User Journey Mapping & Progressive Branching` (`docs/website/02-ux-principles/ux-003-user-journeys.md`) establishing shared entry narrative, detailed persona journey flows, decision points, destinations, and UX-004 (Progressive Branching Principle).
-- Added `UX-002: User Goals, Personas & Success Criteria` (`docs/website/02-ux-principles/ux-002-user-goals.md`) detailing Student, Institution, Business, Developer, and Investor personas, measurable success criteria, primary/secondary CTAs, and core UX principles (Clarity, Confidence, Progress, Efficiency, Completion).
+- **Phase 4 UX Milestone 1 Synchronized (UX-001 through UX-012)**:
+  - Created `UX-001: Primary User Personas` (`docs/website/02-ux-principles/ux-001-personas.md`).
+  - Created `UX-002: User Goals, Personas & Success Criteria` (`docs/website/02-ux-principles/ux-002-user-goals.md`).
+  - Created `UX-003: User Journey Mapping` (`docs/website/02-ux-principles/ux-003-user-journeys.md`).
+  - Created `Core UX Principles` (`docs/website/02-ux-principles/ux-principles.md`) capturing UX-004 through UX-012.
+  - Created `Cognitive UX Principles` (`docs/website/02-ux-principles/cognitive-ux-principles.md`) detailing psychological foundations, working memory, and cognitive load theory.
+  - Created `UX Decision Log` (`docs/website/02-ux-principles/ux-decision-log.md`) and `UX Master Index` (`docs/website/02-ux-principles/ux-index.md`).
+  - Updated `architecture-manifesto.md` and `brand-foundation.md` with new UX philosophy.
 - **Stage 3 (Information Architecture) Certified & Architecture Frozen**:
   - Created constitutional `architecture-manifesto.md` defining core philosophy, quality gates, and freeze policy.
   - Performed 10-dimension architectural audit and published `stage-3-certification.md`.

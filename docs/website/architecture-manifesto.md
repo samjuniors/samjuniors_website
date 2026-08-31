@@ -22,7 +22,15 @@ The SamJuniors website is the primary digital home and institutional anchor for 
 - **Experience Before Explanation**: Demonstrate capability through interactive, memorable experiences rather than passive text.
 - **Story Before Marketing**: Frame the website as a continuous, engaging documentary narrative rather than disconnected marketing collateral.
 - **Purpose Before Decoration**: Every visual element, motion transition, and component must have a functional or cognitive purpose.
-- **Progressive Disclosure**: Deliver simplicity first, allowing visitors to dive deeper into technical complexity at their own pace.
+- **Progressive Discovery (UX-005)**: Deliver simplicity first—one idea per scene—allowing visitors to dive deeper into technical complexity at their own pace.
+- **Visitor-Led Discovery (UX-006)**: Answer the visitor's next logical question naturally rather than broadcasting company-centric announcements.
+- **Scene-Based Storytelling (UX-007)**: Guide users through an intentional emotional arc (*Curiosity → Excitement → Understanding → Trust → Action*).
+- **Zero Fatigue Principle (UX-008)**: Ensure effortless reading through generous whitespace, high contrast, and optimal line lengths (50–75 characters).
+- **Cognitive Load First (UX-009)**: Eliminate unnecessary cognitive, interaction, and visual noise before introducing any new component.
+- **User Mental Model First (UX-010)**: Structure the ecosystem around user goals and outcomes rather than internal corporate hierarchies.
+- **Hybrid Navigation (UX-011)**: Combine stable, familiar global navigation with innovative, accessible content presentation.
+- **Hybrid Scroll & Progression Model (UX-012)**: Preserve standard browser scroll momentum; zero scroll-jacking; strictly enforce the animation purpose test.
+- **Progressive Branching (UX-004)**: Unify all visitors in a shared introductory narrative before branching into persona-specific journeys.
 
 ---
 
