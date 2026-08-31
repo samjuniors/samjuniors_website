@@ -7,18 +7,18 @@ import ContactPage from './contact/page';
 import ProductDetailPage from './products/[slug]/page';
 
 describe('Application Route Rendering', () => {
-  it('renders HomePage with company hero and flagship spotlight', () => {
+  it('renders HomePage with company hero and flagship stage', () => {
     render(<HomePage />);
     expect(screen.getByRole('heading', { level: 1 })).toBeDefined();
-    expect(screen.getByText(/Discover Lumora/i)).toBeDefined();
-    expect(screen.getByRole('heading', { level: 2, name: /Meet Lumora/i })).toBeDefined();
+    expect(screen.getByText(/Explore Lumora/i)).toBeDefined();
+    expect(screen.getByRole('heading', { level: 2, name: /Lumora — Spatial Logic & Authoring/i })).toBeDefined();
   });
 
   it('allows interactive mode switching in Lumora workbench', () => {
     render(<HomePage />);
-    const intelligenceTab = screen.getByRole('tab', { name: /Intelligence/i });
-    fireEvent.click(intelligenceTab);
-    expect(screen.getByText(/Contextual Intelligence Engine/i)).toBeDefined();
+    const contextTab = screen.getByRole('tab', { name: /Context Engine/i });
+    fireEvent.click(contextTab);
+    expect(screen.getByText(/Local Context Engine/i)).toBeDefined();
   });
 
   it('renders ProductsPage with product portfolio', () => {

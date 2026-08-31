@@ -1,0 +1,255 @@
+.stage {
+  padding: var(--section-spacing) 0;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.intro {
+  margin-bottom: var(--space-7);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-copper);
+  margin-bottom: var(--space-3);
+}
+
+.headline {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  margin-bottom: var(--space-3);
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Authentic Restrained Product Workbench */
+.workbench {
+  background: #101217;
+  border: 1px solid var(--border-hairline);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  margin-bottom: var(--space-8);
+}
+
+.topbar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-hairline);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.topbarLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  background: var(--accent-copper);
+  border-radius: 50%;
+}
+
+.topbarModes {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.modeBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.modeBtn:hover {
+  color: var(--text-main);
+}
+
+.modeBtn.active {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.workbenchBody {
+  display: grid;
+  grid-template-columns: 240px 1fr 220px;
+  min-height: 360px;
+}
+
+.treePanel {
+  background: rgba(12, 13, 16, 0.5);
+  border-right: 1px solid var(--border-hairline);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.panelTitle {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: var(--space-2);
+}
+
+.treeNode {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.treeNode:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.treeNode.activeNode {
+  color: var(--text-main);
+  background: rgba(200, 150, 102, 0.1);
+  border-color: rgba(200, 150, 102, 0.3);
+}
+
+.canvasStage {
+  background: #090a0d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  position: relative;
+}
+
+.canvasGrid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.schematicBox {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 380px;
+}
+
+.schematicIcon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-4) auto;
+  border: 1px solid var(--border-active);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent-copper);
+}
+
+.schematicTitle {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  color: var(--text-main);
+}
+
+.schematicDesc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.inspectorPanel {
+  background: rgba(12, 13, 16, 0.5);
+  border-left: 1px solid var(--border-hairline);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.propRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+}
+
+.propLabel {
+  color: var(--text-dim);
+}
+
+.propValue {
+  color: var(--text-main);
+}
+
+/* Feature Ledger */
+.featureLedger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-7);
+}
+
+.featureItem h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: var(--space-2);
+}
+
+.featureItem p {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 960px) {
+  .workbenchBody {
+    grid-template-columns: 1fr;
+  }
+  .treePanel, .inspectorPanel {
+    border: none;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .featureLedger {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}

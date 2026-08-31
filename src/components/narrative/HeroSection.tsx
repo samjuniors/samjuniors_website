@@ -7,28 +7,43 @@ export function HeroSection() {
   const flagship = getFlagshipProduct();
 
   return (
-    <section className={styles.hero} aria-labelledby="hero-title">
-      <div className={styles.eyebrow}>
-        <span className={styles.eyebrowLine} aria-hidden="true" />
-        <span>AI-First Parent Technology Ecosystem</span>
+    <section className={styles.hero} aria-labelledby="hero-heading">
+      <div className={styles.topline}>
+        <span className={styles.mark} aria-hidden="true" />
+        <span>Technology & Computing Ecosystem</span>
       </div>
 
-      <h1 id="hero-title" className={styles.headline}>
-        We see what could be next — <span className={styles.headlineMuted}>and build the technology to reach it.</span>
+      <h1 id="hero-heading" className={styles.headline}>
+        We see what could be next — <em>and build the technology to reach it.</em>
       </h1>
 
-      <p className={styles.subtext}>
-        {companyContent.name} turns ambitious ideas into enduring tools, spatial systems, and human interfaces for the next era of computing.
+      <p className={styles.lead}>
+        {companyContent.name} creates purposeful computing systems, spatial tools, and human interfaces designed for long-term utility rather than short-lived novelty.
       </p>
 
       <div className={styles.actionRow}>
-        <Link href={`/products/${flagship.slug}`} className={styles.primaryBtn}>
-          <span>Discover {flagship.name}</span>
-          <span aria-hidden="true">→</span>
+        <Link href="#lumora" className={styles.primaryBtn}>
+          <span>Explore {flagship.name}</span>
+          <span aria-hidden="true">↓</span>
         </Link>
-        <Link href="#philosophy" className={styles.secondaryBtn}>
-          <span>Read Building Thesis</span>
+        <Link href="#thesis" className={styles.textLink}>
+          Why We Build →
         </Link>
+      </div>
+
+      <div className={styles.anchorLedger} aria-label="Company Core Standards">
+        <div className={styles.ledgerItem}>
+          <span className={styles.ledgerTitle}>Enduring Utility</span>
+          <span>Zero disposable software</span>
+        </div>
+        <div className={styles.ledgerItem}>
+          <span className={styles.ledgerTitle}>Local-First Reasoning</span>
+          <span>Zero cloud dependency for private workflows</span>
+        </div>
+        <div className={styles.ledgerItem}>
+          <span className={styles.ledgerTitle}>Open Tooling</span>
+          <span>Zero proprietary vendor lock-in</span>
+        </div>
       </div>
     </section>
   );

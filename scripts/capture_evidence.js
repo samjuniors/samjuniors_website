@@ -3,10 +3,14 @@ const fs = require('fs');
 const path = require('path');
 
 async function captureEvidence() {
-  const outputDir = path.join('C:', 'Users', 'STUDIO-1', '.gemini', 'antigravity-ide', 'brain', 'a2b1a0ad-e5e8-4a29-b600-2ee24058a2dc', 'visual_review');
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
+  const projectScreenshotsDir = path.join(process.cwd(), 'Screenshots');
+  const artifactDir = path.join('C:', 'Users', 'STUDIO-1', '.gemini', 'antigravity-ide', 'brain', 'a2b1a0ad-e5e8-4a29-b600-2ee24058a2dc', 'visual_review');
+
+  [projectScreenshotsDir, artifactDir].forEach(dir => {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  });
 
   const browser = await chromium.launch({ headless: true });
 
@@ -20,57 +24,61 @@ async function captureEvidence() {
   await desktopPage.goto('http://localhost:3000', { waitUntil: 'networkidle' });
   await desktopPage.waitForTimeout(1000);
 
-  // Full page
-  await desktopPage.screenshot({ path: path.join(outputDir, 'desktop_full_journey.png'), fullPage: true });
+  // Desktop Full Journey
+  const desktopFull = path.join(projectScreenshotsDir, 'desktop_full_journey.png');
+  await desktopPage.screenshot({ path: desktopFull, fullPage: true });
+  fs.copyFileSync(desktopFull, path.join(artifactDir, 'desktop_full_journey.png'));
 
-  // Viewport 1: Hero
+  // 1440px Desktop Hero
   await desktopPage.evaluate(() => window.scrollTo(0, 0));
   await desktopPage.waitForTimeout(400);
-  await desktopPage.screenshot({ path: path.join(outputDir, 'desktop_01_hero.png') });
+  const desktopHero = path.join(projectScreenshotsDir, 'desktop_01_hero.png');
+  await desktopPage.screenshot({ path: desktopHero });
+  fs.copyFileSync(desktopHero, path.join(artifactDir, 'desktop_01_hero.png'));
 
-  // Viewport 2: Philosophy (The 4 Filters)
-  const philElem = await desktopPage.$('#philosophy');
-  if (philElem) {
-    await philElem.scrollIntoViewIfNeeded();
+  // Desktop Thesis Section
+  const thesisElem = await desktopPage.$('#thesis');
+  if (thesisElem) {
+    await thesisElem.scrollIntoViewIfNeeded();
     await desktopPage.waitForTimeout(400);
-    await desktopPage.screenshot({ path: path.join(outputDir, 'desktop_02_philosophy.png') });
+    const desktopThesis = path.join(projectScreenshotsDir, 'desktop_02_thesis.png');
+    await desktopPage.screenshot({ path: desktopThesis });
+    fs.copyFileSync(desktopThesis, path.join(artifactDir, 'desktop_02_thesis.png'));
   }
 
-  // Viewport 3: Lumora Showcase & Workbench
+  // Desktop Lumora Section
   const lumoraElem = await desktopPage.$('#lumora');
   if (lumoraElem) {
     await lumoraElem.scrollIntoViewIfNeeded();
     await desktopPage.waitForTimeout(400);
-    await desktopPage.screenshot({ path: path.join(outputDir, 'desktop_03_lumora_stage.png') });
+    const desktopLumora = path.join(projectScreenshotsDir, 'desktop_03_lumora.png');
+    await desktopPage.screenshot({ path: desktopLumora });
+    fs.copyFileSync(desktopLumora, path.join(artifactDir, 'desktop_03_lumora.png'));
 
-    // Click Intelligence tab to demonstrate interactive state
-    const intelligenceTab = await desktopPage.$('button[role="tab"]:has-text("Intelligence")');
-    if (intelligenceTab) {
-      await intelligenceTab.click();
+    // Interactive Tab Switch (Context Engine)
+    const contextTab = await desktopPage.$('button[role="tab"]:has-text("Context Engine")');
+    if (contextTab) {
+      await contextTab.click();
       await desktopPage.waitForTimeout(400);
-      await desktopPage.screenshot({ path: path.join(outputDir, 'desktop_03b_lumora_interactive_state.png') });
+      const desktopLumoraContext = path.join(projectScreenshotsDir, 'desktop_03b_lumora_context_engine.png');
+      await desktopPage.screenshot({ path: desktopLumoraContext });
+      fs.copyFileSync(desktopLumoraContext, path.join(artifactDir, 'desktop_03b_lumora_context_engine.png'));
     }
   }
 
-  // Viewport 4: Ecosystem & Founder
-  const ecoElem = await desktopPage.$('#ecosystem');
-  if (ecoElem) {
-    await ecoElem.scrollIntoViewIfNeeded();
-    await desktopPage.waitForTimeout(400);
-    await desktopPage.screenshot({ path: path.join(outputDir, 'desktop_04_ecosystem_founder.png') });
-  }
-
-  // Viewport 5: Gateways & Footer
+  // Desktop Founder / Ending
   const footerElem = await desktopPage.$('footer');
   if (footerElem) {
     await footerElem.scrollIntoViewIfNeeded();
     await desktopPage.waitForTimeout(400);
-    await desktopPage.screenshot({ path: path.join(outputDir, 'desktop_05_gateways_footer.png') });
+    const desktopEnding = path.join(projectScreenshotsDir, 'desktop_04_founder_ending.png');
+    await desktopPage.screenshot({ path: desktopEnding });
+    fs.copyFileSync(desktopEnding, path.join(artifactDir, 'desktop_04_founder_ending.png'));
   }
 
   await desktopContext.close();
 
-  // 2. MOBILE CAPTURE (390x844 - iPhone 14 / modern standard mobile viewport)
+  // 2. MOBILE CAPTURE (390x844 - iPhone 14 standard)
   console.log('Capturing Mobile 390px screenshots...');
   const mobileContext = await browser.newContext({
     viewport: { width: 390, height: 844 },
@@ -82,52 +90,54 @@ async function captureEvidence() {
   await mobilePage.goto('http://localhost:3000', { waitUntil: 'networkidle' });
   await mobilePage.waitForTimeout(1000);
 
-  // Full page
-  await mobilePage.screenshot({ path: path.join(outputDir, 'mobile_full_journey.png'), fullPage: true });
+  // Mobile Full Journey
+  const mobileFull = path.join(projectScreenshotsDir, 'mobile_full_journey.png');
+  await mobilePage.screenshot({ path: mobileFull, fullPage: true });
+  fs.copyFileSync(mobileFull, path.join(artifactDir, 'mobile_full_journey.png'));
 
-  // Mobile Viewport 1: Hero
+  // 390px Mobile Hero
   await mobilePage.evaluate(() => window.scrollTo(0, 0));
   await mobilePage.waitForTimeout(400);
-  await mobilePage.screenshot({ path: path.join(outputDir, 'mobile_01_hero.png') });
+  const mobileHero = path.join(projectScreenshotsDir, 'mobile_01_hero.png');
+  await mobilePage.screenshot({ path: mobileHero });
+  fs.copyFileSync(mobileHero, path.join(artifactDir, 'mobile_01_hero.png'));
 
-  // Mobile Viewport 2: Philosophy
-  const mPhilElem = await mobilePage.$('#philosophy');
-  if (mPhilElem) {
-    await mPhilElem.scrollIntoViewIfNeeded();
+  // Mobile Thesis
+  const mThesisElem = await mobilePage.$('#thesis');
+  if (mThesisElem) {
+    await mThesisElem.scrollIntoViewIfNeeded();
     await mobilePage.waitForTimeout(400);
-    await mobilePage.screenshot({ path: path.join(outputDir, 'mobile_02_philosophy.png') });
+    const mobileThesis = path.join(projectScreenshotsDir, 'mobile_02_thesis.png');
+    await mobilePage.screenshot({ path: mobileThesis });
+    fs.copyFileSync(mobileThesis, path.join(artifactDir, 'mobile_02_thesis.png'));
   }
 
-  // Mobile Viewport 3: Lumora Stage
+  // Mobile Lumora
   const mLumoraElem = await mobilePage.$('#lumora');
   if (mLumoraElem) {
     await mLumoraElem.scrollIntoViewIfNeeded();
     await mobilePage.waitForTimeout(400);
-    await mobilePage.screenshot({ path: path.join(outputDir, 'mobile_03_lumora_stage.png') });
+    const mobileLumora = path.join(projectScreenshotsDir, 'mobile_03_lumora.png');
+    await mobilePage.screenshot({ path: mobileLumora });
+    fs.copyFileSync(mobileLumora, path.join(artifactDir, 'mobile_03_lumora.png'));
   }
 
-  // Mobile Viewport 4: Ecosystem & Founder
-  const mEcoElem = await mobilePage.$('#ecosystem');
-  if (mEcoElem) {
-    await mEcoElem.scrollIntoViewIfNeeded();
-    await mobilePage.waitForTimeout(400);
-    await mobilePage.screenshot({ path: path.join(outputDir, 'mobile_04_ecosystem_founder.png') });
-  }
-
-  // Mobile Viewport 5: Gateways & Footer
+  // Mobile Ending / Founder
   const mFooterElem = await mobilePage.$('footer');
   if (mFooterElem) {
     await mFooterElem.scrollIntoViewIfNeeded();
     await mobilePage.waitForTimeout(400);
-    await mobilePage.screenshot({ path: path.join(outputDir, 'mobile_05_gateways_footer.png') });
+    const mobileEnding = path.join(projectScreenshotsDir, 'mobile_04_founder_ending.png');
+    await mobilePage.screenshot({ path: mobileEnding });
+    fs.copyFileSync(mobileEnding, path.join(artifactDir, 'mobile_04_founder_ending.png'));
   }
 
   await mobileContext.close();
   await browser.close();
-  console.log('All screenshots captured successfully in:', outputDir);
+  console.log('All screenshots captured successfully into Screenshots/ folder.');
 }
 
 captureEvidence().catch(err => {
-  console.error('Error capturing screenshots:', err);
+  console.error('Error capturing evidence:', err);
   process.exit(1);
 });
