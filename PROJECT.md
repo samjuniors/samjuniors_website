@@ -75,7 +75,7 @@ No implementation begins before relevant documentation is reviewed and approved.
 - [x] Phase 2 — Information Architecture (Certified & Frozen; IA-001 to IA-009, WD-015 to WD-027).
 - [x] Phase 3 — Content Strategy (Messaging framework, content model, CONTENT-001 to CONTENT-010 complete).
 - [x] Phase 4 — UX Principles & User Flows (UX-001 to UX-019 and USER-FLOW-001 to USER-FLOW-005 complete).
-- [ ] Phase 5 — Design Research (Pending Phase 4 sign-off).
+- [x] Phase 5 — Design Research (Evidence-driven research and implications documented in design-research.md).
 - [ ] Phase 6 — Wireframes (Pending Phase 5 completion).
 - [ ] Phase 7 — Design System (Pending Phase 6 sign-off).
 - [ ] Phase 8 — UI Design (Pending Phase 7 sign-off).
