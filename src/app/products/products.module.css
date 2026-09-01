@@ -1,7 +1,12 @@
-/* Products portfolio page — CSS Modules + design tokens (debt D4/D5/D6 conversion).
-   The hardcoded pre-Phase-7 blue background was replaced with the
-   var(--color-accent-blue-muted) token; broken token names mapped to the
-   certified token set per qa-checklist.md §2.3. */
+/*
+ * Products portfolio — flagship composition (design-system §6.8.6, 2026-09-01).
+ * CSS Modules + design tokens (debt D4/D5/D6 conversion): the hardcoded
+ * pre-Phase-7 blue background was replaced with the var(--color-accent-blue-muted)
+ * token; broken token names mapped to the certified token set per qa-checklist §2.3.
+ * The page leads with one full-width flagship panel (elevated surface + copper
+ * top edge via --border-active) — honest at one-product scale; ventures follow
+ * in the standard grid when they exist.
+ */
 
 .page {
   padding-top: var(--space-8);
@@ -10,7 +15,7 @@
 
 .pageHeader {
   max-width: var(--container-narrow);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-8);
 }
 
 .eyebrow {
@@ -32,6 +37,46 @@
   font-size: 1.15rem;
   color: var(--color-text-secondary);
   line-height: 1.5;
+}
+
+/* Flagship panel — one real flagship at flagship scale. */
+.flagshipPanel {
+  --reveal-distance: 16px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-top: 1px solid var(--color-border-active);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-6), 6vw, var(--space-8));
+  margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-md);
+}
+
+.flagshipMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-5);
+}
+
+.flagshipTitle {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-2);
+}
+
+.flagshipTagline {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: var(--color-accent-copper);
+  margin-bottom: var(--space-4);
+}
+
+.flagshipDescription {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 720px;
+  margin-bottom: var(--space-6);
 }
 
 .grid {

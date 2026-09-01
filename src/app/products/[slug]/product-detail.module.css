@@ -99,6 +99,34 @@
   line-height: 1.5;
 }
 
+/* Interactive demonstration exhibit (ADR-001 H4 explore mode, 2026-09-01):
+   demo-type evidence renders as the tap-only deep-dive — the same workbench
+   frame as the homepage signature scene in normal document flow. */
+.demoSection {
+  margin-bottom: var(--space-8);
+}
+
+.demoFraming {
+  max-width: var(--container-editorial);
+  margin-bottom: var(--space-5);
+}
+
+.demoFraming .statusLabel {
+  display: inline-block;
+  margin-top: var(--space-3);
+  color: var(--color-accent-copper);
+}
+
+.demoLead {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.demoStage {
+  width: 100%;
+}
+
 /* D7: contextual product-evidence surface (spec §4.5, Product class).
    Accent tokens already used on this page for product-flagship signaling. */
 .evidenceSection {

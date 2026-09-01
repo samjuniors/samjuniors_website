@@ -52,7 +52,7 @@ src/
 ```
 
 > [!NOTE]
-> **ADR-001 (2026-08-31; implemented 2026-09-01 vertical slice)**: `Reveal` (§4.10) and `StickyStage` (§4.12) are **implemented and QA-verified** (founder-approved cinematic pass, scenes 01–03 + mobile stepper); `SceneProgress` (§4.11) remains **SPECIFIED** and enters with the scene-grammar propagation pass. Supporting additions from the same slice: `LumoraPhaseVisual` (§4.13), `LumoraMobileStepper` (§4.14), and the motion hooks `src/hooks/usePrefersReducedMotion.ts` / `src/hooks/useMediaQuery.ts` (`useSyncExternalStore`-based, SSR-safe). The decision record lives in [docs/website/adr/](adr/).
+> **ADR-001 (2026-08-31; implemented 2026-09-01 vertical slice + propagation pass)**: `Reveal` (§4.10), `StickyStage` (§4.12), and `SceneProgress` (§4.11) are **implemented and QA-verified**; the workbench body is shared across both H4 modes via `LumoraWorkbenchBody` (§4.15) and the `/products/lumora` explore-mode exhibit ships as `LumoraDemoExplore` (§4.16). Supporting additions from the same slice: `LumoraPhaseVisual` (§4.13), `LumoraMobileStepper` (§4.14), and the motion hooks `src/hooks/usePrefersReducedMotion.ts` / `src/hooks/useMediaQuery.ts` (`useSyncExternalStore`-based, SSR-safe). The decision record lives in [docs/website/adr/](adr/).
 
 ---
 
@@ -133,14 +133,14 @@ src/
 - **A11y**: purely presentational; no aria attributes; never wraps focusable content in a way that delays availability (content is in the DOM and visible from first paint).
 - **Status**: ✅ **IMPLEMENTED (2026-09-01, ADR-001 vertical slice)** — adopted by `HeroSection` (Scene 01) and `ThesisSection` (Scene 02); verified against [qa-checklist §2.10](qa-checklist.md#210-motion--interaction-safety-adr-001-implementation-gates) (see the decisions.md QA run record).
 
-### 4.11 `SceneProgress` (SPECIFIED, ADR-001 — post-slice)
-- **Files (at implementation)**: `src/components/interactive/SceneProgress.tsx` + `SceneProgress.module.css` — not yet implemented (deliberately out of the vertical slice; enters with the scene-grammar propagation pass).
+### 4.11 `src/components/interactive/SceneProgress.tsx` (+ `SceneProgress.module.css`) — *persistent homepage wayfinding (implemented)*
 - **Type**: Client component (`'use client'` — observes scene positions).
 - **Purpose**: persistent homepage wayfinding per [design-system §6.8.6](design-system.md#686-scene-composition-rules-the-scene-grammar): mono-indexed `01–05` progress rail; unifies the current duplicated numbering (hero tenets `01–03` vs. section indices `02–06`) into one system.
-- **Props** (`SceneProgressProps`): `scenes: Array<{ id: string; index: string }>` (target section ids + display numbers; homepage: `overture`-equivalent existing section ids — final ids fixed at implementation).
-- **Rendering**: fixed left rail ≥ 1200px; compact top indicator below; `aria-current="true"` on the active scene; each entry is an anchor link to its scene (keyboard operable, focus-visible via global rule).
-- **Binding contracts**: reduced-motion — visible but without animated indicator transitions; no-JS — degrades to a plain in-page anchor list (server-rendered, default state active-agnostic); never hides or overlaps content (`pointer-events` limited to the entries; z-index below modals).
-- **Status**: 🔒 SPECIFIED — the only ADR-001 primitive still pending; ships in the propagation pass after founder review of the vertical slice.
+- **Props** (`SceneProgressProps`): `scenes: Array<{ id: string; index: string }>` — homepage: `overture` / `thesis` / `lumora` / `founder` / `horizon` with indices `01`–`05` (declared as the `SCENES` constant in `src/app/page.tsx`; the section ids live on the scene `<section>` elements).
+- **Rendering (implemented 2026-09-01)**: fixed left rail ≥ 1200px (28px wide, left 8px — inside the outer gutter, never reaching content text; vertically centered; entries 44px tall); compact top indicator strip below the page header < 1200px (same markup, media-query layout; glass token + blur; 44px targets). Active scene = the last section whose top has crossed the 40%-viewport line, re-derived from fresh rects per IO callback (dense thresholds, root band = top 50% of viewport — observation only, zero scroll capture); `aria-current="true"` on the active entry; micro-feedback only (150ms color + tick `scaleX`).
+- **Binding contracts (verified)**: reduced-motion — visible and state-accurate without animated transitions (the global rule neutralizes the 150ms micro-feedback); no-JS — the full server-rendered anchor list keeps working natively with the active state simply absent (active-agnostic default); never hides or overlaps content (`pointer-events: none` on the rail, `auto` on the entries; z-index 90 under the page header's 100); anchor landings clear the fixed chrome via `scroll-margin-top` on the target sections.
+- **Chrome strings**: registered in [copy.md §1.5](copy.md#15-scene-wayfinding-sceneprogress-homepage-only) (`Scene Progress` nav label + `Scene 01…05` template labels — wayfinding chrome, not narrative copy).
+- **Status**: ✅ **IMPLEMENTED (2026-09-01, scene-grammar propagation pass)** — the last ADR-001 primitive; passed §2.10 gates (see decisions.md).
 
 ### 4.12 `src/components/interactive/StickyStage.tsx` (+ `StickyStage.module.css`) — *the signature-scene mechanism (implemented)*
 - **Type**: Client component (`'use client'` — owns the phase state machine).
@@ -162,6 +162,21 @@ src/
 - **Type**: Pure presentational component (no hooks, no state — rendered by `LumoraStage` below 980px).
 - **Renders**: an anchor segmented control (`#lumora-phase-01..04`, 2×2 grid, every target ≥ 44px) + the four phases as sequential full-width segments, each carrying the full workbench parity set: badge, headline, narrative, HUD line, phase visual (`LumoraPhaseVisual`), inline sources panel (`Academic Context` / `Resolved`), inline diagnostics panel (`Diagnostics` / `Grounded`), status footer (engine + privacy lines) — **never `display:none`** (§6.8.7, qa-checklist §2.10.6). Segment anchors carry `scroll-margin-top` so navigation lands clear of the sticky header; anchors work with and without JavaScript.
 - **Status**: ✅ pattern-compliant (added 2026-09-01 with the vertical slice; resolves debt D11's mobile-parity half — no new copy).
+
+### 4.15 `src/components/interactive/LumoraWorkbenchBody.tsx` — *the shared workbench frame (both H4 modes)*
+- **Type**: Client component (`'use client'`).
+- **Origin**: extracted verbatim from the former `LumoraStage.tsx` body (2026-09-01 propagation pass — pure refactor, rendering byte-identical; the phase-swap hook and all registered §4 strings moved with it).
+- **Props**: the `StickyStageChildrenApi` (`{ phase, phaseIndex, phaseCount, selectPhase }`) — state ownership remains with `StickyStage` (§4.12).
+- **Renders**: the cinematic intelligence workbench frame — window chrome + step tabs, 3-column body (sources panel / center stage with `LumoraPhaseVisual` / diagnostics panel), status footer with prev/next controls — plus the phase-change cross-fades (WAAPI, 320ms, transform/opacity, skipped on mount/reduced motion). Styles consumed from `LumoraStage.module.css` (shared with the scene).
+- **Consumers**: homepage Scene 03 (`LumoraStage` → `StickyStage` scroll mode) and `/products/lumora` (`LumoraDemoExplore` → explore mode) — one frame, two ADR-001 H4 presentation modes.
+- **Status**: ✅ pattern-compliant (extraction verified rendering-identical; no new copy — copy.md §4.1–§4.4 literals only).
+
+### 4.16 `src/components/interactive/LumoraDemoExplore.tsx` — *the /products/lumora interactive exhibit (H4 explore mode)*
+- **Type**: Client component (`'use client'`).
+- **Purpose**: ADR-001 H4 deep-dive tier — the same content/state model as the homepage signature scene in free/tap exploration: `StickyStage mode="explore"` (normal document flow, no sticky, no scroll linkage, no pacing geometry) wrapping `LumoraWorkbenchBody`.
+- **Consumer**: `/products/[slug]` renders it for `type: 'demo'` evidence (the registered `Academic Intelligence Demonstration` strings frame the exhibit; static evidence types keep their card form). The honest-framing signals (evidence copy + `STATUS:` label) are rendered by the page around this component.
+- **Safety**: explore mode is exactly the reduced-motion behavior — motion-safe by construction in every environment; no-JS renders the first phase + controls (server HTML verified).
+- **Status**: ✅ **IMPLEMENTED (2026-09-01, scene-grammar propagation pass)** — completes the ADR-001 H4 dual-mode presentation.
 
 ---
 

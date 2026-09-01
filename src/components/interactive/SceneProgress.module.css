@@ -1,0 +1,107 @@
+/*
+ * SceneProgress — persistent homepage wayfinding (design-system §6.8.6,
+ * component-inventory §4.11).
+ *
+ * One composition, two layouts: fixed left rail ≥ 1200px (sits inside the
+ * outer gutter — the container is 1240px max, so a 28px rail at left 8px
+ * never reaches content text at any width ≥ 1200px); compact top indicator
+ * strip below the fixed page header below 1200px. Micro-feedback only:
+ * 150ms color/transform (§6.8.2 micro budget), neutralized by the global
+ * reduced-motion rule. Pointer-events are limited to the entries; z-index 90
+ * keeps the rail under the page header (100) and any modal layer.
+ */
+
+.rail {
+  position: fixed;
+  z-index: 90;
+  pointer-events: none; /* entries only — never intercept content (§4.11) */
+  display: none; /* rail layout activates at ≥ 1200px below */
+}
+
+.entry {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3px;
+  min-height: 44px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.entry:hover,
+.entry:focus-visible {
+  color: var(--text-muted);
+}
+
+.entry[aria-current='true'] {
+  color: var(--accent-copper);
+}
+
+.number {
+  line-height: 1;
+}
+
+/* Active tick: widens via transform only (micro budget, §6.8.2). */
+.tick {
+  width: 14px;
+  height: 1px;
+  background: var(--border-solid);
+  transform-origin: left center;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+}
+
+.entry[aria-current='true'] .tick {
+  transform: scaleX(2);
+  background: var(--accent-copper);
+}
+
+/* Desktop rail: fixed, vertically centered, in the outer gutter. */
+@media (min-width: 1200px) {
+  .rail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .entry {
+    width: 28px;
+    padding-left: 4px;
+  }
+}
+
+/* Compact top indicator: strip below the fixed page header. */
+@media (max-width: 1199px) {
+  .rail {
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    right: 0;
+    top: var(--header-height, 73px);
+    height: 44px;
+    background: var(--color-bg-glass);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .entry {
+    flex: 1 1 0;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .tick {
+    transform-origin: center;
+  }
+}

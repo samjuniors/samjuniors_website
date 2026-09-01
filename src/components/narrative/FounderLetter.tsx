@@ -3,7 +3,7 @@ import styles from './FounderLetter.module.css';
 
 export function FounderLetter() {
   return (
-    <section className={styles.letterSection} aria-labelledby="founder-perspective-title">
+    <section id="founder" className={styles.letterSection} aria-labelledby="founder-perspective-title">
       <div className={styles.labelRow}>
         <span className={styles.indexNumber}>04</span>
         <span className={styles.divider}>/</span>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { companyContent } from '@/content/company';
+import { Reveal } from '@/components/interactive/Reveal';
 import styles from './contact.module.css';
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default function ContactPage() {
       </header>
 
       <section className={styles.gatewaySection}>
-        <div className={styles.gatewayCard}>
+        <Reveal as="div" className={styles.gatewayCard}>
           <h2 className={styles.cardTitle}>
             Ecosystem Communications Gateway
           </h2>
@@ -33,7 +34,7 @@ export default function ContactPage() {
           <div className={styles.email}>
             contact@samjuniors.com
           </div>
-        </div>
+        </Reveal>
       </section>
     </div>
   );

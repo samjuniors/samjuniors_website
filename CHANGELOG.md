@@ -8,6 +8,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added — Scene-Grammar Propagation (2026-09-01, founder-approved continuation)
+
+The founder's standing post-refinement approval executed in full — the five-scene grammar is now live site-wide, bounded to ADR-001 + existing specifications. Zero new narrative copy (one invented chrome string was caught and removed during implementation; every remaining string is registered).
+
+- **`SceneProgress` wayfinding** (component-inventory §4.11 — the last ADR-001 primitive, now implemented): the unified 01–05 scene numbering as a persistent rail — fixed left rail ≥ 1200px (inside the outer gutter, never over content), compact top indicator strip below (glass token, 44px targets); IO-derived `aria-current` (observation only, zero scroll capture); every entry a native in-page anchor (`#overture`/`#thesis`/`#lumora`/`#founder`/`#horizon`) that works without JavaScript (active state simply absent — active-agnostic default). Scene ids + anchor scroll margins added to the sections. Chrome strings registered in copy.md §1.5.
+- **Scene 04 Founder stillness composition**: the letter centers in a near-viewport-height quiet room (72vh, flex-centered, narrowest 840px measure, scene-owned width) — stillness is the pacing device; no entry motion. Decompression beat tuned after full-page rhythm review (clamp(72px, 10vh, 120px)); letter line-height tightened 1.55 → 1.5 for intimacy.
+- **Scene 05 Horizon closure**: the scene settles into the closure tone (`--color-bg-surface-subtle`, flowing into the footer's end-credits register) with a gentle ~12vh entry ramp out of the Founder's base tone; scene-owned 1240px container inside the full-bleed tone.
+- **`/products` flagship composition**: one real flagship at flagship scale — a spacious elevated panel (copper top edge via `--border-active`, first-entry reveal) instead of a uniform card grid; the ventures grid renders only when ventures exist. Honest at one-product scale (no fabricated products, no empty-state filler); VLM: "intentional scarcity rather than empty state."
+- **`/products/lumora` explore mode** (ADR-001 H4 deep-dive tier, now implemented): demo-type evidence renders as the interactive conceptual demonstration — the same content/state model and workbench frame as the homepage signature scene in tap-only free exploration (normal flow, no sticky, no scroll linkage). The workbench body was extracted verbatim into `LumoraWorkbenchBody` (§4.15 — rendering-identical, shared by both H4 modes) and the exhibit ships as `LumoraDemoExplore` (§4.16). The static demo-evidence card is replaced by the exhibit framed by its own registered copy + `STATUS: BETA` — the page's "interactive" promise is now delivered. VLM: 9/10, "strongest page in the set."
+- **`/about` + `/contact` editorial treatment**: calm group reveals (each section surfaces once as a unit — ≤ 2 per page, existing `Reveal` primitive); no scene drama — distinct, role-appropriate identities per the founder's "do not make every page behave like Lumora."
+
 ### Changed — Vertical-Slice Review Refinements (2026-09-01, founder-directed)
 
 Two targeted refinements from the founder's slice review — no scope beyond them; the five-scene architecture, native scrolling, sticky stage, phase model/content, mobile stepper, and all safety contracts are unchanged.

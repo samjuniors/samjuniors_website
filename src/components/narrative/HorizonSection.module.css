@@ -1,6 +1,38 @@
+/*
+ * Scene 05 — Horizon (design-system §6.8.6 lighting rhythm).
+ * Closure composition: the scene settles into the closure tone
+ * (--color-bg-surface-subtle) — the same register the footer continues —
+ * with a gentle entry ramp (~12vh) out of the Founder's base tone: the
+ * re-expansion opens quietly and the closure zone carries through to the
+ * end credits. Static background CSS only; no layout change.
+ */
 .section {
   padding: var(--section-spacing) 0 clamp(56px, 10vh, 96px) 0;
+  background-color: var(--bg-surface-subtle);
+  background-image: linear-gradient(to bottom, var(--bg-base), transparent 12vh);
   position: relative;
+}
+
+/* Scene-owned width (§6.8.6): the standard 1240px container measure,
+   inside the full-bleed closure tone. */
+.sectionInner {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* Anchor navigation (#horizon — SceneProgress / native links): keep the
+   scene header clear of the fixed page header (and the compact wayfinding
+   strip below 1200px). */
+.section {
+  scroll-margin-top: calc(var(--header-height, 73px) + 24px);
+}
+
+@media (max-width: 1199px) {
+  .section {
+    scroll-margin-top: calc(var(--header-height, 73px) + 56px);
+  }
 }
 
 .grid {

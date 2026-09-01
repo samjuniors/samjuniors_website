@@ -14,8 +14,9 @@ import styles from './HorizonSection.module.css';
  */
 export function HorizonSection() {
   return (
-    <section className={styles.section} aria-label="Ecosystem and Dialogue">
-      <div className={styles.grid}>
+    <section id="horizon" className={styles.section} aria-label="Ecosystem and Dialogue">
+      <div className={styles.sectionInner}>
+        <div className={styles.grid}>
         <Reveal className={styles.col}>
           <div className={styles.labelRow}>
             <span className={styles.indexNumber}>05</span>
@@ -45,6 +46,7 @@ export function HorizonSection() {
             Connect With Leadership →
           </Link>
         </Reveal>
+        </div>
       </div>
     </section>
   );

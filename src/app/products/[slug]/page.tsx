@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getProductBySlug, products } from '@/content/products';
 import { companyContent } from '@/content/company';
+import { LumoraDemoExplore } from '@/components/interactive/LumoraDemoExplore';
 import styles from './product-detail.module.css';
 
 interface ProductPageProps {
@@ -45,6 +46,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const capabilities = product.capabilities.filter((cap) => !cap.isPlaceholder);
   const evidence = (product.verifiableEvidence ?? []).filter((item) => !item.isPlaceholder);
 
+  // ADR-001 H4 explore mode: demo-type evidence renders as the interactive
+  // conceptual demonstration (tap-only, no scroll linkage); other evidence
+  // types keep their static card form.
+  const demoEvidence = evidence.find((item) => item.type === 'demo');
+  const staticEvidence = evidence.filter((item) => item.type !== 'demo');
+
   return (
     <div className={`container ${styles.page}`}>
       {/* Breadcrumb Navigation for Direct Deep-Link Entry */}
@@ -77,6 +84,28 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </p>
       </header>
 
+      {/* Interactive Conceptual Demonstration (ADR-001 H4 explore mode) —
+          the deep-dive tier of the Lumora dual-mode presentation: the same
+          content/state model as the homepage signature scene, tap-only. */}
+      {demoEvidence && (
+        <section className={styles.demoSection} aria-labelledby="demo-exhibit-title">
+          <div className={styles.demoFraming}>
+            <h2 id="demo-exhibit-title" className={styles.sectionTitle}>
+              {demoEvidence.title}
+            </h2>
+            <p className={styles.demoLead}>
+              {demoEvidence.description}
+            </p>
+            <span className={styles.statusLabel}>
+              STATUS: {product.status}
+            </span>
+          </div>
+          <div className={styles.demoStage}>
+            <LumoraDemoExplore />
+          </div>
+        </section>
+      )}
+
       {/* Capabilities Section */}
       {capabilities.length > 0 && (
         <section className={styles.capabilitiesSection}>
@@ -98,11 +127,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </section>
       )}
 
-      {/* Verifiable Evidence Section (spec §4.5 Product evidence class) */}
-      {evidence.length > 0 && (
+      {/* Verifiable Evidence Section (spec §4.5 Product evidence class) —
+          static evidence forms only; demo-type evidence renders above as the
+          interactive exhibit. */}
+      {staticEvidence.length > 0 && (
         <section className={styles.evidenceSection}>
           <div className={styles.evidenceGrid}>
-            {evidence.map((item, idx) => (
+            {staticEvidence.map((item, idx) => (
               <article key={idx} className={styles.evidenceCard}>
                 <h3 className={styles.evidenceTitle}>
                   {item.title}

@@ -85,6 +85,14 @@ Every string in this document carries exactly one status:
 | Body | `The requested resource or product entity does not exist in the active ecosystem.` |
 | CTA button | `Return to Home` → `/` |
 
+### 1.5 Scene Wayfinding (`SceneProgress`, homepage only)
+UI chrome for the persistent scene rail (design-system §6.8.6). The visible numerals reuse the unified scene indices `01`–`05`; the only new strings are the two template labels below (functional wayfinding chrome, not narrative copy).
+| Element | Literal text | Source |
+| :--- | :--- | :--- |
+| Nav aria-label | `Scene Progress` | SceneProgress.tsx |
+| Entry aria-label (×5) | `Scene 01` … `Scene 05` (template: `Scene ` + index) | SceneProgress.tsx |
+| Entry visible text | `01` … `05` (aria-hidden — the numeral is decorative; the label carries meaning) | page.tsx `SCENES` |
+
 ---
 
 ## 2. Home — Hero (`HeroSection`)
@@ -278,7 +286,7 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 | `Intelligent Decision Guidance` | `Provides grounded academic advice, scheduling optimization, and degree trajectory planning.` |
 | `Focused Action Workspace` | `Turns synthesized guidance directly into structured study sprints and research execution.` |
 
-**Rendered on the product detail page since the 2026-08-31 second pass** (debt D7 — the surface sits below the capability grid; the card carries only these registered strings, no section label was invented):
+**Rendered on the product detail page since the 2026-08-31 second pass** (debt D7 — the surface sits below the capability grid; the card carries only these registered strings, no section label was invented). **Since the 2026-09-01 propagation pass, the `demo`-type evidence renders as the interactive exhibit** (ADR-001 H4 explore mode): the title/description strings above become the exhibit's framing (heading + lead + `STATUS:` label), wrapped around the same workbench demonstration as homepage Scene 03 — same registered §4 strings inside, tap-driven only. The static card form remains for non-demo evidence types:
 
 | Evidence item | Literal text |
 | :--- | :--- |

@@ -2,14 +2,38 @@
  * Scene 04 — Founder Letter (design-system §6.8.6).
  * Scene transition grammar (Lumora → Founder, “decompression / silence”):
  * after the signature scene's extended phase-4 departure, the letter gets
- * a longer silent beat than the standard section spacing before it speaks
- * — stillness is the pacing device; no entry motion is added here.
+ * a deliberate silent beat before it speaks — stillness is the pacing
+ * device; no entry motion is added here. The beat is tuned tighter than a
+ * raw void: enough silence to reset the eye after the signature scene, not
+ * so much that the emptiness reads as missing content.
+ * Stillness composition (§6.8.6): the scene occupies a near-viewport-height
+ * room with the letter centered in intentional emptiness — the pause the
+ * narrative needs after the interactive signature scene. Static CSS only.
  */
 .letterSection {
-  padding: clamp(88px, 12vh, 144px) 0 var(--section-spacing);
+  padding: clamp(72px, 10vh, 120px) 0 var(--section-spacing);
+  padding-inline: var(--container-padding);
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: var(--container-narrow);
   margin: 0 auto;
   position: relative;
+  box-sizing: border-box;
+}
+
+/* Anchor navigation (#founder — SceneProgress / native links): keep the
+   scene header clear of the fixed page header (and the compact wayfinding
+   strip below 1200px). */
+.letterSection {
+  scroll-margin-top: calc(var(--header-height, 73px) + 24px);
+}
+
+@media (max-width: 1199px) {
+  .letterSection {
+    scroll-margin-top: calc(var(--header-height, 73px) + 56px);
+  }
 }
 
 /*
@@ -70,7 +94,7 @@
 .letterBody {
   font-size: clamp(1.25rem, 2.2vw, 1.65rem);
   font-weight: 300;
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--text-main);
   margin-bottom: var(--space-6);
   letter-spacing: -0.015em;

@@ -19,7 +19,7 @@ export function HeroSection() {
   const flagship = getFlagshipProduct();
 
   return (
-    <section className={styles.hero} aria-labelledby="hero-heading">
+    <section id="overture" className={styles.hero} aria-labelledby="hero-heading">
       <div className={`container ${styles.heroShell}`}>
         <Reveal className={styles.topline}>
           <span className={styles.statusPulse} aria-hidden="true" />

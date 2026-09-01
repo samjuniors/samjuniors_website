@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { companyContent } from '@/content/company';
+import { Reveal } from '@/components/interactive/Reveal';
 import styles from './about.module.css';
 
 export const metadata: Metadata = {
@@ -22,12 +23,13 @@ export default function AboutPage() {
         </p>
       </header>
 
-      {/* 4-Point Building Filter */}
+      {/* 4-Point Building Filter — editorial reading rhythm: each section
+          surfaces once as a unit (design-system §6.8.4, calm group reveal) */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>
           The Four Foundational Filters
         </h2>
-        <div className={styles.filterList}>
+        <Reveal className={styles.filterList}>
           {companyContent.buildingFilters.map((filter, index) => (
             <div key={filter.id} className={styles.filterCard}>
               <span className={styles.filterNumber}>
@@ -43,7 +45,7 @@ export default function AboutPage() {
               </div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* Building Cycle */}
@@ -51,7 +53,7 @@ export default function AboutPage() {
         <h2 className={styles.sectionTitle}>
           Iterative Building Cycle
         </h2>
-        <div className={styles.cycleGrid}>
+        <Reveal className={styles.cycleGrid}>
           {companyContent.buildingCycle.map((cycle) => (
             <div key={cycle.stage} className={styles.cycleCard}>
               <div className={styles.cycleStage}>
@@ -65,7 +67,7 @@ export default function AboutPage() {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
     </div>
   );
