@@ -1,0 +1,260 @@
+/*
+ * LumoraWorkflowBody — editorial walkthrough frame.
+ * SamJuniors visual environment (obsidian + copper). Fixed body height at
+ * desktop so the frame never resizes between steps; natural height below.
+ */
+.frame {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Step selector */
+.stepRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.stepBtn,
+.stepBtnActive {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--bg-surface-subtle);
+  border: none;
+  border-top: 2px solid transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+  min-height: var(--min-touch-target);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.stepBtn:hover {
+  color: var(--color-text-primary);
+  background: var(--bg-surface-elevated);
+}
+
+.stepBtnActive {
+  background: var(--bg-surface-elevated);
+  border-top-color: var(--accent-copper);
+  color: var(--color-text-primary);
+}
+
+.stepBtnNum {
+  color: var(--accent-copper);
+  flex-shrink: 0;
+}
+
+.stepBtnLabel {
+  min-width: 0;
+}
+
+/* Body */
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  padding: var(--space-7);
+  min-height: 420px;
+  align-items: start;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.actorRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.order {
+  color: var(--accent-copper);
+}
+
+.actorDivider {
+  color: var(--color-text-muted);
+}
+
+.actor {
+  color: var(--color-text-secondary);
+}
+
+.headline {
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 500;
+  line-height: var(--leading-heading);
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.narrative {
+  font-size: 1rem;
+  line-height: var(--leading-body);
+  color: var(--color-text-secondary);
+  font-weight: 300;
+  margin: 0;
+  max-width: 60ch;
+}
+
+.decision {
+  font-size: 0.95rem;
+  line-height: var(--leading-body);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-accent-copper-border);
+}
+
+/* Fact ledger */
+.detailWrap {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.detailRow {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.detailRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.detailKey {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.detailVal {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-5);
+  background: var(--bg-surface-elevated);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.handoff {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  min-width: 0;
+}
+
+.handoffLabel {
+  color: var(--accent-copper);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  flex-shrink: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.indicator {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-text-secondary);
+}
+
+.controlBtn {
+  background: var(--surface-overlay);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-text-secondary);
+  width: var(--min-touch-target);
+  height: var(--min-touch-target);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.controlBtn:hover:not([aria-disabled='true']) {
+  color: var(--color-text-primary);
+  background: var(--bg-base);
+}
+
+/* At the first/last step the control is aria-disabled rather than `disabled`:
+   a disabled button leaves the tab order, so a keyboard user who steps to the
+   end would lose focus to <body> with nothing to return to. */
+.controlBtn[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1099px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-6);
+    min-height: 0;
+  }
+  .stepRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .footer {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-3);
+  }
+  .controls {
+    justify-self: end;
+  }
+}

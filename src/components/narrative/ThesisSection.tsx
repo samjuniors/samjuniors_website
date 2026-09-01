@@ -27,7 +27,9 @@ export function ThesisSection() {
             Technology should compound in value over decades, not fade with the <em>next cycle</em>.
           </h2>
           <p className={styles.statementLead}>
-            We deliberately avoid disposable wrappers and speculative hype. True technological institutions are built on deep utility, sovereign human control, and rigorous engineering craft.
+            We deliberately avoid disposable wrappers and speculative hype. Durable
+            software comes from real utility, rigorous engineering craft, and
+            keeping human judgement in the loop where the stakes are highest.
           </p>
         </Reveal>
 
@@ -65,14 +67,20 @@ export function ThesisSection() {
             <Reveal className={styles.proseBlock} delay={90}>
               <h3 className={styles.proseHeading}>Human Mastery Over Passive Automation</h3>
               <p className={styles.proseText}>
-                Computing should expand human creative mastery, not diminish it. We construct instruments that give creators, researchers, and thinkers sovereign precision, speed, and deeper comprehension—keeping the human at the center of every meaningful decision.
+                Computing should expand human judgement, not quietly replace it. We
+                build instruments that give professionals speed and comprehension
+                while keeping the person accountable for the outcome in control of
+                it — recommendation is the machine&apos;s job, the decision is theirs.
               </p>
             </Reveal>
 
             <Reveal className={styles.proseBlock} delay={180}>
-              <h3 className={styles.proseHeading}>Local Sovereignty &amp; Data Ownership</h3>
+              <h3 className={styles.proseHeading}>Truthful Systems</h3>
               <p className={styles.proseText}>
-                Private intellect, research notes, and creative assets belong entirely on the user&apos;s machine. Our platforms prioritize client-side execution and open standards, ensuring total privacy, zero telemetry retention, and lifetime ownership of your work.
+                A system should tell you how confident it is, show its working, and
+                keep a record of who decided what. We would rather surface an
+                uncertain result for review than present a confident-looking answer
+                nobody can audit.
               </p>
             </Reveal>
           </div>

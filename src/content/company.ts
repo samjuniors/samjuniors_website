@@ -2,7 +2,14 @@ import { CompanyIdentity } from './types';
 
 /**
  * Canonical Parent Company Foundation Data
- * Source: docs/company/company-foundation.md (COMPANY-001, COMPANY-002, COMPANY-003)
+ * Source: docs/company/foundation.md (founder-owned document).
+ *
+ * Founder presence: docs/company/foundation.md §1 records the *intended* role
+ * of the founder (visionary leader, builder-founder, long-term architect) but
+ * contains no founder name, biography, portrait, credentials, or statement.
+ * Those fields therefore remain `null` and every founder surface renders an
+ * honest pending state instead of fabricated identity. See the founder gate in
+ * src/components/narrative/FounderPresence.tsx.
  */
 export const companyContent: CompanyIdentity = {
   name: 'SamJuniors',
@@ -68,4 +75,16 @@ export const companyContent: CompanyIdentity = {
       description: 'Refine and compound platform value over decades of sustained craft.',
     },
   ],
+  /**
+   * Not yet supplied. Do not populate these fields with inferred, generated, or
+   * placeholder identity — the founder supplies them directly.
+   */
+  founder: {
+    name: null,
+    role: null,
+    bio: null,
+    portrait: null,
+    statement: null,
+  },
+  contactEmail: 'contact@samjuniors.com',
 };

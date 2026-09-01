@@ -1,8 +1,7 @@
-/* Product detail page — CSS Modules + design tokens (debt D1/D4/D5/D6/D7 conversion).
-   The placeholder capability label was removed and placeholder-flagged content is
-   gated out of render (D1); broken token names mapped to the certified token set (D5);
-   stale blue rgba replaced with var(--color-accent-blue-muted) (D6);
-   verifiableEvidence surface added using only registered copy.md strings (D7). */
+/*
+ * Product detail page. Tokens only — no new hardcoded visual values, and no
+ * second button system (the CTA uses the global .btn-primary / .text-link).
+ */
 
 .page {
   padding-top: var(--space-8);
@@ -17,6 +16,7 @@
 
 .breadcrumbLink {
   color: var(--color-text-secondary);
+  padding-block: 6px;
 }
 
 .breadcrumbCurrent {
@@ -24,7 +24,7 @@
 }
 
 .pageHeader {
-  max-width: var(--container-narrow);
+  max-width: var(--container-editorial);
   margin-bottom: var(--space-8);
 }
 
@@ -32,52 +32,169 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
 }
 
 .flagshipChip {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-accent-blue);
-  background: var(--color-accent-blue-muted);
-  padding: 2px 8px;
-  border-radius: 12px;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-copper);
+  background: var(--color-accent-copper-muted);
+  border: 1px solid var(--color-accent-copper-border);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
 }
 
 .statusLabel {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
+  font-size: 0.74rem;
+  color: var(--color-text-secondary);
 }
 
 .title {
   font-size: clamp(2.4rem, 5vw, 3.6rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  margin-bottom: var(--space-3);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.category {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
 }
 
 .tagline {
-  font-size: 1.25rem;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
 }
 
-.capabilitiesSection {
-  margin-bottom: var(--space-8);
+.description {
+  font-size: 1.05rem;
+  line-height: var(--leading-body);
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 68ch;
+}
+
+/* Who it is for / what it solves */
+.framingGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: var(--space-7);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.framingCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.metaLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-copper);
+  margin: 0;
+}
+
+.metaPrimary {
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.metaSecondary,
+.problem {
+  font-size: 0.98rem;
+  line-height: var(--leading-body);
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 64ch;
+}
+
+.principle {
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+  margin: var(--space-7) 0 0;
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--color-accent-copper-border);
+  max-width: 56ch;
+}
+
+/* Section furniture, shared by the blocks below. */
+.sectionEyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-copper);
+  margin: 0 0 var(--space-3);
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: var(--space-5);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 500;
+  line-height: var(--leading-heading);
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+  max-width: 30ch;
+}
+
+.sectionLead {
+  font-size: 1.02rem;
+  line-height: var(--leading-body);
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 66ch;
+}
+
+/* The workflow walkthrough gets its own elevated zone, mirroring the homepage
+   flagship scene's lighting so the two read as the same product. */
+.workflowSection {
+  background-color: var(--bg-surface-subtle);
+  background-image: linear-gradient(to bottom, var(--bg-base), transparent 12vh);
+  padding: var(--section-spacing) 0;
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  scroll-margin-top: var(--header-height, 73px);
+}
+
+.workflowIntro {
+  margin-bottom: var(--space-7);
+}
+
+.block {
+  padding-top: var(--space-8);
 }
 
 .capabilityGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-5);
+  margin-top: var(--space-6);
 }
 
 .capabilityCard {
@@ -88,74 +205,102 @@
 }
 
 .capabilityTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: var(--space-2);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
 }
 
 .capabilityDescription {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  line-height: var(--leading-body);
+  font-weight: 300;
   color: var(--color-text-secondary);
-  line-height: 1.5;
+  margin: 0;
 }
 
-/* Interactive demonstration exhibit (ADR-001 H4 explore mode, 2026-09-01):
-   demo-type evidence renders as the tap-only deep-dive — the same workbench
-   frame as the homepage signature scene in normal document flow. */
-.demoSection {
-  margin-bottom: var(--space-8);
-}
-
-.demoFraming {
-  max-width: var(--container-editorial);
-  margin-bottom: var(--space-5);
-}
-
-.demoFraming .statusLabel {
-  display: inline-block;
-  margin-top: var(--space-3);
-  color: var(--color-accent-copper);
-}
-
-.demoLead {
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-}
-
-.demoStage {
-  width: 100%;
-}
-
-/* D7: contextual product-evidence surface (spec §4.5, Product class).
-   Accent tokens already used on this page for product-flagship signaling. */
-.evidenceSection {
-  margin-bottom: var(--space-8);
-}
-
-.evidenceGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* Not-yet-built list: deliberately plainer than the capability cards so the
+   two are never mistaken for each other. */
+.roadmapList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-5);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  max-width: var(--container-editorial);
 }
 
-.evidenceCard {
-  background: var(--color-accent-blue-muted);
-  border: 1px solid var(--color-accent-blue-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
+.roadmapItem {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-hairline);
 }
 
-.evidenceTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
+.roadmapHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
   margin-bottom: var(--space-2);
 }
 
-.evidenceDescription {
-  font-size: 0.9rem;
+.roadmapTitle {
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.horizonTag {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text-secondary);
-  line-height: 1.5;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+}
+
+.roadmapDescription {
+  font-size: 0.92rem;
+  line-height: var(--leading-body);
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 64ch;
+}
+
+.ctaSection {
+  padding: var(--space-8) 0;
+  max-width: var(--container-editorial);
+}
+
+.ctaTitle {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 500;
+  line-height: var(--leading-heading);
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.ctaBody {
+  font-size: 1.05rem;
+  line-height: var(--leading-body);
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-6);
+  max-width: 66ch;
+}
+
+.ctaActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
 }
 
 .pageFooter {
@@ -170,21 +315,41 @@
 
 .footerContext {
   font-size: 0.85rem;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
+/* Standalone controls, so they carry the 44px target height. The breadcrumb
+   trail above is exempt (WCAG 2.5.8 inline exception: those links sit inside a
+   line of text) and only gets a little vertical padding. */
 .footerLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--min-touch-target);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary);
 }
 
 .viewAllLink {
-  color: var(--color-accent-blue);
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--min-touch-target);
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
-  font-weight: 500;
 }
 
 .viewAllLink:hover {
-  color: var(--color-accent-blue-hover);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 899px) {
+  .framingGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+  .ctaActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+  }
 }

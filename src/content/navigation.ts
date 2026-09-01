@@ -7,12 +7,12 @@ export const siteNavigation: NavigationStructure = {
     { label: 'Contact', href: '/contact' },
   ],
   footerLinks: [
-    { label: 'Products Portfolio', href: '/products' },
-    { label: 'Company Foundation', href: '/about' },
-    { label: 'Inquiries', href: '/contact' },
+    { label: 'Products', href: '/products' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
   ],
   primaryCta: {
-    label: 'Explore Ecosystem',
-    href: '/products',
+    label: 'Get in touch',
+    href: '/contact',
   },
 };

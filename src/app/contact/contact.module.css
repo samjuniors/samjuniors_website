@@ -14,27 +14,31 @@
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--color-accent-blue);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-copper);
   text-transform: uppercase;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .title {
   font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: var(--leading-tight);
   margin-bottom: var(--space-4);
 }
 
 .lead {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 300;
   color: var(--color-text-secondary);
-  line-height: 1.5;
+  line-height: var(--leading-body);
+  max-width: 62ch;
 }
 
 .gatewaySection {
-  max-width: var(--container-narrow);
+  max-width: var(--container-editorial);
 }
 
 .gatewayCard {
@@ -46,19 +50,64 @@
 
 .cardTitle {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: -0.015em;
   margin-bottom: var(--space-3);
 }
 
 .cardBody {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
+  font-weight: 300;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-4);
-  line-height: 1.5;
+  margin-bottom: var(--space-5);
+  line-height: var(--leading-body);
+  max-width: 60ch;
 }
 
+/* The address is the primary action on this page: real link, real target size. */
 .email {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--min-touch-target);
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--color-accent-blue);
+  font-size: 1rem;
+  color: var(--accent-copper);
+  border-bottom: 1px solid var(--color-accent-copper-border);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.email:hover {
+  color: var(--color-text-primary);
+}
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.noteLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-copper);
+  margin: 0;
+}
+
+.noteBody {
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: var(--leading-body);
+  color: var(--color-text-secondary);
+  margin: 0;
 }

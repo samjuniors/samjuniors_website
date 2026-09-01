@@ -1,0 +1,184 @@
+/*
+ * LumoraEvidence — the product evidence band.
+ *
+ * Intentional environment handoff: SamJuniors obsidian → the product's own
+ * light canvas. All colour comes from the --color-evidence-* roles in
+ * tokens.css so the handoff is token-driven, not hardcoded here.
+ */
+.band {
+  background: var(--color-evidence-canvas);
+  color: var(--color-evidence-ink);
+  padding: var(--section-spacing) 0;
+  /* Seams that read as a deliberate transition rather than a slab cut. */
+  box-shadow:
+    inset 0 1px 0 var(--color-evidence-border),
+    inset 0 -1px 0 var(--color-evidence-border);
+}
+
+.inner {
+  width: min(var(--container-max), 100%);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.header {
+  max-width: var(--container-narrow);
+  margin-bottom: var(--space-7);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-evidence-accent);
+  margin: 0 0 var(--space-3);
+}
+
+.title {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 500;
+  line-height: var(--leading-heading);
+  letter-spacing: -0.025em;
+  color: var(--color-evidence-ink);
+  margin: 0 0 var(--space-4);
+}
+
+.intro {
+  font-size: 1.05rem;
+  line-height: var(--leading-body);
+  color: var(--color-evidence-ink-muted);
+  margin: 0;
+  max-width: 68ch;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+  background: var(--color-evidence-surface);
+  border: 1px solid var(--color-evidence-border);
+  border-radius: 12px;
+  padding: var(--space-5);
+}
+
+/* Text-only evidence occupies the full width rather than leaving a gap where
+   a capture would sit. */
+.itemFull {
+  composes: item;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.figure {
+  margin: 0;
+  border: 1px solid var(--color-evidence-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-evidence-canvas);
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.itemHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.itemTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--color-evidence-ink);
+  margin: 0;
+}
+
+.demoTag {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-evidence-accent);
+  background: var(--color-evidence-tag-bg);
+  border: 1px solid var(--color-evidence-border);
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+}
+
+.itemDesc {
+  font-size: 0.98rem;
+  line-height: var(--leading-body);
+  color: var(--color-evidence-ink-muted);
+  margin: 0;
+}
+
+.observed {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+}
+
+.observedItem {
+  position: relative;
+  padding-left: var(--space-5);
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--color-evidence-ink);
+}
+
+.observedItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 10px;
+  height: 1px;
+  background: var(--color-evidence-accent);
+}
+
+@media (max-width: 900px) {
+  .item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+/* Phone rhythm: the band's cards stack, so the desktop spacing would push the
+   flagship beat past its share of the homepage. Spacing only — every evidence
+   item, its DEMO DATA tag and its full observed list are still present. */
+@media (max-width: 599px) {
+  .header {
+    margin-bottom: var(--space-6);
+  }
+  .list {
+    gap: var(--space-5);
+  }
+  .item,
+  .itemFull {
+    padding: var(--space-4);
+  }
+}

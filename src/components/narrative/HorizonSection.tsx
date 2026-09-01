@@ -23,27 +23,31 @@ export function HorizonSection() {
             <span className={styles.divider}>/</span>
             <span className={styles.label}>Ecosystem</span>
           </div>
-          <h2>An Expanding Ecosystem</h2>
+          <h2>What comes after the first product</h2>
           <p>
-            SamJuniors is built as an enduring technology institution. As we expand into new computing domains, every initiative shares our foundational architecture: client-side privacy, deterministic execution, and open standards.
+            SamJuniors is built to outlast any single release. Lumora is the first
+            platform to reach beta, and it sets the standard the rest of the
+            portfolio is held to: solve a real workflow, show the evidence, and
+            leave the consequential decision with a person.
           </p>
           <Link href="/products" className={styles.actionLink}>
-            Explore Portfolio Architecture →
+            See what we build →
           </Link>
         </Reveal>
 
         <Reveal className={styles.col} delay={90}>
           <div className={styles.labelRow}>
-            <span className={styles.indexNumber}>06</span>
-            <span className={styles.divider}>/</span>
             <span className={styles.label}>Collaboration</span>
           </div>
-          <h2>Initiate Dialogue</h2>
+          <h2>Start a conversation</h2>
           <p>
-            We welcome conversations with engineering partners, researchers, and creators who share our conviction in enduring computing craft and sovereign tools.
+            If you teach, run an institution, or build in this space, we want the
+            conversation. Early Lumora access, pilots, and engineering partnerships
+            all start the same way — an email that a person reads.
           </p>
-          <Link href="/contact" className={styles.actionLink}>
-            Connect With Leadership →
+          <Link href="/contact" className="btn-primary">
+            <span>Get in touch</span>
+            <span aria-hidden="true">→</span>
           </Link>
         </Reveal>
         </div>

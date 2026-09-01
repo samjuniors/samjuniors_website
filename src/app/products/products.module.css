@@ -105,8 +105,7 @@
 .status {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
+  color: var(--color-text-secondary);
 }
 
 .flagshipChip {

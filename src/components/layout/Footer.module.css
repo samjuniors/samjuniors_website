@@ -45,7 +45,12 @@
   list-style: none;
 }
 
+/* 44px target height (the text alone was ~16px). The row is a flex list, so the
+   extra height is absorbed by alignment rather than pushing the layout. */
 .link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--min-touch-target);
   color: var(--text-muted);
   font-size: 0.86rem;
   transition: color var(--duration-fast) var(--ease-out);

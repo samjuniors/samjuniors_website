@@ -1,7 +1,7 @@
 import { HeroSection } from '@/components/narrative/HeroSection';
 import { ThesisSection } from '@/components/narrative/ThesisSection';
-import { LumoraStage } from '@/components/interactive/LumoraStage';
-import { FounderLetter } from '@/components/narrative/FounderLetter';
+import { LumoraFlagship } from '@/components/narrative/LumoraFlagship';
+import { FounderPresence } from '@/components/narrative/FounderPresence';
 import { HorizonSection } from '@/components/narrative/HorizonSection';
 import { SceneProgress } from '@/components/interactive/SceneProgress';
 
@@ -18,36 +18,35 @@ const SCENES = [
 ] as const;
 
 /**
- * Homepage — the 5-scene executable experience (ADR-001 §3).
+ * Homepage — five scenes carrying seven beats.
  *
- * Each scene owns its composition width (design-system §6.8.6 width rhythm):
- * Scene 01 renders in the 1240px container, Scene 02 narrows to its 980px
- * editorial measure, Scene 03 breaks out wider than the container, and the
- * remaining scenes keep the standard container (their full scene-grammar
- * restaging is gated on founder review of the slice). Scene boundaries carry
- * the §6.8.6 transition grammar: dissolving seams, light ramps into/out of
- * the signature scene's elevated zone, and boundary spacing rhythm.
- * SceneProgress provides the persistent 01–05 wayfinding (§6.8.6).
+ * 01 Overture: who SamJuniors is and what it builds.
+ * 02 Thesis: why the company exists.
+ * 03 Lumora: the flagship product, stated compactly, closing with one band of
+ *    real product evidence. The full four-step workflow walkthrough lives on
+ *    /products/lumora — the homepage does not spend four viewport heights on
+ *    a single product, which is what keeps this beat inside its share of the
+ *    page rather than consuming it.
+ * 04 Founder: the human layer, with no invented founder identity.
+ * 05 Horizon: the clear next action.
+ *
+ * Scene boundaries carry the transition grammar (dissolving seams, light
+ * ramps, boundary spacing rhythm) and SceneProgress provides the persistent
+ * 01–05 wayfinding.
  */
 export default function HomePage() {
   return (
     <>
       <SceneProgress scenes={[...SCENES]} />
 
-      {/* 1. Parent Opening & Core Identity — Scene 01 Overture */}
       <HeroSection />
 
-      {/* 2. Editorial Building Thesis — Scene 02 */}
       <ThesisSection />
 
-      {/* 3. Authentic Restrained Flagship Stage — Scene 03 Lumora Reveal */}
-      <LumoraStage />
+      <LumoraFlagship />
 
-      {/* 4. Human Founder Conviction — Scene 04 (owns its 840px quiet measure) */}
-      <FounderLetter />
+      <FounderPresence />
 
-      {/* 5. Expanding Horizon & Dialogue — Scene 05 (owns its 1240px container
-          + full-bleed closure tone) */}
       <HorizonSection />
     </>
   );

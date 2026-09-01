@@ -16,8 +16,8 @@ import styles from './Reveal.module.css';
  * Reveal — first-entry viewport reveal primitive (design-system §6.8.4,
  * component-inventory §4.10, ADR-001).
  *
- * Fade + ≤20px rise, 250–350ms `--ease-out`, IntersectionObserver threshold
- * 0.2, fires once, unobserves after firing.
+ * Fade + ≤20px rise, 250–350ms `--ease-out`, fires once on any intersection,
+ * unobserves after firing.
  *
  * Safety contracts (binding, qa-checklist §2.10):
  * - No-JS: the server HTML renders fully visible — the pre-reveal class is
@@ -79,7 +79,12 @@ export function Reveal({
           setState('shown');
         }
       },
-      { threshold: 0.2 },
+      // Any intersection counts. A percentage threshold starves elements taller
+      // than the viewport — a 20% threshold can never be satisfied by a block
+      // five viewports tall, which would hide its content permanently. The
+      // negative bottom margin keeps the reveal from firing on the very first
+      // pixel instead.
+      { threshold: 0, rootMargin: '0px 0px -80px 0px' },
     );
     observer.observe(el);
     return () => observer.disconnect();

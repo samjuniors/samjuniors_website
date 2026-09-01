@@ -16,8 +16,9 @@
 }
 
 .brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  min-height: var(--min-touch-target);
   gap: var(--space-3);
   font-weight: 600;
   font-size: 0.98rem;
@@ -45,7 +46,13 @@
   list-style: none;
 }
 
+/* Nav links carry the full 44px target height inside the 72px bar: the text is
+   0.88rem, so without it the hit area was ~17px tall. The height is invisible
+   because the row is centre-aligned. */
 .navLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--min-touch-target);
   color: var(--text-muted);
   font-size: 0.88rem;
   font-weight: 400;
@@ -59,6 +66,8 @@
 .cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-height: var(--min-touch-target);
   padding: 8px 18px;
   background: var(--text-main);
   color: var(--bg-base);
@@ -73,9 +82,109 @@
   transform: translateY(-1px);
 }
 
+/* Compact navigation — a CSS-only disclosure, present only below the desktop
+   breakpoint. Hidden above it; the inline nav is hidden below it. */
+.compactNav {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .nav {
+  .desktopNav,
+  .desktopCta {
     display: none;
+  }
+
+  .compactNav {
+    display: block;
+  }
+
+  .compactToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: var(--min-touch-target);
+    min-width: var(--min-touch-target);
+    padding: 0 var(--space-3);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .compactToggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .compactToggle:hover,
+  .compactNav[open] .compactToggle {
+    color: var(--text-main);
+    border-color: var(--accent-copper);
+  }
+
+  /* Three-bar mark drawn from the border tokens; the label carries the meaning. */
+  .toggleBars {
+    position: relative;
+    width: 16px;
+    height: 10px;
+    border-top: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+  }
+
+  .toggleBars::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    border-top: 1.5px solid currentColor;
+  }
+
+  .compactNav[open] .toggleWord::after {
+    content: ' ·';
+    color: var(--accent-copper);
+  }
+
+  .compactPanel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--bg-base);
+    /* Hairline (not subtle) so the panel's bottom edge is visible against the
+       obsidian page behind it — the shadow alone reads as nothing on dark. */
+    border-bottom: 1px solid var(--border-hairline);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-5) var(--container-padding) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .compactList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  .compactLink {
+    display: flex;
+    align-items: center;
+    min-height: var(--min-touch-target);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border-hairline);
+    color: var(--text-main);
+    font-size: 1rem;
+  }
+
+  .compactLink:hover {
+    color: var(--accent-copper);
   }
 }
 

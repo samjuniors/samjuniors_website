@@ -63,7 +63,19 @@
   background: var(--accent-copper);
 }
 
-/* Desktop rail: fixed, vertically centered, in the outer gutter. */
+/* Reserves the compact strip's height in flow so it never covers scene content.
+   The height comes from --wayfinding-strip so scenes can subtract the same value
+   from their viewport math (see HeroSection.module.css). */
+.stripSpacer {
+  height: var(--wayfinding-strip, 0px);
+}
+
+/* Desktop rail: fixed, vertically centered, in the outer gutter.
+   The rail carries its own opaque plate because it floats over scenes with
+   different canvases — including the full-bleed Lumora evidence band, whose
+   light surface (#f7f6f2) drops the rail's dim mono text to ~3.3:1. No single
+   text tone can clear 4.5:1 against both that band and the obsidian base, so
+   the rail supplies its own background instead of changing the tone. */
 @media (min-width: 1200px) {
   .rail {
     display: flex;
@@ -72,6 +84,10 @@
     left: 8px;
     top: 50%;
     transform: translateY(-50%);
+    padding: 6px 4px;
+    background: var(--bg-base);
+    border: 1px solid var(--border-hairline);
+    border-radius: var(--radius-sm);
   }
 
   .entry {
@@ -80,7 +96,8 @@
   }
 }
 
-/* Compact top indicator: strip below the fixed page header. */
+/* Compact top indicator: strip below the fixed page header. Opaque for the
+   same reason as the desktop rail — the light evidence band scrolls under it. */
 @media (max-width: 1199px) {
   .rail {
     display: flex;
@@ -89,10 +106,12 @@
     right: 0;
     top: var(--header-height, 73px);
     height: 44px;
-    background: var(--color-bg-glass);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    background: var(--bg-base);
     border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .stripSpacer {
+    height: var(--wayfinding-strip, 44px);
   }
 
   .entry {

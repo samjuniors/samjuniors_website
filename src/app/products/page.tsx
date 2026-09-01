@@ -6,8 +6,9 @@ import { Reveal } from '@/components/interactive/Reveal';
 import styles from './products.module.css';
 
 export const metadata: Metadata = {
-  title: 'Products Portfolio',
-  description: `Explore the expanding portfolio of AI-first products and platforms developed by ${companyContent.name}.`,
+  title: 'Products',
+  description: `What ${companyContent.name} builds: one flagship platform in beta today, presented with what it does and what it does not do yet.`,
+  alternates: { canonical: '/products' },
 };
 
 /**
@@ -27,13 +28,14 @@ export default function ProductsPage() {
     <div className={`container ${styles.page}`}>
       <header className={styles.pageHeader}>
         <div className={styles.eyebrow}>
-          Portfolio Architecture
+          What we build
         </div>
         <h1 className={styles.title}>
-          Product Ecosystem
+          Products
         </h1>
         <p className={styles.lead}>
-          Expressions of {companyContent.name} engineering, designed for lasting utility, human agency, and systemic scale.
+          One product is in beta today. {companyContent.name} would rather present a
+          single real platform honestly than a portfolio page of intentions.
         </p>
       </header>
 
@@ -42,10 +44,10 @@ export default function ProductsPage() {
         <Reveal key={product.slug} as="article" className={styles.flagshipPanel}>
           <div className={styles.flagshipMeta}>
             <span className={styles.status}>
-              {product.status}
+              {product.statusLabel}
             </span>
             <span className={styles.flagshipChip}>
-              FLAGSHIP
+              Flagship
             </span>
           </div>
           <h2 className={styles.flagshipTitle}>
@@ -58,7 +60,7 @@ export default function ProductsPage() {
             {product.shortDescription}
           </p>
           <Link href={`/products/${product.slug}`} className={styles.exploreLink}>
-            Explore {product.name} →
+            How {product.name} works →
           </Link>
         </Reveal>
       ))}
@@ -71,7 +73,7 @@ export default function ProductsPage() {
               <div>
                 <div className={styles.cardMeta}>
                   <span className={styles.status}>
-                    {product.status}
+                    {product.statusLabel}
                   </span>
                 </div>
                 <h2 className={styles.cardTitle}>
@@ -82,7 +84,7 @@ export default function ProductsPage() {
                 </p>
               </div>
               <Link href={`/products/${product.slug}`} className={styles.exploreLink}>
-                Explore {product.name} →
+                How {product.name} works →
               </Link>
             </article>
           ))}

@@ -41,16 +41,19 @@ export function HeroSection() {
             className={styles.lead}
             delay={120}
           >
-            {companyContent.name} bridges visionary computing concepts and production-grade systems. We engineer enduring software, intelligent platforms, and human interfaces designed for sovereign control and long-term utility.
+            {companyContent.name} builds production software in the places where
+            professional and academic work still breaks down. One flagship
+            platform is in beta today; everything we ship is engineered to keep
+            the person doing the work in charge of the decisions that matter.
           </Reveal>
 
           <Reveal className={styles.actionRow} delay={180}>
-            <Link href="#lumora" className={styles.primaryBtn}>
-              <span>Experience {flagship.name}</span>
-              <span aria-hidden="true">↓</span>
+            <Link href={`/products/${flagship.slug}`} className="btn-primary">
+              <span>See what {flagship.name} does</span>
+              <span aria-hidden="true">→</span>
             </Link>
-            <Link href="#thesis" className={styles.textLink}>
-              Our Building Philosophy →
+            <Link href="#thesis" className="text-link">
+              Why we build this way →
             </Link>
           </Reveal>
         </div>
@@ -84,10 +87,11 @@ export function HeroSection() {
           <div className={styles.tenetItem}>
             <div className={styles.tenetHeader}>
               <span className={styles.tenetNumber}>03</span>
-              <span className={styles.tenetTitle}>Local Sovereignty</span>
+              <span className={styles.tenetTitle}>Human Authority</span>
             </div>
             <p className={styles.tenetBody}>
-              Zero cloud telemetry, retention, or platform lock-in on private coursework, research, and personal data.
+              Automation proposes; the responsible person decides and releases. No
+              consequential outcome leaves our systems without a human acting on it.
             </p>
           </div>
         </Reveal>

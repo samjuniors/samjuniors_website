@@ -45,8 +45,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - var(--header-height, 73px));
-  min-height: calc(100svh - var(--header-height, 73px));
+  /* The wayfinding strip occupies flow height below 1200px (SceneProgress);
+     subtracting it keeps the overture exactly one screen tall there too. */
+  min-height: calc(100vh - var(--header-height, 73px) - var(--wayfinding-strip, 0px));
+  min-height: calc(100svh - var(--header-height, 73px) - var(--wayfinding-strip, 0px));
   padding-top: clamp(48px, 8vh, 96px);
   padding-bottom: var(--space-7);
 }
@@ -111,34 +113,8 @@
   flex-wrap: wrap;
 }
 
-.primaryBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  background: var(--text-main);
-  color: var(--bg-base);
-  padding: 12px 26px;
-  border-radius: 4px;
-  font-size: 0.92rem;
-  font-weight: 500;
-  transition: all var(--duration-fast) var(--ease-out);
-}
-
-.primaryBtn:hover {
-  background: #ffffff;
-  transform: translateY(-1px);
-}
-
-.textLink {
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  font-weight: 400;
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-.textLink:hover {
-  color: var(--text-main);
-}
+/* Buttons come from the single global system (.btn-primary / .text-link in
+   globals.css) — this scene does not define a second one. */
 
 /* Continuous Tenets Baseline — closes the overture frame */
 .tenetsRow {

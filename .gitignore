@@ -51,3 +51,9 @@ coverage/
 tmp/
 temp/
 archive/
+
+# Local tooling & QA artifacts
+.claude/
+.playwright-mcp/
+qa-*.png
+

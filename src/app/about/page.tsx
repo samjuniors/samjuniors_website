@@ -4,8 +4,9 @@ import { Reveal } from '@/components/interactive/Reveal';
 import styles from './about.module.css';
 
 export const metadata: Metadata = {
-  title: 'Company Foundation & Philosophy',
+  title: 'About',
   description: companyContent.purpose,
+  alternates: { canonical: '/about' },
 };
 
 export default function AboutPage() {

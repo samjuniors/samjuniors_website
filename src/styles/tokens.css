@@ -16,11 +16,15 @@
   --color-bg-overlay: rgba(255, 255, 255, 0.03);
   --color-bg-glass: rgba(18, 20, 26, 0.85);
 
-  /* Typographic Contrast Tones */
+  /* Typographic Contrast Tones.
+     Measured against --color-bg-base (#0b0c0f): primary 17.4:1,
+     secondary 7.3:1, muted 5.5:1, dim 4.5:1 — every tone clears WCAG AA for
+     normal-size text. The previous muted (#5a6372, 3.3:1) and dim (#404652,
+     2.1:1) values failed it. Keep any new tone at or above 4.5:1. */
   --color-text-primary: #f4f6fa;
   --color-text-secondary: #959fae;
-  --color-text-muted: #5a6372;
-  --color-text-dim: #404652;
+  --color-text-muted: #7e8899;
+  --color-text-dim: #6f7a8c;
 
   /* Structural Hairlines & Borders */
   --color-border-hairline: rgba(255, 255, 255, 0.08);
@@ -47,6 +51,22 @@
   --color-status-warning-border: rgba(255, 158, 102, 0.3);
   --color-status-success: #4ea881;
   --color-status-success-bg: rgba(78, 168, 129, 0.1);
+
+  /* =========================================================================
+     1b. Product Evidence Surface (Lumora's own environment)
+     -------------------------------------------------------------------------
+     The evidence band deliberately leaves the SamJuniors obsidian environment
+     and adopts the product's light canvas: what is shown there belongs to
+     Lumora, not to the parent company. These roles exist so that handoff is
+     token-driven rather than hardcoded per component.
+     ========================================================================= */
+  --color-evidence-canvas: #f7f6f2;
+  --color-evidence-surface: #ffffff;
+  --color-evidence-ink: #1b1a25;
+  --color-evidence-ink-muted: #55525f;
+  --color-evidence-accent: #4f3db0;
+  --color-evidence-border: rgba(27, 26, 37, 0.12);
+  --color-evidence-tag-bg: rgba(79, 61, 176, 0.08);
 
   /* Backward-Compatibility Aliases */
   --bg-base: var(--color-bg-base);
@@ -130,6 +150,16 @@
 
   /* Layout reference: sticky header visual height (72px bar + hairline) */
   --header-height: 73px;
+
+  /* Homepage wayfinding: the compact scene strip occupies flow height only
+     below the desktop rail breakpoint (see SceneProgress.module.css). */
+  --wayfinding-strip: 0px;
+}
+
+@media (max-width: 1199px) {
+  :root {
+    --wayfinding-strip: 44px;
+  }
 }
 
 /* Reduced Motion Support */

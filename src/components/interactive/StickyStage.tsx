@@ -10,26 +10,25 @@ import {
   type ReactNode,
 } from 'react';
 import {
-  LUMORA_DEMO_STEP_ORDER,
-  type LumoraDemoStepId,
-} from '@/content/lumora-demo';
+  LUMORA_WORKFLOW_STEP_ORDER,
+  type LumoraWorkflowStepId,
+} from '@/content/lumora-workflow';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import styles from './StickyStage.module.css';
 
 /**
- * StickyStage — the Lumora signature-scene mechanism (design-system §6.8.5,
- * component-inventory §4.12, ADR-001 H4/H5).
+ * StickyStage — scroll-phase stage mechanism for the Lumora workflow walkthrough.
  *
  * Two modes over the shared content/state model:
- * - 'scroll' (homepage): the workbench frame is wrapped in a sticky stage;
- *   phase sentinels inside the tall container drive an IntersectionObserver
- *   state machine; native scrolling stays 100% authoritative (observed,
- *   never captured); explicit tap controls always override and re-sync the
- *   viewport to the matching sentinel.
- * - 'explore' (/products/lumora, reduced motion): tap-only phase switching,
- *   normal document flow, no sticky, no scroll linkage.
+ * - 'scroll': the stage body is wrapped in a sticky frame; phase sentinels
+ *   inside the tall container drive an IntersectionObserver state machine;
+ *   native scrolling stays 100% authoritative (observed, never captured);
+ *   explicit tap controls always override and re-sync the viewport to the
+ *   matching sentinel.
+ * - 'explore' (reduced motion): tap-only phase switching, normal document
+ *   flow, no sticky, no scroll linkage.
  *
- * Safety contracts (binding, qa-checklist §2.10):
+ * Safety contracts (binding):
  * - No-JS: the sticky geometry is applied only after this script mounts
  *   (data-scroll-active) — server HTML keeps normal flow, first phase,
  *   controls in the DOM.
@@ -39,24 +38,21 @@ import styles from './StickyStage.module.css';
  */
 
 export interface StickyStageChildrenApi {
-  /** Active phase id (from LUMORA_DEMO_STEP_ORDER). */
-  phase: LumoraDemoStepId;
+  /** Active phase id (from LUMORA_WORKFLOW_STEP_ORDER). */
+  phase: LumoraWorkflowStepId;
   /** Zero-based index of the active phase. */
   phaseIndex: number;
   /** Phase count (tabs/indicator render). */
   phaseCount: number;
   /** Explicit tap override — sets the phase and re-syncs the viewport. */
-  selectPhase: (id: LumoraDemoStepId) => void;
+  selectPhase: (id: LumoraWorkflowStepId) => void;
 }
 
 export interface StickyStageProps {
   mode?: 'scroll' | 'explore';
-  /** Phase order (defaults to LUMORA_DEMO_STEP_ORDER from the content layer). */
-  phaseOrder?: readonly LumoraDemoStepId[];
-  /**
-   * The workbench frame as a function of the phase state (the existing
-   * LumoraStage body re-composed — component-inventory §4.12).
-   */
+  /** Phase order (defaults to LUMORA_WORKFLOW_STEP_ORDER from the content layer). */
+  phaseOrder?: readonly LumoraWorkflowStepId[];
+  /** The stage body as a function of the phase state. */
   children: (api: StickyStageChildrenApi) => ReactNode;
 }
 
@@ -112,7 +108,7 @@ function sentinelStyle(
 }
 
 export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickyStageProps) {
-  const order: readonly LumoraDemoStepId[] = phaseOrder ?? LUMORA_DEMO_STEP_ORDER;
+  const order: readonly LumoraWorkflowStepId[] = phaseOrder ?? LUMORA_WORKFLOW_STEP_ORDER;
   const phaseCount = order.length;
 
   const reduced = usePrefersReducedMotion();
@@ -275,11 +271,11 @@ export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickySta
     return () => observer.disconnect();
   }, [mounted, scrollLinked, phaseCount, bands]);
 
-  // Explicit tap override, part 1 (always present, always enabled — ADR-001
-  // H5): the selection itself is pure state; the viewport re-sync below is
-  // the effect so state and viewport never disagree.
+  // Explicit tap override, part 1 (always present, always enabled): the
+  // selection itself is pure state; the viewport re-sync below is the effect
+  // so state and viewport never disagree.
   const selectPhase = useCallback(
-    (id: LumoraDemoStepId) => {
+    (id: LumoraWorkflowStepId) => {
       const idx = order.indexOf(id);
       if (idx < 0) return;
       setPhaseIndex(idx);
@@ -290,15 +286,31 @@ export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickySta
 
   // Explicit tap override, part 2: re-sync the viewport to the matching
   // sentinel (scroll-linked mode only; explore mode is pure state).
+  //
+  // The scroll target is derived from PHASE_TRIGGER_LINE — the same line the
+  // observer above uses to decide the active phase — rather than from
+  // scrollIntoView({ block: 'center' }). Centring a band is not equivalent:
+  // for a band taller than the viewport the browser aligns an edge instead,
+  // which can leave the trigger line inside a *neighbouring* band, so the
+  // observer immediately overrode the tap and the control appeared to jump
+  // back a step. Landing the line a measured distance inside the target band
+  // makes the tap and the state machine agree.
   useEffect(() => {
     if (!tapTarget || !mounted || !scrollLinked) return;
     const sentinel = sentinelRefs.current[tapTarget.idx];
-    if (sentinel && typeof sentinel.scrollIntoView === 'function') {
-      sentinel.scrollIntoView({
-        behavior: reduced ? 'auto' : 'smooth',
-        block: 'center',
-      });
-    }
+    if (!sentinel || typeof window.scrollTo !== 'function') return;
+
+    const rect = sentinel.getBoundingClientRect();
+    const line = window.innerHeight * PHASE_TRIGGER_LINE;
+    // delta ∈ [rect.top - line, rect.bottom - line] keeps the line inside the
+    // band; bias into the band so there is reading room before the next one.
+    const into = Math.min(rect.height / 2, window.innerHeight * 0.25);
+    const delta = rect.top - line + into;
+
+    window.scrollTo({
+      top: Math.max(0, window.scrollY + delta),
+      behavior: reduced ? 'auto' : 'smooth',
+    });
   }, [tapTarget, mounted, scrollLinked, reduced]);
 
   const phase = order[phaseIndex];

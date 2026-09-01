@@ -89,19 +89,28 @@ export function SceneProgress({ scenes }: SceneProgressProps) {
   }, [scenes]);
 
   return (
-    <nav className={styles.rail} aria-label="Scene Progress">
-      {scenes.map((scene, i) => (
-        <a
-          key={scene.id}
-          href={`#${scene.id}`}
-          className={styles.entry}
-          aria-current={activeIndex === i ? 'true' : undefined}
-          aria-label={`Scene ${scene.index}`}
-        >
-          <span className={styles.number} aria-hidden="true">{scene.index}</span>
-          <span className={styles.tick} aria-hidden="true" />
-        </a>
-      ))}
-    </nav>
+    <>
+      <nav className={styles.rail} aria-label="Scene Progress">
+        {scenes.map((scene, i) => (
+          <a
+            key={scene.id}
+            href={`#${scene.id}`}
+            className={styles.entry}
+            aria-current={activeIndex === i ? 'true' : undefined}
+            aria-label={`Scene ${scene.index}`}
+          >
+            <span className={styles.number} aria-hidden="true">{scene.index}</span>
+            <span className={styles.tick} aria-hidden="true" />
+          </a>
+        ))}
+      </nav>
+      {/*
+        The compact strip is fixed below the page header, so it would otherwise
+        sit on top of the first scene's content. This spacer reserves its height
+        in normal flow at those widths, and collapses to zero where the rail
+        moves into the desktop gutter.
+      */}
+      <div className={styles.stripSpacer} aria-hidden="true" />
+    </>
   );
 }

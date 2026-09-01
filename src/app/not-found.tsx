@@ -1,21 +1,24 @@
-import { Button } from '@/components/ui/Button';
-import styles from './not-found.module.css';
+import Link from 'next/link';
+import styles from './status-page.module.css';
 
 export default function NotFound() {
   return (
     <div className={`container ${styles.page}`}>
-      <div className={styles.code}>
-        404 // ROUTE_NOT_FOUND
-      </div>
-      <h1 className={styles.title}>
-        Page Not Found
-      </h1>
+      <div className={styles.code}>404 — Not found</div>
+      <h1 className={styles.title}>This page does not exist</h1>
       <p className={styles.description}>
-        The requested resource or product entity does not exist in the active ecosystem.
+        The address you followed does not match anything on this site. It was
+        either mistyped or a link that has since changed.
       </p>
-      <Button href="/">
-        Return to Home
-      </Button>
+      <div className={styles.actions}>
+        <Link href="/" className="btn-primary">
+          <span>Go to the homepage</span>
+          <span aria-hidden="true">→</span>
+        </Link>
+        <Link href="/products" className="text-link">
+          See what we build →
+        </Link>
+      </div>
     </div>
   );
 }
