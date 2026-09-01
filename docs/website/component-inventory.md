@@ -52,7 +52,7 @@ src/
 ```
 
 > [!NOTE]
-> **ADR-001 (2026-08-31)**: three experience primitives are **SPECIFIED but not yet implemented** — `Reveal` (§4.10), `SceneProgress` (§4.11), `StickyStage` (§4.12). They enter `src/components/` only in the approved cinematic-implementation pass ([ADR-001 §8](adr/ADR-001-homepage-experience-reconciliation.md)). The decision record lives in [docs/website/adr/](adr/).
+> **ADR-001 (2026-08-31; implemented 2026-09-01 vertical slice)**: `Reveal` (§4.10) and `StickyStage` (§4.12) are **implemented and QA-verified** (founder-approved cinematic pass, scenes 01–03 + mobile stepper); `SceneProgress` (§4.11) remains **SPECIFIED** and enters with the scene-grammar propagation pass. Supporting additions from the same slice: `LumoraPhaseVisual` (§4.13), `LumoraMobileStepper` (§4.14), and the motion hooks `src/hooks/usePrefersReducedMotion.ts` / `src/hooks/useMediaQuery.ts` (`useSyncExternalStore`-based, SSR-safe). The decision record lives in [docs/website/adr/](adr/).
 
 ---
 
@@ -102,15 +102,15 @@ src/
 - **CSS classes**: `section`, `grid`, `col`, `labelRow`, `indexNumber`, `divider`, `label`, `actionLink`.
 - **Responsive**: columns stack at ≤ 860px.
 
-### 4.7 `src/components/interactive/LumoraStage.tsx` (+ `LumoraStage.module.css`) — *the interactive island*
-- **Type**: **Client component** (`'use client'`) — the only one in the codebase.
-- **Props**: none. **State**: `activeStep: LumoraDemoStepId` (`'context' | 'understanding' | 'advisory' | 'action'`).
-- **Data**: `LUMORA_DEMO_STEPS` / `LUMORA_DEMO_STEP_ORDER` from `src/content/lumora-demo.ts` (all 4 steps' literal demo strings — full text in [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora); strings extracted verbatim from this component on 2026-08-31 per [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md) — the former in-component constant was an unregistered §2.3 violation, resolved in the spec pass; the file header preserves the exhibit-fiction boundary: demonstration data, not product claims). The component aliases them locally (`ACADEMIC_STEPS` / `STEP_KEYS`) — rendering is byte-identical to the pre-extraction state.
-- **Renders**: section header (`03` / `Flagship Expression`, H2, lead); workbench frame with window chrome (`lumora_os // academic_intelligence_loop`); 4 `role="tab"` step tabs; 3-column body — sources panel (left), center canvas stage with per-step visuals (timeline card / forecast card / advisory card / workspace card) + explanation caption, diagnostics panel (right); status bar with prev/next cycle controls and `n / 4` indicator; philosophy bridge + 3-row ledger below.
-- **Interaction contract**: tabs switch steps directly; prev/next wrap around; step indicator updates; `aria-selected` tracks state; icon-only buttons carry `aria-label` (`Previous Step` / `Next Step`).
-- **CSS classes**: `stage`, `intro`, `eyebrowRow`, `indexNumber`, `eyebrowDivider`, `eyebrow`, `headline`, `lead`, `workbench`, `windowChrome`, `windowBrand`, `windowDots`, `dot`, `windowTitle`, `titleIcon`, `stepTabs`, `tabBtn`, `tabBtnActive`, `tabNum`, `workbenchBody`, `sourcesPanel`, `panelHeader`, `panelBadge`, `sourcesList`, `sourceItem`, `sourceItemActive`, `sourceDetails`, `sourceTitle`, `sourceSubtitle`, `sourceTag`, `canvasArea`, `canvasHud`, `hudBadge`, `hudInfo`, `canvasCenter`, `canvasGrid`, `visualCard`, `cardHeaderRow`, `cardTitle`, `cardTag`, `cardWarningTag`, `timelineRows`, `timelineRow`, `weekLabel`, `barItem`, `barWarning`, `warningIcon`, `advisoryContainer`, `advisoryTop`, `advisoryPill`, `advisoryImpact`, `advisoryHeadline`, `advisoryBody`, `advisoryBottom`, `verifiedTag`, `explainableTag`, `workspaceContainer`, `workspaceHeader`, `timerBadge`, `pulseDot`, `trackLabel`, `workspaceObjective`, `objectiveLabel`, `objectiveText`, `workspaceTags`, `tagItem`, `explanationArea`, `explanationBadge`, `explanationTitle`, `explanationText`, `canvasFooter`, `statusInfo`, `engineTag`, `privacyTag`, `stepControls`, `controlBtn`, `controlBtnPrimary`, `stepIndicator`, `diagnosticsPanel`, `diagnosticsList`, `diagItem`, `diagLabel`, `diagValue`, `philosophyBridge`, `bridgeContent`, `bridgeEyebrow`, `bridgeQuote`, `bridgeLedger`, `ledgerRow`, `ledgerKey`, `ledgerVal`.
-- **Anchor**: `id="lumora"` (hero primary CTA target).
-- **Responsive**: side panels collapse ≤ 980px, central stage prioritized.
+### 4.7 `src/components/interactive/LumoraStage.tsx` (+ `LumoraStage.module.css`) — *the interactive island → Scene 03 (Lumora Reveal)*
+- **Type**: **Client component** (`'use client'`) — the scene orchestrator (one of the closed set of client components: `LumoraStage`, `StickyStage`, `Reveal`, plus the `src/hooks/` motion hooks).
+- **Props**: none. **State**: phase ownership moved to `StickyStage` (§4.12) per [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md) H4/H5 — this component selects the composition: mobile (`useMediaQuery('(max-width: 979px)')`) renders `LumoraMobileStepper` (§4.14); desktop renders `StickyStage mode={reduced ? 'explore' : 'scroll'}` wrapping the `Workbench` body; reduced motion selects tap-only explore mode (§6.8.8).
+- **Data**: `LUMORA_DEMO_STEPS` / `LUMORA_DEMO_STEP_ORDER` from `src/content/lumora-demo.ts` (all 4 steps' literal demo strings — full text in [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora); exhibit-fiction boundary preserved: demonstration data, not product claims).
+- **Renders**: scene header (`03` / `Flagship Expression`, H2, lead); workbench frame with window chrome (`lumora_os // academic_intelligence_loop`); 4 `role="tab"` step tabs (≥ 44px); 3-column body — sources panel (left), center canvas stage with per-step visuals via `LumoraPhaseVisual` (§4.13) + explanation caption, diagnostics panel (right); status bar with prev/next cycle controls and `n / 4` indicator (`aria-live="polite"`); philosophy bridge + 3-row ledger below. Phase changes cross-fade via Web Animations API (transform/opacity only, 320ms, staggered regions, fill `backwards`; skipped on mount and under reduced motion).
+- **Scene grammar (§6.8.5/§6.8.6)**: elevated lighting band (`--color-bg-surface-subtle`) + **breakout width** (`stageWidth` = `min(1560px, 100%)` — wider than the 1240px container); workbench body fixed height 640px at desktop (frame never resizes between phases — §6.8.5 state continuity); status/HUD slots laid out so phase text swaps change widths, never positions (§2.10.3).
+- **Interaction contract**: tabs switch phases directly (always-present tap override, H5); prev/next wrap around; step indicator updates; `aria-selected` tracks state; icon-only buttons carry `aria-label` (`Previous Step` / `Next Step`).
+- **Anchor**: `id="lumora"` (hero primary CTA target; `scroll-margin-top` clears the sticky header).
+- **Responsive**: JS viewports ≤ 980px render the mobile vertical stepper (§4.14); the ≤ 980px workbench layout remains as the no-JS/SSR fallback with **no `display:none`** — panels stack with all content (debt D11 resolved).
 
 ### 4.8 `src/components/ui/Button.tsx` (+ `Button.module.css`) — *reusable primitive*
 - **Type**: Server-safe component (no hooks).
@@ -125,32 +125,43 @@ src/
 - **Renders**: eyebrow row (`{indexNumber} / {kicker}`), `h2`, optional lead. This is the canonical section-opener pattern that narrative sections implement manually.
 - **Status**: ✅ pattern-compliant. Still unadopted by sub-pages: adopting it requires new `indexNumber`/`kicker` strings, which are founder copy (debt D9's SectionHeader half stays open pending [copy.md](copy.md) sign-off).
 
-### 4.10 `Reveal` (SPECIFIED, ADR-001)
-- **Files (at implementation)**: `src/components/interactive/Reveal.tsx` + `Reveal.module.css` — not yet implemented (ADR-001 §8 gating).
+### 4.10 `src/components/interactive/Reveal.tsx` (+ `Reveal.module.css`) — *first-entry reveal primitive (implemented)*
 - **Type**: Client component (`'use client'` — required: owns an IntersectionObserver).
-- **Purpose**: first-entry viewport reveal per [design-system §6.8.4](design-system.md#68-motion--micro-interactions): fade + ≤20px rise, 250–350ms `--ease-out`, once-only, stagger ≤ 3 siblings.
-- **Props** (`RevealProps`): `children: ReactNode` · `delay?: number` (stagger ms, ≤ 2 siblings × 90ms) · `as?: keyof JSX.IntrinsicElements` (default `div`) · `className?`.
-- **Binding contracts**: no-JS safety — content visible in server HTML; the pre-reveal class is applied only by the script itself, never server-side; CLS safety — `transform` only, flow position/dimensions identical pre/post; reduced-motion — renders final state instantly (query + global token override); unobserves after firing.
+- **Purpose**: first-entry viewport reveal per [design-system §6.8.4](design-system.md#68-motion--micro-interactions): fade + ≤20px rise, 250–350ms `--ease-out`, once-only, stagger ≤ 3 siblings. Also carries the Scene 01 load choreography (§6.8.3) via per-element delays — server-visible default, JS-added pre-reveal, ≤ 500ms sequence.
+- **Props** (`RevealProps`): `children: ReactNode` · `delay?: number` (stagger ms, ≤ 2 siblings × 90ms) · `as?: ElementType` (default `div`) · `className?` · `style?` (CSS custom properties allowed — `--reveal-distance`, used by Scene 01's 12px rise) · `aria-label?` · `id?`.
+- **Binding contracts (verified 2026-09-01, qa-checklist §2.10)**: no-JS safety — content visible in server HTML; the pre-reveal class is applied only by the script's layout effect, never server-side; CLS safety — `transform`/`opacity` only, offset metrics identical pre/post (probed); reduced-motion — renders final state instantly (hook + global token override); unobserves after firing. Mobile choreography shortened by the module's ≤ 640px budget override (§6.8.7).
 - **A11y**: purely presentational; no aria attributes; never wraps focusable content in a way that delays availability (content is in the DOM and visible from first paint).
-- **Status**: 🔒 SPECIFIED — implement only in the approved ADR-001 cinematic pass; verify against [qa-checklist §2.10](qa-checklist.md#210-motion--interaction-safety-adr-001-implementation-gates).
+- **Status**: ✅ **IMPLEMENTED (2026-09-01, ADR-001 vertical slice)** — adopted by `HeroSection` (Scene 01) and `ThesisSection` (Scene 02); verified against [qa-checklist §2.10](qa-checklist.md#210-motion--interaction-safety-adr-001-implementation-gates) (see the decisions.md QA run record).
 
-### 4.11 `SceneProgress` (SPECIFIED, ADR-001)
-- **Files (at implementation)**: `src/components/interactive/SceneProgress.tsx` + `SceneProgress.module.css` — not yet implemented (ADR-001 §8 gating).
+### 4.11 `SceneProgress` (SPECIFIED, ADR-001 — post-slice)
+- **Files (at implementation)**: `src/components/interactive/SceneProgress.tsx` + `SceneProgress.module.css` — not yet implemented (deliberately out of the vertical slice; enters with the scene-grammar propagation pass).
 - **Type**: Client component (`'use client'` — observes scene positions).
 - **Purpose**: persistent homepage wayfinding per [design-system §6.8.6](design-system.md#686-scene-composition-rules-the-scene-grammar): mono-indexed `01–05` progress rail; unifies the current duplicated numbering (hero tenets `01–03` vs. section indices `02–06`) into one system.
 - **Props** (`SceneProgressProps`): `scenes: Array<{ id: string; index: string }>` (target section ids + display numbers; homepage: `overture`-equivalent existing section ids — final ids fixed at implementation).
 - **Rendering**: fixed left rail ≥ 1200px; compact top indicator below; `aria-current="true"` on the active scene; each entry is an anchor link to its scene (keyboard operable, focus-visible via global rule).
 - **Binding contracts**: reduced-motion — visible but without animated indicator transitions; no-JS — degrades to a plain in-page anchor list (server-rendered, default state active-agnostic); never hides or overlaps content (`pointer-events` limited to the entries; z-index below modals).
-- **Status**: 🔒 SPECIFIED — same gating as `Reveal`.
+- **Status**: 🔒 SPECIFIED — the only ADR-001 primitive still pending; ships in the propagation pass after founder review of the vertical slice.
 
-### 4.12 `StickyStage` (SPECIFIED, ADR-001)
-- **Files (at implementation)**: `src/components/interactive/StickyStage.tsx` + `StickyStage.module.css` — not yet implemented (ADR-001 §8 gating).
+### 4.12 `src/components/interactive/StickyStage.tsx` (+ `StickyStage.module.css`) — *the signature-scene mechanism (implemented)*
 - **Type**: Client component (`'use client'` — owns the phase state machine).
-- **Purpose**: the Lumora signature-scene wrapper per [design-system §6.8.5](design-system.md#685-signature-scene--lumora-sticky-reveal-scene-03-adr-001-h4h5): sticky frame + scroll-linked 4-phase progression (homepage mode) or tap-only exploration (`/products/lumora` mode) — two modes over the shared `src/content/lumora-demo.ts` state model.
-- **Props** (`StickyStageProps`): `mode: 'scroll' | 'explore'` · `children` (the workbench frame — the existing `LumoraStage` body re-composed) · phase content injected from `LUMORA_DEMO_STEPS`.
-- **Interaction contract (ADR-001 H5, binding)**: scroll-linked mode observes phase sentinels via IntersectionObserver; native scroll 100% authoritative (no jacking/snap/momentum interference); tap controls always visible and always override (and re-sync the viewport to the matching sentinel); `prefers-reduced-motion: reduce` collapses sticky to normal flow with tap-only switching.
-- **A11y**: phase tabs keep `role="tablist"`/`role="tab"`/`aria-selected`; the stage region keeps its `aria-label`; the phase state is announced via the existing step indicator; controls ≥ 44×44px.
-- **Status**: 🔒 SPECIFIED — highest-risk primitive; must pass all §2.10 gates plus §3 home-row checks before merge.
+- **Purpose**: the Lumora signature-scene mechanism per [design-system §6.8.5](design-system.md#685-signature-scene--lumora-sticky-reveal-scene-03-adr-001-h4h5): sticky frame + scroll-linked 4-phase progression (homepage mode) or tap-only exploration — two modes over the shared `src/content/lumora-demo.ts` state model.
+- **Props** (`StickyStageProps`): `mode: 'scroll' | 'explore'` · `phaseOrder?: readonly LumoraDemoStepId[]` (defaults to `LUMORA_DEMO_STEP_ORDER` from the content layer) · `children: (api) => ReactNode` render function providing `{ phase, phaseIndex, phaseCount, selectPhase }` — the `LumoraStage` workbench body re-composed as a function of the phase state.
+- **Mechanics (implemented 2026-09-01)**: geometry — tall container (`phaseCount × 100vh`) + `position: sticky` frame, applied **only** when the script activates (`data-scroll-active` set post-hydration; server HTML / no-JS / reduced motion / explore mode keep normal flow; a `prefers-reduced-motion` media override is the second defense line); phase state machine — 4 invisible phase sentinels (each ¼ of the container) observed via IntersectionObserver (dense thresholds, root band = top 45% of viewport); on each browser-batched callback the active phase is re-derived from fresh sentinel rects (the sentinel covering the 40%-viewport trigger line) — **zero scroll listeners, zero scroll capture**; tap override — `selectPhase` sets state and an effect re-syncs the viewport to the matching sentinel via `scrollIntoView({ block: 'center' })` (state and viewport never disagree, ADR-001 H5); `useSyncExternalStore`-based `mounted`/media/reduced-motion hooks keep the machine hydration- and jsdom-safe.
+- **Interaction contract (ADR-001 H5, binding — verified)**: native scroll 100% authoritative (verified with native wheel input forward and backward through the scene); monotonic phase progression 1→4 with no flicker (sampled at 7 scroll positions + reverse); tap controls always enabled and always override; reduced motion collapses sticky to flow with tap-only switching.
+- **A11y**: phase tabs keep `role="tablist"`/`role="tab"`/`aria-selected`; the stage region keeps its `aria-label`; the phase state is announced via the step indicator (`aria-live="polite"`); controls ≥ 44×44px.
+- **Status**: ✅ **IMPLEMENTED (2026-09-01, ADR-001 vertical slice)** — highest-risk primitive; passed all §2.10 gates plus §3 home-row checks (see the decisions.md QA run record). The `/products/lumora` explore-mode consumer arrives with the propagation pass.
+
+### 4.13 `src/components/interactive/LumoraPhaseVisual.tsx` — *shared per-phase stage visuals*
+- **Type**: Pure presentational component (no hooks; compiled into the client tree via its importers).
+- **Props**: `phase: LumoraDemoStepId`.
+- **Renders**: the four center-stage demonstration visuals (context timeline card · understanding forecast card with the Week-8 collision row · advisory recommendation card · action workspace card) — markup and strings extracted **verbatim** from the former `LumoraStage` body; styles consumed from `LumoraStage.module.css`.
+- **Purpose**: single source for both Scene 03 compositions (desktop workbench active phase + mobile stepper segments) so content parity between them is structural, not maintained by hand (§6.8.7, qa-checklist §2.10.6).
+- **Status**: ✅ pattern-compliant (added 2026-09-01 with the vertical slice; no new copy — copy.md §4.1–§4.4 literals only).
+
+### 4.14 `src/components/interactive/LumoraMobileStepper.tsx` (+ `LumoraMobileStepper.module.css`) — *mobile Scene 03 recomposition*
+- **Type**: Pure presentational component (no hooks, no state — rendered by `LumoraStage` below 980px).
+- **Renders**: an anchor segmented control (`#lumora-phase-01..04`, 2×2 grid, every target ≥ 44px) + the four phases as sequential full-width segments, each carrying the full workbench parity set: badge, headline, narrative, HUD line, phase visual (`LumoraPhaseVisual`), inline sources panel (`Academic Context` / `Resolved`), inline diagnostics panel (`Diagnostics` / `Grounded`), status footer (engine + privacy lines) — **never `display:none`** (§6.8.7, qa-checklist §2.10.6). Segment anchors carry `scroll-margin-top` so navigation lands clear of the sticky header; anchors work with and without JavaScript.
+- **Status**: ✅ pattern-compliant (added 2026-09-01 with the vertical slice; resolves debt D11's mobile-parity half — no new copy).
 
 ---
 
@@ -240,7 +251,7 @@ Mirrors [qa-checklist.md §5](qa-checklist.md#5-known-debt-register-history--cur
 | `Button` / `SectionHeader` primitives bypassed | debt pages | §1 closed-set rule | **RESOLVED (Button)** — `not-found.tsx` uses it; SectionHeader adoption awaits founder kicker copy |
 | `proofItems` + `verifiableEvidence` defined but unrendered | proof.ts / products.ts | Content↔UI contract (dead content) | **PARTIAL** — `verifiableEvidence` renders on the product detail page (D7); `proofItems` remains data-only (D8, founder-dependent) |
 | Lumora demo narrative (4 phases × ~20 strings) hardcoded inside the client component | `LumoraStage.tsx` | §2.3 content-layer rule (found by the 2026-08-31 experience audit; formerly documented as "deliberate") | **RESOLVED 2026-08-31 (spec pass)** — extracted verbatim to `src/content/lumora-demo.ts` per [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md); rendering byte-identical (tsc/lint/tests/build + browser parity verified) |
-| Lumora workbench mobile: side panels `display: none` ≤ 980px (content loss); tab/step controls below 44px touch target | `LumoraStage.module.css` | §2.5 a11y contract (44px) + Mobile Is First-Class parity ([product-spec §6.6](product-spec.md#66-core-ux-principles)) | **OPEN — registered as debt D11**; resolved by the ADR-001 mobile vertical-stepper recomposition ([design-system §6.8.7](design-system.md#687-mobile-scene-recomposition-mobile-is-first-class-410)) in the pending cinematic pass |
+| ~~Lumora workbench mobile: side panels `display: none` ≤ 980px (content loss); tab/step controls below 44px touch target~~ | `LumoraStage.module.css` | §2.5 a11y contract (44px) + Mobile Is First-Class parity ([product-spec §6.6](product-spec.md#66-core-ux-principles)) | **RESOLVED 2026-09-01 (D11)** by the ADR-001 vertical slice: mobile renders the `LumoraMobileStepper` composition (full parity, no `display:none`), the no-JS fallback stacks panels with all content, and all workbench controls meet ≥ 44px targets ([design-system §6.8.7](design-system.md#687-mobile-scene-recomposition-mobile-is-first-class-410)) |
 
 ---
 

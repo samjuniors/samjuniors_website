@@ -1,10 +1,35 @@
+/*
+ * Scene 01 — Overture (design-system §6.8.3/§6.8.6).
+ * The load-choreography rise distance (§6.8.3: ≤ 12px) is set here as a
+ * class-scoped custom property consumed by Reveal.module.css (the reveal
+ * primitive's default is 20px per §6.8.4).
+ * Full-viewport composition: min-height one viewport (below the sticky
+ * header), statement block vertically centered in the intentional negative
+ * space, tenets baseline closing the frame. Display scale extended at the
+ * top of the range (scale rhythm §6.8.6) while H2 clamps stay separate.
+ * The load choreography itself is JS-added only (see Reveal) — this CSS
+ * renders the complete scene without any script.
+ */
+
 .hero {
-  padding: clamp(64px, 12vh, 120px) 0 var(--space-9) 0;
-  border-bottom: 1px solid var(--border-hairline);
   position: relative;
+  border-bottom: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+}
+
+.heroShell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--header-height, 73px));
+  min-height: calc(100svh - var(--header-height, 73px));
+  padding-top: clamp(48px, 8vh, 96px);
+  padding-bottom: var(--space-7);
 }
 
 .topline {
+  --reveal-distance: 12px;
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
@@ -25,12 +50,13 @@
 }
 
 .statementArea {
+  margin-block: auto;
   max-width: 1080px;
-  margin-bottom: var(--space-9);
 }
 
 .headline {
-  font-size: clamp(2.6rem, 5.8vw, 4.4rem);
+  --reveal-distance: 12px;
+  font-size: clamp(2.6rem, 6vw, 5rem);
   font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.038em;
@@ -45,6 +71,7 @@
 }
 
 .lead {
+  --reveal-distance: 12px;
   font-size: clamp(1.1rem, 1.9vw, 1.3rem);
   color: var(--text-muted);
   max-width: 760px;
@@ -54,6 +81,7 @@
 }
 
 .actionRow {
+  --reveal-distance: 12px;
   display: flex;
   align-items: center;
   gap: var(--space-5);
@@ -89,8 +117,9 @@
   color: var(--text-main);
 }
 
-/* Continuous Tenets Baseline */
+/* Continuous Tenets Baseline — closes the overture frame */
 .tenetsRow {
+  --reveal-distance: 12px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-8);
@@ -132,10 +161,11 @@
 }
 
 @media (max-width: 880px) {
+  .heroShell {
+    padding-top: var(--space-7);
+  }
   .tenetsRow {
     grid-template-columns: 1fr;
     gap: var(--space-6);
   }
 }
-
-

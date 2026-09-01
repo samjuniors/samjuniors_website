@@ -120,11 +120,16 @@
      ========================================================================= */
   --duration-fast: 150ms;
   --duration-normal: 250ms;
+  /* Scene-level state transitions (design-system §6.8.2: 250–350ms budget) */
+  --duration-scene: 320ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
   /* Interactive Targets */
   --min-touch-target: 44px;
+
+  /* Layout reference: sticky header visual height (72px bar + hairline) */
+  --header-height: 73px;
 }
 
 /* Reduced Motion Support */

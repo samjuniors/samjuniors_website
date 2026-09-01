@@ -1,0 +1,55 @@
+/*
+ * StickyStage — scroll-linked geometry (design-system §6.8.5, ADR-001 H5).
+ *
+ * Geometry gates:
+ * - Default (server HTML / no-JS / explore mode): normal document flow —
+ *   the tall container is auto-height, the frame is not sticky.
+ * - data-scroll-active='true' (set by the script only, after mount, scroll
+ *   mode, motion allowed): container = phaseCount × 100vh, frame sticky.
+ * - prefers-reduced-motion: geometry collapses back to flow even if the
+ *   attribute is present (second defense line — §6.8.8).
+ *
+ * The frame never resizes between phases (fixed frame, changing state —
+ * the anti-fake-liveness rule, §6.8.5).
+ */
+
+.root {
+  position: relative;
+}
+
+.tallContainer {
+  position: relative;
+}
+
+.stickyFrame {
+  position: relative;
+  z-index: 1;
+}
+
+.root[data-scroll-active='true'] .tallContainer {
+  height: calc(var(--phase-count, 4) * 100vh);
+}
+
+.root[data-scroll-active='true'] .stickyFrame {
+  position: sticky;
+  top: clamp(84px, 10vh, 128px);
+}
+
+/* Phase sentinels: invisible geometry markers only (observed, never painted). */
+.sentinel {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  pointer-events: none;
+}
+
+/* Reduced motion: collapse to normal flow, tap-only phase switching. */
+@media (prefers-reduced-motion: reduce) {
+  .root[data-scroll-active='true'] .tallContainer {
+    height: auto;
+  }
+  .root[data-scroll-active='true'] .stickyFrame {
+    position: static;
+    top: auto;
+  }
+}

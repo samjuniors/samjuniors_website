@@ -1,0 +1,34 @@
+/*
+ * Reveal — motion contracts (design-system §6.8.4 / §6.8.2):
+ * - transform/opacity only (no layout shift — qa-checklist §2.10.3)
+ * - 250–350ms, --ease-out, fire once
+ * - mobile: shortened choreography (≤300ms, tighter stagger — §6.8.7)
+ * - the pre-reveal class is applied by JS only; without JS elements stay
+ *   visible (no .hidden in server HTML)
+ *
+ * Custom properties set by the consumer:
+ * - --reveal-delay     stagger delay (ms, via the delay prop)
+ * - --reveal-distance  rise distance (default 20px; Scene 01 uses 12px)
+ */
+
+.hidden {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance, 20px));
+}
+
+.shown {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--reveal-duration, var(--duration-normal)) var(--ease-out),
+    transform var(--reveal-duration, var(--duration-normal)) var(--ease-out);
+  transition-delay: calc(var(--reveal-delay, 0ms) * var(--reveal-stagger-scale, 1));
+}
+
+/* Mobile scene recomposition (§6.8.7): shorter budget, tighter stagger. */
+@media (max-width: 640px) {
+  .shown {
+    --reveal-stagger-scale: 0.3;
+    --reveal-duration: 200ms;
+  }
+}

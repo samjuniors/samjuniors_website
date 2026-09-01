@@ -1,0 +1,237 @@
+/*
+ * LumoraMobileStepper — mobile Scene 03 recomposition (design-system §6.8.7).
+ *
+ * Composition rules:
+ * - full content parity, no display:none (qa-checklist §2.10.6)
+ * - anchor navigation targets ≥ 44×44px (--min-touch-target, §2.10.4)
+ * - single-column vertical rhythm, zero horizontal overflow (§6.9)
+ * - reuses the shared LumoraPhaseVisual classes (LumoraStage.module.css)
+ *   via the component import; segment chrome defined here.
+ */
+
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Anchor segmented control — 2×2 grid so every target clears 44px height
+   with room for the two-word labels at 390px width. */
+.stepperNav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+}
+
+.stepperTab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  min-height: var(--min-touch-target);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.3;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.stepperTab:hover {
+  color: var(--text-main);
+  background: var(--surface-overlay);
+}
+
+.stepperTabNum {
+  color: var(--accent-copper);
+  font-size: 0.7rem;
+}
+
+/* Sequential phase segments */
+.segment {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-4);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5);
+}
+
+.segmentHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.segmentBadge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-copper);
+}
+
+.segmentHud {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.segmentTitle {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-main);
+  letter-spacing: -0.015em;
+}
+
+.segmentNarrative {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+/* Inline panels (sources + diagnostics) */
+.segmentPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.segmentPanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.segmentPanelBadge {
+  font-size: 0.65rem;
+  color: var(--accent-copper);
+  background: rgba(200, 150, 102, 0.12);
+  border: 1px solid rgba(200, 150, 102, 0.25);
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.segmentSourcesList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.segmentSource,
+.segmentSourceActive {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.segmentSource {
+  color: var(--text-muted);
+}
+
+.segmentSourceActive {
+  background: var(--surface-overlay);
+  border-color: var(--border-subtle);
+  color: var(--text-main);
+}
+
+.segmentSourceDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.segmentSourceTitle {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.segmentSourceSubtitle {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.segmentSourceTag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent-blue);
+  background: rgba(98, 140, 179, 0.12);
+  padding: 2px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.segmentDiagnosticsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.segmentDiagItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.segmentDiagLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.segmentDiagValue {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.segmentStatus {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.segmentEngineTag {
+  color: var(--accent-copper);
+}
+
+.segmentPrivacyTag {
+  color: var(--text-dim);
+}
+
+/* Anchor navigation: keep segment headers clear of the sticky page header. */
+.segment {
+  scroll-margin-top: calc(var(--header-height, 73px) + 24px);
+}

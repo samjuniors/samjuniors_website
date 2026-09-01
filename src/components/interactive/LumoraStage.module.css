@@ -1,7 +1,22 @@
+/*
+ * Scene 03 — Lumora Reveal (design-system §6.8.5/§6.8.6, ADR-001).
+ * Scene grammar: elevated lighting zone (bg-surface-subtle band) + breakout
+ * width — the flagship frame occupies more visual width than any other
+ * scene (stageWidth caps at 1560px vs. the 1240px container rhythm).
+ * The sticky mechanism itself lives in StickyStage.module.css.
+ */
 .stage {
   padding: var(--section-spacing) 0;
+  border-top: 1px solid var(--border-hairline);
   border-bottom: 1px solid var(--border-hairline);
   position: relative;
+  background: var(--bg-surface-subtle);
+}
+
+.stageWidth {
+  width: min(1560px, 100%);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
 }
 
 .intro {
@@ -110,7 +125,7 @@
   font-size: 0.8rem;
 }
 
-/* Step Progression Tabs */
+/* Step Progression Tabs — 44px targets (component-inventory §4.12 a11y) */
 .stepTabs {
   display: flex;
   align-items: center;
@@ -130,7 +145,8 @@
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.74rem;
-  padding: 6px 14px;
+  min-height: var(--min-touch-target);
+  padding: 8px 14px;
   border-radius: 4px;
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-out);
@@ -153,11 +169,14 @@
   font-size: 0.7rem;
 }
 
-/* 3-Column Workbench Body */
+/* 3-Column Workbench Body — fixed height at desktop so the frame never
+   resizes between phases (§6.8.5 state continuity; §2.10.3 layout stability).
+   Panels/canvas manage their own overflow; at <980 the stacked fallback
+   returns to natural height. */
 .workbenchBody {
   display: grid;
   grid-template-columns: 260px 1fr 260px;
-  min-height: 480px;
+  height: 640px;
   background: var(--bg-surface);
 }
 
@@ -167,6 +186,8 @@
   background: rgba(12, 13, 16, 0.6);
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .panelHeader {
@@ -197,6 +218,11 @@
   flex-direction: column;
   padding: var(--space-2);
   gap: 4px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-solid) transparent;
 }
 
 .sourceItem,
@@ -208,6 +234,7 @@
   border-radius: 4px;
   border: 1px solid transparent;
   transition: all var(--duration-fast) var(--ease-out);
+  min-height: 56px;
 }
 
 .sourceItem {
@@ -252,12 +279,13 @@
   flex-direction: column;
   background: var(--bg-surface);
   position: relative;
+  min-height: 0;
 }
 
 .canvasHud {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: baseline;
   padding: 12px 24px;
   background: rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid var(--border-subtle);
@@ -268,10 +296,14 @@
 .hudBadge {
   color: var(--accent-copper);
   font-weight: 500;
+  min-width: 0;
 }
 
 .hudInfo {
   color: var(--text-dim);
+  justify-self: end;
+  text-align: right;
+  min-width: 0;
 }
 
 .canvasCenter {
@@ -562,24 +594,27 @@
   font-weight: 300;
 }
 
-/* Canvas Footer & Step Controls */
+/* Layout-stability slots: phase text swaps change widths, never positions
+   (qa-checklist §2.10.3) — status lines stack left-aligned in a fixed grid
+   column so the controls column never moves. */
 .canvasFooter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
   padding: 12px 24px;
   background: var(--bg-surface-elevated);
   border-top: 1px solid var(--border-subtle);
-  flex-wrap: wrap;
-  gap: var(--space-3);
 }
 
 .statusInfo {
   display: flex;
-  align-items: center;
-  gap: var(--space-4);
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
   font-family: var(--font-mono);
   font-size: 0.72rem;
+  min-width: 0;
+  padding-block: 4px;
 }
 
 .engineTag {
@@ -606,8 +641,8 @@
   background: var(--surface-overlay);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  width: 28px;
-  height: 28px;
+  width: var(--min-touch-target);
+  height: var(--min-touch-target);
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -627,7 +662,8 @@
   border: none;
   font-size: 0.76rem;
   font-weight: 500;
-  padding: 6px 14px;
+  min-height: var(--min-touch-target);
+  padding: 10px 18px;
   border-radius: 4px;
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-out);
@@ -643,6 +679,8 @@
   background: rgba(12, 13, 16, 0.6);
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .diagnosticsList {
@@ -650,12 +688,18 @@
   flex-direction: column;
   padding: var(--space-4);
   gap: var(--space-4);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-solid) transparent;
 }
 
 .diagItem {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-height: 46px;
 }
 
 .diagLabel {
@@ -737,17 +781,53 @@
   font-weight: 300;
 }
 
-/* Responsive Composition */
+/*
+ * Responsive composition (design-system §6.9 / §6.8.7).
+ * JS viewports below 980px render the LumoraMobileStepper composition;
+ * this stacked-workbench layout remains as the no-JS / SSR fallback —
+ * content parity is preserved with NO display:none on either panel
+ * (qa-checklist §2.10.6, debt D11 paid).
+ */
 @media (max-width: 980px) {
   .workbenchBody {
     grid-template-columns: 1fr;
+    height: auto;
+    min-height: 480px;
   }
-  .sourcesPanel,
+  .sourcesPanel {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
   .diagnosticsPanel {
-    display: none;
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .windowChrome {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .stepTabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+  .tabBtn {
+    justify-content: center;
+  }
+  .canvasFooter {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+  .stepControls {
+    justify-self: end;
   }
   .philosophyBridge {
     grid-template-columns: 1fr;
     gap: var(--space-6);
   }
+}
+
+/* Anchor navigation (#lumora): keep the scene header clear of the sticky page header. */
+.stage {
+  scroll-margin-top: var(--header-height, 73px);
 }

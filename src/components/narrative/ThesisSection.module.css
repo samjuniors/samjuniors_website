@@ -1,7 +1,18 @@
+/*
+ * Scene 02 — Thesis (design-system §6.8.6): the calm reading zone.
+ * thesisInner narrows the measure to ≤980px — the width/density change
+ * after the overture's 1240px frame. Editorial composition unchanged.
+ */
 .thesis {
   padding: var(--section-spacing) 0;
   border-bottom: 1px solid var(--border-hairline);
   position: relative;
+}
+
+.thesisInner {
+  width: min(980px, 100%);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
 }
 
 .headerArea {
@@ -190,3 +201,7 @@
 }
 
 
+/* Anchor navigation (#thesis): keep the scene header clear of the sticky page header. */
+.thesis {
+  scroll-margin-top: var(--header-height, 73px);
+}
