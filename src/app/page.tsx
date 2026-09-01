@@ -10,7 +10,10 @@ import { HorizonSection } from '@/components/narrative/HorizonSection';
  * Each scene owns its composition width (design-system §6.8.6 width rhythm):
  * Scene 01 renders in the 1240px container, Scene 02 narrows to its 980px
  * editorial measure, Scene 03 breaks out wider than the container, and the
- * remaining scenes (outside this slice's scope) keep the standard container.
+ * remaining scenes keep the standard container (their full scene-grammar
+ * restaging is gated on founder review of the slice). Scene boundaries carry
+ * the §6.8.6 transition grammar: dissolving seams, light ramps into/out of
+ * the signature scene's elevated zone, and boundary spacing rhythm.
  */
 export default function HomePage() {
   return (

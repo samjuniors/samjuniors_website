@@ -63,6 +63,22 @@ export interface StickyStageProps {
 /** Viewport line (fraction of innerHeight) that marks the active phase. */
 const PHASE_TRIGGER_LINE = 0.4;
 
+/**
+ * Phase pacing weights (design-system §6.8.5): with four phases the stable
+ * (fully pinned) windows follow a deliberate accelerando→payoff curve —
+ *   phase 1 = 0.5 × reference (brisk setup: the stage arrival already
+ *             previews the frame, so the first phase needs no full window),
+ *   phases 2–3 = 1.0 × reference (the argument),
+ *   phase 4 = 1.25 × reference (the payoff — the longest stable window).
+ * Entry/arrival travel and exit/departure travel are compensated separately
+ * (see the pacing-geometry effect). Sum of weights = 3.75.
+ */
+const PHASE_PACING_WEIGHTS = [0.5, 1, 1, 1.25] as const;
+const PACING_WEIGHT_SUM = 3.75;
+
+/** Minimum stable window before falling back to equal bands (tiny viewports). */
+const MIN_STABLE_WINDOW_PX = 240;
+
 const subscribeNoop = () => () => undefined;
 
 /** Hydration-aware JS-mounted signal: false on the server and during the hydration render, true once the client store is read. */
@@ -72,6 +88,27 @@ function useIsClient(): boolean {
     () => true,
     () => false,
   );
+}
+
+/**
+ * Sentinel geometry for phase i: rebalanced pixel bands when the pacing
+ * measurement has landed (script-only, scroll-linked mode), equal viewport
+ * fractions otherwise (server HTML / no-JS / fallback — the unchanged
+ * contract). Pure function: no render-scope accumulation.
+ */
+function sentinelStyle(
+  i: number,
+  phaseCount: number,
+  bands: number[] | null,
+): CSSProperties {
+  if (bands && bands.length === phaseCount) {
+    const top = bands.slice(0, i).reduce((a, b) => a + b, 0);
+    return { top: `${top}px`, height: `${bands[i]}px` };
+  }
+  return {
+    top: `calc(${i} * 100% / ${phaseCount})`,
+    height: `calc(100% / ${phaseCount})`,
+  };
 }
 
 export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickyStageProps) {
@@ -87,6 +124,14 @@ export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickySta
   const [tapTarget, setTapTarget] = useState<{ idx: number; nonce: number } | null>(null);
   const phaseIndexRef = useRef(0);
 
+  // Rebalanced band geometry (px heights per phase) or null = equal bands.
+  // Applied only by script in scroll-linked mode — the server HTML / no-JS /
+  // fallback composition keeps the equal-fraction geometry.
+  const [bands, setBands] = useState<number[] | null>(null);
+
+  const tallRef = useRef<HTMLDivElement | null>(null);
+  const frameRef = useRef<HTMLDivElement | null>(null);
+
   // JS-mounted signal (hydration-aware): sticky geometry applies only once
   // the client store is read — server HTML / no-JS keeps normal flow.
   const mounted = useIsClient();
@@ -99,6 +144,82 @@ export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickySta
   useEffect(() => {
     phaseIndexRef.current = phaseIndex;
   }, [phaseIndex]);
+
+  // Phase pacing geometry (design-system §6.8.5): measure the real stage
+  // geometry and rebalance the sentinel bands so every phase gets an
+  // intentional STABLE (fully pinned) window — eliminating the accidental
+  // imbalance where the pre-pin arrival travel inflated phase 1's window and
+  // the frame-departure travel truncated phase 4. The total container height
+  // (phases × 100vh) is never changed — only the band boundaries inside it.
+  // Recomputed on viewport/frame resize; a resize listener observes layout,
+  // not scroll (§6.8.8 still holds: zero scroll capture).
+  useEffect(() => {
+    if (!mounted || !scrollLinked) return;
+    if (phaseCount !== 4) return; // pacing weights are defined for 4 phases
+    const tall = tallRef.current;
+    const frame = frameRef.current;
+    if (!tall || !frame) return;
+
+    const measureBands = () => {
+      const vh = window.innerHeight;
+      const containerH = tall.getBoundingClientRect().height;
+      // getComputedStyle resolves the sticky `top` clamp to its used px value.
+      const pinTop = parseFloat(getComputedStyle(frame).top) || 0;
+      const frameH = frame.getBoundingClientRect().height;
+      const triggerLine = vh * PHASE_TRIGGER_LINE;
+
+      // Travel during which a phase is active but the frame is not yet (or
+      // no longer) pinned — credited to the adjacent scene transition,
+      // not to a phase's reading time.
+      const entryComp = Math.max(0, Math.min(triggerLine - pinTop, containerH / 2));
+      const exitComp = Math.max(
+        0,
+        Math.min(pinTop + frameH - triggerLine, containerH / 2),
+      );
+
+      const reference = (containerH - entryComp - exitComp) / PACING_WEIGHT_SUM;
+      if (reference < MIN_STABLE_WINDOW_PX) {
+        setBands(null); // tiny viewport: equal bands remain honest
+        return;
+      }
+
+      const next: number[] = PHASE_PACING_WEIGHTS.map((w, i) =>
+        (i === 0 ? entryComp : i === phaseCount - 1 ? exitComp : 0) + w * reference,
+      );
+      // Absorb rounding drift into the final band; guard degenerate values.
+      next[phaseCount - 1] = containerH - next.slice(0, -1).reduce((a, b) => a + b, 0);
+      if (next.some((h) => h <= 0)) {
+        setBands(null);
+        return;
+      }
+      setBands((prev) =>
+        prev &&
+        prev.length === next.length &&
+        prev.every((h, i) => Math.abs(h - next[i]) < 1)
+          ? prev
+          : next,
+      );
+    };
+
+    measureBands();
+
+    let raf = 0;
+    const scheduleMeasure = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(measureBands);
+    };
+    window.addEventListener('resize', scheduleMeasure);
+    const ro =
+      typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(scheduleMeasure)
+        : null;
+    ro?.observe(frame);
+    return () => {
+      window.removeEventListener('resize', scheduleMeasure);
+      ro?.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, [mounted, scrollLinked, phaseCount]);
 
   // IntersectionObserver state machine over the phase sentinels.
   useEffect(() => {
@@ -146,11 +267,13 @@ export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickySta
     );
     sentinels.forEach((el) => observer.observe(el));
 
-    // Establish the correct phase for the current scroll position once.
+    // Establish the correct phase for the current scroll position once
+    // (re-run when the pacing bands land/change so the derived state matches
+    // the rebalanced geometry immediately).
     applyFromGeometry();
 
     return () => observer.disconnect();
-  }, [mounted, scrollLinked, phaseCount]);
+  }, [mounted, scrollLinked, phaseCount, bands]);
 
   // Explicit tap override, part 1 (always present, always enabled — ADR-001
   // H5): the selection itself is pure state; the viewport re-sync below is
@@ -186,8 +309,8 @@ export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickySta
       data-scroll-active={mounted && scrollLinked ? 'true' : 'false'}
       style={{ '--phase-count': phaseCount } as CSSProperties}
     >
-      <div className={styles.tallContainer}>
-        <div className={styles.stickyFrame}>
+      <div ref={tallRef} className={styles.tallContainer}>
+        <div ref={frameRef} className={styles.stickyFrame}>
           {children({ phase, phaseIndex, phaseCount, selectPhase })}
         </div>
         {order.map((id, i) => (
@@ -198,10 +321,7 @@ export function StickyStage({ mode = 'scroll', phaseOrder, children }: StickySta
             }}
             className={styles.sentinel}
             data-phase-index={i}
-            style={{
-              top: `calc(${i} * 100% / ${phaseCount})`,
-              height: `calc(100% / ${phaseCount})`,
-            }}
+            style={sentinelStyle(i, phaseCount, bands)}
             aria-hidden="true"
           />
         ))}

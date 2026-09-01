@@ -13,9 +13,32 @@
 
 .hero {
   position: relative;
-  border-bottom: 1px solid var(--border-hairline);
   display: flex;
   flex-direction: column;
+}
+
+/*
+ * Scene seam (Overture → Thesis, design-system §6.8.6 scene grammar):
+ * the full-width slab rule dissolves at its edges — the overture frame
+ * exhales into the editorial reading zone instead of being cut off. Same
+ * 1px geometry as the former border, painted as a gradient (no layout
+ * change; static CSS, no-JS and reduced-motion safe by construction).
+ */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-hairline) 24%,
+    var(--border-hairline) 76%,
+    transparent
+  );
+  pointer-events: none;
 }
 
 .heroShell {

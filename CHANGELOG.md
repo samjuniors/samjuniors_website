@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Changed — Vertical-Slice Review Refinements (2026-09-01, founder-directed)
+
+Two targeted refinements from the founder's slice review — no scope beyond them; the five-scene architecture, native scrolling, sticky stage, phase model/content, mobile stepper, and all safety contracts are unchanged.
+
+- **Lumora phase pacing rebalanced** (`StickyStage`): sentinel band boundaries are now measured and rebalanced after mount (entry/exit travel compensated, stable windows weighted 0.5 / 1 / 1 / 1.25 — brisk setup → argument → payoff). Before (1440×900): phase 1 active 900px (275px pre-pin arrival inflated it), phase 4 stable only 435px (truncated by the frame departure). After: phase 1 654px active, phases 2–3 775px, phase 4 925px stable + 465px graceful departure; total scene scroll unchanged (4 × 100vh). Server HTML / no-JS keeps equal ¼ fractions; re-measured on viewport/frame resize with an equal-band fallback; verified forward, reverse, tap-override re-sync, mobile, reduced motion. Docs: design-system §6.8.5 phase-pacing rule, component-inventory §4.12, qa-checklist §2.10.5.
+- **Scene transition grammar established** (five scenes): boundaries now speak — **scene seams** (1px rules dissolving at their edges; the Founder → Horizon seam carries the single warm copper tint), **light ramps** on the signature scene (the elevated zone rises ~14vh out of the base tone on entry and falls back ~16vh on exit — escalation in, decompression out), **boundary spacing rhythm** (deeper top beats for the arrival into Thesis and the silence before Founder), and a restrained **Horizon re-expansion reveal** (two columns, existing `Reveal` primitive, 90ms stagger). Founder keeps its **stillness** (no entry motion — the stillness is the transition). All static CSS / existing tokens: zero layout change, no-JS and reduced-motion safe by construction, zero copy changes. Docs: design-system §6.8.6 (seams, light ramps, spacing rhythm, entry-per-role).
+
 ### Added — ADR-001 Cinematic Vertical Slice (implementation, 2026-09-01)
 
 Founder-approved implementation of the mandatory vertical slice (Overture → Thesis transition → **Lumora Reveal** → mobile stepper); the remaining scenes stay gated on founder review of the slice (decisions.md TODO 10). Zero visitor-facing copy changes — every string comes from the registered `copy.md §4` sources.

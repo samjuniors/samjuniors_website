@@ -1,16 +1,54 @@
 /*
  * Scene 03 — Lumora Reveal (design-system §6.8.5/§6.8.6, ADR-001).
- * Scene grammar: elevated lighting zone (bg-surface-subtle band) + breakout
- * width — the flagship frame occupies more visual width than any other
- * scene (stageWidth caps at 1560px vs. the 1240px container rhythm).
+ * Scene grammar: elevated lighting zone + breakout width — the flagship
+ * frame occupies more visual width than any other scene (stageWidth caps
+ * at 1560px vs. the 1240px container rhythm).
+ * Scene transition grammar (§6.8.6): the elevated zone RISES out of the
+ * base tone on entry (“escalation / emergence”) and falls back into it on
+ * exit (“decompression / silence”) — two static light ramps instead of a
+ * flat band with hard rules. Pure background CSS: no layout change, no
+ * motion, no-JS and reduced-motion safe by construction.
  * The sticky mechanism itself lives in StickyStage.module.css.
  */
 .stage {
   padding: var(--section-spacing) 0;
-  border-top: 1px solid var(--border-hairline);
-  border-bottom: 1px solid var(--border-hairline);
   position: relative;
-  background: var(--bg-surface-subtle);
+  background-color: var(--bg-surface-subtle);
+  background-image:
+    /* entry ramp: the light rises as the visitor arrives (Thesis → Lumora) */
+    linear-gradient(to bottom, var(--bg-base), transparent 14vh),
+    /* exit ramp: the light falls away as the stage yields (Lumora → Founder) */
+    linear-gradient(to top, var(--bg-base), transparent 16vh);
+}
+
+/*
+ * Scene seams: same 1px geometry as the former top/bottom hairlines,
+ * dissolving at their edges — the zone opens (top) and closes (bottom)
+ * rather than being slab-cut.
+ */
+.stage::before,
+.stage::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-hairline) 24%,
+    var(--border-hairline) 76%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.stage::before {
+  top: 0;
+}
+
+.stage::after {
+  bottom: 0;
 }
 
 .stageWidth {

@@ -1,11 +1,22 @@
 import Link from 'next/link';
+import { Reveal } from '@/components/interactive/Reveal';
 import styles from './HorizonSection.module.css';
 
+/**
+ * Scene 05 — Horizon (ADR-001 §3, design-system §6.8.6).
+ *
+ * Scene transition grammar (Founder → Horizon, “re-expansion / closure”):
+ * the measure widens from the Founder's 840px quiet column back to the
+ * 1240px container and the two columns surface with a single restrained
+ * first-entry reveal each (≤2 siblings, 90ms stagger, existing Reveal
+ * primitive — no new motion language). The Founder's warm closing seam
+ * (copper tint) opens this scene.
+ */
 export function HorizonSection() {
   return (
     <section className={styles.section} aria-label="Ecosystem and Dialogue">
       <div className={styles.grid}>
-        <div className={styles.col}>
+        <Reveal className={styles.col}>
           <div className={styles.labelRow}>
             <span className={styles.indexNumber}>05</span>
             <span className={styles.divider}>/</span>
@@ -18,9 +29,9 @@ export function HorizonSection() {
           <Link href="/products" className={styles.actionLink}>
             Explore Portfolio Architecture →
           </Link>
-        </div>
+        </Reveal>
 
-        <div className={styles.col}>
+        <Reveal className={styles.col} delay={90}>
           <div className={styles.labelRow}>
             <span className={styles.indexNumber}>06</span>
             <span className={styles.divider}>/</span>
@@ -33,7 +44,7 @@ export function HorizonSection() {
           <Link href="/contact" className={styles.actionLink}>
             Connect With Leadership →
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

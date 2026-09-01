@@ -1,9 +1,38 @@
+/*
+ * Scene 04 — Founder Letter (design-system §6.8.6).
+ * Scene transition grammar (Lumora → Founder, “decompression / silence”):
+ * after the signature scene's extended phase-4 departure, the letter gets
+ * a longer silent beat than the standard section spacing before it speaks
+ * — stillness is the pacing device; no entry motion is added here.
+ */
 .letterSection {
-  padding: var(--section-spacing) 0;
-  border-bottom: 1px solid var(--border-hairline);
+  padding: clamp(88px, 12vh, 144px) 0 var(--section-spacing);
   max-width: var(--container-narrow);
   margin: 0 auto;
   position: relative;
+}
+
+/*
+ * Scene seam (Founder → Horizon, “re-expansion / closure”): the closing
+ * rule of the quietest scene carries the first warm note of the horizon —
+ * the only seam on the page tinted with the copper accent token. Same 1px
+ * geometry as the former border-bottom.
+ */
+.letterSection::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-copper-muted) 24%,
+    var(--accent-copper-muted) 76%,
+    transparent
+  );
+  pointer-events: none;
 }
 
 .labelRow {

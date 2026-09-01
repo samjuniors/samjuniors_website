@@ -2,11 +2,37 @@
  * Scene 02 — Thesis (design-system §6.8.6): the calm reading zone.
  * thesisInner narrows the measure to ≤980px — the width/density change
  * after the overture's 1240px frame. Editorial composition unchanged.
+ *
+ * Scene transition (Overture → Thesis, “arrival into editorial calm”):
+ * a deeper top beat than the standard section spacing — one quiet breath
+ * between the full-viewport statement and the narrow reading measure —
+ * plus the dissolving seam painted by the Overture's closing rule.
  */
 .thesis {
-  padding: var(--section-spacing) 0;
-  border-bottom: 1px solid var(--border-hairline);
+  padding: clamp(88px, 12vh, 136px) 0 var(--section-spacing);
   position: relative;
+}
+
+/*
+ * Scene seam (Thesis → Lumora, “escalation / widening / emergence”): the
+ * neutral seam that precedes the signature scene's light rise and width
+ * breakout. Same 1px geometry as the former border-bottom.
+ */
+.thesis::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-hairline) 24%,
+    var(--border-hairline) 76%,
+    transparent
+  );
+  pointer-events: none;
 }
 
 .thesisInner {
