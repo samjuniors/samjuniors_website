@@ -68,9 +68,9 @@ src/
 
 ### 4.2 `src/components/layout/Footer.tsx` (+ `Footer.module.css`)
 - **Type**: Server component. **Props**: none.
-- **Content deps**: `siteNavigation.footerLinks`, `companyContent` (name, tagline, legalEntity).
-- **Renders**: brand column (name + tagline), footer link list, bottom row (dynamic-year copyright + legal entity).
-- **CSS classes**: `footer`, `inner`, `topRow`, `brandCol`, `brandName`, `tagline`, `links`, `link`, `bottomRow`.
+- **Content deps**: `siteNavigation.footerGroups`, `companyContent` (name, tagline, legalEntity).
+- **Renders**: brand column (name + tagline), one labelled `<nav>` per footer group (`Company`, `Products` — the products group enumerates the registry), bottom row (dynamic-year copyright + legal entity).
+- **CSS classes**: `footer`, `inner`, `topRow`, `brandCol`, `brandName`, `tagline`, `groups`, `group`, `groupLabel`, `links`, `link`, `bottomRow`.
 - **Layout contract**: `body` is `min-height:100vh; display:flex; column` with `main { flex: 1 }` (globals.css) — footer naturally sticks to viewport bottom on short pages and is pushed down on long pages. Preserve this when touching layout.
 
 ### 4.3 `src/components/narrative/HeroSection.tsx` (+ `HeroSection.module.css`)
@@ -227,7 +227,7 @@ Legacy aliases (`--bg-base`, `--text-main`, `--accent-copper`, …) exist in `to
 | `products.ts` | `getProductBySlug(slug)` | `Product \| undefined` (case-insensitive match) |
 | `products.ts` | `getFlagshipProduct()` | `Product` (isFlagship, falls back to first) |
 | `proof.ts` | `proofItems` | `VerifiedProofItem[]` — 3 items, 2 flagged `isPlaceholder: true` — **⚠ currently consumed by no view (debt D8)** |
-| `navigation.ts` | `siteNavigation` | `NavigationStructure` — primaryLinks[3], footerLinks[3], primaryCta |
+| `navigation.ts` | `siteNavigation` | `NavigationStructure` — primaryLinks[3], footerGroups[2] (`Company`, `Products`; the products group is derived from the product registry, never hand-listed), primaryCta |
 | `lumora-demo.ts` | `LUMORA_DEMO_STEPS` | `Record<LumoraDemoStepId, LumoraDemoStep>` — the 4-phase demonstration contract (exhibit fiction; [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora) parity; extracted from `LumoraStage.tsx` 2026-08-31 per [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md)) |
 | `lumora-demo.ts` | `LUMORA_DEMO_STEP_ORDER` | `LumoraDemoStepId[]` — `['context', 'understanding', 'advisory', 'action']` |
 | `types.ts` | interfaces | `CompanyIdentity`, `Product`, `NavigationItem`, `NavigationStructure`, `VerifiedProofItem` (domain schemas only — the Lumora demo types live in `lumora-demo.ts`, not here, to keep canonical company schemas separate from exhibit fiction) |

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { companyContent } from '@/content/company';
 import { getFlagshipProduct } from '@/content/products';
 import { LumoraEvidence } from '@/components/product/LumoraEvidence';
 import styles from './LumoraFlagship.module.css';
@@ -26,6 +27,12 @@ export function LumoraFlagship() {
             <span className={styles.eyebrowDivider}>/</span>
             <span className={styles.eyebrow}>Flagship product</span>
           </div>
+          {/* Company attribution. The eyebrow says what this beat *is*; this
+              line says whose it is, so the scene cannot be read as the site's
+              own subject. */}
+          <p className={styles.companyFrame}>
+            The first product {companyContent.name} has taken to beta.
+          </p>
           <h2 id="lumora-heading" className={styles.headline}>
             {product.name} — assessment the teacher still decides
           </h2>

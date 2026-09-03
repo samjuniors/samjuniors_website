@@ -23,7 +23,7 @@ export function HeroSection() {
       <div className={`container ${styles.heroShell}`}>
         <Reveal className={styles.topline}>
           <span className={styles.statusPulse} aria-hidden="true" />
-          <span>Parent Technology Ecosystem</span>
+          <span>AI-first technology company</span>
         </Reveal>
 
         <div className={styles.statementArea}>
@@ -47,13 +47,20 @@ export function HeroSection() {
             the person doing the work in charge of the decisions that matter.
           </Reveal>
 
+          {/*
+            CTA hierarchy: the strongest action on the company's most-read
+            surface is company-scoped (the portfolio), and the flagship product
+            is the supporting path. Leading with the product here inverted the
+            hierarchy — the site's first ask became "go look at Lumora" rather
+            than "here is what this company builds".
+          */}
           <Reveal className={styles.actionRow} delay={180}>
-            <Link href={`/products/${flagship.slug}`} className="btn-primary">
-              <span>See what {flagship.name} does</span>
+            <Link href="/products" className="btn-primary">
+              <span>See what {companyContent.name} builds</span>
               <span aria-hidden="true">→</span>
             </Link>
-            <Link href="#thesis" className="text-link">
-              Why we build this way →
+            <Link href={`/products/${flagship.slug}`} className="text-link">
+              {flagship.name}, our flagship platform →
             </Link>
           </Reveal>
         </div>

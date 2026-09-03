@@ -39,8 +39,10 @@ export default function ContactPage() {
             Email us
           </h2>
           <p className={styles.cardBody}>
-            Tell us who you teach or what you build, and what you want to do with{' '}
-            {flagship.name}. Concrete beats formal — it gets you a more useful reply.
+            Tell us who you teach or what you build, and what you want from{' '}
+            {companyContent.name} — {flagship.name} access, a pilot, or
+            engineering work. Concrete beats formal; it gets you a more useful
+            reply.
           </p>
           <a href={`mailto:${email}`} className={styles.email}>
             {email}

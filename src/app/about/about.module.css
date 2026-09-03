@@ -112,3 +112,14 @@
   font-size: 0.88rem;
   color: var(--color-text-secondary);
 }
+
+/* Products bridge — prose, not another card grid: this section connects the
+   method to its one output, so it reuses the lead's reading treatment at
+   body scale rather than introducing a surface. */
+.bridgeBody {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 68ch;
+  margin-bottom: var(--space-4);
+}

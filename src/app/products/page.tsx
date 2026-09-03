@@ -19,6 +19,11 @@ export const metadata: Metadata = {
  * flagship presented honestly at flagship scale. Non-flagship products —
  * when they exist — follow in the standard grid. No fabricated products,
  * no empty-state filler.
+ *
+ * Hierarchy: this is the company's portfolio, not the flagship's landing page.
+ * The header names SamJuniors before any product name, and the closing band
+ * states the company standard the portfolio is judged against — so removing
+ * the one product leaves a page that is still about the company.
  */
 export default function ProductsPage() {
   const flagship = products.filter((product) => product.isFlagship);
@@ -28,14 +33,17 @@ export default function ProductsPage() {
     <div className={`container ${styles.page}`}>
       <header className={styles.pageHeader}>
         <div className={styles.eyebrow}>
-          What we build
+          {companyContent.name} portfolio
         </div>
         <h1 className={styles.title}>
           Products
         </h1>
         <p className={styles.lead}>
-          One product is in beta today. {companyContent.name} would rather present a
-          single real platform honestly than a portfolio page of intentions.
+          {companyContent.name} builds production software for the places where
+          professional and academic work still breaks down. One platform is in
+          beta today, and it is held to the same standard as everything that
+          follows it — we would rather present one real product honestly than a
+          portfolio of intentions.
         </p>
       </header>
 
@@ -47,7 +55,7 @@ export default function ProductsPage() {
               {product.statusLabel}
             </span>
             <span className={styles.flagshipChip}>
-              Flagship
+              Flagship product
             </span>
           </div>
           <h2 className={styles.flagshipTitle}>
@@ -96,6 +104,33 @@ export default function ProductsPage() {
           ))}
         </div>
       )}
+      {/*
+        Company standard — the closing beat of the portfolio.
+        Without it this page is a header and one product panel, so removing
+        Lumora would leave nothing that belongs to the company. The three
+        pillars are the company's own stated reputation goals from
+        docs/company/foundation.md (rendered here for the first time), not new
+        claims written for this page, and they say nothing about products that
+        do not exist.
+      */}
+      <section className={styles.standard} aria-labelledby="portfolio-standard-heading">
+        <h2 id="portfolio-standard-heading" className={styles.standardTitle}>
+          What {companyContent.name} sets out to be known for
+        </h2>
+        <ol className={styles.standardList}>
+          {companyContent.reputationPillars.map((pillar, index) => (
+            <li key={pillar} className={styles.standardItem}>
+              <span className={styles.standardOrder}>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span className={styles.standardLabel}>{pillar}</span>
+            </li>
+          ))}
+        </ol>
+        <Link href="/about" className={`text-link ${styles.exploreLink}`}>
+          How {companyContent.name} decides what to build →
+        </Link>
+      </section>
     </div>
   );
 }

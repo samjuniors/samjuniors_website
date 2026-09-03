@@ -41,12 +41,16 @@ Every string in this document carries exactly one status:
 | 7 | §7 /about | PROPOSED | — | All strings foundation-derived |
 | 8 | §8 /contact | PROPOSED | — | Contains one internal leak to replace (§9) |
 | 9 | §9–10 Proof & testimonial layer | **PENDING FOUNDER COPY** | — | Zero-Fabrication: only founder can supply |
+| 10 | §12 Company/product hierarchy pass (2026-09-03) | PROPOSED | — | Nav, footer groups, hero topline + CTA pair, Scene 03 attribution, `/products` frame + company-standard band, `/about` header + products bridge, `/contact` gateway body. Supersedes the affected rows in §1.1, §1.2, §2, §4, §6.1, §7, §8 |
 
 ---
 
 ## 1. Global Chrome (Header, Navigation, Footer, Metadata, 404)
 
 ### 1.1 Header
+> [!IMPORTANT]
+> Nav link 2 is superseded by [§12](#12-companyproduct-hierarchy-pass--2026-09-03-proposed) (`About` → `Company`). The header CTA row below is pre-existing drift from an earlier pass (the shipped label is `Get in touch`) and was left as recorded — it is outside the hierarchy pass's scope.
+
 | Element | Literal text | Source |
 | :--- | :--- | :--- |
 | Brand name | `SamJuniors` | company.ts (foundation-derived) |
@@ -57,6 +61,9 @@ Every string in this document carries exactly one status:
 | Header CTA | `Explore Ecosystem` → `/products` | navigation.ts |
 
 ### 1.2 Footer
+> [!IMPORTANT]
+> The three flat footer links are superseded by the labelled groups in [§12](#12-companyproduct-hierarchy-pass--2026-09-03-proposed). Their recorded labels below are also pre-existing drift: what actually shipped was `Products` / `About` / `Contact`, not `Products Portfolio` / `Company Foundation` / `Inquiries`. The brand, tagline, copyright and legal-entity rows are unchanged.
+
 | Element | Literal text | Source |
 | :--- | :--- | :--- |
 | Brand name | `SamJuniors` | company.ts |
@@ -96,6 +103,9 @@ UI chrome for the persistent scene rail (design-system §6.8.6). The visible num
 ---
 
 ## 2. Home — Hero (`HeroSection`)
+
+> [!IMPORTANT]
+> The topline, primary-CTA and secondary-link rows are superseded by [§12](#12-companyproduct-hierarchy-pass--2026-09-03-proposed). The CTA rows below are additionally pre-existing drift: what shipped before that pass was `See what Lumora does` → `/products/lumora` and `Why we build this way →` → `#thesis`, not the labels recorded here. The H1, lead and tenets are unchanged.
 
 | Element | Literal text | Status |
 | :--- | :--- | :--- |
@@ -153,6 +163,7 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 | Element | Literal text |
 | :--- | :--- |
 | Section label row | `03` / `Flagship Expression` |
+| Company attribution *(added 2026-09-03, [§12](#12-companyproduct-hierarchy-pass--2026-09-03-proposed) row 7)* | `The first product SamJuniors has taken to beta.` |
 | H2 | `Lumora — AI-Native Academic Operating System` |
 | Lead | `Our first major flagship platform. Lumora turns fragmented coursework, research deadlines, syllabi, and degree requirements into continuous understanding, grounded advisory guidance, and focused action.` |
 | Workbench window title | `◈` + `lumora_os // academic_intelligence_loop` |
@@ -255,6 +266,10 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 ## 6. Products Pages
 
 ### 6.1 `/products` — Portfolio Index
+
+> [!IMPORTANT]
+> The eyebrow, lead and flagship-chip rows are superseded by [§12](#12-companyproduct-hierarchy-pass--2026-09-03-proposed), which also adds a company-standard closing band not recorded below. The H1 row is pre-existing drift from an earlier pass (the shipped H1 is `Products`) and is now registered in §12 for accuracy.
+
 | Element | Literal text |
 | :--- | :--- |
 | Eyebrow | `Portfolio Architecture` |
@@ -296,6 +311,9 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 
 ## 7. About Page (`/about`)
 
+> [!IMPORTANT]
+> The eyebrow and H1 rows are superseded by [§12](#12-companyproduct-hierarchy-pass--2026-09-03-proposed), which also adds a closing products bridge section not recorded below. The lead, filters and cycle are unchanged.
+
 | Element | Literal text |
 | :--- | :--- |
 | Eyebrow | `Company Foundation` |
@@ -319,11 +337,14 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 **Cycle cards** (chip `STAGE 01`…`STAGE 06`; strings identical to [§3.1](#31-the-building-cycle-left-column-column-label-the-building-cycle-list-aria-label-the-samjuniors-building-cycle) — single source `companyContent.buildingCycle`).
 
 > [!NOTE]
-> The reputation pillars (`Exceptional AI Innovation` · `Strong Engineering & Execution` · `Enduring Product Ecosystem`) exist in `company.ts` but are not rendered anywhere. If the founder wants them visible, they need a destination section; otherwise they stay data-only.
+> The reputation pillars (`Exceptional AI Innovation` · `Strong Engineering & Execution` · `Enduring Product Ecosystem`) got their destination on 2026-09-03: they render as the closing band of `/products` under the heading `What SamJuniors sets out to be known for` (see [§12](#12-companyproduct-hierarchy-pass--2026-09-03-proposed)). The strings themselves are unchanged foundation truth from `company.ts`; only the surface is new. They remain unrendered on `/about`.
 
 ---
 
 ## 8. Contact Page (`/contact`)
+
+> [!IMPORTANT]
+> The card-body row is superseded by [§12](#12-companyproduct-hierarchy-pass--2026-09-03-proposed). The eyebrow, H1, lead, card H2 and email rows are unchanged, and the PENDING FOUNDER COPY note below still stands — §12 reframed the existing sentence, it did not build the intent-routing model.
 
 | Element | Literal text |
 | :--- | :--- |
@@ -368,3 +389,89 @@ Everything the site needs but no founder-approved words exist for yet. **Agents 
 1. **Founder edits** an `APPROVED` string or promotes a `PROPOSED`/`PENDING` string → update this document (status + sign-off table §0.2) → update `src/content/` / component copy in the same change → run the copy-parity check in [qa-checklist.md](qa-checklist.md) (shipped strings must match this document).
 2. **Agent proposes** new copy: draft it into the relevant section with status `PROPOSED`, citing the spec requirement it fulfills; founder approves or rewrites.
 3. Copy disputes resolve by authority: [docs/company/](../company/) founder truth → this document's `APPROVED` strings → `PROPOSED` strings → code.
+
+---
+
+## 12. Company/Product Hierarchy Pass — 2026-09-03 (PROPOSED)
+
+Register of every visitor-facing string this pass changed or added. The pass asked one question on each of the five routes — *if Lumora were temporarily removed, would this still clearly be a SamJuniors company website?* — and changed only what made the answer no.
+
+Every string below is **PROPOSED** ([§0.2](#02-sign-off-record) row 10). None of it is invented positioning: company facts come from [docs/company/foundation.md](../company/foundation.md) via `companyContent`, and every product fact is read from the registry (`flagship.name`, `flagship.category`, `flagship.slug`) rather than written down.
+
+**Out of scope, explicitly.** Pre-existing drift between this document and shipped code was not touched — the §1.1 header CTA (`Get in touch` ships, `Explore Ecosystem` is recorded), the §6.1 H1 (`Products` ships, `Product Ecosystem` is recorded), and the homepage scene copy rewritten by earlier passes. This section registers its own strings only.
+
+### 12.1 Navigation & footer — `src/content/navigation.ts`
+
+| # | Element | Was | Now | Supersedes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Primary nav link 2 | `About` | `Company` | §1.1 nav link 2 |
+| 2 | Footer group 1 label | *(no groups: three flat links)* | `Company` — containing `About`, `Contact` | §1.2 footer links 1–3 |
+| 3 | Footer group 2 label | *(no groups: three flat links)* | `Products` — containing `All products`, then one entry per registered product | §1.2 footer links 1–3 |
+
+The product entries are `products.map(...)`, so `Lumora` in the footer is the registry's `product.name`, not a copy string: adding a product must never require a navigation edit ([product-spec.md §5.4](product-spec.md#54-multi-product-scalability)).
+
+### 12.2 Homepage — Scene 01 Overture & Scene 03 Lumora
+
+| # | Element | Was | Now | Supersedes |
+| :--- | :--- | :--- | :--- | :--- |
+| 4 | Hero topline | `Parent Technology Ecosystem` | `AI-first technology company` | §2 topline row; also closes leak #4 below |
+| 5 | Hero primary CTA | `See what Lumora does` → `/products/lumora` | `See what SamJuniors builds` → `/products` | §2 primary CTA row |
+| 6 | Hero secondary link | `Why we build this way →` → `#thesis` | `Lumora, our flagship platform →` → `/products/lumora` | §2 secondary link row |
+| 7 | Scene 03 company attribution *(new line, between the label row and the H2)* | — | `The first product SamJuniors has taken to beta.` | new row in the §4 header table |
+
+`Parent Technology Ecosystem` was internal governance vocabulary on the most-read line of the site ([INDEX.md §3](INDEX.md#3-core-implementation-rule-internal-knowledge--website-content)); the replacement is the company's own self-description from foundation truth. The CTA swap is the pass's single most consequential change — the site's strongest action was product-scoped, so removing Lumora removed the primary ask.
+
+### 12.3 `/products` — Portfolio Index
+
+| # | Element | Was | Now | Supersedes |
+| :--- | :--- | :--- | :--- | :--- |
+| 8 | Eyebrow | `What we build` | `SamJuniors portfolio` | §6.1 eyebrow |
+| 9 | Lead | `One product is in beta today. SamJuniors would rather present a single real platform honestly than a portfolio page of intentions.` | `SamJuniors builds production software for the places where professional and academic work still breaks down. One platform is in beta today, and it is held to the same standard as everything that follows it — we would rather present one real product honestly than a portfolio of intentions.` | §6.1 lead |
+| 10 | Flagship chip | `Flagship` | `Flagship product` | §6.1 flagship chip |
+| 11 | Closing band H2 *(new section)* | — | `What SamJuniors sets out to be known for` | new |
+| 12 | Closing band items *(new)* | — | `Exceptional AI Innovation` · `Strong Engineering & Execution` · `Enduring Product Ecosystem`, numbered `01`–`03` | new surface for existing `companyContent.reputationPillars` — resolves the §7 note |
+| 13 | Closing band link *(new)* | — | `How SamJuniors decides what to build →` → `/about` | new |
+
+The three pillars are the founder's own reputation goals from foundation truth, rendered for the first time; the pass gave them a destination rather than writing new company claims. The band is what makes this page survive the removal test — without it, `/products` is a header and one product panel.
+
+### 12.4 `/about` — Company Page
+
+| # | Element | Was | Now | Supersedes |
+| :--- | :--- | :--- | :--- | :--- |
+| 14 | Eyebrow | `Company Foundation` | `Company` | §7 eyebrow |
+| 15 | H1 | `How We Build` | `What SamJuniors is, and how it builds` | §7 H1 |
+| 16 | Bridge H2 *(new section)* | — | `What this has produced so far` | new |
+| 17 | Bridge body *(new)* | — | `One platform has come through the filters and the cycle and is in beta today: Lumora, an AI-native Academic Operating System. It is the first product SamJuniors has taken this far, and for now it is the entire portfolio — the filters are meant to reject far more than they pass.` | new |
+| 18 | Bridge link *(new)* | — | `See the SamJuniors portfolio →` → `/products` | new |
+
+`Company Foundation` was internal vocabulary (leak #5 below). The H1 changed because `How We Build` is a process manifesto: it never says what SamJuniors *is*, which is the one thing the company page owes a visitor. In row 17 `Lumora` and `AI-native Academic Operating System` are `flagship.name` and `flagship.category` read from the registry — the category is not lowercased, which would corrupt `AI-native`. The link deliberately points at `/products`, not `/products/lumora`: the visitor should meet the portfolio before the product.
+
+### 12.5 `/contact` — Gateway Card
+
+| # | Element | Was | Now | Supersedes |
+| :--- | :--- | :--- | :--- | :--- |
+| 19 | Card body | `Tell us who you teach or what you build, and what you want to do with Lumora. Concrete beats formal — it gets you a more useful reply.` | `Tell us who you teach or what you build, and what you want from SamJuniors — Lumora access, a pilot, or engineering work. Concrete beats formal; it gets you a more useful reply.` | §8 card body |
+
+Contact funnelled every inquiry through the product. The replacement keeps product access as one of three named reasons to write, so a partnership or engineering inquiry is no longer phrased as a Lumora inquiry. This does **not** implement the intent-routing model — §8's PENDING FOUNDER COPY entry still stands.
+
+### 12.6 Internal-vocabulary leaks closed by this pass
+
+Continues [§9](#9-known-leaks--strings-that-must-not-ship)'s numbering. Both were governance vocabulary from [docs/](../) reaching visitor surfaces:
+
+| # | String | Location | Violation | Resolution |
+| :--- | :--- | :--- | :--- | :--- |
+| 4 | `Parent Technology Ecosystem` | homepage hero topline | `docs/` calls SamJuniors the parent company; a visitor has no second company to relate it to, and the line never said what SamJuniors is | **REMOVED 2026-09-03** → row 4 above |
+| 5 | `Company Foundation` | `/about` eyebrow | `foundation.md` is an internal document name, not a visitor-facing section label | **REMOVED 2026-09-03** → row 14 above |
+
+A regression guard now fails the build if either phrase (or `parent company`, `parent-company`, `decision id`, `COMPANY-001`) appears in the rendered output of any of the five routes or the footer: `src/app/company-hierarchy.test.tsx`. The bare word *phase* is deliberately not on that list — the product's registered status label legitimately contains `Phase 1 core workflow beta`.
+
+### 12.7 Founder decisions to confirm at sign-off
+
+Two judgement calls were made rather than deferred, because the pass could not otherwise close. Both are reversible in one edit:
+
+1. **Reputation pillars placed on `/products`, not `/about`.** They read as the standard the portfolio is judged against, which is why they close the portfolio page. The §7 note that offered them to `/about` is now resolved this way. If the founder wants them on the company page instead, rows 11–13 move and `/products` needs a different closing beat — the page cannot go back to header-plus-one-panel without failing the removal test.
+2. **`/about` H1 replaced.** `How We Build` is a process manifesto: it never says what SamJuniors *is*, which is the one thing the company page owes a visitor. The replacement keeps the method clause and adds the missing subject. Rule 1 of [§0](#0-copy-status-model--sign-off-protocol) is intact — every string this pass touched was `PROPOSED`, never `APPROVED`, so no immutable copy was overwritten. This is nevertheless the most substantive rewording in the pass and the one most worth the founder's eye.
+
+### 12.8 Not changed, deliberately
+
+The five-scene homepage order (frozen by [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md), and already company-first), every scene's body copy, the `/products` H1 (`Products` — the company statement went into the eyebrow and lead instead), the whole of `/products/lumora` (breadcrumbs already open on `SamJuniors`, the chip already reads `Flagship product`, the footer line already attributes the product to the company), and the structured-data graph (`publisher` + `BreadcrumbList` already encode the hierarchy). No new products, no roadmap language, no future-product hints.

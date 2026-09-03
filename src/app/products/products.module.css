@@ -132,6 +132,62 @@
 }
 
 /*
+ * Company standard — closing band.
+ * Reuses the page's existing surface language (hairline rule, mono meta,
+ * copper ordinals) rather than introducing a new component: it is a statement
+ * of the company, not another product card, so it is deliberately not boxed.
+ */
+.standard {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.standardTitle {
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-5);
+}
+
+.standardList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+}
+
+.standardItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.standardOrder {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--color-accent-copper);
+}
+
+.standardLabel {
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+  .standardList {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+/*
  * Additive over the global .text-link (the inline-flex box, the 44px minimum
  * target and the shared link colour treatment). Only the shrink-to-fit
  * alignment is card-specific: .card is a column flex container, so the default

@@ -39,14 +39,37 @@
   font-weight: 300;
 }
 
+/* Link groups: the hierarchy statement (Company / Products) rendered as two
+   labelled columns. The label reuses the site's existing mono meta treatment —
+   no new type scale, no new colour. */
+.groups {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.group {
+  min-width: 120px;
+}
+
+.groupLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: var(--space-2);
+}
+
 .links {
   display: flex;
-  gap: var(--space-6);
+  flex-direction: column;
   list-style: none;
 }
 
-/* 44px target height (the text alone was ~16px). The row is a flex list, so the
-   extra height is absorbed by alignment rather than pushing the layout. */
+/* 44px target height (the text alone was ~16px). The column absorbs the extra
+   height as row spacing rather than pushing the layout. */
 .link {
   display: inline-flex;
   align-items: center;
@@ -75,11 +98,10 @@
 @media (max-width: 640px) {
   .topRow {
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-6);
   }
-  .links {
-    flex-wrap: wrap;
-    gap: var(--space-4);
+  .groups {
+    gap: var(--space-7);
   }
 }
 

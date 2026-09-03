@@ -10,7 +10,7 @@ test.describe('SamJuniors Application Smoke Tests', () => {
 
   test('direct navigation to products index and lumora detail page', async ({ page }) => {
     await page.goto('/products');
-    await expect(page.locator('h1')).toContainText('Product Ecosystem');
+    await expect(page.locator('h1')).toContainText('Products');
 
     await page.goto('/products/lumora');
     await expect(page.locator('h1')).toContainText('Lumora');

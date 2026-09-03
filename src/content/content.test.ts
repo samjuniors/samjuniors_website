@@ -29,7 +29,29 @@ describe('Canonical Content Layer', () => {
 
   it('provides complete navigation structure', () => {
     expect(siteNavigation.primaryLinks.length).toBeGreaterThan(0);
-    expect(siteNavigation.footerLinks.length).toBeGreaterThan(0);
+    expect(siteNavigation.footerGroups.length).toBeGreaterThan(0);
     expect(siteNavigation.primaryCta.href).toBeDefined();
+    for (const group of siteNavigation.footerGroups) {
+      expect(group.label).toBeTruthy();
+      expect(group.links.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('enumerates products under the Products footer group, never as company peers (COMPANY-003)', () => {
+    const productGroup = siteNavigation.footerGroups.find((group) => group.label === 'Products');
+    expect(productGroup).toBeDefined();
+
+    // Every registered product must be reachable from the group, and no product
+    // may appear in any other group: the footer is where the hierarchy is
+    // stated structurally, so a product sitting beside Company links would
+    // assert that it is a peer of the company.
+    for (const product of products) {
+      const href = `/products/${product.slug}`;
+      expect(productGroup?.links.some((link) => link.href === href)).toBe(true);
+      for (const group of siteNavigation.footerGroups) {
+        if (group.label === 'Products') continue;
+        expect(group.links.some((link) => link.href === href)).toBe(false);
+      }
+    }
   });
 });

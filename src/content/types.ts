@@ -116,9 +116,21 @@ export interface NavigationItem {
   isExternal?: boolean;
 }
 
+/**
+ * A labelled group of footer links. The group label is load-bearing: it is
+ * where the site states the company/product hierarchy structurally rather
+ * than in prose — `Company` links describe SamJuniors, `Products` links
+ * describe things SamJuniors builds. Products are enumerated from the product
+ * registry, never hardcoded, so a second product needs no navigation edit.
+ */
+export interface NavigationGroup {
+  label: string;
+  links: NavigationItem[];
+}
+
 export interface NavigationStructure {
   primaryLinks: NavigationItem[];
-  footerLinks: NavigationItem[];
+  footerGroups: NavigationGroup[];
   primaryCta: NavigationItem;
 }
 

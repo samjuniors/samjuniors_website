@@ -65,7 +65,9 @@ describe('Application route rendering', () => {
 
   it('renders the about page with the building filters', () => {
     render(<AboutPage />);
-    expect(screen.getByRole('heading', { level: 1, name: /How We Build/i })).toBeDefined();
+    expect(
+      screen.getByRole('heading', { level: 1, name: /What SamJuniors is, and how it builds/i }),
+    ).toBeDefined();
     expect(screen.getByText(/Innovation/i)).toBeDefined();
     expect(screen.getByText(/User Value/i)).toBeDefined();
   });

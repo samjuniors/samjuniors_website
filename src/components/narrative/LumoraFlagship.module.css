@@ -68,6 +68,17 @@
   color: var(--accent-copper);
 }
 
+/* Company attribution above the product name. Sans, not mono: the mono meta
+   treatment is already carrying the eyebrow above and the category line below,
+   and a third mono line would read as a label rather than a sentence. */
+.companyFrame {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-2);
+}
+
 .headline {
   font-size: clamp(2.1rem, 4vw, 3.2rem);
   font-weight: 500;
