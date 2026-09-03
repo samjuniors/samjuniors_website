@@ -91,22 +91,33 @@
   margin-bottom: var(--space-5);
 }
 
+/*
+ * Additive over the global .text-link, which supplies the inline-flex box, the
+ * 44px minimum target (WCAG 2.5.8) and the shared link colour treatment. Only
+ * the copper emphasis and the shrink-to-fit alignment are scene-specific, so
+ * nothing declared here competes with the global rule for the cascade.
+ *
+ * Underline rather than border-bottom: a border draws at the bottom edge of the
+ * 44px target box, which would leave the copper rule floating well below the
+ * text. text-decoration follows the glyphs.
+ */
 .actionLink {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--text-main);
-  font-size: 0.92rem;
-  font-weight: 500;
-  border-bottom: 1px solid var(--accent-copper);
-  padding-bottom: 3px;
   align-self: flex-start;
-  transition: all var(--duration-fast) var(--ease-out);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-copper);
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--space-1);
 }
 
 .actionLink:hover {
-  color: var(--accent-copper-hover);
-  border-bottom-color: var(--text-main);
+  text-decoration-color: var(--text-main);
+}
+
+/* .col is a column flex container, so a button child stretches to the full
+   column measure by default — roughly 500px at 1440, unlike every other
+   .btn-primary on the site. Shrink-to-fit, nothing else. */
+.ctaLink {
+  align-self: flex-start;
 }
 
 @media (max-width: 860px) {

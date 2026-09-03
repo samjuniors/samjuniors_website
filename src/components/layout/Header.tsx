@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { siteNavigation } from '@/content/navigation';
 import { companyContent } from '@/content/company';
+import { CloseNavOnNavigate } from './CloseNavOnNavigate';
 import styles from './Header.module.css';
 
 /**
@@ -10,7 +11,9 @@ import styles from './Header.module.css';
  * a JS menu: it is keyboard-operable, exposes aria-expanded through the browser,
  * and — unlike the previous `display: none` treatment — still works with no
  * client script at all. Primary navigation is never hidden without an equivalent
- * interaction taking its place.
+ * interaction taking its place. The one thing script adds is collapsing the panel
+ * after a link is taken (see CloseNavOnNavigate); without script the disclosure
+ * simply behaves like any other `<details>`.
  */
 export function Header() {
   return (
@@ -37,7 +40,7 @@ export function Header() {
           {siteNavigation.primaryCta.label}
         </Link>
 
-        <details className={styles.compactNav}>
+        <details className={styles.compactNav} id="compact-nav">
           <summary className={styles.compactToggle} aria-label="Navigation menu">
             <span className={styles.toggleBars} aria-hidden="true" />
             <span className={styles.toggleWord}>Menu</span>
@@ -57,6 +60,7 @@ export function Header() {
             </Link>
           </nav>
         </details>
+        <CloseNavOnNavigate />
       </div>
     </header>
   );

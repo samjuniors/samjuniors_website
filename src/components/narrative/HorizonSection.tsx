@@ -30,7 +30,7 @@ export function HorizonSection() {
             portfolio is held to: solve a real workflow, show the evidence, and
             leave the consequential decision with a person.
           </p>
-          <Link href="/products" className={styles.actionLink}>
+          <Link href="/products" className={`text-link ${styles.actionLink}`}>
             See what we build →
           </Link>
         </Reveal>
@@ -45,7 +45,7 @@ export function HorizonSection() {
             conversation. Early Lumora access, pilots, and engineering partnerships
             all start the same way — an email that a person reads.
           </p>
-          <Link href="/contact" className="btn-primary">
+          <Link href="/contact" className={`btn-primary ${styles.ctaLink}`}>
             <span>Get in touch</span>
             <span aria-hidden="true">→</span>
           </Link>

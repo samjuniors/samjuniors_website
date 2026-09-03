@@ -59,7 +59,10 @@ export default function ProductsPage() {
           <p className={styles.flagshipDescription}>
             {product.shortDescription}
           </p>
-          <Link href={`/products/${product.slug}`} className={styles.exploreLink}>
+          <Link
+            href={`/products/${product.slug}`}
+            className={`text-link ${styles.exploreLink}`}
+          >
             How {product.name} works →
           </Link>
         </Reveal>
@@ -83,7 +86,10 @@ export default function ProductsPage() {
                   {product.shortDescription}
                 </p>
               </div>
-              <Link href={`/products/${product.slug}`} className={styles.exploreLink}>
+              <Link
+                href={`/products/${product.slug}`}
+                className={`text-link ${styles.exploreLink}`}
+              >
                 How {product.name} works →
               </Link>
             </article>

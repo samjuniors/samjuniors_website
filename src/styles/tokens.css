@@ -39,12 +39,6 @@
   --color-accent-copper-border: rgba(200, 150, 102, 0.25);
   --color-accent-copper-glow: rgba(200, 150, 102, 0.4);
 
-  /* Product Accent: Lumora / Intelligence Steel Blue */
-  --color-accent-blue: #628cb3;
-  --color-accent-blue-hover: #7ba3ca;
-  --color-accent-blue-muted: rgba(98, 140, 179, 0.12);
-  --color-accent-blue-border: rgba(98, 140, 179, 0.25);
-
   /* Diagnostic States */
   --color-status-warning: #ff9e66;
   --color-status-warning-bg: rgba(255, 158, 102, 0.1);
@@ -83,9 +77,6 @@
   --border-solid: var(--color-border-solid);
   --accent-copper: var(--color-accent-copper);
   --accent-copper-hover: var(--color-accent-copper-hover);
-  --accent-blue: var(--color-accent-blue);
-  --accent-steel: var(--color-accent-blue);
-  --accent-emerald: var(--color-status-success);
 
   /* =========================================================================
      2. Typography Scales

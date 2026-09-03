@@ -16,7 +16,7 @@
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--color-accent-blue);
+  color: var(--color-accent-copper);
   text-transform: uppercase;
   margin-bottom: var(--space-2);
 }
@@ -67,7 +67,7 @@
 
 .filterNumber {
   font-family: var(--font-mono);
-  color: var(--color-accent-blue);
+  color: var(--color-accent-copper);
   font-weight: 600;
 }
 
