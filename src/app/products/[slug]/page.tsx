@@ -5,6 +5,8 @@ import { getProductBySlug, products } from '@/content/products';
 import { companyContent } from '@/content/company';
 import { LumoraWorkflowWalkthrough } from '@/components/interactive/LumoraWorkflowWalkthrough';
 import { LumoraEvidence } from '@/components/product/LumoraEvidence';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { productGraph } from '@/lib/structured-data';
 import styles from './product-detail.module.css';
 
 interface ProductPageProps {
@@ -67,6 +69,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   return (
     <>
+      <JsonLd data={productGraph(product)} />
+
       <div className={`container ${styles.page}`}>
         <nav aria-label="Breadcrumbs" className={styles.breadcrumbs}>
           <Link href="/" className={styles.breadcrumbLink}>
@@ -156,7 +160,22 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </div>
           </section>
         )}
+      </div>
 
+      {/*
+        Evidence substantiates the capability list, so it sits directly after it:
+        the page then runs what it is → who for → how it works → what is real
+        (claimed, then evidenced) → what is not built → what to do next, with the
+        honest gap as the last thing read before the ask.
+      */}
+      <LumoraEvidence
+        items={evidence}
+        headingId="product-evidence-heading"
+        title={`${product.name} as it stands today`}
+        intro={`Each of these surfaces exists in the product now. What they do is described from the product's own build, running on seeded demonstration data rather than real student records — none of it is a description of an intended future.`}
+      />
+
+      <div className={`container ${styles.page}`}>
         {product.roadmap.length > 0 && (
           <section className={styles.block} aria-labelledby="roadmap-heading">
             <p className={styles.sectionEyebrow}>What does not exist yet</p>
@@ -184,13 +203,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </section>
         )}
       </div>
-
-      <LumoraEvidence
-        items={evidence}
-        headingId="product-evidence-heading"
-        title={`${product.name} as it stands today`}
-        intro={`These are the product's own surfaces, running on seeded demonstration data rather than real student records. Nothing here is a mockup of an intended future.`}
-      />
 
       <div className={`container ${styles.page}`}>
         <section className={styles.ctaSection} aria-labelledby="cta-heading">

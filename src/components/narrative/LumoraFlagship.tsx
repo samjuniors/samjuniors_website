@@ -7,9 +7,9 @@ import styles from './LumoraFlagship.module.css';
  * LumoraFlagship — Scene 03, the flagship product beat of the homepage.
  *
  * Deliberately compact: the homepage states what Lumora is, how its workflow
- * runs, where the human decision sits, and shows one piece of real product
- * evidence. The full four-step walkthrough and the complete evidence set live
- * on /products/lumora — the homepage is not the place to spend four viewport
+ * runs, where the human decision sits, and what its primary surface does today.
+ * The full four-step walkthrough and the complete evidence set live on
+ * /products/lumora — the homepage is not the place to spend four viewport
  * heights on one product.
  *
  * Server component: no client state on this beat.
@@ -69,7 +69,7 @@ export function LumoraFlagship() {
         items={product.evidence.slice(0, 1)}
         headingId="lumora-evidence-heading"
         title="What the product actually does today"
-        intro={`${product.name} is in pre-launch beta and in active development. This is the surface a teacher works in, running on seeded demonstration data — not a mockup of an intended future.`}
+        intro={`${product.name} is in pre-launch beta and in active development. This is what its primary surface does today, verified against the product's own build and running on seeded demonstration data — not a description of an intended future.`}
       />
     </section>
   );

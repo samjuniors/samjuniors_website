@@ -52,6 +52,21 @@
   max-width: 68ch;
 }
 
+/*
+ * Shown only when no evidence item carries a real capture. Set apart by a rule
+ * rather than a tinted box: it is a qualification of the claim above it, not a
+ * warning, and the band already carries enough surfaces.
+ */
+.captureNote {
+  font-size: 0.94rem;
+  line-height: var(--leading-body);
+  color: var(--color-evidence-ink-muted);
+  max-width: 68ch;
+  margin: var(--space-4) 0 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-evidence-border);
+}
+
 .list {
   list-style: none;
   display: flex;
@@ -114,9 +129,12 @@
   margin: 0;
 }
 
+/* 0.72rem, matching the band's other labels: this tag carries the honesty
+   qualifier on every claim in the band, so it must not be the smallest type on
+   the page. */
 .demoTag {
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-evidence-accent);

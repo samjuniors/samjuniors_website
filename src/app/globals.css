@@ -50,6 +50,18 @@ button:focus-visible,
   border-radius: var(--radius-xs);
 }
 
+/*
+ * The skip destination is the one exception. <main tabindex="-1"> is a
+ * programmatic landing spot, not a keyboard-operable control: it is outside the
+ * tab order and has no activation behaviour, so WCAG 2.4.7 does not ask for a
+ * focus ring on it. Without this, activating the skip link would draw a copper
+ * outline around the entire page content.
+ */
+#main-content:focus,
+#main-content:focus-visible {
+  outline: none;
+}
+
 h1, h2, h3 {
   text-wrap: balance;
 }
@@ -164,4 +176,47 @@ h1, h2, h3 {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/*
+ * Skip link (WCAG 2.4.1). First focusable element in the document, hidden until
+ * focused, targeting <main id="main-content">. Not .sr-only + :focus: that
+ * pattern has to undo six properties on focus, and a 1px clipped box has been a
+ * reliable source of browsers refusing to scroll the link into view. Moving one
+ * property — the offscreen inset — keeps the box its real size throughout.
+ */
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 100;
+  /* Off-screen rather than display:none so it stays focusable. */
+  transform: translateY(calc(-100% - var(--space-4)));
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--min-touch-target);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-accent-copper-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-surface-elevated);
+  color: var(--color-text-primary);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+/*
+ * :focus, not :focus-visible — the link is off-screen and cannot be pointed at,
+ * so every focus it receives is a keyboard or programmatic focus that must
+ * bring it into view.
+ */
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
 }

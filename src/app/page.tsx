@@ -4,6 +4,8 @@ import { LumoraFlagship } from '@/components/narrative/LumoraFlagship';
 import { FounderPresence } from '@/components/narrative/FounderPresence';
 import { HorizonSection } from '@/components/narrative/HorizonSection';
 import { SceneProgress } from '@/components/interactive/SceneProgress';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { organizationGraph } from '@/lib/structured-data';
 
 /**
  * The unified scene numbering (design-system §6.8.6 wayfinding): one 01–05
@@ -23,8 +25,8 @@ const SCENES = [
  * 01 Overture: who SamJuniors is and what it builds.
  * 02 Thesis: why the company exists.
  * 03 Lumora: the flagship product, stated compactly, closing with one band of
- *    real product evidence. The full four-step workflow walkthrough lives on
- *    /products/lumora — the homepage does not spend four viewport heights on
+ *    verified product behaviour. The full four-step workflow walkthrough lives
+ *    on /products/lumora — the homepage does not spend four viewport heights on
  *    a single product, which is what keeps this beat inside its share of the
  *    page rather than consuming it.
  * 04 Founder: the human layer, with no invented founder identity.
@@ -37,6 +39,8 @@ const SCENES = [
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={organizationGraph()} />
+
       <SceneProgress scenes={[...SCENES]} />
 
       <HeroSection />

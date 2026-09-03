@@ -14,9 +14,17 @@
   color: var(--color-text-muted);
 }
 
+/*
+ * Inline, not inline-block: the trail reads as one line with its "/" separators
+ * sitting on the same baseline, and an inline box's padding still forms the hit
+ * area. 14px of block padding lifts a 16px text box to the 44px touch target
+ * without adding 16px of visual height to the least important row on the page.
+ * Only non-interactive content sits above and below it, so the overflowing hit
+ * area cannot steal a tap from anything else.
+ */
 .breadcrumbLink {
   color: var(--color-text-secondary);
-  padding-block: 6px;
+  padding-block: 14px;
 }
 
 .breadcrumbCurrent {
