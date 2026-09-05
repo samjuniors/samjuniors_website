@@ -27,29 +27,22 @@ This document establishes the binding operational rules, governance, and workflo
 4. **Reading Scope (Documentation Efficiency Rule)**:
    - For any single page or component task, read only the relevant section of [docs/website/product-spec.md](docs/website/product-spec.md) (what it must communicate), [docs/website/copy.md](docs/website/copy.md) (the literal words), [docs/website/design-system.md](docs/website/design-system.md) (visual rules), and [docs/website/component-inventory.md](docs/website/component-inventory.md) (components & pattern contract). For homepage/experience-architecture tasks, also read the governing ADR in [docs/website/adr/](docs/website/adr/) (currently [ADR-001](docs/website/adr/ADR-001-homepage-experience-reconciliation.md)).
    - When verifying completed work, run the applicable gates in [docs/website/qa-checklist.md](docs/website/qa-checklist.md).
-   - Do not read [docs/website/decisions.md](docs/website/decisions.md) or [docs/company/foundation.md](docs/company/foundation.md) unless the task specifically concerns brand identity or historical rationale.
+   - Do not read [docs/website/decisions.md](docs/website/decisions.md) or [docs/company/foundation.md](docs/company/foundation.md) unless the task specifically concerns brand identity or historical rationale — **or** is a review that must verify alignment with `docs/company/` under §6, in which case read the relevant section only.
    - **Copy rule**: agents never invent visitor-facing copy. New strings are drafted into copy.md as `PROPOSED` with the spec requirement they fulfill; only the founder promotes them to `APPROVED`.
 
 ---
 
 ## 2. Source of Truth Hierarchy
 
-When resolving conflicts or gathering context, adhere strictly to this precedence hierarchy:
+This is the **single binding precedence ladder** for the repository. `CLAUDE.md` §3 defers to it; do not maintain a competing list anywhere else. When resolving conflicts or gathering context, adhere strictly to this order:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│ 1. docs/company/ (Highest authority — Founder Truth)       │
-├─────────────────────────────────────────────────────────────┤
-│ 2. PROJECT.md & ROADMAP.md (Project Scope & Milestones)    │
-├─────────────────────────────────────────────────────────────┤
-│ 3. Approved documentation in docs/website/                  │
-│    (product-spec → design-system → architecture → delivery) │
-├─────────────────────────────────────────────────────────────┤
-│ 4. AGENTS.md & CONTRIBUTING.md (Operating Protocols)       │
-├─────────────────────────────────────────────────────────────┤
-│ 5. Codebase Implementation (Lowest authority)              │
-└─────────────────────────────────────────────────────────────┘
-```
+1. **Explicit founder/user instruction in the current conversation** — overrides the documents below for the task at hand. If it contradicts approved documentation, do the work and flag the contradiction as a TODO in [decisions.md](docs/website/decisions.md); don't silently rewrite the spec.
+2. **Security, privacy, and platform constraints** — never overridable by preference or convenience (CLAUDE.md §7).
+3. **[docs/company/](docs/company)** — Founder Truth. Company philosophy, mission, values, voice, branding, strategy.
+4. **[PROJECT.md](PROJECT.md) & [ROADMAP.md](ROADMAP.md)** — project scope and milestones.
+5. **Approved documentation in [docs/website/](docs/website)** — product-spec → design-system → architecture → delivery. ADRs in [docs/website/adr/](docs/website/adr/) are freeze-level within their scope.
+6. **Operating protocols** — this file, `CLAUDE.md`, [CONTRIBUTING.md](CONTRIBUTING.md).
+7. **Codebase implementation** — lowest authority.
 
 - If code contradicts approved documentation, the documentation governs and code must be refactored.
 - If documentation contradicts [docs/company/](docs/company), [docs/company/](docs/company) governs.
@@ -68,7 +61,7 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 - **Decide**: Formulate architectural or design proposals based strictly on verified inputs.
 - **Document**: Write specifications or content drafts in the appropriate consolidated document under `docs/website/` (product direction → [product-spec.md](docs/website/product-spec.md); literal visitor copy → [copy.md](docs/website/copy.md); visual rules → [design-system.md](docs/website/design-system.md); component contracts → [component-inventory.md](docs/website/component-inventory.md); technical structure → [architecture.md](docs/website/architecture.md); build/QA/launch → [delivery.md](docs/website/delivery.md) with executable acceptance gates in [qa-checklist.md](docs/website/qa-checklist.md)).
 - **Review**: Solicit stakeholder / founder review. Record review outcomes in [docs/website/decisions.md](docs/website/decisions.md) (detailed findings may use the standalone review-record format defined in [delivery.md §6](docs/website/delivery.md#6-phase-review--sign-off-records)).
-- **Approve**: Formal approval must be granted before starting implementation.
+- **Approve**: Founder approval is required before implementing anything that **changes an approved spec, visitor-facing copy, brand identity, an ADR, or is irreversible**. Reversible implementation work that follows an already-approved spec does **not** wait for approval — state the plan first per `CLAUDE.md` §5, then proceed per §14. This is the scope boundary between this gate and CLAUDE.md's "don't wait for approval on reversible work"; when in doubt about which side a task falls on, ask.
 - **Implement**: Execute code, markup, or assets strictly matching the approved spec.
 - **Verify**: Validate against testing criteria and quality gates.
 - **Merge**: Integrate via verified PR / commit protocols.
@@ -90,19 +83,15 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 
 ## 5. Branch Strategy
 
-- `main`: Production-ready, stable branch. Direct commits prohibited.
-- `develop`: Integration branch for active milestones.
-- Feature / Phase branches:
-  - `docs/<topic-name>` (e.g., `docs/ux-persona-validation`)
-  - `feat/<feature-name>` (e.g., `feat/navigation-component`)
-  - `fix/<issue-name>` (e.g., `fix/mobile-breakpoint-overflow`)
-  - `chore/<task-name>` (e.g., `chore/setup-linter`)
+**Current reality (2026-09-05): `main` is the only branch and it is the working branch.** There is no `develop`, no PR flow, and no CI. Committing directly to `main` is therefore permitted, on two conditions that replace the review gate: checkpoint before any risky or broad change (`CLAUDE.md` §12A), and run the completion standard in `CLAUDE.md` §15 before committing.
+
+Target scheme once a second contributor or CI lands (**not in force now**): protected `main`, `develop` for milestone integration, and topic branches prefixed `docs/`, `feat/`, `fix/`, `chore/` — e.g. `feat/navigation-component`.
 
 ---
 
 ## 6. Review Process
 
-- Documentation changes must be submitted via review pull requests.
+- Documentation changes are submitted for founder review — via pull request once a PR flow exists (§5), otherwise as a diff plus a decision entry in the same commit.
 - Review outcomes and approval decisions must be recorded in [docs/website/decisions.md](docs/website/decisions.md); detailed findings may additionally use the standalone review-record format defined in [delivery.md §6](docs/website/delivery.md#6-phase-review--sign-off-records).
 - AI agents conducting peer reviews must verify:
   1. Alignment with [docs/company/](docs/company).
@@ -121,40 +110,38 @@ Discover ──> Decide ──> Document ──> Review ──> Approve ──> 
 | `docs/website/adr/*` | Architecture Decision Records (freeze amendments). New ADRs and amendments require founder approval; agents may draft them only from explicit founder directives. |
 | `docs/website/decisions.md` | Running decision log. Agents append new entries and TODOs; existing approved records are immutable history. |
 | `docs/website/copy.md` | Literal visitor-facing text. Agents may draft `PROPOSED` strings citing the spec requirement; **only the founder** promotes to `APPROVED` or edits approved strings. |
-| `AGENTS.md`, `PROJECT.md`, `ROADMAP.md` | Core governance files. Changes require explicit project lead approval. |
+| `AGENTS.md`, `PROJECT.md`, `ROADMAP.md`, `CONTRIBUTING.md` | Core governance files. Changes require explicit project lead approval. |
+| `CLAUDE.md` | Agent operating rules. Agents may append to Section 0 (project context, frozen decisions) without approval; any other section requires project lead approval. **Section headings and numbers are load-bearing** — the subagents in `.claude/agents/` cite them, so never renumber a section without updating those files in the same commit. |
+| `PRODUCT.md` | Product truth. Agents may fill in and correct it from confirmed founder input; never invent capabilities, metrics, or roadmap items (§1.1). |
+| `PROGRESS.md`, `CHANGELOG.md` | Append-only work logs. Agents append every completed task per `CLAUDE.md` §15 — enforced by `.claude/hooks/check-progress-commit.sh`. Never rewrite or prune existing entries. |
+| `CONTINUE.md` | Session handoff / current execution state. Agents overwrite freely; it is disposable by design. |
 | `src/*` | Production implementation files. Modifiable only when corresponding docs and architecture are approved. |
 
 ---
 
-## 8. Coding Standards (Placeholder)
+## 8. Coding Standards
 
-> [!NOTE]
-> Detailed coding standards, style guides, formatting configurations, and linting rules will be established during **Phase 10 (Frontend Development)** based on approved technical specifications in [architecture.md](docs/website/architecture.md).
+Detailed style, formatting, and linting rules live in [architecture.md](docs/website/architecture.md); general code-quality rules are in `CLAUDE.md` §6 and §8. Repo-specific additions:
 
-- Preliminary rules:
-  - Strict typing where supported.
-  - Zero tolerance for dead code and unreferenced assets.
-  - Consistent naming conventions aligned with domain terms in [docs/company/](docs/company).
-  - **Engineering Craft ([HUMAN-001](docs/website/design-system.md#25-human-made-design--implementation-human-001))**: Deliberate engineering judgment; avoid unnecessary abstractions, unvetted dependencies, and performance regressions for novelty.
-  - All components must consume design tokens from `src/styles/tokens.css` — no inline styles duplicating token values.
+- Strict typing where supported.
+- Zero tolerance for dead code and unreferenced assets.
+- Consistent naming conventions aligned with domain terms in [docs/company/](docs/company).
+- All components must consume design tokens from `src/styles/tokens.css` — no inline styles duplicating token values.
 
 ---
 
-## 9. Design Standards (Placeholder)
+## 9. Design Standards
 
-> [!NOTE]
-> The authoritative design tokens, typography, color palettes, spacing grids, and component specifications are defined in [docs/website/design-system.md](docs/website/design-system.md).
+The authoritative design tokens, typography, color palettes, spacing grids, and component specifications are defined in [docs/website/design-system.md](docs/website/design-system.md); [HUMAN-001](docs/website/design-system.md#25-human-made-design--implementation-human-001) §2.5 is the single authority on human-made design and engineering craft, and `CLAUDE.md` §9 carries the per-turn version. Repo-specific additions:
 
-- Preliminary rules:
-  - Accessible contrast ratios (WCAG 2.1 AA/AAA compliance).
-  - Responsive layouts supporting mobile, tablet, and desktop breakpoints.
-  - Semantic HTML element structure.
-  - **Human-Made Design ([HUMAN-001](docs/website/design-system.md#25-human-made-design--implementation-human-001))**: Prohibit generic AI visual clichés (saturated gradient blobs, excessive glassmorphism, monotonous card grids); enforce Distinctiveness and Human-Authorship tests.
+- Accessible contrast ratios (WCAG 2.1 AA/AAA compliance).
+- Responsive layouts supporting mobile, tablet, and desktop breakpoints.
+- Semantic HTML element structure.
 
 ---
 
 ## 10. Communication & Reporting Rules
 
 - Keep responses and documentation concise, structured, and actionable.
-- Always use GitHub Flavored Markdown with clickable file links using `file:///` URIs.
+- Use GitHub Flavored Markdown. Link files with repo-relative paths; `file:///` URIs only where an absolute local path is genuinely needed. Task completion reports follow the fixed template in `CLAUDE.md` §15 — that format governs.
 - Explicitly surface risks, blocking unknowns, and TODO items rather than making silent assumptions.
