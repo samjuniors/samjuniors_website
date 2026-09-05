@@ -389,7 +389,11 @@ The visual language establishes high-end engineering craft through deliberate ma
 - **Product Visualization**: High-fidelity, functional interface canvases and structural schematics rather than generic 3D illustrations or abstract device frames.
 
 > [!NOTE]
-> **Palette reconciliation — RESOLVED by [ADR-001 H2](adr/ADR-001-homepage-experience-reconciliation.md) (founder-approved 2026-08-31)**: the values above are the *superseded* strategic-direction palette, retained as historical context only. The certified Phase 7 token system (implemented in `src/styles/tokens.css` and specified in [§6](#6-design-system-specification)) is **canonical**: institutional warm copper `#c89666` (parent), steel blue `#628cb3` (product interaction), obsidian `#0b0c0f` (base canvas), text `#f4f6fa`. No competing palette definitions are maintained; the supersession TODO in [decisions.md](decisions.md) is closed.
+> **Palette reconciliation — RESOLVED by [ADR-001 H2](adr/ADR-001-homepage-experience-reconciliation.md) (founder-approved 2026-08-31), amended 2026-09-05**: the values above are the *superseded* strategic-direction palette, retained as historical context only. The certified Phase 7 token system (implemented in `src/styles/tokens.css` and specified in [§6](#6-design-system-specification)) is **canonical**: institutional warm copper `#c89666` (parent identity), obsidian `#0b0c0f` (base canvas), text `#f4f6fa`, and — for the product's own evidence surface only — the `--color-evidence-*` roles led by `#4f3db0` ([§6.2](#62-semantic-color-system)). No competing palette definitions are maintained.
+>
+> **Second supersession — the steel blue is gone (2026-09-05 amendment, recording commit `9c3f311` of 2026-09-03).** ADR-001 H2 and the two sections below previously named steel blue `#628cb3` as a third canonical accent for "product intelligence interaction". It was **removed from the token system as a product-truth correction** and this documentation was three commits behind that fact. Two independent reasons, both from the commit's own record: it was being applied to *parent-company* chrome (`/about` eyebrow and filter numerals, `/products` eyebrow, flagship chip, explore links), which inverts the company→product hierarchy the site exists to communicate; and Lumora's own brand system forbids the hue outright ("No indigo. No blue.", primary `#372198`), so a blue "Lumora accent" was a fabricated product attribute. The tokens `--color-accent-blue`, `-hover`, `-muted`, `-border` and the aliases `--accent-blue` / `--accent-steel` / `--accent-emerald` were deleted rather than left unreferenced. Those surfaces now carry the copper company accent; the product surface carries `--color-evidence-*`.
+>
+> **This amendment corrects the record, not the code — the token must not be reintroduced.** Founder decision, 2026-09-05: where [AGENTS.md §2](../../AGENTS.md#2-source-of-truth-hierarchy)'s "documentation governs, code must be refactored" would have mandated restoring `#628cb3`, the documentation was the stale artifact and the code was right. Any future request to restore a blue accent is a product-truth question for the founder, not a token edit.
 
 ### 4.6 Human-Authored Design (HUMAN-001)
 True distinctiveness requires rejecting both generic AI startup clichés and reactionary "anti-AI" clichés:
@@ -560,39 +564,87 @@ Additional committed evidence not listed in the original review sheet: [`Screens
 
 ## 6. Design System Specification
 
-*The authoritative design tokens, visual primitives, typography, layout models, motion rules, and accessibility standards for the SamJuniors web platform. Status: **Approved / Implemented** in `src/styles/tokens.css`, `src/app/globals.css`, and `src/components/ui/`.*
+*The authoritative design tokens, visual primitives, typography, layout models, motion rules, and accessibility standards for the SamJuniors web platform. Status: **Approved / Implemented** in `src/styles/tokens.css` and `src/app/globals.css`.*
 
 ### 6.1 Design Philosophy & Aesthetic Foundation
 The SamJuniors design language expresses a serious, enduring technology institution revealing its work. It embodies:
 - **Architectural Restraint**: Deep obsidian foundations, surgical hairline dividers, and generous negative space.
-- **Material Distinction**: Institutional Warm Copper (`#c89666`) for parent identity; Steel Blue (`#628cb3`) for product intelligence interaction.
+- **Material Distinction**: Institutional Warm Copper (`#c89666`) carries parent identity everywhere in the obsidian environment — it is the *only* company accent. The flagship's evidence surface is distinguished by leaving that environment entirely (light canvas + `--color-evidence-*`, §6.2), not by a second accent hue in the same space. There is deliberately no "product interaction" accent: see the §4.5 supersession note.
 - **Editorial Typography**: High-contrast, balanced typography hierarchy with clear semantic roles.
 - **Human Craft (HUMAN-001)**: Purposeful layouts that reject repetitive card templates, generic AI gradients, and superficial interface novelties.
 
 ### 6.2 Semantic Color System
+
+> [!NOTE]
+> **Re-verified line-by-line against `src/styles/tokens.css` on 2026-09-05.** The audit found two wrong
+> values, three obsolete rows and eleven missing tokens; all are corrected below. Two of the corrections are
+> substantive rather than clerical and are recorded in [§4.5](#45-visual-language--aesthetic-synthesis)
+> (steel-blue removal) and in the row notes below (text-tone contrast fix). Where this table and
+> `tokens.css` disagree again, that gap is a finding to raise — not a licence to converge either way.
+
+**The obsidian environment — SamJuniors (`tokens.css` §1)**
 
 | Token | Value | Role & Usage |
 | :--- | :--- | :--- |
 | `--color-bg-base` | `#0b0c0f` | Primary canvas background (Deep Obsidian). |
 | `--color-bg-surface` | `#12141a` | Base component/workbench background. |
 | `--color-bg-surface-elevated` | `#171a22` | Raised elements, cards, and modal layers. |
-| `--color-bg-surface-subtle` | `#0e1015` | Recessed backgrounds and sidebar outliners. |
+| `--color-bg-surface-subtle` | `#0e1015` | Recessed backgrounds, sidebar outliners, the signature scene's elevated band and the Horizon closure tone. |
 | `--color-bg-overlay` | `rgba(255, 255, 255, 0.03)` | Subtle hover fills and row highlights. |
-| `--color-text-primary` | `#f4f6fa` | Main headlines and primary body text. |
-| `--color-text-secondary` | `#959fae` | Secondary body text, subheadings, and captions. |
-| `--color-text-muted` | `#5a6372` | Inactive labels, metadata, and timestamps. |
-| `--color-text-dim` | `#404652` | De-emphasized technical identifiers. |
+| `--color-bg-glass` | `rgba(18, 20, 26, 0.85)` | Intended glass surface. ⚠️ **Defined, never referenced** — the sticky header hardcodes `rgba(11, 12, 15, 0.94)` instead (debt D12). |
+| `--color-text-primary` | `#f4f6fa` | Main headlines and primary body text — **17.4:1** on base. |
+| `--color-text-secondary` | `#959fae` | Secondary body text, subheadings, and captions — **7.3:1**. |
+| `--color-text-muted` | `#7e8899` | Inactive labels, metadata, and timestamps — **5.5:1**. |
+| `--color-text-dim` | `#6f7a8c` | De-emphasized technical identifiers — **4.5:1**. |
 | `--color-border-hairline` | `rgba(255, 255, 255, 0.08)` | Section boundaries and major structural lines. |
 | `--color-border-subtle` | `rgba(255, 255, 255, 0.04)` | Internal item separators and subtle outlines. |
 | `--color-border-active` | `rgba(200, 150, 102, 0.35)` | Active tab borders and focused element strokes. |
-| `--color-accent-copper` | `#c89666` | SamJuniors parent brand accent and markers. |
+| `--color-border-solid` | `#212530` | Opaque structural divider for places a translucent hairline would vanish. |
+
+| `--color-accent-copper` | `#c89666` | **The company accent** — parent brand markers, eyebrows, mono ordinals, link rules. The only accent hue in the obsidian environment. |
 | `--color-accent-copper-hover` | `#d8a676` | Interactive hover state for copper elements. |
 | `--color-accent-copper-muted` | `rgba(200, 150, 102, 0.12)` | Accent badge fills and quiet indicators. |
-| `--color-accent-blue` | `#628cb3` | Lumora / Product intelligence interaction state. |
-| `--color-accent-blue-hover` | `#7ba3ca` | Product interaction hover state. |
-| `--color-accent-blue-muted` | `rgba(98, 140, 179, 0.12)` | Product tag backgrounds. |
-| `--color-status-warning` | `#ff9e66` | Collision and workload bottleneck indicators. |
-| `--color-status-success` | `#4ea881` | Verified and resolved state indicators. |
+| `--color-accent-copper-border` | `rgba(200, 150, 102, 0.25)` | Copper-tinted borders on chips, active bands and cards. |
+| `--color-accent-copper-glow` | `rgba(200, 150, 102, 0.4)` | Intended emphasis glow. ⚠️ **Defined, never referenced** — `HeroSection.module.css` hardcodes the identical value instead (debt D12). |
+| `--color-status-warning` | `#ff9e66` | Collision and workload bottleneck indicators. ⚠️ **Defined, never referenced** (D13). |
+| `--color-status-warning-bg` | `rgba(255, 158, 102, 0.1)` | Warning row fill. ⚠️ **Defined, never referenced** (D13). |
+| `--color-status-warning-border` | `rgba(255, 158, 102, 0.3)` | Warning row stroke. ⚠️ **Defined, never referenced** (D13). |
+| `--color-status-success` | `#4ea881` | Verified and resolved state indicators. ⚠️ **Defined, never referenced** (D13). |
+| `--color-status-success-bg` | `rgba(78, 168, 129, 0.1)` | Resolved row fill. ⚠️ **Defined, never referenced** (D13). |
+
+> **Text-tone correction (2026-09-05, recording commit `5b58001` of 2026-09-01).** This table previously
+> listed `--color-text-muted: #5a6372` and `--color-text-dim: #404652`. Both **failed WCAG 2.1 AA for
+> normal-size text** (3.3:1 and 2.1:1 against `--color-bg-base`) and were corrected in code to the values
+> above; `tokens.css` carries the measurement inline plus the standing rule *keep any new tone at or above
+> 4.5:1*. The correction shipped inside the product-truth commit and was never separately recorded — it is
+> the one unambiguous accessibility *repair* in that otherwise unexplained diff.
+> [qa-checklist.md §2.5](qa-checklist.md#25-accessibility-wcag-21-aa-minimum)'s contrast table was stale for
+> the same reason and is corrected in the same pass. All four text tones now clear AA for body text.
+
+**The product evidence surface — Lumora's own environment (`tokens.css` §1b)**
+
+The evidence band deliberately *leaves* the obsidian environment and adopts the product's light canvas: what
+is shown there belongs to Lumora, not to the parent company. This is the sanctioned way to distinguish
+product material — **not** a second accent hue inside the company environment (§4.5). These roles exist so
+the handoff is token-driven rather than hardcoded per component.
+
+| Token | Value | Role & Usage |
+| :--- | :--- | :--- |
+| `--color-evidence-canvas` | `#f7f6f2` | The band's light canvas — the signal that the environment changed. |
+| `--color-evidence-surface` | `#ffffff` | Cards and panels inside the band. |
+| `--color-evidence-ink` | `#1b1a25` | Primary text on the light canvas. |
+| `--color-evidence-ink-muted` | `#55525f` | Secondary text, captions and disclosures on the light canvas. |
+| `--color-evidence-accent` | `#4f3db0` | The product's own accent — a violet in Lumora's real brand family (brand primary `#372198`). |
+| `--color-evidence-border` | `rgba(27, 26, 37, 0.12)` | Hairlines and card strokes on the light canvas. |
+| `--color-evidence-tag-bg` | `rgba(79, 61, 176, 0.08)` | Per-item tag fills (e.g. the demonstration-data label). |
+
+**Aliases.** `tokens.css` also defines fourteen shorter aliases (`--accent-copper`, `--text-main`,
+`--border-hairline`, `--bg-base`, …) resolving to the `--color-*` roles above. The token file labels them
+*backward-compatibility*, but the 2026-09-05 audit found the codebase uses them far more than the canonical
+names — `--accent-copper` appears 36 times against 7 for `--color-accent-copper`. Both forms resolve, so
+nothing is broken; the naming is simply inconsistent, and this document's previous implication that the
+`--color-*` forms were the names in use was wrong. Registered as **D14**: prefer `--color-*` in new work and
+let a scheduled pass decide whether to converge or formally bless the short forms.
 
 ### 6.3 Typography Hierarchy
 
@@ -633,20 +685,35 @@ The SamJuniors design language expresses a serious, enduring technology institut
 
 ### 6.5 UI Primitives & Components
 
-**1. SectionHeader (`src/components/ui/SectionHeader.tsx`)**
-Standardized narrative anchor rendering sequential markers:
-- Index number: `01`, `02`, `03`...
-- Eyebrow kicker: uppercase monospace label
-- Main heading: high-contrast balanced typography
-- Optional lead paragraph: constrained reading line length
+> [!IMPORTANT]
+> **Corrected 2026-09-05 (founder decision) — the primitives are global CSS classes, not React components.**
+> This section previously specified `SectionHeader` and `Button` components under `src/components/ui/`. That
+> directory was **deleted** in commit `5b58001` (2026-09-01) and no equivalent replaced it. The sanctioned
+> path is the global class set in `src/app/globals.css`, consumed as `className` on a semantic `<a>`,
+> `<Link>` or `<button>`. Documented here as it actually is; the founder's instruction was to document
+> reality rather than rebuild the components. This closes debt **D9** as obsolete.
 
-**2. Button (`src/components/ui/Button.tsx`)**
-Standardized interactive elements satisfying accessibility and 44px+ minimum touch targets:
-- `primary`: High-contrast solid button (`#f4f6fa` background with `#0b0c0f` text).
-- `secondary`: Elevated surface with hairline border (`--color-bg-surface-elevated`).
-- `link`: Clean inline/editorial text link with arrow indicators.
+**Interactive primitives (`src/app/globals.css` — "Button & Interactive Link Primitives")**
 
-> Full component contracts — every component's file, type, props, variants, CSS-module class inventory, content dependencies, the closed-set rule, and the binding CSS-Modules + tokens pattern contract — are governed in [component-inventory.md](component-inventory.md).
+Every one of the three sets `min-height: var(--min-touch-target)` (44px) and `display: inline-flex`, so the
+WCAG 2.5.8 target size is a property of the primitive rather than something each caller has to remember.
+
+| Class | Treatment | Adoption |
+| :--- | :--- | :--- |
+| `.btn-primary` | High-contrast solid: `--color-text-primary` background, `--color-bg-base` text, `12px 24px`, `--radius-sm`, 1px lift + shadow on hover. **The strongest action on a page** — [company-hierarchy.test.tsx](../../src/app/company-hierarchy.test.tsx) asserts the homepage's first one is company-scoped. | 6 files |
+| `.btn-secondary` | Elevated surface (`--color-bg-surface-elevated`) with a hairline border that warms to `--color-border-active` on hover. | ⚠️ **0 uses — dead CSS (D15)** |
+| `.text-link` | Editorial inline link: `--color-text-secondary` rising to primary on hover, `--space-2` gap for an arrow glyph. The quiet, supporting action. | 8 files |
+| `.hairline-divider` | Structural utility: full-width 1px `--color-border-hairline` rule. | ⚠️ **0 uses — dead CSS (D15)** |
+
+**Section headers** are composed per scene from §6.3's type roles (mono ordinal · uppercase kicker · balanced
+`h2.title` · optional constrained `.lead`) inside each component's own CSS Module. There is deliberately no
+shared component: the cinematic scenes own their widths and vertical rhythm (ADR-001), so a single header
+component would have had to accept enough overrides to stop being a primitive. The *typographic* contract is
+still binding — it lives in §6.3, not in a component.
+
+> Full component contracts — every component's file, type, props, variants, CSS-module class inventory,
+> content dependencies, the closed-set rule, and the binding CSS-Modules + tokens pattern contract — are
+> governed in [component-inventory.md](component-inventory.md).
 
 ### 6.6 Surfaces & Anti-Card-Grid Policy
 Surfaces are used only where structural containment enhances cognitive clarity:
@@ -702,15 +769,26 @@ Nothing else animates. No looping, ambient, parallax, particle, or scroll-veloci
 - **Reduced motion**: elements render at final state instantly.
 
 #### 6.8.5 Signature Scene — Lumora Sticky Reveal (Scene 03, ADR-001 H4/H5)
-- **Staging**: the workbench frame is wrapped in a sticky stage (`position: sticky; top: <offset>`; container height = phases × ~100vh) so the frame remains fixed while the visitor's own scrolling advances the four phases.
+
+> [!CAUTION]
+> **Location corrected 2026-09-05 — the heading is retained only because four documents deep-link to its
+> anchor.** This mechanism is **not on the homepage**. In shipped code the sticky walkthrough
+> (`LumoraWorkflowWalkthrough` → `StickyStage` → `LumoraWorkflowBody`) renders **only inside
+> `/products/lumora`'s `#workflow` section**; the homepage's Scene 03 is `LumoraFlagship`, a compact static
+> beat. Everything below is accurate *as a specification of the mechanism* — the pacing, the scroll authority,
+> the override contract and the safety rules are all implemented as written — but every "homepage" in it is
+> wrong. Moving a signature scene out of a founder-ratified ADR is not an agent's call to make or to ratify:
+> registered as [decisions.md TODO 15](decisions.md#consolidation-notes--open-todos), awaiting either an
+> ADR-001 amendment or a directive to restore it.
+
+- **Staging**: the frame is wrapped in a sticky stage (`position: sticky; top: <offset>`; container height = phases × ~100vh) so the frame remains fixed while the visitor's own scrolling advances the four steps.
 - **Phase pacing (intentional, rebalanced 2026-09-01 per founder review)**: sentinel band boundaries are rebalanced after mount from measured geometry so every phase gets an intentional **stable** (fully pinned) window — the pre-pin arrival travel is credited to the scene entry and the frame-departure travel to the scene exit, never to a phase's reading time. Stable windows are weighted **0.5 / 1 / 1 / 1.25** (brisk setup → argument, argument → payoff): phase 1 reads brisk because the stage arrival already previews the frame; phase 4 holds the longest stable window and yields gracefully during its departure. The total scene scroll (phases × 100vh) never changes. The server HTML / no-JS default remains equal ¼ fractions; a measured reference window below 240px falls back to equal bands. Verified symmetric forward (1→4) and reverse (4→1), and stable under tap-override re-sync.
-- **Phase progression (scroll-linked mode, homepage only)**: phase sentinels inside the tall container drive an IntersectionObserver threshold state machine; each phase sets the full workbench state (sources panel, center visual, diagnostics) from `src/content/lumora-demo.ts`. Phase indicator `n / 4` and tab `aria-selected` track state.
+- **Phase progression (scroll-linked mode — on `/products/lumora`, per the correction above)**: step sentinels inside the tall container drive an IntersectionObserver threshold state machine; each step sets the full body state from `src/content/lumora-workflow.ts`. The indicator reads `n / 4` and a polite live region announces `Step n of 4: <label>`. **The controls are not tabs**: they are a `role="group"` of buttons carrying `aria-pressed`, because activating one advances a single ordered explanation rather than swapping between sibling panels of equal standing — the earlier `aria-selected` specification here described a tablist that was never built and should not be.
 - **Native scroll authority (binding)**: zero scroll-jacking, zero snap, zero momentum interference — the page scrolls normally at all times; the scene *observes* scroll, never *captures* it.
-- **Tap override (binding)**: step tabs and prev/next controls are always visible, always enabled, and always set the phase directly (also updating scroll position to the matching sentinel so state and viewport never disagree).
-- **State continuity**: phase changes transition workbench content via 250–350ms `transform`/`opacity` cross-fades; no content reflow jumps; the frame itself never resizes between phases (fixed frame, changing state — the anti-"fake liveness" rule: state changes must be visible and meaningful, not cosmetic).
-- **Honest framing**: the stage carries the registered conceptual-demonstration signals (`STATUS: BETA` status, evidence copy, exhibit-fiction data per [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora)); the demonstration never simulates liveness it does not have (no ticking timers, no streaming counters at rest).
-- **Exploration mode (`/products/lumora`)**: the same content/state model, tap-driven only — no sticky, no scroll linkage, phases switch via the controls.
-- **Reduced motion**: sticky stage collapses to normal document flow with tap-only phase switching (Scene 03 becomes a self-contained interactive exhibit in sequence).
+- **Tap override (binding)**: step buttons and prev/next controls are always visible, always enabled, and always set the step directly (also updating scroll position to the matching sentinel so state and viewport never disagree). Prev/next at the ends of the range use `aria-disabled`, **not** `disabled`, so keyboard focus is never dropped to `<body>`.
+- **State continuity**: step changes transition body content via 250–350ms `transform`/`opacity` cross-fades; no content reflow jumps; the frame itself never resizes between steps (fixed frame, changing state — the anti-"fake liveness" rule: state changes must be visible and meaningful, not cosmetic).
+- **Honest framing**: the section carries the registered honesty signals — the product's real status string, the evidence band's `isDemoData` disclosure, and the release-gate principle. *Corrected 2026-09-05: this bullet previously required `STATUS: BETA` and the "exhibit-fiction" framing of [copy.md §4](copy.md#4-home--lumora-stage-lumorastage-anchor-lumora), which is **superseded** — it framed Lumora as a conceptual demonstration of a product it is not. The shipped strings are [copy.md §13](copy.md#13-lumora-workflow-walkthrough--product-truth-correction-2026-09-01-proposed).* The walkthrough never simulates liveness it does not have (no ticking timers, no streaming counters at rest).
+- **Reduced motion**: `StickyStage` switches to `explore` mode — normal document flow, tap-only step switching, no sticky geometry. *This is the tap-only composition; the bullet that previously assigned tap-only exploration to `/products/lumora` as a second location was describing the pre-`5b58001` build, where the two modes lived on two routes. Today one route carries all three compositions: scroll-linked, reduced-motion explore, and the mobile stepper (§6.8.7).*
 
 #### 6.8.6 Scene Composition Rules (the scene grammar)
 - **Scene seams (transition grammar, 2026-09-01)**: scene boundaries are 1px rules that **dissolve at their edges** (horizontal fade gradient, `--border-hairline` center) instead of full-width slab cuts. Exactly one seam on the page carries the warm copper tint (`--accent-copper-muted`): the Founder → Horizon boundary, the first note of the horizon invitation. Seams are static CSS on the closing scene's edge — same 1px geometry as the former borders, zero layout change.

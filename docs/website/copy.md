@@ -19,6 +19,7 @@ Every string in this document carries exactly one status:
 | **APPROVED** | Founder wet-signed. Literal, final, immutable. | **Founder only** | ✅ Yes |
 | **PROPOSED** | Drafted strictly from approved docs/shipped prototype; awaiting founder signature. Ships only while no `APPROVED` alternative exists, and must be listed in the [sign-off table](#02-sign-off-record). | Agents may draft; founder approves | ⚠️ Provisionally (until review) |
 | **PENDING FOUNDER COPY** | A real copy gap. No acceptable founder-approved text exists. The current placeholder string is recorded for traceability. | **Founder only** | ❌ No — replace before launch |
+| **SUPERSEDED** | *(added 2026-09-05)* Recorded here as history, replaced by a later section. Retained rather than deleted so the record of what was once specified survives. | Agents may mark, citing the superseding section | ❌ No — implementing it is a regression |
 
 **Rules**
 
@@ -35,13 +36,14 @@ Every string in this document carries exactly one status:
 | 1 | §1 Global chrome (header / nav / footer / metadata / 404) | PROPOSED | — | Derived from navigation.ts + company.ts + layout.tsx |
 | 2 | §2 Home — Hero | PROPOSED | — | Shipped in Phase 6/7 prototype |
 | 3 | §3 Home — Building Philosophy (thesis) | PROPOSED | — | Cycle/filters text is foundation-derived |
-| 4 | §4 Home — Lumora Stage (workbench) | PROPOSED | — | Shipped interactive narrative |
+| 4 | §4 Home — Lumora Stage (workbench) | **SUPERSEDED** | — | ⚠️ **Do not implement.** Specifies an "academic operating system" the product is not; ≥11 strings are blocked by `product-truth.test.tsx`. Retained as history; replaced by §13 |
 | 5 | §5 Home — Founder letter + horizon | PROPOSED | — | Founder name missing — see §10 |
-| 6 | §6 /products + /products/lumora | PROPOSED | — | Descriptions marked `isPlaceholder: false` in code |
+| 6 | §6 /products + /products/lumora | PROPOSED | — | Descriptions marked `isPlaceholder: false` in code. ⚠️ Parity vs `products.ts` not re-audited after `5b58001` — see §13.5 |
 | 7 | §7 /about | PROPOSED | — | All strings foundation-derived |
 | 8 | §8 /contact | PROPOSED | — | Contains one internal leak to replace (§9) |
 | 9 | §9–10 Proof & testimonial layer | **PENDING FOUNDER COPY** | — | Zero-Fabrication: only founder can supply |
 | 10 | §12 Company/product hierarchy pass (2026-09-03) | PROPOSED | — | Nav, footer groups, hero topline + CTA pair, Scene 03 attribution, `/products` frame + company-standard band, `/about` header + products bridge, `/contact` gateway body. Supersedes the affected rows in §1.1, §1.2, §2, §4, §6.1, §7, §8 |
+| 11 | §13 Lumora workflow walkthrough — product-truth correction (2026-09-01, registered retroactively 2026-09-05) | PROPOSED | — | **24 strings, 4 of them factual product claims and 2 naming a third-party vendor (`Google Gemini`).** Provenance is the Lumora product repository via `products.ts`; only the founder can confirm it holds. Supersedes §4 entirely |
 
 ---
 
@@ -157,8 +159,44 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 
 ## 4. Home — Lumora Stage (`LumoraStage`, anchor `#lumora`)
 
+<!-- Heading text deliberately unchanged 2026-09-05: ADR-001 (founder-owned, not agent-editable),
+     design-system.md, product-spec.md and component-inventory.md all deep-link to this heading's
+     generated anchor. Renaming it would break four cross-references to fix one stale word. The
+     supersession is carried by the CAUTION block below instead. -->
+
+
+
+> [!CAUTION]
+> **SUPERSEDED 2026-09-05 — DO NOT IMPLEMENT §4.1–§4.5. This section specifies a product that Lumora is not.**
+>
+> Commit `5b58001` (2026-09-01) replaced this entire experience as a **product-truth correction**, verified
+> against the Lumora repository itself. Lumora is an **AI-native academic assessment & progression
+> platform**: teachers define rubrics, submissions are evaluated against them by a hosted model, results are
+> confidence-banded, and **no grade reaches a student without a teacher releasing it**. It is *not* an
+> "academic operating system", a degree planner, a scheduling optimiser, or a local-only privacy product.
+>
+> The strings in §4.1–§4.5 below describe that second thing. They are now **guarded against by an executable
+> test** — [`src/app/product-truth.test.tsx`](../../src/app/product-truth.test.tsx) fails the build on
+> `academic operating system`, `syllabus`, `air-gapped`, `privacy vault`, `zero private data`, `zero cloud`,
+> `sovereign`, `context ingest`, `decision support`, `workload collision`, `deep-work sprint` and 14 more
+> terms, checking **both rendered output and source text**. At least 11 of the strings tabled below contain a
+> forbidden term. Implementing this section would fail CI.
+>
+> **This is the copy analogue of the palette conflict** ([design-system.md §4.5](design-system.md#45-visual-language--aesthetic-synthesis)):
+> read literally, [AGENTS.md §2](../../AGENTS.md#2-source-of-truth-hierarchy)'s "documentation governs, code
+> must be refactored" would mandate reintroducing a misrepresentation of a real product. It does not apply
+> here. **The code is right and this section is the stale artifact.**
+>
+> Tables are **retained unedited as history** — §11 makes approved strings founder-editable only, and this
+> section's rows carry `APPROVED`-lineage status. What ships today is registered in
+> **[§13](#13-lumora-workflow-walkthrough--product-truth-correction-2026-09-01-proposed)** as `PROPOSED`,
+> awaiting the founder's wet-sign. Until then §13 governs the code and this section governs nothing.
+>
+> *Structural note: the walkthrough no longer renders on the homepage at all — see [§13.0](#130-where-this-now-renders).
+> The "Home —" in this heading is itself stale.*
+
 > [!NOTE]
-> **Source-of-truth note (2026-08-31, [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md))**: these strings now live in `src/content/lumora-demo.ts` (the demonstration content contract), imported by `LumoraStage.tsx` — they were extracted verbatim from the component (string-set parity verified). No literal text changed in the extraction; this table remains the copy authority per §0.2/§11.
+> **Original source-of-truth note (2026-08-31, [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md))**: these strings live in `src/content/lumora-demo.ts` (the demonstration content contract), imported by `LumoraStage.tsx` — they were extracted verbatim from the component (string-set parity verified). No literal text changed in the extraction; this table remains the copy authority per §0.2/§11. *Retained verbatim as the record of what was true on 2026-08-31. Both files named here were deleted by `5b58001`; `lumora-workflow.ts` and `LumoraWorkflowWalkthrough.tsx` replaced them with different content. The "copy authority" claim in this note is what §13 supersedes.*
 
 | Element | Literal text |
 | :--- | :--- |
@@ -240,7 +278,7 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 
 ## 5. Home — Founder Letter & Horizon
 
-### 5.1 Founder Letter (`FounderLetter`)
+### 5.1 Founder Letter (`FounderPresence`)
 | Element | Literal text |
 | :--- | :--- |
 | Section label row | `04` / `Perspective` |
@@ -282,6 +320,14 @@ Cycle strings are foundation-derived (founder building cycle, verbatim) — **hi
 | Card link | `Explore Lumora →` → `/products/lumora` *(pattern: `Explore {Product Name} →`)* |
 
 ### 6.2 `/products/lumora` — Flagship Detail
+
+> [!WARNING]
+> **Four of the rows below no longer describe the shipped page (verified against `src/app/products/[slug]/page.tsx` on 2026-09-05).** `5b58001` reworked this surface and the table was not updated. Observed today: the badge row reads `Flagship product` + `product.statusLabel` (`Pre-launch · Phase 1 core workflow beta · in active development`), **not** `FLAGSHIP PLATFORM` and **not** `STATUS: BETA`; the capability heading is `Implemented and observable in the product`, not `Capability Architecture`; the evidence band is titled `Lumora as it stands today`; the roadmap band is `Named, so nobody has to guess`; and the page closes on `Lumora is not generally available yet`. The breadcrumb and H1 rows are still accurate.
+>
+> **The `STATUS: BETA` row is not merely stale — it is now prohibited.** Gate **2.10.8** in [qa-checklist.md §2.10](qa-checklist.md#210-motion--interaction-safety-adr-001-implementation-gates) forbids that chip, because a bare `BETA` overstates a pre-launch product. Do not restore it from this table.
+>
+> These rows are **approved copy**, so an agent may not rewrite them — only the founder can. This is the concrete result of the parity audit [§13.5](#135-what-this-section-does-not-cover) recorded as unrun; the findings are now attached to [decisions.md](decisions.md) TODO 16 for founder resolution. Anything not listed above remains unaudited.
+
 | Element | Literal text |
 | :--- | :--- |
 | Breadcrumbs | `SamJuniors` (`/`) / `Products` (`/products`) / `Lumora` |
@@ -408,7 +454,7 @@ Every string below is **PROPOSED** ([§0.2](#02-sign-off-record) row 10). None o
 | 2 | Footer group 1 label | *(no groups: three flat links)* | `Company` — containing `About`, `Contact` | §1.2 footer links 1–3 |
 | 3 | Footer group 2 label | *(no groups: three flat links)* | `Products` — containing `All products`, then one entry per registered product | §1.2 footer links 1–3 |
 
-The product entries are `products.map(...)`, so `Lumora` in the footer is the registry's `product.name`, not a copy string: adding a product must never require a navigation edit ([product-spec.md §5.4](product-spec.md#54-multi-product-scalability)).
+The product entries are `products.map(...)`, so `Lumora` in the footer is the registry's `product.name`, not a copy string: adding a product must never require a navigation edit ([product-spec.md §5.4](product-spec.md#54-multi-product-scalability-rules)).
 
 ### 12.2 Homepage — Scene 01 Overture & Scene 03 Lumora
 
@@ -475,3 +521,139 @@ Two judgement calls were made rather than deferred, because the pass could not o
 ### 12.8 Not changed, deliberately
 
 The five-scene homepage order (frozen by [ADR-001](adr/ADR-001-homepage-experience-reconciliation.md), and already company-first), every scene's body copy, the `/products` H1 (`Products` — the company statement went into the eyebrow and lead instead), the whole of `/products/lumora` (breadcrumbs already open on `SamJuniors`, the chip already reads `Flagship product`, the footer line already attributes the product to the company), and the structured-data graph (`publisher` + `BreadcrumbList` already encode the hierarchy). No new products, no roadmap language, no future-product hints.
+
+---
+
+## 13. Lumora Workflow Walkthrough — Product-Truth Correction (2026-09-01, PROPOSED)
+
+> **Retroactive registration, written 2026-09-05.** These strings shipped in commit `5b58001` on 2026-09-01
+> and were never registered here, breaching [AGENTS.md §1.4](../../AGENTS.md#1-core-directives--behavioral-guardrails)'s
+> copy rule. This section closes that gap. Registering them does not approve them — every row is `PROPOSED`
+> ([§0.2](#02-sign-off-record) row 11) and needs the founder's eye, because unlike §4's exhibit fiction
+> **these are factual claims about a real product**.
+>
+> **Not invented.** [`src/content/products.ts`](../../src/content/products.ts) names its own source: *"the
+> Lumora product repository (samjuniors/Lumoraglm)… Capabilities listed under `capabilities` are implemented
+> and observable in the product today."* Every capability carries `isPlaceholder: false`. The Zero-Fabrication
+> rule is satisfied by provenance, not by agent judgement — but the founder is the only one who can confirm
+> the provenance holds, and two claims below name a **third party** (`Google Gemini`), which is a disclosure
+> decision, not a copy decision.
+>
+> **What this supersedes:** the whole of [§4](#4-home--lumora-stage-lumorastage-anchor-lumora) (§4.1–§4.5),
+> which specified an "academic operating system" that the product is not. §4 was `PROPOSED`, never `APPROVED`,
+> so rule 1 of [§0](#0-copy-status-model--sign-off-protocol) is intact — no immutable copy was overwritten,
+> and §4's tables are retained unedited as history.
+
+### 13.0 Where this now renders
+
+The four-step walkthrough is **not on the homepage.** This diverges from ADR-001 H4/H5 and from every doc
+that still says "Scene 03 sticky reveal, homepage only" — recorded as a finding, not corrected here, because
+ADR-001 is founder-owned ([decisions.md](decisions.md) TODO 15).
+
+| Surface | Component | Composition |
+| :--- | :--- | :--- |
+| `/` Scene 03 | `LumoraFlagship` | Compact statement: eyebrow, company attribution, H2, category + status, lead, the four step labels as a static `<ol>`, the release principle, two CTAs — then one evidence item. No sticky stage. |
+| `/products/lumora` | `LumoraWorkflowWalkthrough` | The full four-step sticky walkthrough (desktop scroll-linked · reduced-motion explore · mobile `LumoraMobileStepper`), plus the full evidence band. |
+
+The homepage comment in [`src/app/page.tsx`](../../src/app/page.tsx) states the reason: *"the homepage does
+not spend four viewport heights on a single product, which is what keeps this beat inside its share of the
+page."* That is a defensible reading of the company-over-product rule — and it is also an ADR-governed
+structural change made without a recorded decision. Both facts are true and both belong in the record.
+
+
+
+### 13.1 Scene 03 statement — `LumoraFlagship` + `products.ts`
+
+| # | Element | Literal text | Source |
+| :--- | :--- | :--- | :--- |
+| 1 | Index / eyebrow | `03` / `Flagship product` | component |
+| 2 | Company attribution | `The first product SamJuniors has taken to beta.` | §12 row 7 — unchanged, `companyContent.name` interpolated |
+| 3 | H2 | `Lumora — assessment the teacher still decides` | `product.name` + component |
+| 4 | Category | `AI-native academic assessment & progression platform` | `product.category` |
+| 5 | Status | `Pre-launch · Phase 1 core workflow beta · in active development` | `product.statusLabel` — ⚠️ contains the word *Phase*; deliberately allowed, see §12.6 |
+| 6 | Lead | `Lumora evaluates student submissions against the teacher’s own rubric, tells the teacher how much to trust each evaluation, and requires an explicit human release before any grade reaches a student.` | `product.shortDescription` |
+| 7 | Release principle | `AI recommends. Humans decide. Every grade released to a student requires educator action.` | `LUMORA_PRINCIPLE` — the load-bearing claim of the whole surface |
+| 8 | Primary CTA | `How Lumora works` + `→` | component, `.btn-primary` |
+| 9 | Secondary CTA | `Talk to us about Lumora →` | component, `.text-link` |
+| 10 | Evidence band heading | `What the product actually does today` | component prop |
+| 11 | Evidence band intro | `Lumora is in pre-launch beta and in active development. This is what its primary surface does today, verified against the product’s own build and running on seeded demonstration data — not a description of an intended future.` | component prop — the honesty framing that replaces §4's exhibit-fiction note |
+
+### 13.2 The four steps — `products.ts` `workflow[]` (rendered on `/` as a static list)
+
+| # | Order | Label | Summary |
+| :--- | :--- | :--- | :--- |
+| 12 | `01` | `Submission Intake` | `Course, assignment, and rubric or answer key are defined first. Students submit against that definition.` |
+| 13 | `02` | `AI Evaluation` | `Google Gemini evaluates the submission against the teacher’s criteria and proposes a score with rubric-level feedback.` |
+| 14 | `03` | `Confidence Triage` | `Each evaluation is banded High, Medium, or Review using calibration from the platform’s own accuracy and override record.` |
+| 15 | `04` | `Teacher Review & Release` | `The teacher approves, edits, overrides, re-runs, or returns the work — then releases it. Release is the only path to the student.` |
+
+> **Row 13 names a third-party vendor in visitor-facing copy.** `Google Gemini` appears here and in §13.3
+> row 17. Whether SamJuniors discloses its model provider on its own marketing surface is a **founder and
+> possibly commercial decision**, not a copy-style one. Flagged rather than resolved.
+
+### 13.3 Walkthrough step detail — `lumora-workflow.ts` (`/products/lumora` only)
+
+Each step renders: `order` / `actor` · `headline` · `narrative` · `decision` · a `detail` definition list ·
+`handoff` prefixed by the label `Then`.
+
+#### 13.3.1 Step 01 — `Submission Intake`
+| # | Slot | Literal text |
+| :--- | :--- | :--- |
+| 16 | Actor | `Teacher sets up · student submits` |
+| — | Headline | `Work arrives against a rubric, not into a void` |
+| — | Narrative | `A teacher defines the course, the assignment, and the rubric or answer key the work will be judged against. Students submit against that definition from a browser or a phone. Nothing is evaluated until there is something concrete to evaluate it against.` |
+| — | Detail | `Set up by the teacher` — `Course → assignment → rubric or answer key` · `Submitted by the student` — `Web workspace or mobile submission` · `Grading mode` — `Chosen per assignment, from fully manual to AI-assisted` · `Precondition` — `No evaluation without a rubric or answer key` |
+| — | Decision | `The teacher decides what counts as correct before any AI sees the work.` |
+| — | Handoff | `Submission queued for evaluation` |
+
+#### 13.3.2 Step 02 — `AI Evaluation`
+| # | Slot | Literal text |
+| :--- | :--- | :--- |
+| 17 | Actor | `Lumora evaluation pipeline` |
+| — | Headline | `Evaluated against the teacher’s own criteria` |
+| — | Narrative | `The submission is evaluated by Google Gemini against the rubric or answer key the teacher supplied — not against a generic model opinion. Each evaluation produces a proposed score and rubric-level feedback. Jobs that fail are held in a visible dead-letter queue for retry instead of being silently dropped.` |
+| — | Detail | `Evaluation engine` — `Google Gemini` · `Graded against` — `The teacher’s rubric or answer key` · `Produces` — `A proposed score and rubric-level feedback` · `Failure handling` — `Dead-letter queue — visible, retryable, never silent` |
+| — | Decision | `Output is a proposal. At this point nothing is a grade and nothing is visible to the student.` |
+| — | Handoff | `Proposed score passed to triage` |
+
+#### 13.3.3 Step 03 — `Confidence Triage`
+| # | Slot | Literal text |
+| :--- | :--- | :--- |
+| 18 | Actor | `Lumora calibration` |
+| — | Headline | `Not all AI output is treated as equally trustworthy` |
+| — | Narrative | `Every evaluation is assigned a calibrated confidence band — High, Medium, or Review — so a teacher can see where their attention is actually required. Calibration is derived from the platform’s own record: historical accuracy, how often educators override, rubric quality, and evaluation consistency.` |
+| — | Detail | `Bands` — `High · Medium · Review` · `Calibrated from` — `Historical accuracy and educator override frequency` · `Also weighted by` — `Rubric quality and evaluation consistency` · `Purpose` — `Direct the teacher’s attention — never replace it` |
+| — | Decision | `Banding routes work to the teacher. It does not grant permission to skip them.` |
+| — | Handoff | `Banded queue surfaced to the teacher` |
+
+#### 13.3.4 Step 04 — `Teacher Review & Release`
+| # | Slot | Literal text |
+| :--- | :--- | :--- |
+| 19 | Actor | `Teacher` |
+| — | Headline | `No grade reaches a student without a teacher releasing it` |
+| — | Narrative | `The teacher works a queue. Each item can be approved, edited, overridden, returned for revision, or re-run. Release is a separate, deliberate action — and only after release does the student see the score and its rubric-level feedback, with progression and mastery updating from there.` |
+| — | Detail | `Teacher actions` — `Approve · edit score · edit feedback · override · re-run · return for revision` · `Release` — `An explicit step, separate from evaluation` · `Accountability` — `Every decision written to an immutable audit log` · `Student receives` — `Released score and feedback — then progression updates` |
+| — | Decision | `The educator is the release gate. There is no automatic release path.` |
+| — | Handoff | `Released to the student · progression and mastery update` |
+
+### 13.4 Walkthrough chrome & accessibility strings
+
+| # | Element | Literal text | Notes |
+| :--- | :--- | :--- | :--- |
+| 20 | Step-row group label | `Lumora workflow steps` | `aria-label`; same string on desktop `LumoraWorkflowBody` and mobile `LumoraMobileStepper` |
+| 21 | Live region | `Step {n} of 4: {label}` | `sr-only`, `aria-live="polite"` — the phase change announcement |
+| 22 | Handoff label | `Then` | precedes the handoff line |
+| 23 | Step indicator | `{n} / 4` | |
+| 24 | Prev / next `aria-label` | `Previous workflow step` / `Next workflow step` | glyphs `←` / `→` are `aria-hidden` |
+
+The prev/next controls use `aria-disabled`, never `disabled`, so keyboard focus is never dropped to `<body>`
+at the ends of the range. That is a deliberate accessibility choice recorded in the component and worth
+keeping if this copy is ever restructured.
+
+### 13.5 What this section does not cover
+
+`/products/lumora`'s page frame (breadcrumbs, H1, capability grid, roadmap, evidence band) and the
+`/products` index are governed by [§6](#6-products-pages) and were separately reworked by `5b58001` —
+`products.ts` grew 158 lines in that commit. **A §6-vs-`products.ts` parity audit has not been run** and is
+recorded as [decisions.md](decisions.md) TODO 16. Registering §13 closes the walkthrough gap only; it does
+not certify the rest of the product surface.
